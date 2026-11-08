@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  body {
+    background-color: #FFFFFF;
+    color: #1F1122;
+    overflow-x: hidden;
+  }
+
+  /* Custom subtle scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #FAF5FB;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #38213D;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #F0A05A;
+  }
+}
+
+@layer utilities {
+  .bg-festival-pattern {
+    background-image: radial-gradient(rgba(56, 33, 61, 0.08) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  
+  .bg-grid-dark {
+    background-image: radial-gradient(rgba(230, 211, 232, 0.12) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  .text-glow-orange {
+    text-shadow: 0 0 20px rgba(240, 160, 90, 0.5);
+  }
+
+  .glass-plum {
+    background: rgba(56, 33, 61, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(230, 211, 232, 0.2);
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(230, 211, 232, 0.6);
+  }
+}
