@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { ChevronDown, HelpCircle, Sparkles, MessageCircle } from 'lucide-react';
+import { ChevronDown, HelpCircle, MessageCircle } from 'lucide-react';
 import { FAQS_DATA } from '../data/festivalData';
+import { ScrollReveal } from './ScrollReveal';
 
 interface FaqSectionProps {
   onContactClick: () => void;
@@ -22,33 +23,35 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onContactClick }) => {
   };
 
   return (
-    <section id="faqs" className="py-20 bg-plum-50/40 relative">
+    <section id="faqs" className="py-12 sm:py-20 bg-plum-50/40 relative w-full overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-plum-100 text-plum-800 text-xs font-semibold mb-3 border border-plum-200">
-            <HelpCircle className="w-3.5 h-3.5 text-orange-accent" />
-            <span>Got Questions?</span>
+        <ScrollReveal direction="up" duration={600}>
+          <div className="text-center max-w-3xl mx-auto mb-10">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-plum-100/80 text-plum-800 text-xs font-semibold mb-3 border border-plum-200/80">
+              <HelpCircle className="w-3.5 h-3.5 text-orange-accent" />
+              <span>Got Questions?</span>
+            </div>
+            <h2 className="font-poppins font-black text-2xl sm:text-4xl lg:text-5xl text-plum-950 tracking-tight">
+              Frequently Asked Questions
+            </h2>
+            <p className="mt-2.5 font-inter text-xs sm:text-base text-plum-900/70 max-w-xl mx-auto leading-relaxed">
+              Everything prospective competitors, performers, and visitors need to know about participating in Xpressions.
+            </p>
           </div>
-          <h2 className="font-poppins font-black text-3xl sm:text-4xl lg:text-5xl text-plum-950 tracking-tight">
-            Frequently Asked Questions
-          </h2>
-          <p className="mt-3 font-inter text-base sm:text-lg text-plum-900/70">
-            Everything prospective competitors, performers, and visitors need to know about participating in Xpressions.
-          </p>
-        </div>
+        </ScrollReveal>
 
         {/* Category Filter Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
+        <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-8 sm:mb-10">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
+              className={`px-3 py-1.5 sm:px-3.5 sm:py-1.5 rounded-full text-xs font-semibold transition-all ${
                 selectedCategory === cat
                   ? 'bg-plum-800 text-white shadow-sm'
-                  : 'bg-white text-plum-800 border border-plum-200 hover:bg-plum-100'
+                  : 'bg-white text-plum-800 border border-plum-200/80 hover:bg-plum-100'
               }`}
             >
               {cat}
@@ -57,69 +60,67 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onContactClick }) => {
         </div>
 
         {/* Accordion List */}
-        <div className="space-y-3.5">
-          {filteredFaqs.map((faq) => {
+        <div className="space-y-3">
+          {filteredFaqs.map((faq, idx) => {
             const isOpen = openId === faq.id;
             return (
-              <div
-                key={faq.id}
-                className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
-                  isOpen
-                    ? 'bg-white border-plum-400 shadow-md ring-1 ring-plum-200'
-                    : 'bg-white/80 border-plum-200/80 hover:border-plum-300'
-                }`}
-              >
-                <button
-                  onClick={() => toggleFaq(faq.id)}
-                  className="w-full py-4 px-6 text-left flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-plum-800"
-                  aria-expanded={isOpen}
+              <ScrollReveal key={faq.id} direction="up" delay={(idx % 6) * 60} duration={500}>
+                <div
+                  className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
+                    isOpen
+                      ? 'bg-white border-plum-400/80 shadow-md ring-1 ring-plum-200/60'
+                      : 'bg-white/90 border-plum-200/70 hover:border-plum-300'
+                  }`}
                 >
-                  <div className="flex items-center gap-3">
-                    <span className="w-2 h-2 rounded-full bg-orange-accent shrink-0" />
-                    <span className="font-poppins font-bold text-sm sm:text-base text-plum-950">
-                      {faq.question}
-                    </span>
-                  </div>
-                  <ChevronDown
-                    className={`w-5 h-5 text-plum-600 shrink-0 transition-transform duration-200 ${
-                      isOpen ? 'rotate-180 text-orange-accent' : ''
-                    }`}
-                  />
-                </button>
+                  <button
+                    onClick={() => toggleFaq(faq.id)}
+                    className="w-full py-3.5 sm:py-4 px-4 sm:px-6 text-left flex items-center justify-between gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-plum-800"
+                    aria-expanded={isOpen}
+                  >
+                    <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+                      <span className="w-2 h-2 rounded-full bg-orange-accent shrink-0" />
+                      <span className="font-poppins font-bold text-xs sm:text-base text-plum-950 truncate sm:whitespace-normal">
+                        {faq.question}
+                      </span>
+                    </div>
+                    <ChevronDown
+                      className={`w-4 h-4 sm:w-5 sm:h-5 text-plum-600 shrink-0 transition-transform duration-200 ${
+                        isOpen ? 'rotate-180 text-orange-accent' : ''
+                      }`}
+                    />
+                  </button>
 
-                {isOpen && (
-                  <div className="px-6 pb-5 pt-1 text-xs sm:text-sm text-plum-900/80 leading-relaxed border-t border-plum-50 animate-in fade-in duration-150">
-                    {faq.answer}
-                  </div>
-                )}
-              </div>
+                  {isOpen && (
+                    <div className="px-4 sm:px-6 pb-4 sm:pb-5 pt-1 text-xs sm:text-sm text-plum-900/80 leading-relaxed border-t border-plum-50 animate-in fade-in duration-150">
+                      {faq.answer}
+                    </div>
+                  )}
+                </div>
+              </ScrollReveal>
             );
           })}
         </div>
 
         {/* Still have questions card */}
-        <div className="mt-12 p-6 rounded-2xl bg-white border border-plum-200 shadow-sm text-center flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3 text-left">
-            <div className="p-3 rounded-xl bg-plum-100 text-plum-900 shrink-0">
-              <MessageCircle className="w-5 h-5 text-orange-accent" />
+        <ScrollReveal direction="up" delay={200} duration={600}>
+          <div className="mt-10 sm:mt-12 p-6 sm:p-8 rounded-3xl bg-white border border-plum-200/80 shadow-md text-center max-w-xl mx-auto flex flex-col items-center">
+            <div className="w-12 h-12 rounded-2xl bg-plum-50 text-orange-accent flex items-center justify-center mb-4">
+              <MessageCircle className="w-6 h-6" />
             </div>
-            <div>
-              <h4 className="font-poppins font-bold text-sm text-plum-950">
-                Still have an unresolved question?
-              </h4>
-              <p className="text-xs text-plum-700">
-                The student steering committee is available to address queries regarding rules and accommodations.
-              </p>
-            </div>
+            <h3 className="font-poppins font-bold text-lg sm:text-xl text-plum-950">
+              Still have questions?
+            </h3>
+            <p className="text-xs sm:text-sm text-plum-700 mt-1.5 max-w-md leading-relaxed">
+              Our Student Executive Council desks are ready to assist you regarding registrations, campus stay, and corporate partnerships.
+            </p>
+            <button
+              onClick={onContactClick}
+              className="mt-5 px-6 py-2.5 rounded-full bg-plum-800 hover:bg-plum-900 text-white font-poppins font-semibold text-xs sm:text-sm shadow-md transition-all hover:scale-105 active:scale-95"
+            >
+              Contact the Council
+            </button>
           </div>
-
-          <button
-            onClick={onContactClick}
-            className="shrink-0 px-5 py-2.5 rounded-xl bg-plum-800 hover:bg-plum-900 text-white font-poppins font-semibold text-xs transition-colors"
-          >
-            Contact Organisers
-          </button>
-        </div>
+        </ScrollReveal>
 
       </div>
     </section>

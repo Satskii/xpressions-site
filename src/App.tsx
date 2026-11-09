@@ -4,6 +4,7 @@ import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { MobileBottomBar } from './components/MobileBottomBar';
 import { ScrollToTop } from './components/ScrollToTop';
+import { ScrollProgressBar } from './components/ScrollProgressBar';
 
 import { HomePage } from './pages/HomePage';
 import { EventsPage } from './pages/EventsPage';
@@ -56,14 +57,15 @@ export const AppContent: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white text-plum-950 font-inter antialiased flex flex-col selection:bg-orange-accent selection:text-white">
+    <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-white text-plum-950 font-inter antialiased flex flex-col selection:bg-orange-accent selection:text-white">
+      <ScrollProgressBar />
       <ScrollToTop />
 
       {/* Global Sticky Navigation */}
       <Navbar onOpenInterestModal={handleOpenInterestModal} />
 
       {/* Page Routing */}
-      <main className="flex-1">
+      <main className="flex-1 pb-20 lg:pb-0 w-full max-w-full overflow-x-hidden">
         <Routes>
           <Route
             path="/"

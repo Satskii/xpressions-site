@@ -42,16 +42,16 @@ export const EventDetailModal: React.FC<EventDetailModalProps> = ({
         onClick={onClose}
       />
 
-      <div className="min-h-screen px-4 py-8 flex items-center justify-center">
+      <div className="min-h-screen px-3 sm:px-4 py-4 sm:py-8 flex items-center justify-center">
         {/* Modal Window */}
         <div 
-          className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl border border-plum-200 overflow-hidden z-10 animate-in fade-in zoom-in-95 duration-200"
+          className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl border border-plum-200 overflow-hidden z-10 animate-in fade-in zoom-in-95 duration-200 my-auto"
           role="dialog"
           aria-modal="true"
           aria-labelledby="modal-event-title"
         >
           {/* Header Image Cover */}
-          <div className="relative h-64 sm:h-72 w-full bg-plum-950 overflow-hidden">
+          <div className="relative h-56 sm:h-72 w-full bg-plum-950 overflow-hidden">
             <img
               src={event.imageUrl}
               alt={event.title}
@@ -60,47 +60,47 @@ export const EventDetailModal: React.FC<EventDetailModalProps> = ({
             <div className="absolute inset-0 bg-gradient-to-t from-plum-950 via-plum-950/60 to-transparent" />
 
             {/* Top Close & Share Actions */}
-            <div className="absolute top-4 right-4 flex items-center gap-2">
+            <div className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 flex items-center gap-2">
               <button
                 onClick={() => onShare(event)}
-                className="p-2.5 rounded-full bg-plum-900/80 text-white hover:bg-orange-accent hover:text-plum-950 transition-colors backdrop-blur-md"
+                className="p-2 sm:p-2.5 rounded-full bg-plum-900/80 text-white hover:bg-orange-accent hover:text-plum-950 transition-colors backdrop-blur-md"
                 aria-label="Share this event"
               >
                 <Share2 className="w-4 h-4" />
               </button>
               <button
                 onClick={onClose}
-                className="p-2.5 rounded-full bg-plum-900/80 text-white hover:bg-white hover:text-plum-950 transition-colors backdrop-blur-md"
+                className="p-2 sm:p-2.5 rounded-full bg-plum-900/80 text-white hover:bg-white hover:text-plum-950 transition-colors backdrop-blur-md"
                 aria-label="Close modal"
               >
-                <X className="w-5 h-5" />
+                <X className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
 
             {/* Event Header Information */}
-            <div className="absolute bottom-6 left-6 right-6 text-white">
-              <div className="flex flex-wrap items-center gap-2 mb-2">
-                <span className="px-3 py-1 rounded-full bg-orange-accent text-plum-950 font-poppins font-black text-xs uppercase tracking-wider">
+            <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 text-white">
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-1.5 sm:mb-2">
+                <span className="px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-orange-accent text-plum-950 font-poppins font-black text-[10px] sm:text-xs uppercase tracking-wider">
                   {event.category}
                 </span>
-                <span className="px-3 py-1 rounded-full bg-plum-900/90 text-lilac font-medium text-xs border border-plum-700/80">
+                <span className="px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-plum-900/90 text-lilac font-medium text-[10px] sm:text-xs border border-plum-700/80">
                   {event.participationType} ({event.teamSize})
                 </span>
-                <span className="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 font-medium text-xs border border-amber-500/40">
+                <span className="px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-amber-500/20 text-amber-300 font-medium text-[10px] sm:text-xs border border-amber-500/40">
                   Status: {event.registrationStatus}
                 </span>
               </div>
-              <h2 id="modal-event-title" className="font-poppins font-black text-3xl sm:text-4xl text-white">
+              <h2 id="modal-event-title" className="font-poppins font-black text-2xl sm:text-4xl text-white">
                 {event.title}
               </h2>
-              <p className="text-xs sm:text-sm text-lilac font-medium mt-1">
+              <p className="text-[11px] sm:text-sm text-lilac font-medium mt-0.5 sm:mt-1 line-clamp-1">
                 {event.subtitle}
               </p>
             </div>
           </div>
 
           {/* Modal Body: 10 Standard Sections */}
-          <div className="p-6 sm:p-8 space-y-8 max-h-[70vh] overflow-y-auto">
+          <div className="p-4 sm:p-8 space-y-6 sm:space-y-8 max-h-[65vh] sm:max-h-[70vh] overflow-y-auto">
             
             {/* 1. Event Introduction */}
             <div>

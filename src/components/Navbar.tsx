@@ -40,33 +40,33 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInterestModal }) => {
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled
-            ? 'bg-plum-950/95 backdrop-blur-md shadow-lg shadow-plum-950/20 py-2.5 border-b border-plum-800/60'
-            : 'bg-gradient-to-b from-plum-950/90 via-plum-900/60 to-transparent py-4'
+            ? 'bg-plum-950/90 backdrop-blur-xl shadow-lg shadow-plum-950/25 py-2.5 border-b border-plum-800/50'
+            : 'bg-gradient-to-b from-plum-950/90 via-plum-900/60 to-transparent py-3 sm:py-4'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between gap-2">
             {/* Brand Logo & Wordmark */}
             <Link
               to="/"
-              className="flex items-center gap-3 text-left group focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-accent rounded-lg p-1"
+              className="flex items-center gap-2.5 sm:gap-3 text-left group focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-accent rounded-lg p-0.5"
               aria-label="Xpressions Festival Home"
             >
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-accent to-plum-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-200">
-                <span className="font-poppins font-black text-2xl text-white tracking-tighter">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-orange-accent to-plum-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-200 shrink-0">
+                <span className="font-poppins font-black text-xl sm:text-2xl text-white tracking-tighter">
                   X
                 </span>
               </div>
-              <div>
+              <div className="min-w-0">
                 <div className="flex items-center gap-1.5">
-                  <span className="font-poppins font-extrabold text-xl text-white tracking-wide">
+                  <span className="font-poppins font-extrabold text-base sm:text-xl text-white tracking-wide truncate">
                     XPRESSIONS
                   </span>
-                  <span className="text-[10px] font-semibold bg-plum-800 text-orange-accent px-1.5 py-0.5 rounded border border-plum-700">
+                  <span className="text-[9px] sm:text-[10px] font-bold bg-plum-800/90 text-orange-accent px-1.5 py-0.5 rounded border border-plum-700/80 shrink-0">
                     2026
                   </span>
                 </div>
-                <p className="text-[11px] text-lilac font-medium tracking-wide">
+                <p className="text-[10px] sm:text-[11px] text-lilac/80 font-medium tracking-wide truncate">
                   XIM University · Bhubaneswar
                 </p>
               </div>
@@ -81,7 +81,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInterestModal }) => {
                   className={({ isActive }) =>
                     `px-3.5 py-1.5 rounded-full text-xs xl:text-sm font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-accent ${
                       isActive
-                        ? 'bg-plum-800 text-orange-accent shadow-inner border border-plum-700 font-semibold'
+                        ? 'bg-plum-800 text-orange-accent shadow-inner border border-plum-700/80 font-semibold'
                         : 'text-lilac hover:text-white hover:bg-plum-850/60'
                     }`
                   }
@@ -91,7 +91,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInterestModal }) => {
               ))}
             </nav>
 
-            {/* Primary Action Button */}
+            {/* Primary Action Button (Desktop & Tablet) */}
             <div className="hidden sm:flex items-center gap-3">
               <button
                 onClick={() => onOpenInterestModal()}
@@ -102,20 +102,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInterestModal }) => {
               </button>
             </div>
 
-            {/* Mobile Hamburger Toggle */}
-            <div className="flex items-center gap-2 lg:hidden">
-              <button
-                onClick={() => onOpenInterestModal()}
-                className="sm:hidden px-3 py-1.5 rounded-full bg-orange-accent text-plum-950 font-poppins font-bold text-xs shadow-md"
-              >
-                Interest
-              </button>
+            {/* Mobile Hamburger Toggle (Clean, aligned) */}
+            <div className="flex items-center gap-1 lg:hidden shrink-0">
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-lg text-lilac hover:text-white hover:bg-plum-800/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-accent"
+                className="p-2 rounded-xl text-lilac hover:text-white hover:bg-plum-800/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-accent transition-colors"
                 aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
               >
-                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                {mobileMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
               </button>
             </div>
           </div>

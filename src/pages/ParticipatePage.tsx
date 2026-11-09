@@ -4,6 +4,7 @@ import { Target, Mic2, Ticket, CheckCircle2, AlertTriangle, Send, Download, Shie
 import confetti from 'canvas-confetti';
 import { FESTIVAL_EVENTS } from '../data/festivalData';
 import { RegistrationInterestSubmission, EventCategory } from '../types/festival';
+import { ScrollReveal } from '../components/ScrollReveal';
 
 interface ParticipatePageProps {
   onOpenInterestModal: (role?: string) => void;
@@ -140,21 +141,23 @@ export const ParticipatePage: React.FC<ParticipatePageProps> = ({
   };
 
   return (
-    <div className="pt-24 pb-16 min-h-screen bg-white">
+    <div className="pt-20 sm:pt-24 pb-16 min-h-screen bg-white w-full max-w-full overflow-hidden">
       {/* Page Header */}
-      <div className="bg-plum-950 text-white py-14 border-b border-plum-800 relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-dark opacity-30 pointer-events-none" />
+      <div className="bg-plum-950 text-white py-12 sm:py-16 border-b border-plum-800/80 relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-dark opacity-20 pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-plum-800 text-orange-accent text-xs font-semibold mb-3 border border-plum-700">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Audience Pathways</span>
-          </div>
-          <h1 className="font-poppins font-black text-3xl sm:text-5xl lg:text-6xl text-white tracking-tight">
-            How to Participate
-          </h1>
-          <p className="mt-3 font-inter text-base sm:text-lg text-lilac max-w-2xl mx-auto leading-relaxed">
-            Choose your pathway to discover tailored requirements, eligibility rules, and record your interest for the upcoming edition.
-          </p>
+          <ScrollReveal direction="up" duration={600}>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-plum-850/80 text-orange-accent text-xs font-semibold mb-3 border border-plum-700/60">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Audience Pathways</span>
+            </div>
+            <h1 className="font-poppins font-black text-2xl sm:text-5xl lg:text-6xl text-white tracking-tight">
+              How to Participate
+            </h1>
+            <p className="mt-2.5 font-inter text-xs sm:text-base text-lilac/90 max-w-xl mx-auto leading-relaxed">
+              Choose your pathway to discover tailored requirements, eligibility rules, and record your interest for the upcoming edition.
+            </p>
+          </ScrollReveal>
         </div>
       </div>
 
@@ -169,17 +172,19 @@ export const ParticipatePage: React.FC<ParticipatePageProps> = ({
       />
 
       {/* Embedded Working Interest Registration Form Section */}
-      <section className="py-20 bg-plum-50/50">
+      <section className="py-14 sm:py-20 bg-plum-50/50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center mb-10">
-            <h2 className="font-poppins font-black text-3xl sm:text-4xl text-plum-950">
-              Record Your Interest
-            </h2>
-            <p className="mt-2 text-xs sm:text-sm text-plum-700">
-              Receive rulebooks, audition calls, and schedule releases direct to your inbox.
-            </p>
-          </div>
+          <ScrollReveal direction="up" duration={600}>
+            <div className="text-center mb-8 sm:mb-10">
+              <h2 className="font-poppins font-black text-2xl sm:text-4xl text-plum-950">
+                Record Your Interest
+              </h2>
+              <p className="mt-2 text-xs sm:text-sm text-plum-700 max-w-md mx-auto">
+                Receive rulebooks, audition calls, and schedule releases direct to your inbox.
+              </p>
+            </div>
+          </ScrollReveal>
 
           <div className="bg-white rounded-3xl border border-plum-200 shadow-xl overflow-hidden p-6 sm:p-10">
             {isSubmitted ? (

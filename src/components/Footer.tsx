@@ -9,7 +9,7 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ onOpenInterestModal }) => {
   return (
-    <footer className="bg-plum-950 text-white border-t border-plum-800/80 pt-16 pb-24 lg:pb-12 relative overflow-hidden">
+    <footer className="bg-plum-950 text-white border-t border-plum-800/80 pt-14 sm:pt-16 pb-32 lg:pb-12 relative overflow-hidden w-full max-w-full">
       {/* Background Accent Lines */}
       <div className="absolute inset-0 bg-grid-dark opacity-20 pointer-events-none" />
 

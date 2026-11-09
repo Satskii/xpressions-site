@@ -187,15 +187,15 @@ export const InterestForm: React.FC<InterestFormProps> = ({
         onClick={onClose}
       />
 
-      <div className="min-h-screen px-4 py-8 flex items-center justify-center">
+      <div className="min-h-screen px-3 sm:px-4 py-4 sm:py-8 flex items-center justify-center">
         {/* Form Container */}
         <div 
-          className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl border border-plum-200 overflow-hidden z-10 animate-in fade-in zoom-in-95 duration-200"
+          className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl border border-plum-200 overflow-hidden z-10 animate-in fade-in zoom-in-95 duration-200 my-auto"
           role="dialog"
           aria-modal="true"
         >
           {/* Top Banner */}
-          <div className="bg-gradient-to-r from-plum-900 via-plum-850 to-plum-900 px-6 py-5 text-white flex items-center justify-between border-b border-plum-700">
+          <div className="bg-gradient-to-r from-plum-900 via-plum-850 to-plum-900 px-5 sm:px-6 py-4 sm:py-5 text-white flex items-center justify-between border-b border-plum-700">
             <div className="flex items-center gap-2.5">
               <div className="w-8 h-8 rounded-xl bg-orange-accent flex items-center justify-center text-plum-950 font-poppins font-black text-base">
                 X
