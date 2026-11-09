@@ -19,7 +19,7 @@ export const PastEditionsTimeline: React.FC<PastEditionsTimelineProps> = ({ onOp
   return (
     <section id="past-editions" className="py-12 sm:py-20 bg-plum-50/40 relative w-full overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Header */}
         <ScrollReveal direction="up" duration={600}>
           <div className="text-center max-w-3xl mx-auto mb-10">
@@ -54,11 +54,10 @@ export const PastEditionsTimeline: React.FC<PastEditionsTimelineProps> = ({ onOp
             <button
               key={year}
               onClick={() => setSelectedYear(year)}
-              className={`px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 ${
-                selectedYear === year
+              className={`px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 ${selectedYear === year
                   ? 'bg-plum-800 text-white shadow-md scale-105'
                   : 'bg-white text-plum-800 border border-plum-200/80 hover:bg-plum-100'
-              }`}
+                }`}
             >
               {year === 'All' ? 'All Editions' : year}
             </button>
@@ -73,7 +72,7 @@ export const PastEditionsTimeline: React.FC<PastEditionsTimelineProps> = ({ onOp
                 className="group rounded-3xl bg-white border border-plum-200/70 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden hover:-translate-y-1 h-full"
               >
                 {/* Media Card with Click to Lightbox */}
-                <div 
+                <div
                   className="relative h-56 sm:h-60 w-full overflow-hidden bg-plum-950 cursor-pointer"
                   onClick={() => onOpenLightbox(edition.mediaUrl, `${edition.editionName} · ${edition.headlineArtist} (${edition.dates})`)}
                 >

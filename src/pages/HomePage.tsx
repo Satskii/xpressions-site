@@ -60,7 +60,7 @@ export const HomePage: React.FC<HomePageProps> = ({
       {/* 6. Curated Marquee Preview (Strictly 3 Cards to keep layout breathable) */}
       <section className="py-16 sm:py-24 bg-white relative w-full overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <ScrollReveal direction="up" duration={600}>
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 gap-4">
               <div>
@@ -100,7 +100,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-plum-950/80 via-transparent to-transparent" />
-                    
+
                     <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-plum-900/90 text-white font-poppins font-semibold text-xs border border-plum-700/60 shadow-sm backdrop-blur-md">
                       {event.category}
                     </span>

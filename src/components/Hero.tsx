@@ -20,7 +20,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreEvents, onRegisterInterest 
         {/* Editorial Gradients */}
         <div className="absolute inset-0 bg-gradient-to-t from-plum-950 via-plum-950/85 to-plum-900/70" />
         <div className="absolute inset-0 bg-radial-gradient from-transparent via-plum-950/50 to-plum-950" />
-        
+
         {/* Subtle Ambient Glow Orbs */}
         <div className="absolute -top-32 -left-32 w-80 sm:w-96 h-80 sm:h-96 rounded-full bg-plum-700/20 blur-3xl" />
         <div className="absolute -bottom-24 -right-24 w-80 sm:w-96 h-80 sm:h-96 rounded-full bg-orange-accent/15 blur-3xl" />
@@ -31,7 +31,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreEvents, onRegisterInterest 
 
       {/* Hero Content Container */}
       <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
-        
+
         {/* Institutional Affiliation & Status Badge */}
         <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-plum-850/80 border border-plum-700/60 text-lilac backdrop-blur-md mb-5 sm:mb-6 shadow-sm max-w-full">
           <Sparkles className="w-3.5 h-3.5 text-orange-accent shrink-0" />

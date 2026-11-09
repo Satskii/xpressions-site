@@ -35,7 +35,7 @@ export const SchedulePage: React.FC<SchedulePageProps> = ({ onRegisterInterest }
       {/* Venue & Travel Logistics Guide */}
       <section className="py-14 sm:py-20 bg-plum-50/50 border-t border-plum-200/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <ScrollReveal direction="up" duration={600}>
             <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-plum-100/80 text-plum-800 text-xs font-semibold mb-2">

@@ -7,7 +7,7 @@ export const ContactSection: React.FC = () => {
   return (
     <section id="contact" className="py-12 sm:py-20 bg-white relative w-full overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header */}
         <ScrollReveal direction="up" duration={600}>
           <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
@@ -26,7 +26,7 @@ export const ContactSection: React.FC = () => {
 
         {/* Contacts Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-10 sm:mb-12">
-          
+
           {/* General Inquiries */}
           <ScrollReveal direction="up" delay={100} duration={600}>
             <div className="p-6 sm:p-8 rounded-3xl bg-plum-50/60 border border-plum-200/80 shadow-sm flex flex-col justify-between h-full hover:border-plum-300 transition-colors">
@@ -82,9 +82,9 @@ export const ContactSection: React.FC = () => {
                   </p>
                 </div>
                 <div className="pt-1">
-                  <a 
-                    href="https://maps.google.com/?q=XIM+University+New+Campus+Kurki" 
-                    target="_blank" 
+                  <a
+                    href="https://maps.google.com/?q=XIM+University+New+Campus+Kurki"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 font-bold text-orange-accent hover:underline text-xs"
                   >

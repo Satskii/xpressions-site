@@ -15,7 +15,7 @@ export const FestivalIntro: React.FC<FestivalIntroProps> = ({ onLearnMore, onExp
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-          
+
           {/* Left Column: Editorial Storytelling */}
           <div className="lg:col-span-7">
             <ScrollReveal direction="up" duration={650}>
@@ -78,7 +78,7 @@ export const FestivalIntro: React.FC<FestivalIntroProps> = ({ onLearnMore, onExp
                     alt="Student delegates collaborating in case competition"
                     className="w-full h-64 sm:h-80 md:h-96 object-cover object-center"
                   />
-                  
+
                   {/* Floating highlight badge inside image */}
                   <div className="p-5 sm:p-6 bg-gradient-to-t from-plum-950 via-plum-900/90 to-transparent text-white">
                     <div className="flex items-center gap-2 text-xs font-semibold text-orange-accent mb-1">

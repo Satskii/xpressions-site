@@ -23,7 +23,7 @@ export const ScheduleSection: React.FC<ScheduleSectionProps> = ({ onRegisterInte
   return (
     <section id="schedule" className="py-16 sm:py-24 bg-white relative w-full overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Header */}
         <ScrollReveal direction="up" duration={600}>
           <div className="text-center max-w-3xl mx-auto mb-10">
@@ -74,11 +74,10 @@ export const ScheduleSection: React.FC<ScheduleSectionProps> = ({ onRegisterInte
               <button
                 key={day}
                 onClick={() => setActiveDay(day)}
-                className={`py-2 sm:py-2.5 px-2 rounded-xl font-poppins font-bold text-xs sm:text-sm transition-all duration-200 text-center ${
-                  activeDay === day
+                className={`py-2 sm:py-2.5 px-2 rounded-xl font-poppins font-bold text-xs sm:text-sm transition-all duration-200 text-center ${activeDay === day
                     ? 'bg-plum-800 text-white shadow-md'
                     : 'text-plum-800 hover:text-plum-950 hover:bg-plum-200/60'
-                }`}
+                  }`}
               >
                 <span>{day}</span>
                 <span className="hidden sm:block text-[10px] font-normal opacity-80 mt-0.5 truncate">
@@ -98,11 +97,10 @@ export const ScheduleSection: React.FC<ScheduleSectionProps> = ({ onRegisterInte
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-3 py-1 rounded-full text-[11px] sm:text-xs font-medium transition-colors ${
-                selectedCategory === cat
+              className={`px-3 py-1 rounded-full text-[11px] sm:text-xs font-medium transition-colors ${selectedCategory === cat
                   ? 'bg-plum-800 text-white shadow-sm'
                   : 'bg-plum-50 text-plum-800 hover:bg-plum-100'
-              }`}
+                }`}
             >
               {cat}
             </button>

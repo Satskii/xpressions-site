@@ -25,7 +25,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onContactClick }) => {
   return (
     <section id="faqs" className="py-12 sm:py-20 bg-plum-50/40 relative w-full overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header */}
         <ScrollReveal direction="up" duration={600}>
           <div className="text-center max-w-3xl mx-auto mb-10">
@@ -48,11 +48,10 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onContactClick }) => {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-3 py-1.5 sm:px-3.5 sm:py-1.5 rounded-full text-xs font-semibold transition-all ${
-                selectedCategory === cat
+              className={`px-3 py-1.5 sm:px-3.5 sm:py-1.5 rounded-full text-xs font-semibold transition-all ${selectedCategory === cat
                   ? 'bg-plum-800 text-white shadow-sm'
                   : 'bg-white text-plum-800 border border-plum-200/80 hover:bg-plum-100'
-              }`}
+                }`}
             >
               {cat}
             </button>
@@ -66,11 +65,10 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onContactClick }) => {
             return (
               <ScrollReveal key={faq.id} direction="up" delay={(idx % 6) * 60} duration={500}>
                 <div
-                  className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
-                    isOpen
+                  className={`rounded-2xl border transition-all duration-200 overflow-hidden ${isOpen
                       ? 'bg-white border-plum-400/80 shadow-md ring-1 ring-plum-200/60'
                       : 'bg-white/90 border-plum-200/70 hover:border-plum-300'
-                  }`}
+                    }`}
                 >
                   <button
                     onClick={() => toggleFaq(faq.id)}
@@ -84,9 +82,8 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onContactClick }) => {
                       </span>
                     </div>
                     <ChevronDown
-                      className={`w-4 h-4 sm:w-5 sm:h-5 text-plum-600 shrink-0 transition-transform duration-200 ${
-                        isOpen ? 'rotate-180 text-orange-accent' : ''
-                      }`}
+                      className={`w-4 h-4 sm:w-5 sm:h-5 text-plum-600 shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180 text-orange-accent' : ''
+                        }`}
                     />
                   </button>
 

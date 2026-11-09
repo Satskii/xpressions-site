@@ -54,7 +54,7 @@ export const EventsDirectory: React.FC<EventsDirectoryProps> = ({
   return (
     <section id="events" className="py-12 sm:py-20 bg-white relative w-full overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header */}
         <ScrollReveal direction="up" duration={600}>
           <div className="text-center max-w-3xl mx-auto mb-10">
@@ -75,7 +75,7 @@ export const EventsDirectory: React.FC<EventsDirectoryProps> = ({
         <ScrollReveal direction="up" delay={100} duration={600}>
           <div className="bg-plum-50/70 border border-plum-200/80 rounded-3xl p-4 sm:p-6 mb-10 shadow-sm backdrop-blur-sm">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-3.5 sm:gap-4 items-center">
-              
+
               {/* Search Input */}
               <div className="md:col-span-5 relative">
                 <Search className="w-4 h-4 text-plum-500 absolute left-3.5 sm:left-4 top-1/2 -translate-y-1/2" />
@@ -102,11 +102,10 @@ export const EventsDirectory: React.FC<EventsDirectoryProps> = ({
                   <button
                     key={cat}
                     onClick={() => onCategoryChange(cat)}
-                    className={`px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-semibold transition-all duration-200 ${
-                      selectedCategory === cat
+                    className={`px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-semibold transition-all duration-200 ${selectedCategory === cat
                         ? 'bg-plum-800 text-white shadow-md scale-105'
                         : 'bg-white text-plum-800 border border-plum-200 hover:bg-plum-100'
-                    }`}
+                      }`}
                   >
                     {cat === 'All' ? 'All' : cat}
                   </button>
@@ -124,11 +123,10 @@ export const EventsDirectory: React.FC<EventsDirectoryProps> = ({
                 <button
                   key={fmt}
                   onClick={() => setSelectedFormat(fmt)}
-                  className={`px-2.5 py-1 rounded-lg text-[11px] sm:text-xs font-medium transition-colors ${
-                    selectedFormat === fmt
+                  className={`px-2.5 py-1 rounded-lg text-[11px] sm:text-xs font-medium transition-colors ${selectedFormat === fmt
                       ? 'bg-orange-accent text-plum-950 font-bold shadow-sm'
                       : 'bg-white text-plum-700 hover:bg-plum-100 border border-plum-200'
-                  }`}
+                    }`}
                 >
                   {fmt}
                 </button>
@@ -200,7 +198,7 @@ export const EventsDirectory: React.FC<EventsDirectoryProps> = ({
                           {event.participationType}
                         </span>
                       </div>
-                      
+
                       <p className="text-xs font-semibold text-orange-accent line-clamp-1">
                         {event.subtitle}
                       </p>
