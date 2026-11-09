@@ -6,7 +6,7 @@ import { ScrollReveal } from '../components/ScrollReveal';
 
 export const FaqPage: React.FC = () => {
   return (
-    <div className="pt-20 sm:pt-24 pb-16 min-h-screen bg-white w-full max-w-full overflow-hidden">
+    <div className="pt-20 sm:pt-24 pb-16 min-h-screen bg-white dark:bg-plum-950 text-plum-950 dark:text-white transition-colors duration-300 w-full max-w-full overflow-hidden">
       {/* Page Header */}
       <div className="bg-plum-950 text-white py-12 sm:py-16 border-b border-plum-800/80 relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-dark opacity-20 pointer-events-none" />
@@ -33,7 +33,7 @@ export const FaqPage: React.FC = () => {
       }} />
 
       {/* Verified Contact Directory Component */}
-      <div id="contact-directory" className="border-t border-plum-200/80">
+      <div id="contact-directory" className="border-t border-plum-200/80 dark:border-plum-800">
         <ContactSection />
       </div>
     </div>

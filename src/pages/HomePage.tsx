@@ -8,7 +8,8 @@ import { SoundWaveBar } from '../components/SoundWaveBar';
 import { VibeSelector } from '../components/VibeSelector';
 import { FinalCta } from '../components/FinalCta';
 import { ScrollReveal } from '../components/ScrollReveal';
-import { FESTIVAL_EVENTS, PAST_EDITIONS } from '../data/festivalData';
+import { SpotlightCard } from '../components/SpotlightCard';
+import { FESTIVAL_EVENTS } from '../data/festivalData';
 import { EventItem } from '../types/festival';
 
 interface HomePageProps {
@@ -20,7 +21,6 @@ interface HomePageProps {
 export const HomePage: React.FC<HomePageProps> = ({
   onOpenInterestModal,
   onOpenEventModal,
-  onOpenLightbox,
 }) => {
   const navigate = useNavigate();
 
@@ -28,7 +28,7 @@ export const HomePage: React.FC<HomePageProps> = ({
   const marqueeEvents = FESTIVAL_EVENTS.filter((e) => ['maven', 'decibelz', 'trade-wars'].includes(e.id));
 
   return (
-    <div className="space-y-0 w-full max-w-full overflow-hidden">
+    <div className="space-y-0 w-full max-w-full overflow-hidden bg-white dark:bg-plum-950 text-plum-950 dark:text-white transition-colors duration-300">
       {/* 1. Hero Section */}
       <Hero
         onExploreEvents={() => navigate('/events')}
@@ -57,28 +57,28 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
       </section>
 
-      {/* 6. Curated Marquee Preview (Strictly 3 Cards to keep layout breathable) */}
-      <section className="py-16 sm:py-24 bg-white relative w-full overflow-hidden">
+      {/* 6. Curated Marquee Preview (Strictly 3 Cards with Spotlight Glow & Blur-Up) */}
+      <section className="py-16 sm:py-24 bg-white dark:bg-plum-950 relative w-full overflow-hidden transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-          <ScrollReveal direction="up" duration={600}>
+          
+          <ScrollReveal direction="blur-up" duration={700}>
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 gap-4">
               <div>
-                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-plum-50 border border-plum-200/80 text-plum-800 text-xs font-semibold mb-3">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-plum-50 dark:bg-plum-900 border border-plum-200/80 dark:border-plum-800 text-plum-800 dark:text-lilac text-xs font-semibold mb-3">
                   <Trophy className="w-3.5 h-3.5 text-orange-accent" />
                   <span>Curated Highlights</span>
                 </div>
-                <h2 className="font-poppins font-black text-2xl sm:text-4xl text-plum-950 tracking-tight">
+                <h2 className="font-poppins font-black text-2xl sm:text-4xl text-plum-950 dark:text-white tracking-tight">
                   Featured Marquee Arenas
                 </h2>
-                <p className="mt-2 text-xs sm:text-sm text-plum-900/70 max-w-xl leading-relaxed">
+                <p className="mt-2 text-xs sm:text-sm text-plum-900/70 dark:text-lilac/70 max-w-xl leading-relaxed">
                   A preview of Eastern India’s most fiercely contested business simulations and band championships.
                 </p>
               </div>
 
               <Link
                 to="/events"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-plum-850 hover:bg-plum-900 text-white font-poppins font-bold text-xs sm:text-sm shadow-md transition-all self-start md:self-auto hover:scale-105 active:scale-95"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-plum-850 hover:bg-plum-900 dark:bg-plum-800 dark:hover:bg-plum-750 text-white font-poppins font-bold text-xs sm:text-sm shadow-md transition-all self-start md:self-auto hover:scale-105 active:scale-95"
               >
                 <span>Explore All 15+ Events</span>
                 <ArrowRight className="w-4 h-4 text-orange-accent" />
@@ -86,21 +86,21 @@ export const HomePage: React.FC<HomePageProps> = ({
             </div>
           </ScrollReveal>
 
-          {/* 3 Cards */}
+          {/* 3 Spotlight Cards with Staggered Blur-Up */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {marqueeEvents.map((event, idx) => (
-              <ScrollReveal key={event.id} direction="up" delay={idx * 120} duration={650}>
-                <div
-                  className="group rounded-3xl bg-white border border-plum-200/60 shadow-sm hover:shadow-xl hover:border-plum-300 transition-all duration-300 flex flex-col justify-between overflow-hidden hover:-translate-y-1 h-full"
+              <ScrollReveal key={event.id} direction="blur-up" delay={idx * 140} duration={750}>
+                <SpotlightCard
+                  className="group rounded-3xl bg-white dark:bg-plum-900/80 border border-plum-200/70 dark:border-plum-800/80 shadow-sm hover:shadow-2xl hover:border-orange-accent/40 dark:hover:border-orange-accent/50 transition-all duration-400 flex flex-col justify-between overflow-hidden hover:-translate-y-2 h-full"
                 >
                   <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-plum-900">
                     <img
                       src={event.imageUrl}
                       alt={event.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-spring"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-plum-950/80 via-transparent to-transparent" />
-
+                    <div className="absolute inset-0 bg-gradient-to-t from-plum-950/85 via-transparent to-transparent" />
+                    
                     <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-plum-900/90 text-white font-poppins font-semibold text-xs border border-plum-700/60 shadow-sm backdrop-blur-md">
                       {event.category}
                     </span>
@@ -112,31 +112,31 @@ export const HomePage: React.FC<HomePageProps> = ({
 
                   <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
                     <div>
-                      <h3 className="font-poppins font-black text-xl sm:text-2xl text-plum-950 group-hover:text-plum-800 transition-colors">
+                      <h3 className="font-poppins font-black text-xl sm:text-2xl text-plum-950 dark:text-white group-hover:text-orange-accent transition-colors">
                         {event.title}
                       </h3>
                       <p className="text-xs font-semibold text-orange-accent mt-0.5 line-clamp-1">
                         {event.subtitle}
                       </p>
-                      <p className="mt-3 text-xs sm:text-sm text-plum-900/70 line-clamp-2 leading-relaxed">
+                      <p className="mt-3 text-xs sm:text-sm text-plum-900/70 dark:text-lilac/75 line-clamp-2 leading-relaxed">
                         {event.shortDescription}
                       </p>
                     </div>
 
-                    <div className="mt-6 pt-4 border-t border-plum-100 flex items-center justify-between">
+                    <div className="mt-6 pt-4 border-t border-plum-100 dark:border-plum-800 flex items-center justify-between">
                       <button
                         onClick={() => onOpenEventModal(event)}
-                        className="text-xs font-bold text-plum-800 hover:text-orange-accent transition-colors flex items-center gap-1"
+                        className="text-xs font-bold text-plum-800 dark:text-lilac hover:text-orange-accent dark:hover:text-orange-accent transition-colors flex items-center gap-1.5"
                       >
                         <span>Quick View Rules</span>
                         <ArrowRight className="w-3.5 h-3.5" />
                       </button>
-                      <span className="text-[11px] text-plum-600 font-medium">
+                      <span className="text-[11px] text-plum-600 dark:text-plum-400 font-medium">
                         {event.teamSize}
                       </span>
                     </div>
                   </div>
-                </div>
+                </SpotlightCard>
               </ScrollReveal>
             ))}
           </div>
@@ -147,7 +147,7 @@ export const HomePage: React.FC<HomePageProps> = ({
       {/* 7. Pro Nights Banner Teaser */}
       <section className="py-16 sm:py-20 bg-gradient-to-r from-plum-950 via-plum-900 to-plum-950 text-white relative overflow-hidden border-y border-plum-800/80 w-full">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <ScrollReveal direction="up" duration={650}>
+          <ScrollReveal direction="blur-up" duration={700}>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-8 space-y-3">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-accent/15 text-orange-accent border border-orange-accent/25 text-xs font-bold uppercase tracking-wider">

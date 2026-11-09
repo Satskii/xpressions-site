@@ -172,40 +172,40 @@ export const ParticipatePage: React.FC<ParticipatePageProps> = ({
       />
 
       {/* Embedded Working Interest Registration Form Section */}
-      <section className="py-14 sm:py-20 bg-plum-50/50">
+      <section className="py-14 sm:py-20 bg-plum-50/50 dark:bg-plum-900/40 transition-colors duration-300">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <ScrollReveal direction="up" duration={600}>
+          <ScrollReveal direction="blur-up" duration={700}>
             <div className="text-center mb-8 sm:mb-10">
-              <h2 className="font-poppins font-black text-2xl sm:text-4xl text-plum-950">
+              <h2 className="font-poppins font-black text-2xl sm:text-4xl text-plum-950 dark:text-white">
                 Record Your Interest
               </h2>
-              <p className="mt-2 text-xs sm:text-sm text-plum-700 max-w-md mx-auto">
+              <p className="mt-2 text-xs sm:text-sm text-plum-700 dark:text-lilac/70 max-w-md mx-auto">
                 Receive rulebooks, audition calls, and schedule releases direct to your inbox.
               </p>
             </div>
           </ScrollReveal>
 
-          <div className="bg-white rounded-3xl border border-plum-200 shadow-xl overflow-hidden p-6 sm:p-10">
+          <div className="bg-white dark:bg-plum-900/90 rounded-3xl border border-plum-200 dark:border-plum-800 shadow-xl overflow-hidden p-6 sm:p-10 transition-colors duration-300">
             {isSubmitted ? (
               <div className="text-center space-y-6 py-4">
-                <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-md">
+                <div className="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto shadow-md">
                   <CheckCircle2 className="w-10 h-10" />
                 </div>
                 <div>
-                  <h3 className="font-poppins font-black text-2xl text-plum-950">
+                  <h3 className="font-poppins font-black text-2xl text-plum-950 dark:text-white">
                     Interest Successfully Recorded!
                   </h3>
                   <p className="text-xs font-semibold text-orange-accent uppercase tracking-wider mt-1">
                     Reference ID: {lastSubmission?.id}
                   </p>
-                  <p className="mt-2 text-sm text-plum-900/80 max-w-md mx-auto">
+                  <p className="mt-2 text-sm text-plum-900/80 dark:text-lilac/80 max-w-md mx-auto">
                     Thank you, <strong>{lastSubmission?.fullName}</strong>! We have noted your interest in <strong>{lastSubmission?.eventOfInterest}</strong>.
                   </p>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-plum-50 border border-plum-200 text-xs text-plum-800 text-left space-y-1">
-                  <div className="font-bold text-plum-950 flex items-center gap-1.5">
+                <div className="p-4 rounded-2xl bg-plum-50 dark:bg-plum-850 border border-plum-200 dark:border-plum-700 text-xs text-plum-800 dark:text-lilac text-left space-y-1">
+                  <div className="font-bold text-plum-950 dark:text-white flex items-center gap-1.5">
                     <Shield className="w-4 h-4 text-orange-accent" />
                     <span>Next Steps</span>
                   </div>
@@ -213,16 +213,16 @@ export const ParticipatePage: React.FC<ParticipatePageProps> = ({
                   <p>2. You will receive priority notification for prelim registration slots.</p>
                 </div>
 
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4 border-t border-plum-100">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4 border-t border-plum-100 dark:border-plum-800">
                   <button
                     onClick={resetForm}
-                    className="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-plum-300 text-plum-900 font-semibold text-xs hover:bg-plum-50"
+                    className="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-plum-300 dark:border-plum-700 text-plum-900 dark:text-lilac font-semibold text-xs hover:bg-plum-50 dark:hover:bg-plum-800 transition-colors"
                   >
                     Submit Another Interest
                   </button>
                   <button
                     onClick={handleDownloadCsv}
-                    className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-plum-850 hover:bg-plum-900 text-white font-poppins font-semibold text-xs flex items-center justify-center gap-1.5"
+                    className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-plum-850 hover:bg-plum-900 dark:bg-plum-800 dark:hover:bg-plum-750 text-white font-poppins font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors"
                   >
                     <Download className="w-4 h-4 text-orange-accent" />
                     <span>Export Interest List (CSV)</span>
@@ -233,17 +233,17 @@ export const ParticipatePage: React.FC<ParticipatePageProps> = ({
               <form onSubmit={handleSubmit} className="space-y-6">
                 
                 {/* MANDATORY POLICY DISCLAIMER */}
-                <div className="p-4 rounded-2xl bg-amber-50 border-2 border-amber-300 text-amber-950 flex items-start gap-3">
+                <div className="p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/50 border-2 border-amber-300 dark:border-amber-800/80 text-amber-950 dark:text-amber-200 flex items-start gap-3">
                   <AlertTriangle className="w-5 h-5 text-orange-accent shrink-0 mt-0.5" />
                   <div className="text-xs leading-relaxed">
-                    <strong className="font-bold">Important Notice:</strong>{' '}
+                    <strong className="font-bold text-amber-900 dark:text-amber-300">Important Notice:</strong>{' '}
                     Submitting this form records your interest in Xpressions. It does not constitute final event registration. The organising team will share official registration information when available.
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold text-plum-900 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-bold text-plum-900 dark:text-lilac uppercase tracking-wider mb-1.5">
                       Full Name <span className="text-rose-500">*</span>
                     </label>
                     <input
@@ -253,15 +253,15 @@ export const ParticipatePage: React.FC<ParticipatePageProps> = ({
                       placeholder="e.g. Rahul Sharma"
                       className={`w-full px-4 py-2.5 rounded-xl border text-xs sm:text-sm focus:outline-none focus:ring-2 ${
                         errors.fullName
-                          ? 'border-rose-400 bg-rose-50 focus:ring-rose-400'
-                          : 'border-plum-200 focus:ring-plum-800'
+                          ? 'border-rose-400 bg-rose-50 dark:bg-rose-950/40 focus:ring-rose-400'
+                          : 'border-plum-200 dark:border-plum-700 bg-white dark:bg-plum-850 text-plum-950 dark:text-white placeholder-plum-400 dark:placeholder-plum-400 focus:ring-plum-800 dark:focus:ring-orange-accent'
                       }`}
                     />
                     {errors.fullName && <p className="text-[11px] text-rose-500 mt-1">{errors.fullName}</p>}
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-plum-900 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-bold text-plum-900 dark:text-lilac uppercase tracking-wider mb-1.5">
                       Email Address <span className="text-rose-500">*</span>
                     </label>
                     <input
@@ -271,15 +271,15 @@ export const ParticipatePage: React.FC<ParticipatePageProps> = ({
                       placeholder="e.g. rahul@university.edu"
                       className={`w-full px-4 py-2.5 rounded-xl border text-xs sm:text-sm focus:outline-none focus:ring-2 ${
                         errors.email
-                          ? 'border-rose-400 bg-rose-50 focus:ring-rose-400'
-                          : 'border-plum-200 focus:ring-plum-800'
+                          ? 'border-rose-400 bg-rose-50 dark:bg-rose-950/40 focus:ring-rose-400'
+                          : 'border-plum-200 dark:border-plum-700 bg-white dark:bg-plum-850 text-plum-950 dark:text-white placeholder-plum-400 dark:placeholder-plum-400 focus:ring-plum-800 dark:focus:ring-orange-accent'
                       }`}
                     />
                     {errors.email && <p className="text-[11px] text-rose-500 mt-1">{errors.email}</p>}
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-plum-900 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-bold text-plum-900 dark:text-lilac uppercase tracking-wider mb-1.5">
                       Mobile Phone <span className="text-rose-500">*</span>
                     </label>
                     <input
@@ -289,15 +289,15 @@ export const ParticipatePage: React.FC<ParticipatePageProps> = ({
                       placeholder="e.g. 9876543210"
                       className={`w-full px-4 py-2.5 rounded-xl border text-xs sm:text-sm focus:outline-none focus:ring-2 ${
                         errors.phone
-                          ? 'border-rose-400 bg-rose-50 focus:ring-rose-400'
-                          : 'border-plum-200 focus:ring-plum-800'
+                          ? 'border-rose-400 bg-rose-50 dark:bg-rose-950/40 focus:ring-rose-400'
+                          : 'border-plum-200 dark:border-plum-700 bg-white dark:bg-plum-850 text-plum-950 dark:text-white placeholder-plum-400 dark:placeholder-plum-400 focus:ring-plum-800 dark:focus:ring-orange-accent'
                       }`}
                     />
                     {errors.phone && <p className="text-[11px] text-rose-500 mt-1">{errors.phone}</p>}
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-plum-900 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-bold text-plum-900 dark:text-lilac uppercase tracking-wider mb-1.5">
                       College / University <span className="text-rose-500">*</span>
                     </label>
                     <input
@@ -307,8 +307,8 @@ export const ParticipatePage: React.FC<ParticipatePageProps> = ({
                       placeholder="e.g. XIM University, IIM, IIT..."
                       className={`w-full px-4 py-2.5 rounded-xl border text-xs sm:text-sm focus:outline-none focus:ring-2 ${
                         errors.college
-                          ? 'border-rose-400 bg-rose-50 focus:ring-rose-400'
-                          : 'border-plum-200 focus:ring-plum-800'
+                          ? 'border-rose-400 bg-rose-50 dark:bg-rose-950/40 focus:ring-rose-400'
+                          : 'border-plum-200 dark:border-plum-700 bg-white dark:bg-plum-850 text-plum-950 dark:text-white placeholder-plum-400 dark:placeholder-plum-400 focus:ring-plum-800 dark:focus:ring-orange-accent'
                       }`}
                     />
                     {errors.college && <p className="text-[11px] text-rose-500 mt-1">{errors.college}</p>}
@@ -316,7 +316,7 @@ export const ParticipatePage: React.FC<ParticipatePageProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-plum-900 uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-plum-900 dark:text-lilac uppercase tracking-wider mb-1.5">
                     Participation Pathway <span className="text-rose-500">*</span>
                   </label>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -330,8 +330,8 @@ export const ParticipatePage: React.FC<ParticipatePageProps> = ({
                         }}
                         className={`px-3 py-2 rounded-xl text-xs font-semibold border transition-all ${
                           category === cat
-                            ? 'bg-plum-800 text-white border-plum-800 shadow-sm'
-                            : 'bg-plum-50/60 text-plum-800 border-plum-200 hover:bg-plum-100'
+                            ? 'bg-plum-800 dark:bg-orange-accent text-white dark:text-plum-950 border-plum-800 dark:border-orange-accent shadow-sm'
+                            : 'bg-plum-50/60 dark:bg-plum-850 text-plum-800 dark:text-lilac border-plum-200 dark:border-plum-700 hover:bg-plum-100 dark:hover:bg-plum-800'
                         }`}
                       >
                         {cat}
@@ -341,7 +341,7 @@ export const ParticipatePage: React.FC<ParticipatePageProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-plum-900 uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-plum-900 dark:text-lilac uppercase tracking-wider mb-1.5">
                     Specific Event of Interest (Optional)
                   </label>
                   {category === 'General Visitor' ? (
@@ -349,13 +349,13 @@ export const ParticipatePage: React.FC<ParticipatePageProps> = ({
                       type="text"
                       disabled
                       value="All Pro Nights & Campus Attractions"
-                      className="w-full px-4 py-2.5 rounded-xl border border-plum-200 bg-plum-50 text-plum-700 text-xs sm:text-sm cursor-not-allowed"
+                      className="w-full px-4 py-2.5 rounded-xl border border-plum-200 dark:border-plum-700 bg-plum-50 dark:bg-plum-850 text-plum-700 dark:text-lilac/70 text-xs sm:text-sm cursor-not-allowed"
                     />
                   ) : (
                     <select
                       value={eventOfInterest}
                       onChange={(e) => setEventOfInterest(e.target.value)}
-                      className="w-full px-4 py-2.5 rounded-xl border border-plum-200 text-plum-950 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-plum-800 bg-white"
+                      className="w-full px-4 py-2.5 rounded-xl border border-plum-200 dark:border-plum-700 text-plum-950 dark:text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-plum-800 dark:focus:ring-orange-accent bg-white dark:bg-plum-850"
                     >
                       <option value="">-- Select Event (or leave blank for all {category} events) --</option>
                       {categoryEvents.map((e) => (

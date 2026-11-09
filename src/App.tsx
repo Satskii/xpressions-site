@@ -5,6 +5,7 @@ import { Footer } from './components/Footer';
 import { MobileBottomBar } from './components/MobileBottomBar';
 import { ScrollToTop } from './components/ScrollToTop';
 import { ScrollProgressBar } from './components/ScrollProgressBar';
+import { ThemeProvider } from './context/ThemeContext';
 
 import { HomePage } from './pages/HomePage';
 import { EventsPage } from './pages/EventsPage';
@@ -57,7 +58,7 @@ export const AppContent: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-white text-plum-950 font-inter antialiased flex flex-col selection:bg-orange-accent selection:text-white">
+    <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-white dark:bg-plum-950 text-plum-950 dark:text-white font-inter antialiased flex flex-col selection:bg-orange-accent selection:text-white transition-colors duration-300">
       <ScrollProgressBar />
       <ScrollToTop />
 
@@ -162,9 +163,11 @@ export const AppContent: React.FC = () => {
 
 export const App: React.FC = () => {
   return (
-    <BrowserRouter>
-      <AppContent />
-    </BrowserRouter>
+    <ThemeProvider>
+      <BrowserRouter>
+        <AppContent />
+      </BrowserRouter>
+    </ThemeProvider>
   );
 };
 

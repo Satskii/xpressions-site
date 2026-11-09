@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { Menu, X, ArrowRight, Trophy, Calendar, Music, Layers, HelpCircle, Mail, Sparkles, UserCheck } from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 import { FESTIVAL_INFO } from '../data/festivalData';
+import { ThemeToggle } from './ThemeToggle';
 
 interface NavbarProps {
   onOpenInterestModal: (preselectedEvent?: string) => void;
@@ -92,7 +93,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInterestModal }) => {
             </nav>
 
             {/* Primary Action Button (Desktop & Tablet) */}
-            <div className="hidden sm:flex items-center gap-3">
+            <div className="hidden sm:flex items-center gap-2.5">
+              <ThemeToggle />
               <button
                 onClick={() => onOpenInterestModal()}
                 className="relative inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-orange-accent hover:bg-orange-hover text-plum-950 font-poppins font-bold text-xs xl:text-sm shadow-glow-orange hover:scale-105 active:scale-95 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
@@ -102,8 +104,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInterestModal }) => {
               </button>
             </div>
 
-            {/* Mobile Hamburger Toggle (Clean, aligned) */}
-            <div className="flex items-center gap-1 lg:hidden shrink-0">
+            {/* Mobile Controls (Theme Toggle + Hamburger) */}
+            <div className="flex items-center gap-1.5 lg:hidden shrink-0">
+              <ThemeToggle className="p-1.5" />
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="p-2 rounded-xl text-lilac hover:text-white hover:bg-plum-800/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-accent transition-colors"
@@ -139,13 +142,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInterestModal }) => {
                     <p className="text-[10px] text-lilac">XIM University</p>
                   </div>
                 </div>
-                <button
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="p-1.5 rounded-lg text-lilac hover:text-white hover:bg-plum-800"
-                  aria-label="Close menu"
-                >
-                  <X className="w-5 h-5" />
-                </button>
+                <div className="flex items-center gap-2">
+                  <ThemeToggle />
+                  <button
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="p-1.5 rounded-lg text-lilac hover:text-white hover:bg-plum-800"
+                    aria-label="Close menu"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
               </div>
 
               {/* Navigation list */}

@@ -16,6 +16,16 @@
     max-width: 100vw;
     overflow-x: hidden;
     position: relative;
+    transition: background-color 300ms ease, color 300ms ease;
+  }
+
+  .dark {
+    color-scheme: dark;
+  }
+
+  .dark body {
+    background-color: #140A17;
+    color: #FAF5FB;
   }
 
   /* Custom subtle scrollbar */
@@ -26,18 +36,42 @@
   ::-webkit-scrollbar-track {
     background: #FAF5FB;
   }
+  .dark ::-webkit-scrollbar-track {
+    background: #140A17;
+  }
   ::-webkit-scrollbar-thumb {
     background: #38213D;
     border-radius: 9999px;
   }
-  ::-webkit-scrollbar-thumb:hover {
+  .dark ::-webkit-scrollbar-thumb {
+    background: #4D2C54;
+  }
+  ::-webkit-scrollbar-thumb:hover,
+  .dark ::-webkit-scrollbar-thumb:hover {
     background: #F0A05A;
   }
+}
+
+/* Global Theme Crossfade Transition when toggling */
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition: background-color 400ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 400ms cubic-bezier(0.16, 1, 0.3, 1),
+              color 300ms ease,
+              fill 300ms ease,
+              stroke 300ms ease,
+              box-shadow 400ms ease !important;
 }
 
 @layer utilities {
   .bg-festival-pattern {
     background-image: radial-gradient(rgba(56, 33, 61, 0.05) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .dark .bg-festival-pattern {
+    background-image: radial-gradient(rgba(230, 211, 232, 0.07) 1px, transparent 1px);
     background-size: 24px 24px;
   }
   
@@ -47,7 +81,7 @@
   }
 
   .text-glow-orange {
-    text-shadow: 0 0 20px rgba(240, 160, 90, 0.4);
+    text-shadow: 0 0 20px rgba(240, 160, 90, 0.45);
   }
 
   .glass-plum {
@@ -62,6 +96,12 @@
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(230, 211, 232, 0.45);
+  }
+  .dark .glass-card {
+    background: rgba(31, 17, 34, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(230, 211, 232, 0.12);
   }
 
   .glass-dark-card {

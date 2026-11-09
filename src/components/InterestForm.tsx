@@ -190,7 +190,7 @@ export const InterestForm: React.FC<InterestFormProps> = ({
       <div className="min-h-screen px-3 sm:px-4 py-4 sm:py-8 flex items-center justify-center">
         {/* Form Container */}
         <div 
-          className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl border border-plum-200 overflow-hidden z-10 animate-in fade-in zoom-in-95 duration-200 my-auto"
+          className="relative w-full max-w-2xl bg-white dark:bg-plum-950 rounded-3xl shadow-2xl border border-plum-200 dark:border-plum-800 overflow-hidden z-10 animate-in fade-in zoom-in-95 duration-200 my-auto"
           role="dialog"
           aria-modal="true"
         >
@@ -222,25 +222,25 @@ export const InterestForm: React.FC<InterestFormProps> = ({
           {/* Submission Success Screen */}
           {isSubmitted ? (
             <div className="p-8 sm:p-10 text-center space-y-6">
-              <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-md">
+              <div className="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto shadow-md">
                 <CheckCircle className="w-10 h-10" />
               </div>
 
               <div>
-                <h3 className="font-poppins font-black text-2xl sm:text-3xl text-plum-950">
+                <h3 className="font-poppins font-black text-2xl sm:text-3xl text-plum-950 dark:text-white">
                   Interest Successfully Recorded!
                 </h3>
                 <p className="text-xs font-semibold text-orange-accent uppercase tracking-wider mt-1">
                   Reference ID: {lastSubmission?.id}
                 </p>
-                <p className="mt-3 text-sm text-plum-900/80 max-w-md mx-auto leading-relaxed">
+                <p className="mt-3 text-sm text-plum-900/80 dark:text-plum-200 max-w-md mx-auto leading-relaxed">
                   Thank you, <strong>{lastSubmission?.fullName}</strong>! We have recorded your interest in <strong>{lastSubmission?.eventOfInterest}</strong> ({lastSubmission?.participationCategory}).
                 </p>
               </div>
 
               {/* Crucial confirmation notice */}
-              <div className="p-4 rounded-2xl bg-plum-50 border border-plum-200 text-xs text-plum-800 text-left space-y-1.5">
-                <div className="font-bold text-plum-950 flex items-center gap-1.5">
+              <div className="p-4 rounded-2xl bg-plum-50 dark:bg-plum-900/40 border border-plum-200 dark:border-plum-800 text-xs text-plum-800 dark:text-plum-200 text-left space-y-1.5">
+                <div className="font-bold text-plum-950 dark:text-white flex items-center gap-1.5">
                   <Shield className="w-4 h-4 text-orange-accent" />
                   <span>What happens next?</span>
                 </div>
@@ -250,23 +250,23 @@ export const InterestForm: React.FC<InterestFormProps> = ({
                 <p>
                   2. You will receive priority access when the official team registration portal goes live.
                 </p>
-                <p className="text-[11px] text-plum-600 italic">
+                <p className="text-[11px] text-plum-600 dark:text-plum-400 italic">
                   Note: Submitting this form records your interest; final participation requires completing the official university entry form upon release.
                 </p>
               </div>
 
               {/* Actions */}
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4 border-t border-plum-100">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4 border-t border-plum-100 dark:border-plum-800">
                 <button
                   onClick={resetForm}
-                  className="w-full sm:w-auto px-6 py-2.5 rounded-xl border border-plum-300 text-plum-900 font-semibold text-xs hover:bg-plum-50"
+                  className="w-full sm:w-auto px-6 py-2.5 rounded-xl border border-plum-300 dark:border-plum-700 text-plum-900 dark:text-lilac font-semibold text-xs hover:bg-plum-50 dark:hover:bg-plum-900 transition-colors"
                 >
                   Submit Another Interest
                 </button>
 
                 <button
                   onClick={handleDownloadCsv}
-                  className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-plum-850 hover:bg-plum-900 text-white font-poppins font-semibold text-xs flex items-center justify-center gap-1.5"
+                  className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-plum-850 hover:bg-plum-900 text-white font-poppins font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors"
                   title="Download all stored interest entries as CSV (Admin/Organising Committee helper)"
                 >
                   <Download className="w-4 h-4 text-orange-accent" />
@@ -275,7 +275,7 @@ export const InterestForm: React.FC<InterestFormProps> = ({
 
                 <button
                   onClick={onClose}
-                  className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-orange-accent hover:bg-orange-hover text-plum-950 font-poppins font-bold text-xs"
+                  className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-orange-accent hover:bg-orange-hover text-plum-950 font-poppins font-bold text-xs shadow-glow-orange transition-all"
                 >
                   Close & Explore
                 </button>
@@ -286,7 +286,7 @@ export const InterestForm: React.FC<InterestFormProps> = ({
             <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-6">
               
               {/* MANDATORY EXPLICIT POLICY DISCLAIMER */}
-              <div className="p-4 rounded-2xl bg-amber-50 border-2 border-amber-300 text-amber-950 flex items-start gap-3">
+              <div className="p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border-2 border-amber-300 dark:border-amber-700/60 text-amber-950 dark:text-amber-200 flex items-start gap-3">
                 <AlertTriangle className="w-5 h-5 text-orange-accent shrink-0 mt-0.5" />
                 <div className="text-xs leading-relaxed">
                   <strong className="font-bold">Important Notice:</strong>{' '}
@@ -297,7 +297,7 @@ export const InterestForm: React.FC<InterestFormProps> = ({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Full Name */}
                 <div>
-                  <label className="block text-xs font-bold text-plum-900 uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-plum-900 dark:text-lilac uppercase tracking-wider mb-1.5">
                     Full Name <span className="text-rose-500">*</span>
                   </label>
                   <input
@@ -305,10 +305,10 @@ export const InterestForm: React.FC<InterestFormProps> = ({
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder="e.g. Rahul Sharma"
-                    className={`w-full px-4 py-2.5 rounded-xl border text-xs sm:text-sm focus:outline-none focus:ring-2 ${
+                    className={`w-full px-4 py-2.5 rounded-xl border text-xs sm:text-sm focus:outline-none focus:ring-2 transition-colors ${
                       errors.fullName
-                        ? 'border-rose-400 bg-rose-50 focus:ring-rose-400'
-                        : 'border-plum-200 focus:ring-plum-800'
+                        ? 'border-rose-400 bg-rose-50 dark:bg-rose-950/30 text-rose-900 dark:text-rose-200 focus:ring-rose-400'
+                        : 'border-plum-200 dark:border-plum-800 bg-white dark:bg-plum-900/60 text-plum-950 dark:text-white placeholder:text-plum-400 dark:placeholder:text-plum-500 focus:ring-plum-800 dark:focus:ring-orange-accent'
                     }`}
                   />
                   {errors.fullName && (
@@ -318,7 +318,7 @@ export const InterestForm: React.FC<InterestFormProps> = ({
 
                 {/* Email Address */}
                 <div>
-                  <label className="block text-xs font-bold text-plum-900 uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-plum-900 dark:text-lilac uppercase tracking-wider mb-1.5">
                     Email Address <span className="text-rose-500">*</span>
                   </label>
                   <input
@@ -326,10 +326,10 @@ export const InterestForm: React.FC<InterestFormProps> = ({
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="e.g. rahul@university.edu"
-                    className={`w-full px-4 py-2.5 rounded-xl border text-xs sm:text-sm focus:outline-none focus:ring-2 ${
+                    className={`w-full px-4 py-2.5 rounded-xl border text-xs sm:text-sm focus:outline-none focus:ring-2 transition-colors ${
                       errors.email
-                        ? 'border-rose-400 bg-rose-50 focus:ring-rose-400'
-                        : 'border-plum-200 focus:ring-plum-800'
+                        ? 'border-rose-400 bg-rose-50 dark:bg-rose-950/30 text-rose-900 dark:text-rose-200 focus:ring-rose-400'
+                        : 'border-plum-200 dark:border-plum-800 bg-white dark:bg-plum-900/60 text-plum-950 dark:text-white placeholder:text-plum-400 dark:placeholder:text-plum-500 focus:ring-plum-800 dark:focus:ring-orange-accent'
                     }`}
                   />
                   {errors.email && (
@@ -339,7 +339,7 @@ export const InterestForm: React.FC<InterestFormProps> = ({
 
                 {/* Mobile Phone */}
                 <div>
-                  <label className="block text-xs font-bold text-plum-900 uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-plum-900 dark:text-lilac uppercase tracking-wider mb-1.5">
                     Mobile Phone <span className="text-rose-500">*</span>
                   </label>
                   <input
@@ -347,10 +347,10 @@ export const InterestForm: React.FC<InterestFormProps> = ({
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="e.g. 9876543210"
-                    className={`w-full px-4 py-2.5 rounded-xl border text-xs sm:text-sm focus:outline-none focus:ring-2 ${
+                    className={`w-full px-4 py-2.5 rounded-xl border text-xs sm:text-sm focus:outline-none focus:ring-2 transition-colors ${
                       errors.phone
-                        ? 'border-rose-400 bg-rose-50 focus:ring-rose-400'
-                        : 'border-plum-200 focus:ring-plum-800'
+                        ? 'border-rose-400 bg-rose-50 dark:bg-rose-950/30 text-rose-900 dark:text-rose-200 focus:ring-rose-400'
+                        : 'border-plum-200 dark:border-plum-800 bg-white dark:bg-plum-900/60 text-plum-950 dark:text-white placeholder:text-plum-400 dark:placeholder:text-plum-500 focus:ring-plum-800 dark:focus:ring-orange-accent'
                     }`}
                   />
                   {errors.phone && (
@@ -360,7 +360,7 @@ export const InterestForm: React.FC<InterestFormProps> = ({
 
                 {/* College / University */}
                 <div>
-                  <label className="block text-xs font-bold text-plum-900 uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-plum-900 dark:text-lilac uppercase tracking-wider mb-1.5">
                     College / University <span className="text-rose-500">*</span>
                   </label>
                   <input
@@ -368,10 +368,10 @@ export const InterestForm: React.FC<InterestFormProps> = ({
                     value={college}
                     onChange={(e) => setCollege(e.target.value)}
                     placeholder="e.g. XIM University, IIM, IIT..."
-                    className={`w-full px-4 py-2.5 rounded-xl border text-xs sm:text-sm focus:outline-none focus:ring-2 ${
+                    className={`w-full px-4 py-2.5 rounded-xl border text-xs sm:text-sm focus:outline-none focus:ring-2 transition-colors ${
                       errors.college
-                        ? 'border-rose-400 bg-rose-50 focus:ring-rose-400'
-                        : 'border-plum-200 focus:ring-plum-800'
+                        ? 'border-rose-400 bg-rose-50 dark:bg-rose-950/30 text-rose-900 dark:text-rose-200 focus:ring-rose-400'
+                        : 'border-plum-200 dark:border-plum-800 bg-white dark:bg-plum-900/60 text-plum-950 dark:text-white placeholder:text-plum-400 dark:placeholder:text-plum-500 focus:ring-plum-800 dark:focus:ring-orange-accent'
                     }`}
                   />
                   {errors.college && (
@@ -382,7 +382,7 @@ export const InterestForm: React.FC<InterestFormProps> = ({
 
               {/* Participation Category */}
               <div>
-                <label className="block text-xs font-bold text-plum-900 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-plum-900 dark:text-lilac uppercase tracking-wider mb-1.5">
                   Participation Pathway <span className="text-rose-500">*</span>
                 </label>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -396,8 +396,8 @@ export const InterestForm: React.FC<InterestFormProps> = ({
                       }}
                       className={`px-3 py-2 rounded-xl text-xs font-semibold border transition-all ${
                         category === cat
-                          ? 'bg-plum-800 text-white border-plum-800 shadow-sm'
-                          : 'bg-plum-50/60 text-plum-800 border-plum-200 hover:bg-plum-100'
+                          ? 'bg-plum-800 dark:bg-orange-accent text-white dark:text-plum-950 border-plum-800 dark:border-orange-accent shadow-sm'
+                          : 'bg-plum-50/60 dark:bg-plum-900/40 text-plum-800 dark:text-lilac border-plum-200 dark:border-plum-800 hover:bg-plum-100 dark:hover:bg-plum-800/60'
                       }`}
                     >
                       {cat}
@@ -408,7 +408,7 @@ export const InterestForm: React.FC<InterestFormProps> = ({
 
               {/* Event of Interest */}
               <div>
-                <label className="block text-xs font-bold text-plum-900 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-plum-900 dark:text-lilac uppercase tracking-wider mb-1.5">
                   Specific Event of Interest (Optional)
                 </label>
                 {category === 'General Visitor' ? (
@@ -416,17 +416,17 @@ export const InterestForm: React.FC<InterestFormProps> = ({
                     type="text"
                     disabled
                     value="All Pro Nights & Campus Attractions"
-                    className="w-full px-4 py-2.5 rounded-xl border border-plum-200 bg-plum-50 text-plum-700 text-xs sm:text-sm cursor-not-allowed"
+                    className="w-full px-4 py-2.5 rounded-xl border border-plum-200 dark:border-plum-800 bg-plum-50 dark:bg-plum-900/30 text-plum-700 dark:text-plum-400 text-xs sm:text-sm cursor-not-allowed"
                   />
                 ) : (
                   <select
                     value={eventOfInterest}
                     onChange={(e) => setEventOfInterest(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-plum-200 text-plum-950 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-plum-800 bg-white"
+                    className="w-full px-4 py-2.5 rounded-xl border border-plum-200 dark:border-plum-800 text-plum-950 dark:text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-plum-800 dark:focus:ring-orange-accent bg-white dark:bg-plum-900/60"
                   >
-                    <option value="">-- Select Event (or leave blank for all {category} events) --</option>
+                    <option value="" className="dark:bg-plum-900 dark:text-white">-- Select Event (or leave blank for all {category} events) --</option>
                     {categoryEvents.map((e) => (
-                      <option key={e.id} value={e.title}>
+                      <option key={e.id} value={e.title} className="dark:bg-plum-900 dark:text-white">
                         {e.title} — {e.subtitle}
                       </option>
                     ))}
@@ -441,9 +441,9 @@ export const InterestForm: React.FC<InterestFormProps> = ({
                     type="checkbox"
                     checked={consentUpdates}
                     onChange={(e) => setConsentUpdates(e.target.checked)}
-                    className="mt-0.5 rounded border-plum-300 text-plum-800 focus:ring-plum-800 w-4 h-4"
+                    className="mt-0.5 rounded border-plum-300 dark:border-plum-700 text-plum-800 dark:text-orange-accent focus:ring-plum-800 dark:focus:ring-orange-accent w-4 h-4 bg-white dark:bg-plum-900"
                   />
-                  <span className="text-xs text-plum-800/90 leading-tight">
+                  <span className="text-xs text-plum-800/90 dark:text-lilac/90 leading-tight">
                     I consent to receive official festival updates, competition rulebooks, and schedule announcements from the Xpressions Organizing Committee via email/SMS.
                   </span>
                 </label>
@@ -453,11 +453,11 @@ export const InterestForm: React.FC<InterestFormProps> = ({
               </div>
 
               {/* Submit Buttons */}
-              <div className="pt-4 border-t border-plum-100 flex items-center justify-between gap-4">
+              <div className="pt-4 border-t border-plum-100 dark:border-plum-800 flex items-center justify-between gap-4">
                 <button
                   type="button"
                   onClick={onClose}
-                  className="px-5 py-2.5 rounded-xl border border-plum-300 text-plum-700 hover:bg-plum-50 text-xs font-semibold"
+                  className="px-5 py-2.5 rounded-xl border border-plum-300 dark:border-plum-700 text-plum-700 dark:text-lilac hover:bg-plum-50 dark:hover:bg-plum-900 text-xs font-semibold transition-colors"
                 >
                   Cancel
                 </button>

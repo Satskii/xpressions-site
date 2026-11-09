@@ -2,20 +2,22 @@ import React, { useEffect, useRef, useState } from 'react';
 
 interface ScrollRevealProps {
   children: React.ReactNode;
-  direction?: 'up' | 'down' | 'left' | 'right' | 'fade' | 'zoom';
+  direction?: 'up' | 'down' | 'left' | 'right' | 'fade' | 'zoom' | 'blur-up';
   delay?: number;
   duration?: number;
   className?: string;
   threshold?: number;
+  distance?: number;
 }
 
 export const ScrollReveal: React.FC<ScrollRevealProps> = ({
   children,
-  direction = 'up',
+  direction = 'blur-up',
   delay = 0,
-  duration = 650,
+  duration = 750,
   className = '',
   threshold = 0.08,
+  distance = 32,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -24,7 +26,6 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
     const element = ref.current;
     if (!element) return;
 
-    // Check if IntersectionObserver is supported
     if (!('IntersectionObserver' in window)) {
       setIsVisible(true);
       return;
@@ -47,23 +48,58 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
     return () => observer.disconnect();
   }, [threshold]);
 
-  const getTransformStyle = () => {
-    if (isVisible) return 'opacity-100 translate-x-0 translate-y-0 scale-100';
+  const getHiddenStyles = (): React.CSSProperties => {
+    if (isVisible) {
+      return {
+        opacity: 1,
+        transform: 'translate3d(0, 0, 0) scale(1)',
+        filter: 'blur(0px)',
+      };
+    }
 
     switch (direction) {
+      case 'blur-up':
+        return {
+          opacity: 0,
+          transform: `translate3d(0, ${distance}px, 0) scale(0.97)`,
+          filter: 'blur(10px)',
+        };
       case 'up':
-        return 'opacity-0 translate-y-8';
+        return {
+          opacity: 0,
+          transform: `translate3d(0, ${distance}px, 0)`,
+          filter: 'blur(4px)',
+        };
       case 'down':
-        return 'opacity-0 -translate-y-8';
+        return {
+          opacity: 0,
+          transform: `translate3d(0, -${distance}px, 0)`,
+          filter: 'blur(4px)',
+        };
       case 'left':
-        return 'opacity-0 translate-x-8';
+        return {
+          opacity: 0,
+          transform: `translate3d(${distance}px, 0, 0)`,
+          filter: 'blur(4px)',
+        };
       case 'right':
-        return 'opacity-0 -translate-x-8';
+        return {
+          opacity: 0,
+          transform: `translate3d(-${distance}px, 0, 0)`,
+          filter: 'blur(4px)',
+        };
       case 'zoom':
-        return 'opacity-0 scale-95';
+        return {
+          opacity: 0,
+          transform: 'scale(0.92)',
+          filter: 'blur(8px)',
+        };
       case 'fade':
       default:
-        return 'opacity-0';
+        return {
+          opacity: 0,
+          filter: 'blur(6px)',
+        };
     }
   };
 
@@ -71,13 +107,15 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
     <div
       ref={ref}
       style={{
+        ...getHiddenStyles(),
+        transitionProperty: 'opacity, transform, filter',
         transitionDuration: `${duration}ms`,
         transitionDelay: `${delay}ms`,
+        transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
       }}
-      className={`transition-all ease-out will-change-[transform,opacity] ${getTransformStyle()} ${className}`}
+      className={`will-change-[transform,opacity,filter] ${className}`}
     >
       {children}
     </div>
   );
 };
-

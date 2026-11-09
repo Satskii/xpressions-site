@@ -44,18 +44,18 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, event, onClose }
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-plum-950/80 backdrop-blur-md animate-in fade-in duration-200">
       <div className="fixed inset-0" onClick={onClose} />
 
-      <div className="relative w-full max-w-md bg-white rounded-3xl shadow-2xl border border-plum-200 p-6 z-10 space-y-5">
-        <div className="flex items-center justify-between pb-3 border-b border-plum-100">
-          <div className="flex items-center gap-2 text-plum-900 font-poppins font-bold text-base">
+      <div className="relative w-full max-w-md bg-white dark:bg-plum-950 rounded-3xl shadow-2xl border border-plum-200 dark:border-plum-800 p-6 z-10 space-y-5">
+        <div className="flex items-center justify-between pb-3 border-b border-plum-100 dark:border-plum-800">
+          <div className="flex items-center gap-2 text-plum-900 dark:text-white font-poppins font-bold text-base">
             <Share2 className="w-4 h-4 text-orange-accent" />
             <span>Share {event ? event.title : 'Xpressions'}</span>
           </div>
-          <button onClick={onClose} className="p-1 rounded-lg text-plum-500 hover:text-plum-900">
+          <button onClick={onClose} className="p-1 rounded-lg text-plum-500 hover:text-plum-900 dark:text-lilac dark:hover:text-white transition-colors">
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        <p className="text-xs text-plum-700 leading-relaxed">
+        <p className="text-xs text-plum-700 dark:text-lilac/80 leading-relaxed">
           Spread the word with your batchmates, team members, or dramatics and band crew!
         </p>
 
@@ -63,7 +63,7 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, event, onClose }
         <div className="grid grid-cols-3 gap-3">
           <button
             onClick={shareWhatsApp}
-            className="flex flex-col items-center justify-center gap-2 p-3.5 rounded-2xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 transition-colors"
+            className="flex flex-col items-center justify-center gap-2 p-3.5 rounded-2xl bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-950/40 dark:hover:bg-emerald-900/50 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 transition-colors"
           >
             <div className="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold">
               WA
@@ -73,7 +73,7 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, event, onClose }
 
           <button
             onClick={shareTwitter}
-            className="flex flex-col items-center justify-center gap-2 p-3.5 rounded-2xl bg-sky-50 hover:bg-sky-100 text-sky-800 border border-sky-200 transition-colors"
+            className="flex flex-col items-center justify-center gap-2 p-3.5 rounded-2xl bg-sky-50 hover:bg-sky-100 dark:bg-sky-950/40 dark:hover:bg-sky-900/50 text-sky-800 dark:text-sky-300 border border-sky-200 dark:border-sky-800 transition-colors"
           >
             <div className="w-8 h-8 rounded-full bg-sky-500 text-white flex items-center justify-center">
               <Twitter className="w-4 h-4" />
@@ -83,7 +83,7 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, event, onClose }
 
           <button
             onClick={shareLinkedIn}
-            className="flex flex-col items-center justify-center gap-2 p-3.5 rounded-2xl bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-200 transition-colors"
+            className="flex flex-col items-center justify-center gap-2 p-3.5 rounded-2xl bg-blue-50 hover:bg-blue-100 dark:bg-blue-950/40 dark:hover:bg-blue-900/50 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800 transition-colors"
           >
             <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center">
               <Linkedin className="w-4 h-4" />
@@ -94,20 +94,20 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, event, onClose }
 
         {/* Copy Link Input */}
         <div className="pt-2">
-          <div className="flex items-center gap-2 p-2 rounded-2xl bg-plum-50 border border-plum-200">
+          <div className="flex items-center gap-2 p-2 rounded-2xl bg-plum-50 dark:bg-plum-900/50 border border-plum-200 dark:border-plum-800">
             <input
               type="text"
               readOnly
               value={url}
-              className="bg-transparent text-xs text-plum-800 w-full px-2 outline-none"
+              className="bg-transparent text-xs text-plum-800 dark:text-white w-full px-2 outline-none"
             />
             <button
               onClick={handleCopy}
-              className="shrink-0 px-3.5 py-1.5 rounded-xl bg-plum-800 text-white hover:bg-plum-900 font-semibold text-xs flex items-center gap-1.5 transition-colors"
+              className="shrink-0 px-3.5 py-1.5 rounded-xl bg-plum-800 dark:bg-orange-accent text-white dark:text-plum-950 hover:bg-plum-900 dark:hover:bg-orange-hover font-semibold text-xs flex items-center gap-1.5 transition-colors"
             >
               {copied ? (
                 <>
-                  <Check className="w-3.5 h-3.5 text-emerald-400" />
+                  <Check className="w-3.5 h-3.5 text-emerald-400 dark:text-emerald-700" />
                   <span>Copied!</span>
                 </>
               ) : (

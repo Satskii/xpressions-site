@@ -45,7 +45,7 @@ export const EventDetailModal: React.FC<EventDetailModalProps> = ({
       <div className="min-h-screen px-3 sm:px-4 py-4 sm:py-8 flex items-center justify-center">
         {/* Modal Window */}
         <div 
-          className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl border border-plum-200 overflow-hidden z-10 animate-in fade-in zoom-in-95 duration-200 my-auto"
+          className="relative w-full max-w-4xl bg-white dark:bg-plum-950 rounded-3xl shadow-2xl border border-plum-200 dark:border-plum-800 overflow-hidden z-10 animate-in fade-in zoom-in-95 duration-200 my-auto text-plum-950 dark:text-white transition-colors duration-300"
           role="dialog"
           aria-modal="true"
           aria-labelledby="modal-event-title"
@@ -104,42 +104,42 @@ export const EventDetailModal: React.FC<EventDetailModalProps> = ({
             
             {/* 1. Event Introduction */}
             <div>
-              <h3 className="text-xs font-bold uppercase tracking-wider text-plum-600 mb-1">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-plum-600 dark:text-orange-accent mb-1">
                 1. Executive Summary
               </h3>
-              <p className="text-sm sm:text-base text-plum-950 leading-relaxed font-normal">
+              <p className="text-sm sm:text-base text-plum-950 dark:text-white leading-relaxed font-normal">
                 {event.shortDescription}
               </p>
             </div>
 
             {/* 2. About the Competition / Activity */}
             <div>
-              <h3 className="text-xs font-bold uppercase tracking-wider text-plum-600 mb-2">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-plum-600 dark:text-orange-accent mb-2">
                 2. About the Challenge & Scope
               </h3>
-              <p className="text-sm text-plum-900/80 leading-relaxed bg-plum-50 p-4 rounded-2xl border border-plum-100">
+              <p className="text-sm text-plum-900/80 dark:text-lilac/85 leading-relaxed bg-plum-50 dark:bg-plum-900/60 p-4 rounded-2xl border border-plum-100 dark:border-plum-800">
                 {event.fullAbout}
               </p>
             </div>
 
             {/* 3. Who Can Participate & 5. Team Requirements */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="p-4 rounded-2xl bg-white border border-plum-200">
-                <div className="flex items-center gap-2 text-xs font-bold text-plum-900 uppercase tracking-wider mb-2">
+              <div className="p-4 rounded-2xl bg-white dark:bg-plum-900 border border-plum-200 dark:border-plum-800">
+                <div className="flex items-center gap-2 text-xs font-bold text-plum-900 dark:text-white uppercase tracking-wider mb-2">
                   <ShieldCheck className="w-4 h-4 text-orange-accent" />
                   <span>3. Eligibility Requirements</span>
                 </div>
-                <p className="text-xs sm:text-sm text-plum-800">
+                <p className="text-xs sm:text-sm text-plum-800 dark:text-lilac/80">
                   {event.eligibility}
                 </p>
               </div>
 
-              <div className="p-4 rounded-2xl bg-white border border-plum-200">
-                <div className="flex items-center gap-2 text-xs font-bold text-plum-900 uppercase tracking-wider mb-2">
+              <div className="p-4 rounded-2xl bg-white dark:bg-plum-900 border border-plum-200 dark:border-plum-800">
+                <div className="flex items-center gap-2 text-xs font-bold text-plum-900 dark:text-white uppercase tracking-wider mb-2">
                   <Users className="w-4 h-4 text-orange-accent" />
                   <span>5. Team Composition</span>
                 </div>
-                <p className="text-xs sm:text-sm text-plum-800">
+                <p className="text-xs sm:text-sm text-plum-800 dark:text-lilac/80">
                   {event.teamSize}
                 </p>
               </div>
@@ -147,13 +147,13 @@ export const EventDetailModal: React.FC<EventDetailModalProps> = ({
 
             {/* 4. Format and Rules */}
             <div>
-              <h3 className="text-xs font-bold uppercase tracking-wider text-plum-600 mb-3">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-plum-600 dark:text-orange-accent mb-3">
                 4. Competition Format & Guidelines
               </h3>
               <div className="space-y-2">
                 {event.formatAndRules.map((rule, idx) => (
-                  <div key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-plum-900">
-                    <span className="w-5 h-5 rounded-full bg-plum-100 text-plum-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+                  <div key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-plum-900 dark:text-lilac/90">
+                    <span className="w-5 h-5 rounded-full bg-plum-100 dark:bg-plum-800 text-plum-800 dark:text-orange-accent font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
                       {idx + 1}
                     </span>
                     <span>{rule}</span>
@@ -164,12 +164,12 @@ export const EventDetailModal: React.FC<EventDetailModalProps> = ({
 
             {/* 6. Judging Criteria */}
             <div>
-              <h3 className="text-xs font-bold uppercase tracking-wider text-plum-600 mb-3">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-plum-600 dark:text-orange-accent mb-3">
                 6. Evaluation & Judging Parameters
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {event.judgingCriteria.map((crit, idx) => (
-                  <div key={idx} className="p-3 rounded-xl bg-plum-50/60 border border-plum-100 text-xs text-plum-900">
+                  <div key={idx} className="p-3 rounded-xl bg-plum-50/60 dark:bg-plum-900/50 border border-plum-100 dark:border-plum-800 text-xs text-plum-900 dark:text-lilac/90">
                     <div className="font-bold text-orange-accent mb-1">Criterion {idx + 1}</div>
                     <div>{crit}</div>
                   </div>
@@ -179,52 +179,52 @@ export const EventDetailModal: React.FC<EventDetailModalProps> = ({
 
             {/* 7. Prizes & 8. Important Dates */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="p-4 rounded-2xl bg-amber-50/60 border border-amber-200">
-                <div className="flex items-center gap-2 text-xs font-bold text-amber-900 uppercase tracking-wider mb-2">
+              <div className="p-4 rounded-2xl bg-amber-50/60 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/80">
+                <div className="flex items-center gap-2 text-xs font-bold text-amber-900 dark:text-amber-300 uppercase tracking-wider mb-2">
                   <Trophy className="w-4 h-4 text-orange-accent" />
                   <span>7. Prizes & Recognition ({event.prizes.status})</span>
                 </div>
-                <p className="text-xs sm:text-sm text-amber-950">
+                <p className="text-xs sm:text-sm text-amber-950 dark:text-amber-200">
                   {event.prizes.amountOrDescription}
                 </p>
               </div>
 
-              <div className="p-4 rounded-2xl bg-plum-50 border border-plum-200">
-                <div className="flex items-center gap-2 text-xs font-bold text-plum-900 uppercase tracking-wider mb-2">
+              <div className="p-4 rounded-2xl bg-plum-50 dark:bg-plum-900 border border-plum-200 dark:border-plum-800">
+                <div className="flex items-center gap-2 text-xs font-bold text-plum-900 dark:text-white uppercase tracking-wider mb-2">
                   <Calendar className="w-4 h-4 text-orange-accent" />
                   <span>8. Key Milestones ({event.importantDates.status})</span>
                 </div>
-                <p className="text-xs sm:text-sm text-plum-800">
+                <p className="text-xs sm:text-sm text-plum-800 dark:text-lilac/80">
                   Registration & prelim rounds to be scheduled upon official portal opening.
                 </p>
               </div>
             </div>
 
             {/* 9. Registration / Submission Instructions */}
-            <div className="p-4 rounded-2xl bg-lilac/30 border border-plum-200">
-              <div className="flex items-center gap-2 text-xs font-bold text-plum-900 uppercase tracking-wider mb-1">
+            <div className="p-4 rounded-2xl bg-lilac/30 dark:bg-plum-900/50 border border-plum-200 dark:border-plum-800">
+              <div className="flex items-center gap-2 text-xs font-bold text-plum-900 dark:text-orange-accent uppercase tracking-wider mb-1">
                 <AlertCircle className="w-4 h-4 text-orange-accent" />
                 <span>9. Registration Protocol & Disclaimer</span>
               </div>
-              <p className="text-xs text-plum-800 leading-relaxed">
+              <p className="text-xs text-plum-800 dark:text-lilac/85 leading-relaxed">
                 {event.registrationInstructions}
               </p>
             </div>
 
             {/* 10. Student Coordinator Contacts */}
             <div>
-              <h3 className="text-xs font-bold uppercase tracking-wider text-plum-600 mb-3">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-plum-600 dark:text-orange-accent mb-3">
                 10. Student Coordinator Contacts
               </h3>
               <div className="flex flex-wrap gap-4">
                 {event.coordinators.map((coord, idx) => (
-                  <div key={idx} className="flex items-center gap-3 p-3 rounded-xl bg-plum-50 border border-plum-100 text-xs">
-                    <div className="p-2 rounded-lg bg-plum-800 text-white font-bold">
+                  <div key={idx} className="flex items-center gap-3 p-3 rounded-xl bg-plum-50 dark:bg-plum-900/60 border border-plum-100 dark:border-plum-800 text-xs">
+                    <div className="p-2 rounded-lg bg-plum-800 dark:bg-orange-accent text-white dark:text-plum-950 font-bold">
                       <Mail className="w-3.5 h-3.5" />
                     </div>
                     <div>
-                      <div className="font-bold text-plum-950">{coord.name}</div>
-                      <div className="text-plum-600 text-[11px]">{coord.role}</div>
+                      <div className="font-bold text-plum-950 dark:text-white">{coord.name}</div>
+                      <div className="text-plum-600 dark:text-plum-400 text-[11px]">{coord.role}</div>
                       {coord.email && (
                         <a href={`mailto:${coord.email}`} className="text-orange-accent font-medium hover:underline text-[11px]">
                           {coord.email}
@@ -239,15 +239,15 @@ export const EventDetailModal: React.FC<EventDetailModalProps> = ({
           </div>
 
           {/* Sticky Modal Action Footer */}
-          <div className="p-4 sm:p-6 bg-plum-50 border-t border-plum-200 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="text-xs text-plum-700 text-center sm:text-left">
+          <div className="p-4 sm:p-6 bg-plum-50 dark:bg-plum-900/90 border-t border-plum-200 dark:border-plum-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="text-xs text-plum-700 dark:text-lilac/70 text-center sm:text-left">
               Questions regarding rules? Reach out to the event lead or submit an interest form.
             </div>
 
             <div className="flex items-center gap-3 w-full sm:w-auto">
               <button
                 onClick={() => onShare(event)}
-                className="px-4 py-2.5 rounded-xl border border-plum-300 text-plum-900 font-semibold text-xs hover:bg-plum-100 transition-colors flex items-center justify-center gap-1.5"
+                className="px-4 py-2.5 rounded-xl border border-plum-300 dark:border-plum-700 text-plum-900 dark:text-lilac font-semibold text-xs hover:bg-plum-100 dark:hover:bg-plum-850 transition-colors flex items-center justify-center gap-1.5"
               >
                 <Share2 className="w-3.5 h-3.5" />
                 <span>Share</span>
@@ -258,7 +258,7 @@ export const EventDetailModal: React.FC<EventDetailModalProps> = ({
                   onClose();
                   onRegisterInterest(event.title);
                 }}
-                className="flex-1 sm:flex-none px-6 py-2.5 rounded-xl bg-orange-accent hover:bg-orange-hover text-plum-950 font-poppins font-bold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2"
+                className="flex-1 sm:flex-none px-6 py-2.5 rounded-xl bg-orange-accent hover:bg-orange-hover text-plum-950 font-poppins font-bold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2 hover:scale-105 active:scale-95"
               >
                 <span>Register Interest for {event.title}</span>
                 <ArrowRight className="w-4 h-4" />

@@ -2,6 +2,7 @@ import React from 'react';
 import { Target, Mic2, Ticket, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { EventCategory } from '../types/festival';
 import { ScrollReveal } from './ScrollReveal';
+import { SpotlightCard } from './SpotlightCard';
 
 interface HowToParticipateProps {
   onSelectPathway: (category: EventCategory | 'All' | 'schedule' | 'interest') => void;
@@ -88,7 +89,7 @@ export const HowToParticipate: React.FC<HowToParticipateProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header */}
-        <ScrollReveal direction="up" duration={600}>
+        <ScrollReveal direction="blur-up" duration={700}>
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-plum-800 text-orange-accent text-xs font-semibold mb-3 border border-plum-700/80">
               <span>Decision Pathways</span>
@@ -102,14 +103,14 @@ export const HowToParticipate: React.FC<HowToParticipateProps> = ({
           </div>
         </ScrollReveal>
 
-        {/* 3 Pathway Cards */}
+        {/* 3 Pathway Cards with Spotlight */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
           {pathways.map((pathway, idx) => {
             const Icon = pathway.icon;
             return (
-              <ScrollReveal key={idx} direction="up" delay={idx * 140} duration={650}>
-                <div
-                  className="rounded-3xl bg-gradient-to-b from-plum-900/90 to-plum-900/60 border border-plum-750/70 p-6 sm:p-8 flex flex-col justify-between shadow-xl hover:border-orange-accent/40 transition-all duration-300 hover:-translate-y-1 backdrop-blur-sm h-full"
+              <ScrollReveal key={idx} direction="blur-up" delay={idx * 140} duration={700}>
+                <SpotlightCard
+                  className="rounded-3xl bg-gradient-to-b from-plum-900/90 to-plum-900/60 border border-plum-750/70 p-6 sm:p-8 flex flex-col justify-between shadow-xl hover:border-orange-accent/40 transition-all duration-400 hover:-translate-y-2 backdrop-blur-sm h-full"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-5">
@@ -160,7 +161,7 @@ export const HowToParticipate: React.FC<HowToParticipateProps> = ({
                       Record Interest for {pathway.title}
                     </button>
                   </div>
-                </div>
+                </SpotlightCard>
               </ScrollReveal>
             );
           })}
