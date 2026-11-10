@@ -232,3 +232,4 @@ export const DualNarrativeSection: React.FC<DualNarrativeSectionProps> = ({
     </section>
   );
 };
+

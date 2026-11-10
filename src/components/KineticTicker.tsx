@@ -50,3 +50,4 @@ export const KineticTicker: React.FC = () => {
     </div>
   );
 };
+
