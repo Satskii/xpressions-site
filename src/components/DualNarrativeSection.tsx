@@ -34,11 +34,11 @@ export const DualNarrativeSection: React.FC<DualNarrativeSectionProps> = ({
   return (
     <section className="py-16 sm:py-24 bg-white dark:bg-plum-950 text-plum-950 dark:text-white relative w-full overflow-hidden transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Lando Norris Inspired Track Selector (ON TRACK vs OFF TRACK -> THE ARENA vs THE STAGE) */}
         <ScrollReveal direction="blur-up" duration={700}>
           <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-10 sm:mb-14">
-            
+
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-plum-100/80 dark:bg-plum-900 border border-plum-200 dark:border-plum-800 text-plum-900 dark:text-lilac text-xs font-semibold mb-4">
               <Activity className="w-3.5 h-3.5 text-orange-accent animate-pulse" />
               <span className="font-poppins uppercase tracking-wider text-[11px] sm:text-xs">
@@ -57,11 +57,10 @@ export const DualNarrativeSection: React.FC<DualNarrativeSectionProps> = ({
             <div className="mt-8 p-1.5 rounded-full bg-plum-100 dark:bg-plum-900/90 border border-plum-200 dark:border-plum-800 flex items-center gap-1.5 shadow-lg w-full max-w-md sm:w-auto">
               <button
                 onClick={() => setActiveTrack('arena')}
-                className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 px-5 sm:px-7 py-3 rounded-full text-xs sm:text-sm font-poppins font-black tracking-wide transition-all duration-300 ${
-                  isArena
+                className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 px-5 sm:px-7 py-3 rounded-full text-xs sm:text-sm font-poppins font-black tracking-wide transition-all duration-300 ${isArena
                     ? 'bg-plum-900 text-white dark:bg-orange-accent dark:text-plum-950 shadow-md scale-102'
                     : 'text-plum-700 dark:text-lilac hover:text-plum-950 dark:hover:text-white'
-                }`}
+                  }`}
               >
                 <Trophy className="w-4 h-4 text-orange-accent dark:text-plum-950" />
                 <span>The Business Arena</span>
@@ -69,11 +68,10 @@ export const DualNarrativeSection: React.FC<DualNarrativeSectionProps> = ({
 
               <button
                 onClick={() => setActiveTrack('stage')}
-                className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 px-5 sm:px-7 py-3 rounded-full text-xs sm:text-sm font-poppins font-black tracking-wide transition-all duration-300 ${
-                  !isArena
+                className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 px-5 sm:px-7 py-3 rounded-full text-xs sm:text-sm font-poppins font-black tracking-wide transition-all duration-300 ${!isArena
                     ? 'bg-plum-900 text-white dark:bg-orange-accent dark:text-plum-950 shadow-md scale-102'
                     : 'text-plum-700 dark:text-lilac hover:text-plum-950 dark:hover:text-white'
-                }`}
+                  }`}
               >
                 <Music className="w-4 h-4 text-orange-accent dark:text-plum-950" />
                 <span>The Cultural Stage</span>
@@ -87,7 +85,7 @@ export const DualNarrativeSection: React.FC<DualNarrativeSectionProps> = ({
         <ScrollReveal direction="blur-up" delay={100} duration={700}>
           <div className="p-6 sm:p-8 rounded-3xl bg-plum-50 dark:bg-plum-900/40 border border-plum-200/80 dark:border-plum-800/80 mb-10 sm:mb-12 transition-all duration-500">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-              
+
               <div className="space-y-2 max-w-2xl">
                 <div className="flex flex-wrap items-center gap-2 text-[10px] sm:text-xs font-poppins uppercase tracking-wider text-orange-accent">
                   <span className="px-2.5 py-0.5 rounded-full bg-orange-accent/15 border border-orange-accent/30 font-bold">
@@ -151,7 +149,7 @@ export const DualNarrativeSection: React.FC<DualNarrativeSectionProps> = ({
           {displayedEvents.map((event, idx) => (
             <ScrollReveal key={`${activeTrack}-${event.id}`} direction="blur-up" delay={idx * 80} duration={650}>
               <SpotlightCard className="group rounded-3xl bg-white dark:bg-plum-900/70 border border-plum-200/80 dark:border-plum-800/80 shadow-sm hover:shadow-2xl hover:border-orange-accent/50 dark:hover:border-orange-accent/50 transition-all duration-400 flex flex-col justify-between overflow-hidden hover:-translate-y-1.5 h-full">
-                
+
                 {/* Media & Overlay Header */}
                 <div className="relative h-44 sm:h-48 w-full overflow-hidden bg-plum-950">
                   <img
@@ -160,7 +158,7 @@ export const DualNarrativeSection: React.FC<DualNarrativeSectionProps> = ({
                     className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-spring"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-plum-950/90 via-plum-950/20 to-transparent" />
-                  
+
                   {/* Technical Index Pill */}
                   <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-plum-950/85 text-orange-accent font-poppins font-bold text-[10px] border border-plum-800 shadow-sm backdrop-blur-md">
                     Featured 0{idx + 1}

@@ -16,7 +16,7 @@ export const KineticTicker: React.FC = () => {
   ];
 
   return (
-    <div 
+    <div
       className="relative w-full overflow-hidden border-y border-plum-200/80 dark:border-plum-800/80 bg-plum-50/70 dark:bg-plum-950/95 py-2.5 backdrop-blur-md transition-colors duration-300 select-none group"
       aria-hidden="true"
     >
@@ -31,11 +31,10 @@ export const KineticTicker: React.FC = () => {
             {tickerItems.map((item, idx) => (
               <div key={idx} className="flex items-center gap-6 sm:gap-8 shrink-0">
                 <span
-                  className={`text-[11px] sm:text-xs tracking-wider transition-colors uppercase font-poppins font-bold ${
-                    item.highlight
+                  className={`text-[11px] sm:text-xs tracking-wider transition-colors uppercase font-poppins font-bold ${item.highlight
                       ? 'text-orange-accent dark:text-orange-accent'
                       : 'text-plum-900/80 dark:text-lilac/80'
-                  }`}
+                    }`}
                 >
                   {item.text}
                 </span>
