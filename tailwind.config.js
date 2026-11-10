@@ -62,12 +62,17 @@ export default {
         shimmer: {
           '0%': { backgroundPosition: '-200% 0' },
           '100%': { backgroundPosition: '200% 0' },
-        }
+        },
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
       },
       animation: {
         'pulse-slow': 'pulseSlow 6s ease-in-out infinite',
         'float-slow': 'floatSlow 4s ease-in-out infinite',
         'shimmer': 'shimmer 2.5s infinite linear',
+        'marquee': 'marquee 28s linear infinite',
       }
     },
   },

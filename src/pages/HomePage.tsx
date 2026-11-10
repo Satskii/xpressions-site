@@ -1,15 +1,14 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { ArrowRight, Trophy, Music } from 'lucide-react';
+import { ArrowRight, Music } from 'lucide-react';
 import { Hero } from '../components/Hero';
+import { KineticTicker } from '../components/KineticTicker';
 import { StatsBar } from '../components/StatsBar';
+import { DualNarrativeSection } from '../components/DualNarrativeSection';
 import { FestivalIntro } from '../components/FestivalIntro';
-import { SoundWaveBar } from '../components/SoundWaveBar';
 import { VibeSelector } from '../components/VibeSelector';
 import { FinalCta } from '../components/FinalCta';
 import { ScrollReveal } from '../components/ScrollReveal';
-import { SpotlightCard } from '../components/SpotlightCard';
-import { FESTIVAL_EVENTS } from '../data/festivalData';
 import { EventItem } from '../types/festival';
 
 interface HomePageProps {
@@ -24,24 +23,27 @@ export const HomePage: React.FC<HomePageProps> = ({
 }) => {
   const navigate = useNavigate();
 
-  // Pick top 3 marquee flagships for homepage preview to avoid information density
-  const marqueeEvents = FESTIVAL_EVENTS.filter((e) => ['maven', 'decibelz', 'trade-wars'].includes(e.id));
-
   return (
     <div className="space-y-0 w-full max-w-full overflow-hidden bg-white dark:bg-plum-950 text-plum-950 dark:text-white transition-colors duration-300">
-      {/* 1. Hero Section */}
+      {/* 1. Hero Section (F1 Telemetry Coordinates & Brand Headline) */}
       <Hero
         onExploreEvents={() => navigate('/events')}
         onRegisterInterest={() => onOpenInterestModal()}
       />
 
-      {/* 2. Interactive Sound Wave Visualizer */}
-      <SoundWaveBar />
+      {/* 2. Kinetic Telemetry Ticker */}
+      <KineticTicker />
 
-      {/* 3. Proof & Legacy Stats Bar */}
+      {/* 3. High-Octane Telemetry HUD (Precision Stats Inspired by F1 Telemetry) */}
       <StatsBar />
 
-      {/* 4. Editorial Introduction */}
+      {/* 4. Dual-Narrative Engine (Lando Norris Inspired: [ 01 // THE ARENA ] vs [ 02 // THE STAGE ]) */}
+      <DualNarrativeSection
+        onOpenEventModal={onOpenEventModal}
+        onOpenInterestModal={onOpenInterestModal}
+      />
+
+      {/* 5. Editorial Introduction */}
       <FestivalIntro
         onLearnMore={() => navigate('/events')}
         onExplorePillars={() => {
@@ -50,97 +52,10 @@ export const HomePage: React.FC<HomePageProps> = ({
         }}
       />
 
-      {/* 5. Interactive Vibe Selector Widget */}
+      {/* 6. Interactive Experience Navigator Widget */}
       <section id="vibe-navigator" className="py-16 sm:py-24 bg-plum-950 text-white relative w-full overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <VibeSelector />
-        </div>
-      </section>
-
-      {/* 6. Curated Marquee Preview (Strictly 3 Cards with Spotlight Glow & Blur-Up) */}
-      <section className="py-16 sm:py-24 bg-white dark:bg-plum-950 relative w-full overflow-hidden transition-colors duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <ScrollReveal direction="blur-up" duration={700}>
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 gap-4">
-              <div>
-                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-plum-50 dark:bg-plum-900 border border-plum-200/80 dark:border-plum-800 text-plum-800 dark:text-lilac text-xs font-semibold mb-3">
-                  <Trophy className="w-3.5 h-3.5 text-orange-accent" />
-                  <span>Curated Highlights</span>
-                </div>
-                <h2 className="font-poppins font-black text-2xl sm:text-4xl text-plum-950 dark:text-white tracking-tight">
-                  Featured Marquee Arenas
-                </h2>
-                <p className="mt-2 text-xs sm:text-sm text-plum-900/70 dark:text-lilac/70 max-w-xl leading-relaxed">
-                  A preview of Eastern India’s most fiercely contested business simulations and band championships.
-                </p>
-              </div>
-
-              <Link
-                to="/events"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-plum-850 hover:bg-plum-900 dark:bg-plum-800 dark:hover:bg-plum-750 text-white font-poppins font-bold text-xs sm:text-sm shadow-md transition-all self-start md:self-auto hover:scale-105 active:scale-95"
-              >
-                <span>Explore All 15+ Events</span>
-                <ArrowRight className="w-4 h-4 text-orange-accent" />
-              </Link>
-            </div>
-          </ScrollReveal>
-
-          {/* 3 Spotlight Cards with Staggered Blur-Up */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            {marqueeEvents.map((event, idx) => (
-              <ScrollReveal key={event.id} direction="blur-up" delay={idx * 140} duration={750}>
-                <SpotlightCard
-                  className="group rounded-3xl bg-white dark:bg-plum-900/80 border border-plum-200/70 dark:border-plum-800/80 shadow-sm hover:shadow-2xl hover:border-orange-accent/40 dark:hover:border-orange-accent/50 transition-all duration-400 flex flex-col justify-between overflow-hidden hover:-translate-y-2 h-full"
-                >
-                  <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-plum-900">
-                    <img
-                      src={event.imageUrl}
-                      alt={event.title}
-                      className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-spring"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-plum-950/85 via-transparent to-transparent" />
-                    
-                    <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-plum-900/90 text-white font-poppins font-semibold text-xs border border-plum-700/60 shadow-sm backdrop-blur-md">
-                      {event.category}
-                    </span>
-
-                    <span className="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-orange-accent text-plum-950 font-poppins font-bold text-[10px] uppercase shadow-sm">
-                      {event.registrationStatus}
-                    </span>
-                  </div>
-
-                  <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
-                    <div>
-                      <h3 className="font-poppins font-black text-xl sm:text-2xl text-plum-950 dark:text-white group-hover:text-orange-accent transition-colors">
-                        {event.title}
-                      </h3>
-                      <p className="text-xs font-semibold text-orange-accent mt-0.5 line-clamp-1">
-                        {event.subtitle}
-                      </p>
-                      <p className="mt-3 text-xs sm:text-sm text-plum-900/70 dark:text-lilac/75 line-clamp-2 leading-relaxed">
-                        {event.shortDescription}
-                      </p>
-                    </div>
-
-                    <div className="mt-6 pt-4 border-t border-plum-100 dark:border-plum-800 flex items-center justify-between">
-                      <button
-                        onClick={() => onOpenEventModal(event)}
-                        className="text-xs font-bold text-plum-800 dark:text-lilac hover:text-orange-accent dark:hover:text-orange-accent transition-colors flex items-center gap-1.5"
-                      >
-                        <span>Quick View Rules</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </button>
-                      <span className="text-[11px] text-plum-600 dark:text-plum-400 font-medium">
-                        {event.teamSize}
-                      </span>
-                    </div>
-                  </div>
-                </SpotlightCard>
-              </ScrollReveal>
-            ))}
-          </div>
-
         </div>
       </section>
 
@@ -150,15 +65,15 @@ export const HomePage: React.FC<HomePageProps> = ({
           <ScrollReveal direction="blur-up" duration={700}>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-8 space-y-3">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-accent/15 text-orange-accent border border-orange-accent/25 text-xs font-bold uppercase tracking-wider">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-accent/15 text-orange-accent border border-orange-accent/25 text-xs font-mono font-bold uppercase tracking-wider">
                   <Music className="w-3.5 h-3.5" />
-                  <span>The Grand Concert Stage</span>
+                  <span>[ CONCERT TELEMETRY // STADIUM AMPHITHEATRE ]</span>
                 </div>
                 <h2 className="font-poppins font-black text-2xl sm:text-4xl lg:text-5xl text-white tracking-tight leading-tight">
                   Star Celebrity Pro Nights
                 </h2>
                 <p className="text-xs sm:text-base text-lilac/90 max-w-2xl leading-relaxed">
-                  From Shankar-Ehsaan-Loy and Sunidhi Chauhan to Darshan Raval and Amaal Mallik, discover the high-voltage arena that brings the entire university together.
+                  From Shankar-Ehsaan-Loy and Sunidhi Chauhan to Darshan Raval and Amaal Mallik, discover the high-voltage arena that brings 30,000+ festival goers together.
                 </p>
               </div>
 
