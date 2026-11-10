@@ -4,13 +4,13 @@ export const KineticTicker: React.FC = () => {
   const tickerItems = [
     { text: "XPRESSIONS 2026", highlight: true },
     { text: "WHERE BUSINESS MEETS THE BEAT", highlight: false },
-    { text: "20.1754° N, 85.7335° E", highlight: false, mono: true },
+    { text: "BHUBANESWAR, ODISHA", highlight: false },
     { text: "₹15,00,000+ PRIZE POOL", highlight: true },
     { text: "30,000+ FOOTFALL", highlight: false },
-    { text: "XIM UNIVERSITY BHUBANESWAR", highlight: false },
+    { text: "XIM UNIVERSITY", highlight: false },
     { text: "25+ NATIONAL ARENAS", highlight: true },
     { text: "STAR CELEBRITY PRO NIGHTS", highlight: false },
-    { text: "EST. 1998 // 27+ YEARS OF HERITAGE", highlight: false, mono: true },
+    { text: "EST. 1998 · 27+ YEARS OF HERITAGE", highlight: false },
     { text: "COMPETE · PERFORM · CONNECT · CELEBRATE", highlight: true },
     { text: "PRE-REGISTRATION NOW LIVE", highlight: true },
   ];
@@ -41,7 +41,7 @@ export const KineticTicker: React.FC = () => {
                 >
                   {item.text}
                 </span>
-                <span className="text-[10px] text-orange-accent/60 font-mono">//</span>
+                <span className="text-orange-accent/70 text-xs select-none">✦</span>
               </div>
             ))}
           </div>

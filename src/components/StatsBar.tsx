@@ -44,10 +44,12 @@ export const StatsBar: React.FC = () => {
                 key={idx}
                 className="relative p-4 sm:p-5 rounded-2xl bg-plum-900/50 border border-plum-800/80 hover:border-orange-accent/50 transition-all duration-300 flex flex-col justify-between group overflow-hidden"
               >
-                {/* Monospace Telemetry Header */}
-                <div className="flex items-center justify-between mb-3 text-[10px] sm:text-[11px] font-mono text-lilac/70">
-                  <span className="text-orange-accent font-bold">[{item.index}]</span>
-                  <span className="uppercase tracking-wider truncate ml-1">{item.category}</span>
+                {/* Metric Pillar Tag */}
+                <div className="flex items-center justify-between mb-3 text-[11px] font-poppins font-semibold text-lilac/80">
+                  <span className="w-5 h-5 rounded-full bg-orange-accent/15 text-orange-accent flex items-center justify-center font-bold text-[10px]">
+                    {item.index}
+                  </span>
+                  <span className="uppercase tracking-wider truncate ml-2 text-[10px] text-lilac/70">{item.category}</span>
                 </div>
 
                 {/* Big Bold Headline Number */}

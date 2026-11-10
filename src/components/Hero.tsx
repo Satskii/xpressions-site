@@ -37,16 +37,16 @@ export const Hero: React.FC<HeroProps> = ({ onExploreEvents, onRegisterInterest 
         <ScrollReveal direction="blur-up" delay={50} duration={700}>
           <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-plum-850/90 border border-plum-700/80 text-lilac backdrop-blur-md mb-4 sm:mb-5 shadow-sm max-w-full">
             <Sparkles className="w-3.5 h-3.5 text-orange-accent shrink-0" />
-            <span className="text-[10px] sm:text-xs font-mono uppercase tracking-wider truncate">
-              [ 20.1754° N, 85.7335° E ] · XIM UNIVERSITY BHUBANESWAR · 2026
+            <span className="text-[11px] sm:text-xs font-semibold tracking-wide truncate">
+              XIM University, Bhubaneswar · 2026 Flagship Festival
             </span>
           </div>
         </ScrollReveal>
 
         {/* Brand Tagline & Headline */}
         <ScrollReveal direction="blur-up" delay={120} duration={750}>
-          <div className="text-orange-accent font-mono font-bold uppercase tracking-[0.2em] text-[10px] sm:text-xs md:text-sm mb-3">
-            // {FESTIVAL_INFO.tagline} //
+          <div className="text-orange-accent font-poppins font-bold uppercase tracking-[0.18em] text-[11px] sm:text-xs md:text-sm mb-3">
+            {FESTIVAL_INFO.tagline}
           </div>
 
           <h1 className="font-poppins font-black text-3xl min-[420px]:text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight text-white leading-[1.1] sm:leading-[1.05] max-w-4xl mb-5 sm:mb-6">
@@ -66,14 +66,14 @@ export const Hero: React.FC<HeroProps> = ({ onExploreEvents, onRegisterInterest 
 
         {/* Four Pillars Pills */}
         <ScrollReveal direction="blur-up" delay={300} duration={750}>
-          <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2.5 text-[10px] sm:text-xs font-mono font-semibold text-lilac mb-6 sm:mb-7">
-            <span className="px-3 py-1 rounded-full bg-plum-850/80 border border-plum-750 transition-colors hover:border-orange-accent/60">[ 01 // COMPETE ]</span>
+          <div className="flex flex-wrap items-center justify-center gap-2 text-xs font-bold text-lilac mb-6 sm:mb-7">
+            <span className="px-4 py-1.5 rounded-full bg-plum-850/80 border border-plum-750 transition-colors hover:border-orange-accent/60">COMPETE</span>
             <span className="text-orange-accent">•</span>
-            <span className="px-3 py-1 rounded-full bg-plum-850/80 border border-plum-750 transition-colors hover:border-orange-accent/60">[ 02 // PERFORM ]</span>
+            <span className="px-4 py-1.5 rounded-full bg-plum-850/80 border border-plum-750 transition-colors hover:border-orange-accent/60">PERFORM</span>
             <span className="text-orange-accent">•</span>
-            <span className="px-3 py-1 rounded-full bg-plum-850/80 border border-plum-750 transition-colors hover:border-orange-accent/60">[ 03 // CONNECT ]</span>
+            <span className="px-4 py-1.5 rounded-full bg-plum-850/80 border border-plum-750 transition-colors hover:border-orange-accent/60">CONNECT</span>
             <span className="text-orange-accent">•</span>
-            <span className="px-3 py-1 rounded-full bg-plum-850/80 border border-plum-750 transition-colors hover:border-orange-accent/60">[ 04 // CELEBRATE ]</span>
+            <span className="px-4 py-1.5 rounded-full bg-plum-850/80 border border-plum-750 transition-colors hover:border-orange-accent/60">CELEBRATE</span>
           </div>
         </ScrollReveal>
 

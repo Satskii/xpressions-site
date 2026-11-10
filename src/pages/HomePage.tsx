@@ -65,9 +65,9 @@ export const HomePage: React.FC<HomePageProps> = ({
           <ScrollReveal direction="blur-up" duration={700}>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-8 space-y-3">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-accent/15 text-orange-accent border border-orange-accent/25 text-xs font-mono font-bold uppercase tracking-wider">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-orange-accent/15 text-orange-accent border border-orange-accent/25 text-xs font-poppins font-bold uppercase tracking-wider">
                   <Music className="w-3.5 h-3.5" />
-                  <span>[ CONCERT TELEMETRY // STADIUM AMPHITHEATRE ]</span>
+                  <span>The Grand Concert Stage · Amphitheatre</span>
                 </div>
                 <h2 className="font-poppins font-black text-2xl sm:text-4xl lg:text-5xl text-white tracking-tight leading-tight">
                   Star Celebrity Pro Nights

@@ -41,8 +41,8 @@ export const DualNarrativeSection: React.FC<DualNarrativeSectionProps> = ({
             
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-plum-100/80 dark:bg-plum-900 border border-plum-200 dark:border-plum-800 text-plum-900 dark:text-lilac text-xs font-semibold mb-4">
               <Activity className="w-3.5 h-3.5 text-orange-accent animate-pulse" />
-              <span className="font-mono uppercase tracking-wider text-[11px] sm:text-xs">
-                Dual-Narrative Engine // Select Dimension
+              <span className="font-poppins uppercase tracking-wider text-[11px] sm:text-xs">
+                Festival Experience · Select Dimension
               </span>
             </div>
 
@@ -64,7 +64,7 @@ export const DualNarrativeSection: React.FC<DualNarrativeSectionProps> = ({
                 }`}
               >
                 <Trophy className="w-4 h-4 text-orange-accent dark:text-plum-950" />
-                <span>[ 01 // THE ARENA ]</span>
+                <span>The Business Arena</span>
               </button>
 
               <button
@@ -76,7 +76,7 @@ export const DualNarrativeSection: React.FC<DualNarrativeSectionProps> = ({
                 }`}
               >
                 <Music className="w-4 h-4 text-orange-accent dark:text-plum-950" />
-                <span>[ 02 // THE STAGE ]</span>
+                <span>The Cultural Stage</span>
               </button>
             </div>
 
@@ -89,13 +89,13 @@ export const DualNarrativeSection: React.FC<DualNarrativeSectionProps> = ({
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
               
               <div className="space-y-2 max-w-2xl">
-                <div className="flex flex-wrap items-center gap-2 text-[10px] sm:text-xs font-mono uppercase tracking-widest text-orange-accent">
+                <div className="flex flex-wrap items-center gap-2 text-[10px] sm:text-xs font-poppins uppercase tracking-wider text-orange-accent">
                   <span className="px-2.5 py-0.5 rounded-full bg-orange-accent/15 border border-orange-accent/30 font-bold">
-                    {isArena ? 'SECTOR // 01 · CASE ARENAS' : 'SECTOR // 02 · CONCERT AMPHITHEATRE'}
+                    {isArena ? 'Case Competitions & Simulations' : 'Concert & Cultural Stage'}
                   </span>
-                  <span>//</span>
-                  <span className="text-plum-600 dark:text-lilac/70">
-                    {isArena ? 'CHAUDHURY AUDITORIUM & LABS' : 'MAIN CONCERT ARENA & OPEN GROUNDS'}
+                  <span className="text-plum-400 dark:text-plum-600">•</span>
+                  <span className="text-plum-600 dark:text-lilac/70 font-medium">
+                    {isArena ? 'Auditoriums & Academic Labs' : 'Amphitheatre & Main Grounds'}
                   </span>
                 </div>
 
@@ -115,7 +115,7 @@ export const DualNarrativeSection: React.FC<DualNarrativeSectionProps> = ({
               {/* F1 Telemetry Inspired Stats Pill Box */}
               <div className="grid grid-cols-3 gap-2.5 sm:gap-4 shrink-0 border-t lg:border-t-0 lg:border-l border-plum-200 dark:border-plum-800 pt-4 lg:pt-0 lg:pl-8">
                 <div>
-                  <div className="text-[10px] font-mono text-plum-500 dark:text-lilac/60 uppercase">
+                  <div className="text-[10px] font-poppins font-semibold text-plum-500 dark:text-lilac/60 uppercase">
                     {isArena ? 'PRIZE PURSE' : 'CROWD'}
                   </div>
                   <div className="font-poppins font-black text-lg sm:text-2xl text-plum-950 dark:text-white">
@@ -124,7 +124,7 @@ export const DualNarrativeSection: React.FC<DualNarrativeSectionProps> = ({
                 </div>
 
                 <div>
-                  <div className="text-[10px] font-mono text-plum-500 dark:text-lilac/60 uppercase">
+                  <div className="text-[10px] font-poppins font-semibold text-plum-500 dark:text-lilac/60 uppercase">
                     {isArena ? 'DELEGATIONS' : 'STAGE RIG'}
                   </div>
                   <div className="font-poppins font-black text-lg sm:text-2xl text-plum-950 dark:text-white">
@@ -133,7 +133,7 @@ export const DualNarrativeSection: React.FC<DualNarrativeSectionProps> = ({
                 </div>
 
                 <div>
-                  <div className="text-[10px] font-mono text-plum-500 dark:text-lilac/60 uppercase">
+                  <div className="text-[10px] font-poppins font-semibold text-plum-500 dark:text-lilac/60 uppercase">
                     {isArena ? 'MARATHON' : 'NIGHTS'}
                   </div>
                   <div className="font-poppins font-black text-lg sm:text-2xl text-orange-accent">
@@ -162,8 +162,8 @@ export const DualNarrativeSection: React.FC<DualNarrativeSectionProps> = ({
                   <div className="absolute inset-0 bg-gradient-to-t from-plum-950/90 via-plum-950/20 to-transparent" />
                   
                   {/* Technical Index Pill */}
-                  <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-plum-950/85 text-orange-accent font-mono font-bold text-[10px] border border-plum-800 shadow-sm backdrop-blur-md">
-                    SPEC // 0{idx + 1}
+                  <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-plum-950/85 text-orange-accent font-poppins font-bold text-[10px] border border-plum-800 shadow-sm backdrop-blur-md">
+                    Featured 0{idx + 1}
                   </span>
 
                   <span className="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-orange-accent text-plum-950 font-poppins font-bold text-[9px] sm:text-[10px] uppercase shadow-sm">
