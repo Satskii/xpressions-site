@@ -31,9 +31,7 @@ export const KineticTicker: React.FC = () => {
             {tickerItems.map((item, idx) => (
               <div key={idx} className="flex items-center gap-6 sm:gap-8 shrink-0">
                 <span
-                  className={`text-[11px] sm:text-xs tracking-wider transition-colors uppercase ${
-                    item.mono ? 'font-mono' : 'font-poppins font-bold'
-                  } ${
+                  className={`text-[11px] sm:text-xs tracking-wider transition-colors uppercase font-poppins font-bold ${
                     item.highlight
                       ? 'text-orange-accent dark:text-orange-accent'
                       : 'text-plum-900/80 dark:text-lilac/80'
