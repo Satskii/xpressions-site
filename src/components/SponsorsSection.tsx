@@ -230,3 +230,4 @@ export const SponsorsSection: React.FC<SponsorsSectionProps> = ({
     </section>
   );
 };
+

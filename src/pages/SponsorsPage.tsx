@@ -41,3 +41,4 @@ export const SponsorsPage: React.FC<SponsorsPageProps> = ({
     </div>
   );
 };
+
