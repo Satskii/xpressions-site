@@ -94,19 +94,24 @@ export const FestivalIntro: React.FC<FestivalIntroProps> = ({ onExplorePillars }
                   </div>
                 </div>
 
-                {/* Floating Stat Card */}
-                <div className="mt-4 sm:mt-0 sm:absolute sm:-bottom-4 sm:-left-4 bg-white dark:bg-plum-900 p-3.5 sm:p-4 rounded-2xl shadow-xl border border-plum-200/80 dark:border-plum-700/80 flex items-center gap-3 max-w-xs transition-transform hover:-translate-y-1">
-                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-orange-accent/20 dark:bg-orange-accent/25 flex items-center justify-center font-poppins font-black text-plum-900 dark:text-orange-accent text-lg shrink-0">
-                    X
-                  </div>
-                  <div>
-                    <div className="font-poppins font-bold text-xs sm:text-sm text-plum-950 dark:text-white">
-                      Student-Run Legacy
+                {/* Clean Non-Overlapping Stat Card below Visual */}
+                <div className="mt-4 bg-white dark:bg-plum-900/90 p-3.5 sm:p-4 rounded-2xl shadow-lg border border-plum-200/80 dark:border-plum-800/80 flex items-center justify-between gap-3 w-full transition-transform hover:-translate-y-0.5">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-orange-accent/20 dark:bg-orange-accent/25 flex items-center justify-center font-poppins font-black text-plum-900 dark:text-orange-accent text-lg shrink-0">
+                      X
                     </div>
-                    <div className="text-[11px] text-plum-700/80 dark:text-lilac/70">
-                      By Students, For Students
+                    <div>
+                      <div className="font-poppins font-bold text-xs sm:text-sm text-plum-950 dark:text-white">
+                        Student-Run Legacy
+                      </div>
+                      <div className="text-[11px] text-plum-700/80 dark:text-lilac/70">
+                        By Students, For Students
+                      </div>
                     </div>
                   </div>
+                  <span className="px-2.5 py-1 rounded-full bg-plum-800/80 text-orange-accent font-poppins font-bold text-[10px] border border-plum-700 shrink-0">
+                    X-Stec &amp; SEC
+                  </span>
                 </div>
 
               </div>
