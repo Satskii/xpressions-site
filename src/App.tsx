@@ -6,6 +6,7 @@ import { MobileBottomBar } from './components/MobileBottomBar';
 import { ScrollToTop } from './components/ScrollToTop';
 import { ScrollProgressBar } from './components/ScrollProgressBar';
 import { GamificationProvider, useGamification } from './context/GamificationContext';
+import { ThemeProvider } from './context/ThemeContext';
 
 import { HomePage } from './pages/HomePage';
 import { EventsPage } from './pages/EventsPage';
@@ -183,11 +184,13 @@ export const App: React.FC = () => {
   }, []);
 
   return (
-    <GamificationProvider>
-      <BrowserRouter>
-        <AppContent />
-      </BrowserRouter>
-    </GamificationProvider>
+    <ThemeProvider>
+      <GamificationProvider>
+        <BrowserRouter>
+          <AppContent />
+        </BrowserRouter>
+      </GamificationProvider>
+    </ThemeProvider>
   );
 };
 

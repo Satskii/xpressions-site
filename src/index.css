@@ -3,6 +3,146 @@
 @tailwind utilities;
 
 @layer base {
+  /* ========================================================
+     THEME DEFINITIONS (Unique, Dynamic Color System)
+     ======================================================== */
+  
+  /* 1. Default: Cyber Velocity (Carbon Noir & Electric Solar Flame) */
+  :root,
+  [data-theme="cyber-velocity"] {
+    --plum-950: 9 10 15;
+    --plum-900: 17 19 28;
+    --plum-850: 24 27 38;
+    --plum-800: 33 37 52;
+    --plum-750: 44 49 69;
+    --plum-700: 56 62 88;
+    --plum-600: 77 85 120;
+    --plum-500: 103 113 157;
+    --plum-400: 135 146 194;
+    --plum-300: 176 185 222;
+    --plum-200: 213 220 242;
+    --plum-100: 235 240 252;
+    --plum-50: 245 248 255;
+
+    --accent-primary: 255 107 0;
+    --accent-hover: 229 92 0;
+    --accent-light: 255 240 229;
+    --accent-glow: rgba(255, 107, 0, 0.45);
+
+    --text-light: 248 250 252;
+    --text-highlight: 221 228 240;
+    --text-muted: 148 163 184;
+    --text-dark: 100 116 139;
+  }
+
+  /* 2. Neon Synthwave (Midnight Abyss & Electric Hot Magenta) */
+  [data-theme="neon-synthwave"] {
+    --plum-950: 7 7 20;
+    --plum-900: 14 14 34;
+    --plum-850: 22 22 51;
+    --plum-800: 32 32 71;
+    --plum-750: 45 45 97;
+    --plum-700: 59 59 126;
+    --plum-600: 82 82 168;
+    --plum-500: 110 110 212;
+    --plum-400: 145 145 230;
+    --plum-300: 184 184 243;
+    --plum-200: 224 224 251;
+    --plum-100: 240 240 253;
+    --plum-50: 250 248 255;
+
+    --accent-primary: 255 42 109;
+    --accent-hover: 230 28 91;
+    --accent-light: 255 235 241;
+    --accent-glow: rgba(255, 42, 109, 0.45);
+
+    --text-light: 250 245 255;
+    --text-highlight: 233 213 255;
+    --text-muted: 192 132 252;
+    --text-dark: 126 34 206;
+  }
+
+  /* 3. Matrix Emerald (Stealth Gunmetal & Mint Cyan) */
+  [data-theme="matrix-emerald"] {
+    --plum-950: 5 9 9;
+    --plum-900: 10 19 19;
+    --plum-850: 16 30 30;
+    --plum-800: 24 44 44;
+    --plum-750: 34 59 59;
+    --plum-700: 46 77 77;
+    --plum-600: 63 104 104;
+    --plum-500: 84 138 138;
+    --plum-400: 115 174 174;
+    --plum-300: 155 208 208;
+    --plum-200: 199 237 237;
+    --plum-100: 230 248 248;
+    --plum-50: 242 252 252;
+
+    --accent-primary: 0 245 212;
+    --accent-hover: 0 212 184;
+    --accent-light: 230 255 250;
+    --accent-glow: rgba(0, 245, 212, 0.45);
+
+    --text-light: 240 255 244;
+    --text-highlight: 198 246 213;
+    --text-muted: 104 211 145;
+    --text-dark: 39 103 73;
+  }
+
+  /* 4. Crimson Ignite (Pitch Onyx & Electric Hot Red) */
+  [data-theme="crimson-inferno"] {
+    --plum-950: 8 8 11;
+    --plum-900: 16 16 22;
+    --plum-850: 23 23 32;
+    --plum-800: 33 33 45;
+    --plum-750: 45 45 61;
+    --plum-700: 58 58 78;
+    --plum-600: 79 79 105;
+    --plum-500: 104 104 135;
+    --plum-400: 136 136 170;
+    --plum-300: 176 176 204;
+    --plum-200: 216 216 232;
+    --plum-100: 236 236 244;
+    --plum-50: 246 246 250;
+
+    --accent-primary: 241 43 37;
+    --accent-hover: 214 32 27;
+    --accent-light: 254 226 226;
+    --accent-glow: rgba(241, 43, 37, 0.45);
+
+    --text-light: 250 247 242;
+    --text-highlight: 244 235 221;
+    --text-muted: 212 199 181;
+    --text-dark: 120 113 108;
+  }
+
+  /* 5. Imperial Gold (Cosmic Espresso & Radiant Amber) */
+  [data-theme="royal-amber"] {
+    --plum-950: 10 9 8;
+    --plum-900: 20 18 15;
+    --plum-850: 29 25 20;
+    --plum-800: 40 35 28;
+    --plum-750: 55 48 38;
+    --plum-700: 71 63 50;
+    --plum-600: 97 86 69;
+    --plum-500: 130 116 93;
+    --plum-400: 168 152 126;
+    --plum-300: 205 193 171;
+    --plum-200: 233 227 214;
+    --plum-100: 245 242 235;
+    --plum-50: 250 248 245;
+
+    --accent-primary: 255 184 0;
+    --accent-hover: 229 165 0;
+    --accent-light: 254 243 199;
+    --accent-glow: rgba(255, 184, 0, 0.45);
+
+    --text-light: 254 252 232;
+    --text-highlight: 254 249 195;
+    --text-muted: 253 224 71;
+    --text-dark: 133 77 14;
+  }
+
   html {
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
@@ -12,11 +152,12 @@
   }
   
   body {
-    background-color: #140A17;
-    color: #FAF5FB;
+    background-color: rgb(var(--plum-950));
+    color: rgb(var(--plum-50));
     max-width: 100vw;
     overflow-x: hidden;
     position: relative;
+    transition: background-color 0.35s ease, color 0.35s ease;
   }
 
   /* Custom subtle scrollbar */
@@ -25,61 +166,61 @@
     height: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #140A17;
+    background: rgb(var(--plum-950));
   }
   ::-webkit-scrollbar-thumb {
-    background: #4D2C54;
+    background: rgb(var(--plum-700));
     border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #F0A05A;
+    background: rgb(var(--accent-primary));
   }
 }
 
 @layer utilities {
   .bg-festival-pattern {
-    background-image: radial-gradient(rgba(56, 33, 61, 0.05) 1px, transparent 1px);
+    background-image: radial-gradient(rgb(var(--plum-750) / 0.15) 1px, transparent 1px);
     background-size: 24px 24px;
   }
   .dark .bg-festival-pattern {
-    background-image: radial-gradient(rgba(230, 211, 232, 0.07) 1px, transparent 1px);
+    background-image: radial-gradient(rgb(var(--plum-300) / 0.08) 1px, transparent 1px);
     background-size: 24px 24px;
   }
   
   .bg-grid-dark {
-    background-image: radial-gradient(rgba(230, 211, 232, 0.08) 1px, transparent 1px);
+    background-image: radial-gradient(rgb(var(--plum-200) / 0.09) 1px, transparent 1px);
     background-size: 28px 28px;
   }
 
   .text-glow-orange {
-    text-shadow: 0 0 20px rgba(240, 160, 90, 0.45);
+    text-shadow: 0 0 20px rgb(var(--accent-primary) / 0.45);
   }
 
   .glass-plum {
-    background: rgba(31, 17, 34, 0.88);
+    background: rgb(var(--plum-900) / 0.88);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(230, 211, 232, 0.12);
+    border: 1px solid rgb(var(--plum-200) / 0.12);
   }
 
   .glass-card {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(230, 211, 232, 0.45);
-  }
-  .dark .glass-card {
-    background: rgba(31, 17, 34, 0.85);
+    background: rgb(var(--plum-900) / 0.85);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(230, 211, 232, 0.12);
+    border: 1px solid rgb(var(--plum-200) / 0.12);
+  }
+  .dark .glass-card {
+    background: rgb(var(--plum-900) / 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgb(var(--plum-200) / 0.12);
   }
 
   .glass-dark-card {
-    background: rgba(42, 22, 46, 0.7);
+    background: rgb(var(--plum-850) / 0.7);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(230, 211, 232, 0.12);
+    border: 1px solid rgb(var(--plum-200) / 0.12);
   }
 
   /* Safe area for mobile device home bars */

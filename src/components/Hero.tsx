@@ -60,7 +60,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreEvents, onRegisterInterest 
 
             {/* Monumental Hero Logo Wordmark */}
             <h1 className="relative inline-flex items-start justify-center font-poppins font-black text-4xl min-[380px]:text-5xl sm:text-7xl md:text-8xl lg:text-[7rem] tracking-tighter leading-none select-none">
-              <span className="bg-gradient-to-b from-white via-white to-lilac/80 bg-clip-text text-transparent drop-shadow-[0_10px_30px_rgba(240,160,90,0.2)]">
+              <span className="bg-gradient-to-b from-white via-white to-lilac/80 bg-clip-text text-transparent drop-shadow-[0_10px_35px_rgb(var(--accent-primary)/0.3)]">
                 XPRESSIONS
               </span>
               <span className="ml-1.5 sm:ml-2.5 mt-1 sm:mt-2 px-2 sm:px-3 py-0.5 sm:py-1 rounded-xl bg-orange-accent text-plum-950 font-poppins font-black text-sm sm:text-xl md:text-2xl shadow-glow-orange tracking-tight">

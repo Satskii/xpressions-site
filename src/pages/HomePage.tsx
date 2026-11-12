@@ -8,6 +8,7 @@ import { DualNarrativeSection } from '../components/DualNarrativeSection';
 import { FestivalQuestGame } from '../components/FestivalQuestGame';
 import { FestivalIntro } from '../components/FestivalIntro';
 import { VibeSelector } from '../components/VibeSelector';
+import { ThemePlayground } from '../components/ThemePlayground';
 import { FinalCta } from '../components/FinalCta';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { EventItem } from '../types/festival';
@@ -64,7 +65,10 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
       </section>
 
-      {/* 7. Pro Nights Banner Teaser */}
+      {/* 7. Interactive Visual Dimension & Theme Playground */}
+      <ThemePlayground />
+
+      {/* 8. Pro Nights Banner Teaser */}
       <section className="py-16 sm:py-20 bg-gradient-to-r from-plum-950 via-plum-900 to-plum-950 text-white relative overflow-hidden border-y border-plum-800/80 w-full">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <ScrollReveal direction="blur-up" duration={700}>

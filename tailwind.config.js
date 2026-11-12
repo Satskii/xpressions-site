@@ -9,31 +9,31 @@ export default {
     extend: {
       colors: {
         plum: {
-          950: '#140A17',
-          900: '#1F1122',
-          850: '#2A162E',
-          800: '#38213D', // Primary Deep Plum
-          750: '#43264A',
-          700: '#4D2C54',
-          600: '#64396D',
-          500: '#804B8B',
-          400: '#A16EAC',
-          300: '#C298CC',
-          200: '#E6D3E8', // Light Lilac
-          100: '#F3EAF4',
-          50: '#FAF5FB',
+          950: 'rgb(var(--plum-950) / <alpha-value>)',
+          900: 'rgb(var(--plum-900) / <alpha-value>)',
+          850: 'rgb(var(--plum-850) / <alpha-value>)',
+          800: 'rgb(var(--plum-800) / <alpha-value>)',
+          750: 'rgb(var(--plum-750) / <alpha-value>)',
+          700: 'rgb(var(--plum-700) / <alpha-value>)',
+          600: 'rgb(var(--plum-600) / <alpha-value>)',
+          500: 'rgb(var(--plum-500) / <alpha-value>)',
+          400: 'rgb(var(--plum-400) / <alpha-value>)',
+          300: 'rgb(var(--plum-300) / <alpha-value>)',
+          200: 'rgb(var(--plum-200) / <alpha-value>)',
+          100: 'rgb(var(--plum-100) / <alpha-value>)',
+          50: 'rgb(var(--plum-50) / <alpha-value>)',
         },
         orange: {
-          accent: '#F0A05A', // Warm Orange
-          hover: '#E59247',
-          light: '#FCEFE4',
-          glow: 'rgba(240, 160, 90, 0.35)',
+          accent: 'rgb(var(--accent-primary) / <alpha-value>)',
+          hover: 'rgb(var(--accent-hover) / <alpha-value>)',
+          light: 'rgb(var(--accent-light) / <alpha-value>)',
+          glow: 'var(--accent-glow)',
         },
         lilac: {
-          light: '#F8F2F9',
-          DEFAULT: '#E6D3E8',
-          muted: '#C9ADC2',
-          dark: '#7B5D77',
+          light: 'rgb(var(--text-light) / <alpha-value>)',
+          DEFAULT: 'rgb(var(--text-highlight) / <alpha-value>)',
+          muted: 'rgb(var(--text-muted) / <alpha-value>)',
+          dark: 'rgb(var(--text-dark) / <alpha-value>)',
         }
       },
       fontFamily: {
@@ -44,10 +44,10 @@ export default {
         'spring': 'cubic-bezier(0.16, 1, 0.3, 1)',
       },
       boxShadow: {
-        'festival': '0 20px 40px -15px rgba(56, 33, 61, 0.25)',
-        'festival-hover': '0 25px 50px -12px rgba(240, 160, 90, 0.25)',
-        'glow-orange': '0 0 25px rgba(240, 160, 90, 0.4)',
-        'glow-plum': '0 0 35px rgba(56, 33, 61, 0.5)',
+        'festival': '0 20px 40px -15px rgb(var(--plum-800) / 0.25)',
+        'festival-hover': '0 25px 50px -12px rgb(var(--accent-primary) / 0.25)',
+        'glow-orange': '0 0 25px rgb(var(--accent-primary) / 0.45)',
+        'glow-plum': '0 0 35px rgb(var(--plum-800) / 0.5)',
         'card-dark': '0 10px 30px -10px rgba(0, 0, 0, 0.5)',
       },
       keyframes: {

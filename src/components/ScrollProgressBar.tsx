@@ -23,7 +23,7 @@ export const ScrollProgressBar: React.FC = () => {
         style={{ width: `${scrollProgress}%` }}
       >
         {/* Glow head */}
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-orange-accent rounded-full blur-sm opacity-90 -mr-1 shadow-[0_0_12px_#F0A05A]" />
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-orange-accent rounded-full blur-sm opacity-90 -mr-1 shadow-[0_0_12px_rgb(var(--accent-primary))]" />
       </div>
     </div>
   );
