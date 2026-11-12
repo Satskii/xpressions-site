@@ -5,6 +5,7 @@ import { Hero } from '../components/Hero';
 import { KineticTicker } from '../components/KineticTicker';
 import { StatsBar } from '../components/StatsBar';
 import { DualNarrativeSection } from '../components/DualNarrativeSection';
+import { FestivalQuestGame } from '../components/FestivalQuestGame';
 import { FestivalIntro } from '../components/FestivalIntro';
 import { VibeSelector } from '../components/VibeSelector';
 import { FinalCta } from '../components/FinalCta';
@@ -37,13 +38,16 @@ export const HomePage: React.FC<HomePageProps> = ({
       {/* 3. High-Octane Telemetry HUD (Precision Stats Inspired by F1 Telemetry) */}
       <StatsBar />
 
-      {/* 4. Dual-Narrative Engine (Lando Norris Inspired: [ 01 // THE ARENA ] vs [ 02 // THE STAGE ]) */}
+      {/* 4. Dual-Narrative Engine */}
       <DualNarrativeSection
         onOpenEventModal={onOpenEventModal}
         onOpenInterestModal={onOpenInterestModal}
       />
 
-      {/* 5. Editorial Introduction */}
+      {/* 5. Gamified Festival Challenger Pass & Trivia */}
+      <FestivalQuestGame onRegisterInterest={() => onOpenInterestModal()} />
+
+      {/* 6. Editorial Introduction */}
       <FestivalIntro
         onLearnMore={() => navigate('/events')}
         onExplorePillars={() => {

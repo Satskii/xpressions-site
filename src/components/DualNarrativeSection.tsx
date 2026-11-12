@@ -5,6 +5,7 @@ import { SpotlightCard } from './SpotlightCard';
 import { ScrollReveal } from './ScrollReveal';
 import { EventItem } from '../types/festival';
 import { FESTIVAL_EVENTS } from '../data/festivalData';
+import { useGamification } from '../context/GamificationContext';
 
 interface DualNarrativeSectionProps {
   onOpenEventModal: (event: EventItem) => void;
@@ -17,6 +18,16 @@ export const DualNarrativeSection: React.FC<DualNarrativeSectionProps> = ({
 }) => {
   const navigate = useNavigate();
   const [activeTrack, setActiveTrack] = useState<'arena' | 'stage'>('arena');
+  const { awardXp } = useGamification();
+
+  const handleSelectTrack = (track: 'arena' | 'stage') => {
+    setActiveTrack(track);
+    if (track === 'arena') {
+      awardXp('arena_explorer', 50, 'Explored The Business Arena!');
+    } else {
+      awardXp('stage_explorer', 50, 'Explored The Cultural Stage!');
+    }
+  };
 
   // Business Arena Curated Flagships
   const arenaEvents = FESTIVAL_EVENTS.filter((e) =>
@@ -56,7 +67,7 @@ export const DualNarrativeSection: React.FC<DualNarrativeSectionProps> = ({
             {/* High-Octane Switcher Controls */}
             <div className="mt-8 p-1.5 rounded-full bg-plum-100 dark:bg-plum-900/90 border border-plum-200 dark:border-plum-800 flex items-center gap-1.5 shadow-lg w-full max-w-md sm:w-auto">
               <button
-                onClick={() => setActiveTrack('arena')}
+                onClick={() => handleSelectTrack('arena')}
                 className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 px-5 sm:px-7 py-3 rounded-full text-xs sm:text-sm font-poppins font-black tracking-wide transition-all duration-300 ${isArena
                     ? 'bg-plum-900 text-white dark:bg-orange-accent dark:text-plum-950 shadow-md scale-102'
                     : 'text-plum-700 dark:text-lilac hover:text-plum-950 dark:hover:text-white'
@@ -67,7 +78,7 @@ export const DualNarrativeSection: React.FC<DualNarrativeSectionProps> = ({
               </button>
 
               <button
-                onClick={() => setActiveTrack('stage')}
+                onClick={() => handleSelectTrack('stage')}
                 className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 px-5 sm:px-7 py-3 rounded-full text-xs sm:text-sm font-poppins font-black tracking-wide transition-all duration-300 ${!isArena
                     ? 'bg-plum-900 text-white dark:bg-orange-accent dark:text-plum-950 shadow-md scale-102'
                     : 'text-plum-700 dark:text-lilac hover:text-plum-950 dark:hover:text-white'
@@ -93,7 +104,7 @@ export const DualNarrativeSection: React.FC<DualNarrativeSectionProps> = ({
                   </span>
                   <span className="text-plum-400 dark:text-plum-600">•</span>
                   <span className="text-plum-600 dark:text-lilac/70 font-medium">
-                    {isArena ? 'Auditoriums & Academic Labs' : 'Amphitheatre & Main Grounds'}
+                    {isArena ? 'National B-School Showdowns' : 'Live Music & Runway Battles'}
                   </span>
                 </div>
 

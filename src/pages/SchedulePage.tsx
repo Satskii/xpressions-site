@@ -24,7 +24,7 @@ export const SchedulePage: React.FC<SchedulePageProps> = ({ onRegisterInterest }
               Programme Schedule & Venue Guide
             </h1>
             <p className="mt-2.5 font-inter text-xs sm:text-base text-lilac/90 max-w-xl mx-auto leading-relaxed">
-              Plan your visit to XIM University, Bhubaneswar. Explore the 3-day programme phases and travel logistics.
+              Plan your visit to XIMB, Xavier Square, Bhubaneswar. Explore the 3-day programme phases and travel logistics.
             </p>
           </ScrollReveal>
         </div>
@@ -44,10 +44,10 @@ export const SchedulePage: React.FC<SchedulePageProps> = ({ onRegisterInterest }
                 <span>Travel & Accessibility</span>
               </div>
               <h2 className="font-poppins font-bold text-2xl sm:text-3xl text-plum-950 dark:text-white">
-                Getting to XIM University
+                Getting to XIMB, Bhubaneswar
               </h2>
               <p className="text-xs sm:text-sm text-plum-800/80 dark:text-lilac/80 mt-1">
-                Convenient connectivity from Bhubaneswar Airport (BBI) and Railway Station (BBS).
+                Central city connectivity at Xavier Square, Jayadev Vihar — minutes from Bhubaneswar Airport (BBI) and Railway Station (BBS).
               </p>
             </div>
           </ScrollReveal>
@@ -61,11 +61,11 @@ export const SchedulePage: React.FC<SchedulePageProps> = ({ onRegisterInterest }
                   </div>
                   <h3 className="font-poppins font-bold text-base sm:text-lg text-plum-950 dark:text-white">By Air</h3>
                   <p className="mt-2 text-xs sm:text-sm text-plum-800/80 dark:text-lilac/80 leading-relaxed">
-                    Biju Patnaik International Airport (BBI) is situated ~20 km from the campus. Taxis (Ola/Uber) and university shuttle buses operate along the route.
+                    Biju Patnaik International Airport (BBI) is situated ~7 km from XIMB Xavier Square. Cabs (Ola/Uber) and Mo Bus shuttles are readily available.
                   </p>
                 </div>
                 <div className="mt-4 pt-3 border-t border-plum-100 dark:border-plum-800 text-xs font-semibold text-plum-600 dark:text-plum-400">
-                  Avg. Travel Time: 35 – 45 mins
+                  Avg. Travel Time: 15 – 20 mins
                 </div>
               </SpotlightCard>
             </ScrollReveal>
@@ -78,11 +78,11 @@ export const SchedulePage: React.FC<SchedulePageProps> = ({ onRegisterInterest }
                   </div>
                   <h3 className="font-poppins font-bold text-base sm:text-lg text-plum-950 dark:text-white">By Train</h3>
                   <p className="mt-2 text-xs sm:text-sm text-plum-800/80 dark:text-lilac/80 leading-relaxed">
-                    Bhubaneswar Railway Station (BBS) and Khurda Road Junction (KUR) are major hubs connected to all metropolitan cities across India.
+                    Bhubaneswar Railway Station (BBS) is located ~6 km from the XIMB campus, providing seamless connectivity from across India.
                   </p>
                 </div>
                 <div className="mt-4 pt-3 border-t border-plum-100 dark:border-plum-800 text-xs font-semibold text-plum-600 dark:text-plum-400">
-                  Avg. Travel Time: 30 – 40 mins
+                  Avg. Travel Time: 15 – 20 mins
                 </div>
               </SpotlightCard>
             </ScrollReveal>

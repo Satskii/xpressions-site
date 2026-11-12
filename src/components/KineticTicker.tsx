@@ -2,12 +2,12 @@ import React from 'react';
 
 export const KineticTicker: React.FC = () => {
   const tickerItems = [
-    { text: "XPRESSIONS 2026", highlight: true },
+    { text: "XPRESSIONS 2027", highlight: true },
     { text: "WHERE BUSINESS MEETS THE BEAT", highlight: false },
     { text: "BHUBANESWAR, ODISHA", highlight: false },
     { text: "₹15,00,000+ PRIZE POOL", highlight: true },
     { text: "30,000+ FOOTFALL", highlight: false },
-    { text: "XIM UNIVERSITY", highlight: false },
+    { text: "XIMB · XAVIER SQUARE", highlight: false },
     { text: "25+ NATIONAL ARENAS", highlight: true },
     { text: "STAR CELEBRITY PRO NIGHTS", highlight: false },
     { text: "EST. 1998 · 27+ YEARS OF HERITAGE", highlight: false },

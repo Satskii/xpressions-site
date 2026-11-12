@@ -6,6 +6,7 @@ import { MobileBottomBar } from './components/MobileBottomBar';
 import { ScrollToTop } from './components/ScrollToTop';
 import { ScrollProgressBar } from './components/ScrollProgressBar';
 import { ThemeProvider } from './context/ThemeContext';
+import { GamificationProvider, useGamification } from './context/GamificationContext';
 
 import { HomePage } from './pages/HomePage';
 import { EventsPage } from './pages/EventsPage';
@@ -21,10 +22,11 @@ import { InterestForm } from './components/InterestForm';
 import { LightboxModal } from './components/LightboxModal';
 import { ShareModal } from './components/ShareModal';
 
-import { EventItem, EventCategory } from './types/festival';
+import { EventItem } from './types/festival';
 
 export const AppContent: React.FC = () => {
   const navigate = useNavigate();
+  const { awardXp } = useGamification();
 
   // Modals state
   const [selectedEventModal, setSelectedEventModal] = useState<EventItem | null>(null);
@@ -42,6 +44,11 @@ export const AppContent: React.FC = () => {
     isOpen: false,
     event: null,
   });
+
+  const handleOpenEventModal = (event: EventItem) => {
+    setSelectedEventModal(event);
+    awardXp('rulebook_scout', 75, 'Inspected Event Rulebook!');
+  };
 
   const handleOpenInterestModal = (preselectedEvent?: string, defaultCat?: string) => {
     setPreselectedEventInterest(preselectedEvent || '');
@@ -73,7 +80,7 @@ export const AppContent: React.FC = () => {
             element={
               <HomePage
                 onOpenInterestModal={handleOpenInterestModal}
-                onOpenEventModal={setSelectedEventModal}
+                onOpenEventModal={handleOpenEventModal}
                 onOpenLightbox={handleOpenLightbox}
               />
             }
@@ -82,7 +89,7 @@ export const AppContent: React.FC = () => {
             path="/events"
             element={
               <EventsPage
-                onOpenEventModal={setSelectedEventModal}
+                onOpenEventModal={handleOpenEventModal}
                 onRegisterInterestForEvent={(title) => handleOpenInterestModal(title)}
               />
             }
@@ -164,9 +171,11 @@ export const AppContent: React.FC = () => {
 export const App: React.FC = () => {
   return (
     <ThemeProvider>
-      <BrowserRouter>
-        <AppContent />
-      </BrowserRouter>
+      <GamificationProvider>
+        <BrowserRouter>
+          <AppContent />
+        </BrowserRouter>
+      </GamificationProvider>
     </ThemeProvider>
   );
 };

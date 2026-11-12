@@ -32,7 +32,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-plum-950/90 backdrop-blur-lg animate-in fade-in duration-200">
-      <div 
+      <div
         className="fixed inset-0"
         onClick={onClose}
       />
@@ -63,7 +63,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
 
         {/* Caption bar */}
         <div className="p-4 bg-plum-950/90 border-t border-plum-800 text-xs text-lilac/80 flex items-center justify-between">
-          <span>Xpressions Documented Archive · XIM University, Bhubaneswar</span>
+          <span>Xpressions Documented Archive · XIMB, Bhubaneswar</span>
           <span className="text-[11px] text-orange-accent font-medium">Historical Media</span>
         </div>
       </div>

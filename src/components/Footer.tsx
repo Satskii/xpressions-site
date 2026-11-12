@@ -35,13 +35,13 @@ export const Footer: React.FC<FooterProps> = ({ onOpenInterestModal }) => {
             </Link>
 
             <p className="text-xs sm:text-sm text-lilac-muted max-w-sm leading-relaxed">
-              The flagship annual management-cultural festival of <strong>XIM University, Bhubaneswar</strong>. Organised by students through <strong>X-Stec</strong> and the <strong>Student Executive Council (SEC)</strong>.
+              The flagship annual management-cultural festival of <strong>XIMB, Bhubaneswar</strong>. Organised by students through <strong>X-Stec</strong> and the <strong>Student Executive Council (SEC)</strong>.
             </p>
 
             <div className="pt-2 text-xs text-lilac/70 space-y-1">
               <div className="flex items-start gap-2">
                 <MapPin className="w-3.5 h-3.5 text-orange-accent shrink-0 mt-0.5" />
-                <span>Harirajpur, Jatni, Bhubaneswar, Odisha 752050</span>
+                <span>Xavier Square, Jayadev Vihar, Bhubaneswar, Odisha 751013</span>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5 text-orange-accent shrink-0" />
@@ -186,7 +186,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenInterestModal }) => {
         {/* Editorial Standards & Copyright Bar */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-lilac/70">
           <div className="text-center md:text-left leading-relaxed">
-            <p>© {new Date().getFullYear()} Xpressions · XIM University, Bhubaneswar. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} Xpressions · XIMB, Bhubaneswar. All rights reserved.</p>
             <p className="text-[11px] text-lilac/50 mt-0.5">
               Strict Editorial Standard: Historical editions are clearly labelled by year (2016–2025). Upcoming dates, schedule and lineup remain tentative until released by X-Stec.
             </p>

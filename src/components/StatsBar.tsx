@@ -30,7 +30,7 @@ export const StatsBar: React.FC = () => {
       category: "HERITAGE & LEGACY",
       value: "27+ Years",
       label: "Established 1998",
-      subtext: "Student-led by X-Stec & SEC at XIM University"
+      subtext: "Student-led by X-Stec & SEC at XIMB"
     }
   ];
 

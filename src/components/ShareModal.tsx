@@ -13,10 +13,10 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, event, onClose }
 
   if (!isOpen) return null;
 
-  const title = event ? `${event.title} at Xpressions` : 'Xpressions | XIM University Bhubaneswar';
+  const title = event ? `${event.title} at Xpressions '27` : "Xpressions '27 | XIMB Bhubaneswar";
   const text = event
-    ? `Check out ${event.title} (${event.subtitle}) at Xpressions, the flagship festival of XIM University Bhubaneswar! Where Business Meets the Beat.`
-    : 'Discover Xpressions: Where Business Meets the Beat at XIM University, Bhubaneswar. Compete, perform, connect, and celebrate!';
+    ? `Check out ${event.title} (${event.subtitle}) at Xpressions '27, the flagship festival of XIMB Bhubaneswar! Where Business Meets the Beat.`
+    : "Discover Xpressions '27: Where Business Meets the Beat at XIMB, Bhubaneswar. Compete, perform, connect, and celebrate!";
   const url = window.location.href;
 
   const handleCopy = () => {

@@ -21,7 +21,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreEvents, onRegisterInterest 
         {/* Editorial Gradients */}
         <div className="absolute inset-0 bg-gradient-to-t from-plum-950 via-plum-950/85 to-plum-900/70" />
         <div className="absolute inset-0 bg-radial-gradient from-transparent via-plum-950/50 to-plum-950" />
-        
+
         {/* Subtle Ambient Glow Orbs */}
         <div className="absolute -top-32 -left-32 w-80 sm:w-96 h-80 sm:h-96 rounded-full bg-plum-700/20 blur-3xl animate-pulse-slow" />
         <div className="absolute -bottom-24 -right-24 w-80 sm:w-96 h-80 sm:h-96 rounded-full bg-orange-accent/15 blur-3xl animate-float-slow" />
@@ -32,35 +32,56 @@ export const Hero: React.FC<HeroProps> = ({ onExploreEvents, onRegisterInterest 
 
       {/* Hero Content Container */}
       <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
-        
+
         {/* Institutional Affiliation & Status Badge */}
         <ScrollReveal direction="blur-up" delay={50} duration={700}>
-          <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-plum-850/90 border border-plum-700/80 text-lilac backdrop-blur-md mb-4 sm:mb-5 shadow-sm max-w-full">
+          <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-plum-850/90 border border-plum-700/80 text-lilac backdrop-blur-md mb-5 sm:mb-6 shadow-sm max-w-full">
             <Sparkles className="w-3.5 h-3.5 text-orange-accent shrink-0" />
             <span className="text-[11px] sm:text-xs font-semibold tracking-wide truncate">
-              XIM University, Bhubaneswar · 2026 Flagship Festival
+              XIMB, Bhubaneswar · Flagship Management-Cultural Fest
             </span>
           </div>
         </ScrollReveal>
 
-        {/* Brand Tagline & Headline */}
+        {/* Hero Centerpiece Logo: XPRESSIONS '27 */}
         <ScrollReveal direction="blur-up" delay={120} duration={750}>
-          <div className="text-orange-accent font-poppins font-bold uppercase tracking-[0.18em] text-[11px] sm:text-xs md:text-sm mb-3">
+          <div className="flex flex-col items-center justify-center mb-4 sm:mb-5">
+            {/* Custom Stylized Emblem Crest */}
+            <div className="mb-3 sm:mb-4 relative group">
+              <div className="absolute -inset-2 rounded-3xl bg-orange-accent/25 blur-xl opacity-75 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-orange-accent via-amber-400 to-plum-600 p-0.5 shadow-2xl transform group-hover:scale-105 transition-transform duration-300">
+                <div className="w-full h-full rounded-[14px] bg-plum-950 flex items-center justify-center">
+                  <span className="font-poppins font-black text-4xl sm:text-5xl bg-gradient-to-br from-orange-accent via-amber-200 to-white bg-clip-text text-transparent tracking-tighter">
+                    X
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Monumental Hero Logo Wordmark */}
+            <h1 className="relative inline-flex items-start justify-center font-poppins font-black text-4xl min-[380px]:text-5xl sm:text-7xl md:text-8xl lg:text-[7rem] tracking-tighter leading-none select-none">
+              <span className="bg-gradient-to-b from-white via-white to-lilac/80 bg-clip-text text-transparent drop-shadow-[0_10px_30px_rgba(240,160,90,0.2)]">
+                XPRESSIONS
+              </span>
+              <span className="ml-1.5 sm:ml-2.5 mt-1 sm:mt-2 px-2 sm:px-3 py-0.5 sm:py-1 rounded-xl bg-orange-accent text-plum-950 font-poppins font-black text-sm sm:text-xl md:text-2xl shadow-glow-orange tracking-tight">
+                &apos;27
+              </span>
+            </h1>
+          </div>
+
+          <div className="text-orange-accent font-poppins font-bold uppercase tracking-[0.2em] text-xs sm:text-sm md:text-base mb-4">
             {FESTIVAL_INFO.tagline}
           </div>
 
-          <h1 className="font-poppins font-black text-3xl min-[420px]:text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight text-white leading-[1.1] sm:leading-[1.05] max-w-4xl mb-5 sm:mb-6">
-            One festival.{' '}
-            <span className="bg-gradient-to-r from-orange-accent via-lilac to-white bg-clip-text text-transparent block min-[480px]:inline">
-              Two universes.
-            </span>
-          </h1>
+          <p className="font-poppins font-bold text-lg sm:text-2xl md:text-3xl text-white/95 max-w-2xl mx-auto mb-3 tracking-tight">
+            One festival. Two universes.
+          </p>
         </ScrollReveal>
 
         {/* Supporting Message & Core Proposition */}
         <ScrollReveal direction="blur-up" delay={220} duration={750}>
-          <p className="font-inter text-sm sm:text-lg md:text-xl text-lilac-muted max-w-2xl leading-relaxed mb-6 font-normal px-2">
-            Where premier B-school boardroom strategies collide with stadium-scale cultural euphoria. Compete on the case floor, command the stage, and celebrate with 30,000+ peers.
+          <p className="font-inter text-xs sm:text-base md:text-lg text-lilac-muted max-w-2xl leading-relaxed mb-6 font-normal px-2">
+            Where premier B-school boardroom strategies collide with stadium-scale cultural euphoria at XIMB, Bhubaneswar. Compete on the case floor, command the stage, and celebrate with 30,000+ peers.
           </p>
         </ScrollReveal>
 
@@ -77,21 +98,18 @@ export const Hero: React.FC<HeroProps> = ({ onExploreEvents, onRegisterInterest 
           </div>
         </ScrollReveal>
 
-        {/* Editorial Date & Venue Tentative Notice */}
+        {/* Editorial Date & Venue Notice */}
         <ScrollReveal direction="blur-up" delay={380} duration={750}>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 text-xs text-lilac/80 bg-plum-900/60 border border-plum-800/80 px-4 py-2.5 rounded-2xl mb-8 backdrop-blur-md max-w-full sm:max-w-xl">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 text-xs text-lilac/85 bg-plum-900/60 border border-plum-800/80 px-4 sm:px-5 py-2.5 rounded-2xl mb-8 backdrop-blur-md max-w-full sm:max-w-2xl">
             <div className="flex items-center gap-1.5">
               <Calendar className="w-3.5 h-3.5 text-orange-accent shrink-0" />
-              <span>Dates: <strong className="text-white font-medium">To be announced officially</strong></span>
+              <span>Edition: <strong className="text-white font-medium">Xpressions 2027 (Dates TBA)</strong></span>
             </div>
             <span className="hidden sm:inline text-plum-600">|</span>
             <div className="flex items-center gap-1.5">
               <MapPin className="w-3.5 h-3.5 text-orange-accent shrink-0" />
-              <span>Venue: <strong className="text-white font-medium">XIM University</strong></span>
+              <span>Venue: <strong className="text-white font-medium">XIMB, Xavier Square, Bhubaneswar</strong></span>
             </div>
-            <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-orange-accent/15 text-orange-accent border border-orange-accent/25">
-              Tentative
-            </span>
           </div>
         </ScrollReveal>
 

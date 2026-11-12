@@ -1,6 +1,7 @@
 import React from 'react';
 import { Sun, Moon } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import { useGamification } from '../context/GamificationContext';
 
 interface ThemeToggleProps {
   className?: string;
@@ -8,10 +9,16 @@ interface ThemeToggleProps {
 
 export const ThemeToggle: React.FC<ThemeToggleProps> = ({ className = '' }) => {
   const { isDark, toggleTheme } = useTheme();
+  const { awardXp } = useGamification();
+
+  const handleToggle = () => {
+    toggleTheme();
+    awardXp('theme_switcher', 25, 'Theme Mode Explorer!');
+  };
 
   return (
     <button
-      onClick={toggleTheme}
+      onClick={handleToggle}
       type="button"
       className={`relative inline-flex items-center justify-center p-2 rounded-xl transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-accent group ${
         isDark

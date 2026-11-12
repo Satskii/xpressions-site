@@ -127,7 +127,7 @@ export const FeaturedEvents: React.FC<FeaturedEventsProps> = ({
         <div className="mt-10 p-4 rounded-2xl bg-plum-50 border border-plum-200/80 text-center text-xs text-plum-800/80 flex items-center justify-center gap-2">
           <AlertCircle className="w-4 h-4 text-orange-accent shrink-0" />
           <span>
-            <strong>Editorial Standard:</strong> Event rules, deadlines, prizes and registration links above reflect historical flagship formats and are labelled <em>"Details to be announced"</em> until confirmed by the respective student societies for the 2026 edition.
+            <strong>Editorial Standard:</strong> Event rules, deadlines, prizes and registration links above reflect historical flagship formats and are labelled <em>"Details to be announced"</em> until confirmed by the respective student societies for the 2027 edition.
           </span>
         </div>
 

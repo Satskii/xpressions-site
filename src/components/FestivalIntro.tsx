@@ -33,7 +33,7 @@ export const FestivalIntro: React.FC<FestivalIntroProps> = ({ onExplorePillars }
 
               <div className="space-y-4 text-plum-900/80 dark:text-lilac/80 font-inter text-sm sm:text-base md:text-lg leading-relaxed">
                 <p>
-                  Organised annually by the students of <strong>XIM University, Bhubaneswar</strong> through <strong>X-Stec</strong> and the <strong>Student Executive Council</strong>, Xpressions is the premier management-cultural confluence of Eastern India.
+                  Organised annually by the students of <strong>XIMB, Bhubaneswar</strong> through <strong>X-Stec</strong> and the <strong>Student Executive Council</strong>, Xpressions is the premier management-cultural confluence of Eastern India.
                 </p>
                 <p>
                   Unlike generic festivals that compartmentalize academics and celebration, Xpressions thrives on their synergy. In the morning, teams debate multi-crore turnaround cases and trade equities in simulated real-time markets. By sunset, the campus transforms into a vibrant carnival of acoustic chords, street theatre, runway lights, and stadium pro nights.

@@ -6,6 +6,7 @@ import {
 import confetti from 'canvas-confetti';
 import { FESTIVAL_EVENTS } from '../data/festivalData';
 import { RegistrationInterestSubmission, EventCategory } from '../types/festival';
+import { useGamification } from '../context/GamificationContext';
 
 interface InterestFormProps {
   isOpen: boolean;
@@ -20,6 +21,7 @@ export const InterestForm: React.FC<InterestFormProps> = ({
   preselectedEvent = '',
   defaultCategory = '',
 }) => {
+  const { awardXp } = useGamification();
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -120,6 +122,7 @@ export const InterestForm: React.FC<InterestFormProps> = ({
       setIsSubmitting(false);
       setIsSubmitted(true);
       setLastSubmission(submission);
+      awardXp('interest_submitted', 200, "Official Challenger Interest Recorded!");
 
       // Trigger celebration confetti
       try {
@@ -202,10 +205,10 @@ export const InterestForm: React.FC<InterestFormProps> = ({
               </div>
               <div>
                 <h3 className="font-poppins font-bold text-lg text-white">
-                  Record Your Interest in Xpressions
+                  Record Your Interest in Xpressions &apos;27
                 </h3>
                 <p className="text-[11px] text-lilac">
-                  Student Executive Council · XIM University, Bhubaneswar
+                  Student Executive Council · XIMB, Bhubaneswar
                 </p>
               </div>
             </div>
@@ -367,7 +370,7 @@ export const InterestForm: React.FC<InterestFormProps> = ({
                     type="text"
                     value={college}
                     onChange={(e) => setCollege(e.target.value)}
-                    placeholder="e.g. XIM University, IIM, IIT..."
+                    placeholder="e.g. XIMB, IIM, XLRI, IIT..."
                     className={`w-full px-4 py-2.5 rounded-xl border text-xs sm:text-sm focus:outline-none focus:ring-2 transition-colors ${
                       errors.college
                         ? 'border-rose-400 bg-rose-50 dark:bg-rose-950/30 text-rose-900 dark:text-rose-200 focus:ring-rose-400'

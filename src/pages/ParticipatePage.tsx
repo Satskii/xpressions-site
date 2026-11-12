@@ -304,7 +304,7 @@ export const ParticipatePage: React.FC<ParticipatePageProps> = ({
                       type="text"
                       value={college}
                       onChange={(e) => setCollege(e.target.value)}
-                      placeholder="e.g. XIM University, IIM, IIT..."
+                      placeholder="e.g. XIMB, IIM, XLRI, IIT..."
                       className={`w-full px-4 py-2.5 rounded-xl border text-xs sm:text-sm focus:outline-none focus:ring-2 ${
                         errors.college
                           ? 'border-rose-400 bg-rose-50 dark:bg-rose-950/40 focus:ring-rose-400'

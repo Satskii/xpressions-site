@@ -29,7 +29,7 @@ export const ProNightsPage: React.FC<ProNightsPageProps> = ({
               Celebrity Pro Nights
             </h1>
             <p className="mt-2.5 font-inter text-xs sm:text-base text-lilac/90 max-w-xl mx-auto leading-relaxed">
-              When business challenges conclude, XIM University transforms into Eastern India's most electrifying musical amphitheatre.
+              When business challenges conclude, XIMB transforms into Eastern India&apos;s most electrifying musical amphitheatre.
             </p>
           </ScrollReveal>
         </div>

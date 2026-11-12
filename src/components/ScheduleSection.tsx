@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, Clock, MapPin, Bell, Filter, ShieldAlert } from 'lucide-react';
+import { Calendar, Clock, Bell, Filter, ShieldAlert } from 'lucide-react';
 import { SCHEDULE_PREVIEW } from '../data/festivalData';
 import { ScrollReveal } from './ScrollReveal';
 import { SpotlightCard } from './SpotlightCard';
@@ -24,7 +24,7 @@ export const ScheduleSection: React.FC<ScheduleSectionProps> = ({ onRegisterInte
   return (
     <section id="schedule" className="py-16 sm:py-24 bg-white dark:bg-plum-950 relative w-full overflow-hidden transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Header */}
         <ScrollReveal direction="blur-up" duration={700}>
           <div className="text-center max-w-3xl mx-auto mb-10">
@@ -53,7 +53,7 @@ export const ScheduleSection: React.FC<ScheduleSectionProps> = ({ onRegisterInte
                   Official Timetable & Venue Details: To Be Announced
                 </h4>
                 <p className="text-[11px] sm:text-xs text-plum-800/80 dark:text-lilac/80 mt-0.5 leading-relaxed">
-                  Specific dates, clock timings, and classroom allocations are currently tentative and pending final approval from the XIM University administration.
+                  Specific dates and clock timings are currently tentative and pending final approval from the XIMB administration.
                 </p>
               </div>
             </div>
@@ -75,11 +75,10 @@ export const ScheduleSection: React.FC<ScheduleSectionProps> = ({ onRegisterInte
               <button
                 key={day}
                 onClick={() => setActiveDay(day)}
-                className={`py-2 sm:py-2.5 px-2 rounded-xl font-poppins font-bold text-xs sm:text-sm transition-all duration-300 text-center ${
-                  activeDay === day
+                className={`py-2 sm:py-2.5 px-2 rounded-xl font-poppins font-bold text-xs sm:text-sm transition-all duration-300 text-center ${activeDay === day
                     ? 'bg-plum-800 dark:bg-orange-accent text-white dark:text-plum-950 shadow-md scale-[1.02]'
                     : 'text-plum-800 dark:text-lilac/80 hover:text-plum-950 dark:hover:text-white hover:bg-plum-200/60 dark:hover:bg-plum-800/60'
-                }`}
+                  }`}
               >
                 <span>{day}</span>
                 <span className="hidden sm:block text-[10px] font-normal opacity-80 mt-0.5 truncate">
@@ -99,11 +98,10 @@ export const ScheduleSection: React.FC<ScheduleSectionProps> = ({ onRegisterInte
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-3 py-1 rounded-full text-[11px] sm:text-xs font-medium transition-all ${
-                selectedCategory === cat
+              className={`px-3 py-1 rounded-full text-[11px] sm:text-xs font-medium transition-all ${selectedCategory === cat
                   ? 'bg-plum-800 dark:bg-orange-accent text-white dark:text-plum-950 shadow-sm'
                   : 'bg-plum-50 dark:bg-plum-900/60 text-plum-800 dark:text-lilac hover:bg-plum-100 dark:hover:bg-plum-800/80 border border-plum-200/60 dark:border-plum-800'
-              }`}
+                }`}
             >
               {cat}
             </button>
@@ -130,15 +128,15 @@ export const ScheduleSection: React.FC<ScheduleSectionProps> = ({ onRegisterInte
                         {item.category}
                       </span>
                     </div>
-                    <div className="flex items-center gap-3 sm:gap-4 mt-1 text-xs text-plum-600 dark:text-plum-400">
-                      <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-3 mt-1 text-xs text-plum-600 dark:text-plum-400">
+                      <div className="flex items-center gap-1 shrink-0">
                         <Clock className="w-3 h-3 text-orange-accent shrink-0" />
                         <span>{item.timeSlot}</span>
                       </div>
-                      <div className="flex items-center gap-1">
-                        <MapPin className="w-3 h-3 text-orange-accent shrink-0" />
-                        <span>{item.venue}</span>
-                      </div>
+                      <span className="hidden sm:inline text-plum-400 dark:text-plum-600">•</span>
+                      <span className="hidden sm:inline text-plum-700/80 dark:text-lilac/70 line-clamp-1">
+                        {item.description}
+                      </span>
                     </div>
                   </div>
                 </div>

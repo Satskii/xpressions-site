@@ -71,7 +71,7 @@ export const ContactSection: React.FC = () => {
                   Campus Location
                 </h3>
                 <p className="text-xs sm:text-sm text-plum-800/80 dark:text-lilac/80 mb-5 leading-relaxed">
-                  Hosted at XIM University's state-of-the-art academic and cultural campus in Bhubaneswar, Odisha.
+                  Hosted at XIMB&apos;s iconic campus at Xavier Square in Bhubaneswar, Odisha.
                 </p>
               </div>
 
@@ -84,7 +84,7 @@ export const ContactSection: React.FC = () => {
                 </div>
                 <div className="pt-1">
                   <a 
-                    href="https://maps.google.com/?q=XIM+University+New+Campus+Kurki" 
+                    href="https://maps.google.com/?q=Xavier+Institute+of+Management+XIMB+Xavier+Square+Bhubaneswar" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 font-bold text-orange-accent hover:underline text-xs"
@@ -114,12 +114,12 @@ export const ContactSection: React.FC = () => {
 
               <div className="space-y-2 pt-4 border-t border-plum-200/80 dark:border-plum-800 text-xs">
                 <a
-                  href="https://instagram.com/xpressions_xim"
+                  href="https://www.instagram.com/ximbxpressions/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-plum-850 border border-plum-150 dark:border-plum-750 font-medium text-plum-900 dark:text-white hover:border-orange-accent/40 transition-colors"
                 >
-                  <span>Instagram @xpressions_xim</span>
+                  <span>Instagram @ximbxpressions</span>
                   <ExternalLink className="w-3.5 h-3.5 text-orange-accent" />
                 </a>
                 <a

@@ -33,7 +33,7 @@ export const FinalCta: React.FC<FinalCtaProps> = ({
           </h2>
 
           <p className="mt-4 sm:mt-5 font-inter text-sm sm:text-lg text-lilac/90 max-w-2xl mx-auto leading-relaxed px-2">
-            From the intense strategy boardroom to the thunderous concert arena, define your legacy at XIM University's flagship festival.
+            From the intense strategy boardroom to the thunderous concert arena, define your legacy at XIMB&apos;s flagship festival.
           </p>
 
           <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto px-4 sm:px-0">

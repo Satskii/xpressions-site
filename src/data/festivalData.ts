@@ -5,19 +5,19 @@ export const FESTIVAL_INFO = {
   tagline: "Where Business Meets the Beat",
   campaignHeadline: "One festival. Many ways to stand out.",
   supportingMessage: "Compete. Perform. Connect. Celebrate.",
-  institution: "XIM University, Bhubaneswar",
+  institution: "XIMB, Bhubaneswar",
   organizedBy: "Student Executive Council & X-Stec",
-  upcomingEdition: "Xpressions 2026",
+  upcomingEdition: "Xpressions 2027",
   datesNotice: "Dates to be announced officially by the Organizing Committee",
-  venueNotice: "XIM University Campus, Bhubaneswar (Details to be announced)",
+  venueNotice: "XIMB Campus, Xavier Square, Jayadev Vihar, Bhubaneswar",
   contactEmail: "xpressions@xim.edu.in",
   secEmail: "sec@xim.edu.in",
-  phone: "+91 674 237 7700",
-  address: "XIM University, Plot No. 12(A), Nijigada, Kurki, Harirajpur, Bhubaneswar, Odisha 752050",
+  phone: "+91 674 664 7777",
+  address: "Xavier Institute of Management (XIMB), Xavier Square, Jayadev Vihar, Bhubaneswar, Odisha 751013",
   socials: {
-    instagram: "https://www.instagram.com/ximxpressions/",
+    instagram: "https://www.instagram.com/ximbxpressions/",
     linkedin: "https://www.linkedin.com/school/xim-university/",
-    facebook: "https://www.facebook.com/ximxpressions/",
+    facebook: "https://www.facebook.com/ximbxpressions/",
     youtube: "https://www.youtube.com/@XIMUniversityOfficial",
   }
 };
@@ -129,7 +129,7 @@ export const PAST_EDITIONS: EditionHighlight[] = [
     headlineArtist: "Shankar-Ehsaan-Loy",
     dates: "November 2016 (Past Edition)",
     tagline: "Timeless Musical Brilliance",
-    description: "The musical triumvirate Shankar-Ehsaan-Loy delivered an extraordinary three-hour musical journey that remains one of the most storied nights in XIM University history.",
+    description: "The musical triumvirate Shankar-Ehsaan-Loy delivered an extraordinary three-hour musical journey that remains one of the most storied nights in XIMB history.",
     mediaUrl: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1200&q=80",
     mediaType: "image",
     keyHighlights: [
@@ -172,7 +172,7 @@ export const FESTIVAL_EVENTS: EventItem[] = [
     importantDates: {
       registrationDeadline: "Dates to be announced",
       preliminaryRound: "Schedule to be announced",
-      finalRound: "During Xpressions 2026",
+      finalRound: "During Xpressions 2027",
       status: "Tentative"
     },
     registrationStatus: "Details to be announced",
@@ -312,7 +312,7 @@ export const FESTIVAL_EVENTS: EventItem[] = [
     teamSize: "Solo (1), Duet (2), or Group Crew (6 – 20 members)",
     formatAndRules: [
       "Round 1: Video screening round of 2-3 minutes routine.",
-      "Round 2: Stage finals at XIM University Auditorium.",
+      "Round 2: Live stage finals during the festival.",
       "Time limit: Solo (4 mins), Duet (5 mins), Group (8 mins).",
       "Music tracks must be submitted in 320kbps MP3 format prior to technical rehearsals."
     ],
@@ -450,7 +450,7 @@ export const FESTIVAL_EVENTS: EventItem[] = [
     category: "Social Impact",
     subtitle: "Flagship Inclusive Sports & Arts Carnival for Specially-Abled Children",
     shortDescription: "Xpressions' heart and social commitment: an unforgettable day of sports, painting, music, and joy organized in partnership with local community schools.",
-    fullAbout: "X-Enable reflects XIM University's deep commitment to Jesuit ethos and social responsibility. Hosted right in the center of the festival, the event welcomes children from specialized schools across Odisha for games, artistic expression, cultural showcases, and campus mentorship.",
+    fullAbout: "X-Enable reflects XIMB's deep commitment to Jesuit ethos and social responsibility. Hosted right in the center of the festival, the event welcomes children from specialized schools across Odisha for games, artistic expression, cultural showcases, and campus mentorship.",
     eligibility: "Open to partner institutions, NGO schools, and university student volunteers.",
     participationType: "Open to All",
     teamSize: "Volunteer squads / institutional delegations",
@@ -516,7 +516,7 @@ export const FESTIVAL_EVENTS: EventItem[] = [
     title: "XAthon",
     category: "Campus",
     subtitle: "The Annual Campus Marathon for Community Awareness",
-    shortDescription: "A scenic morning run connecting XIM University students, faculty, and Bhubaneswar citizens for health, camaraderie, and social causes.",
+    shortDescription: "A scenic morning run connecting XIMB students, faculty, and Bhubaneswar citizens for health, camaraderie, and social causes.",
     fullAbout: "XAthon kicks off the early festival hours as hundreds of runners lace up their shoes for a timed campus-to-city circuit. The run champions a vital social cause each edition, from green environment drives to digital literacy.",
     eligibility: "Open to university students, faculty, alumni, and registered external marathoners.",
     participationType: "Individual",
@@ -654,13 +654,13 @@ export const FAQS_DATA: FaqItem[] = [
     id: "faq-1",
     category: "General",
     question: "What is Xpressions?",
-    answer: "Xpressions is the flagship annual management-cultural festival of XIM University, Bhubaneswar. Bringing together business competitions, artistic expression, campus life, and celebrity pro nights, it stands as one of Eastern India's largest and most storied student-led university festivals."
+    answer: "Xpressions is the flagship annual management-cultural festival of XIMB (Xavier Institute of Management, Bhubaneswar). Bringing together business competitions, artistic expression, campus life, and celebrity pro nights, it stands as one of Eastern India's largest and most storied student-led festivals."
   },
   {
     id: "faq-2",
     category: "General",
     question: "Who organises Xpressions?",
-    answer: "Xpressions is entirely conceptualised and executed by the students of XIM University through the Student Executive Council (SEC) and X-Stec (Steering Committee), supported by dedicated academic societies and faculty advisory boards."
+    answer: "Xpressions is entirely conceptualised and executed by the students of XIMB through the Student Executive Council (SEC) and X-Stec (Steering Committee), supported by dedicated academic societies and faculty advisory boards."
   },
   {
     id: "faq-3",
@@ -684,7 +684,7 @@ export const FAQS_DATA: FaqItem[] = [
     id: "faq-6",
     category: "Schedule & Venue",
     question: "Where will the festival take place?",
-    answer: "The festival takes place at XIM University, Bhubaneswar, Odisha. Main stage events, business case rounds, and pro nights are held on campus grounds with cutting-edge academic and performance facilities. Specific venue allocations and transport shuttles will be announced with the final schedule."
+    answer: "The festival takes place at the XIMB Campus (Xavier Square, Jayadev Vihar, Bhubaneswar, Odisha 751013). All competitions, cultural battles, and pro nights are hosted on campus grounds with cutting-edge academic and performance facilities."
   },
   {
     id: "faq-7",

@@ -51,13 +51,13 @@ export const ProNightsSection: React.FC<ProNightsSectionProps> = ({
               <div className="lg:col-span-8">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-accent/15 text-orange-accent border border-orange-accent/25 text-[11px] sm:text-xs font-bold uppercase tracking-wider mb-3 sm:mb-4">
                   <Sparkles className="w-3.5 h-3.5" />
-                  <span>Upcoming 2026 Edition Lineup</span>
+                  <span>Upcoming 2027 Edition Lineup</span>
                 </div>
                 <h3 className="font-poppins font-black text-xl sm:text-3xl lg:text-4xl text-white tracking-tight leading-tight">
                   The Stage Awaits: Artist Reveal Dropping Soon
                 </h3>
                 <p className="mt-3 text-xs sm:text-base text-lilac/90 leading-relaxed max-w-2xl">
-                  The Student Executive Council and Cultural Committee are in final negotiations with premier musical performers and stand-up comics for Xpressions 2026. Official reveals will be broadcasted across our social media platforms.
+                  The Student Executive Council and Cultural Committee are in final negotiations with premier musical performers and stand-up comics for Xpressions 2027. Official reveals will be broadcasted across our social media platforms.
                 </p>
 
                 {/* Status Note */}

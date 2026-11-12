@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
-import { Menu, X, ArrowRight } from 'lucide-react';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { Menu, X, ArrowRight, Trophy } from 'lucide-react';
 import { FESTIVAL_INFO } from '../data/festivalData';
 import { ThemeToggle } from './ThemeToggle';
+import { useGamification } from '../context/GamificationContext';
 
 interface NavbarProps {
   onOpenInterestModal: (preselectedEvent?: string) => void;
@@ -12,6 +13,22 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInterestModal }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { xp, rank } = useGamification();
+
+  const handleXpClick = () => {
+    setMobileMenuOpen(false);
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const el = document.getElementById('festival-quest');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 150);
+    } else {
+      const el = document.getElementById('festival-quest');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,11 +81,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInterestModal }) => {
                     XPRESSIONS
                   </span>
                   <span className="text-[9px] sm:text-[10px] font-bold bg-plum-800/90 text-orange-accent px-1.5 py-0.5 rounded border border-plum-700/80 shrink-0">
-                    2026
+                    2027
                   </span>
                 </div>
                 <p className="text-[10px] sm:text-[11px] text-lilac/80 font-medium tracking-wide truncate">
-                  XIM University · Bhubaneswar
+                  XIMB · Bhubaneswar
                 </p>
               </div>
             </Link>
@@ -80,7 +97,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInterestModal }) => {
                   key={link.to}
                   to={link.to}
                   className={({ isActive }) =>
-                    `px-3.5 py-1.5 rounded-full text-xs xl:text-sm font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-accent ${
+                    `px-3 py-1.5 rounded-full text-xs xl:text-sm font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-accent ${
                       isActive
                         ? 'bg-plum-800 text-orange-accent shadow-inner border border-plum-700/80 font-semibold'
                         : 'text-lilac hover:text-white hover:bg-plum-850/60'
@@ -93,7 +110,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInterestModal }) => {
             </nav>
 
             {/* Primary Action Button (Desktop & Tablet) */}
-            <div className="hidden sm:flex items-center gap-2.5">
+            <div className="hidden sm:flex items-center gap-2">
+              <button
+                onClick={handleXpClick}
+                title={`Rank: ${rank} — Click to view Festival Quest Pass`}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-plum-900/90 hover:bg-plum-800 border border-orange-accent/40 text-orange-accent font-poppins font-bold text-xs transition-all hover:scale-105"
+              >
+                <Trophy className="w-3.5 h-3.5" />
+                <span>{xp} XP</span>
+              </button>
               <ThemeToggle />
               <button
                 onClick={() => onOpenInterestModal()}
@@ -104,8 +129,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInterestModal }) => {
               </button>
             </div>
 
-            {/* Mobile Controls (Theme Toggle + Hamburger) */}
+            {/* Mobile Controls (XP Badge + Theme Toggle + Hamburger) */}
             <div className="flex items-center gap-1.5 lg:hidden shrink-0">
+              <button
+                onClick={handleXpClick}
+                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-plum-900/90 border border-orange-accent/40 text-orange-accent font-poppins font-bold text-[11px]"
+                aria-label="Open Challenger Pass"
+              >
+                <Trophy className="w-3 h-3" />
+                <span>{xp}</span>
+              </button>
               <ThemeToggle className="p-1.5" />
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -138,8 +171,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInterestModal }) => {
                     X
                   </div>
                   <div>
-                    <h2 className="font-poppins font-bold text-white text-base">XPRESSIONS</h2>
-                    <p className="text-[10px] text-lilac">XIM University</p>
+                    <h2 className="font-poppins font-bold text-white text-base">XPRESSIONS &apos;27</h2>
+                    <p className="text-[10px] text-lilac">XIMB · Bhubaneswar</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
