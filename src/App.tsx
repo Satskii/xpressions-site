@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { MobileBottomBar } from './components/MobileBottomBar';
 import { ScrollToTop } from './components/ScrollToTop';
 import { ScrollProgressBar } from './components/ScrollProgressBar';
-import { ThemeProvider } from './context/ThemeContext';
 import { GamificationProvider, useGamification } from './context/GamificationContext';
 
 import { HomePage } from './pages/HomePage';
@@ -169,14 +168,16 @@ export const AppContent: React.FC = () => {
 };
 
 export const App: React.FC = () => {
+  useEffect(() => {
+    document.documentElement.classList.add('dark');
+  }, []);
+
   return (
-    <ThemeProvider>
-      <GamificationProvider>
-        <BrowserRouter>
-          <AppContent />
-        </BrowserRouter>
-      </GamificationProvider>
-    </ThemeProvider>
+    <GamificationProvider>
+      <BrowserRouter>
+        <AppContent />
+      </BrowserRouter>
+    </GamificationProvider>
   );
 };
 

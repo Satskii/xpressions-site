@@ -50,10 +50,15 @@ export const FestivalQuestGame: React.FC<FestivalQuestGameProps> = ({ onRegister
     { id: 'arena_explorer', label: 'Switch to The Business Arena', xp: 50 },
     { id: 'stage_explorer', label: 'Switch to The Cultural Stage', xp: 50 },
     { id: 'rulebook_scout', label: 'Inspect an Event Rulebook', xp: 75 },
-    { id: 'theme_switcher', label: 'Toggle Dark / Light Mode', xp: 25 },
+    { id: 'persona_picker', label: 'Customize Your Festival Persona', xp: 25 },
     { id: 'trivia_champion', label: "Clear the Xpressions '27 Challenge", xp: 100 },
     { id: 'interest_submitted', label: 'Register Your Festival Interest', xp: 200 },
   ];
+
+  const handleSelectPersona = (personaId: string) => {
+    setPersona(personaId);
+    awardXp('persona_picker', 25, 'Customized Your Challenger Pass!');
+  };
 
   const handleOptionClick = (optIdx: number) => {
     if (selectedOpt !== null) return;
@@ -170,7 +175,7 @@ export const FestivalQuestGame: React.FC<FestivalQuestGameProps> = ({ onRegister
                     {PERSONAS.map((p) => (
                       <button
                         key={p.id}
-                        onClick={() => setPersona(p.id)}
+                        onClick={() => handleSelectPersona(p.id)}
                         className={`p-2.5 rounded-xl border text-left transition-all flex items-center gap-2 text-xs ${
                           persona === p.id
                             ? 'bg-orange-accent text-plum-950 border-orange-accent font-bold shadow-sm'
