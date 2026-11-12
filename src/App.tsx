@@ -12,6 +12,7 @@ import { EventsPage } from './pages/EventsPage';
 import { SchedulePage } from './pages/SchedulePage';
 import { ProNightsPage } from './pages/ProNightsPage';
 import { PastEditionsPage } from './pages/PastEditionsPage';
+import { SponsorsPage } from './pages/SponsorsPage';
 import { ParticipatePage } from './pages/ParticipatePage';
 import { FaqPage } from './pages/FaqPage';
 import { NotFoundPage } from './pages/NotFoundPage';
@@ -114,6 +115,15 @@ export const AppContent: React.FC = () => {
             path="/past-editions"
             element={
               <PastEditionsPage onOpenLightbox={handleOpenLightbox} />
+            }
+          />
+          <Route
+            path="/sponsors"
+            element={
+              <SponsorsPage
+                onOpenInterestModal={handleOpenInterestModal}
+                onOpenLightbox={handleOpenLightbox}
+              />
             }
           />
           <Route

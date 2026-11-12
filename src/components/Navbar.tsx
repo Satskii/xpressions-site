@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, ArrowRight, Trophy } from 'lucide-react';
+import { Menu, X, ArrowRight, Trophy, Volume2, VolumeX } from 'lucide-react';
 import { FESTIVAL_INFO } from '../data/festivalData';
 import { useGamification } from '../context/GamificationContext';
 
@@ -11,9 +11,94 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ onOpenInterestModal }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isPlayingAudio, setIsPlayingAudio] = useState(false);
+  const audioContextRef = useRef<AudioContext | null>(null);
+  const gainNodeRef = useRef<GainNode | null>(null);
+  const timerRef = useRef<number | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
   const { xp, rank } = useGamification();
+
+  // Subtle ambient festival harmonic synthesizer (no metronome, purely musical pad atmosphere)
+  const toggleAudio = () => {
+    if (isPlayingAudio) {
+      if (gainNodeRef.current && audioContextRef.current) {
+        gainNodeRef.current.gain.setTargetAtTime(0.001, audioContextRef.current.currentTime, 0.5);
+      }
+      if (timerRef.current) clearInterval(timerRef.current);
+      setIsPlayingAudio(false);
+    } else {
+      try {
+        const AudioContextClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+        const ctx = audioContextRef.current || new AudioContextClass();
+        audioContextRef.current = ctx;
+        if (ctx.state === 'suspended') {
+          ctx.resume();
+        }
+
+        const masterGain = ctx.createGain();
+        masterGain.gain.setValueAtTime(0.001, ctx.currentTime);
+        masterGain.gain.exponentialRampToValueAtTime(0.06, ctx.currentTime + 1.2);
+        masterGain.connect(ctx.destination);
+        gainNodeRef.current = masterGain;
+
+        // Ambient gentle chord progression: Dm9 -> BbMaj7 -> F -> C
+        const chordPitches = [
+          [146.83, 220.00, 261.63, 329.63], // Dm9
+          [116.54, 174.61, 220.00, 293.66], // BbMaj7
+          [174.61, 220.00, 261.63, 349.23], // F
+          [130.81, 196.00, 261.63, 329.63], // C
+        ];
+        let chordIdx = 0;
+
+        const playPad = () => {
+          if (!audioContextRef.current || !gainNodeRef.current) return;
+          const currentPitches = chordPitches[chordIdx];
+          chordIdx = (chordIdx + 1) % chordPitches.length;
+
+          currentPitches.forEach((freq) => {
+            const osc = ctx.createOscillator();
+            const filter = ctx.createBiquadFilter();
+            const voiceGain = ctx.createGain();
+
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(freq, ctx.currentTime);
+
+            filter.type = 'lowpass';
+            filter.frequency.setValueAtTime(500, ctx.currentTime);
+            filter.frequency.linearRampToValueAtTime(1200, ctx.currentTime + 1.5);
+            filter.frequency.linearRampToValueAtTime(450, ctx.currentTime + 3.8);
+
+            voiceGain.gain.setValueAtTime(0.001, ctx.currentTime);
+            voiceGain.gain.linearRampToValueAtTime(0.2, ctx.currentTime + 1.0);
+            voiceGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 3.9);
+
+            osc.connect(filter);
+            filter.connect(voiceGain);
+            voiceGain.connect(masterGain);
+
+            osc.start(ctx.currentTime);
+            osc.stop(ctx.currentTime + 4.0);
+          });
+        };
+
+        playPad();
+        timerRef.current = window.setInterval(playPad, 3800);
+        setIsPlayingAudio(true);
+      } catch (e) {
+        console.warn('Audio initialisation suppressed', e);
+      }
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+      if (audioContextRef.current && audioContextRef.current.state !== 'closed') {
+        audioContextRef.current.close().catch(() => {});
+      }
+    };
+  }, []);
 
   const handleXpClick = () => {
     setMobileMenuOpen(false);
@@ -48,6 +133,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInterestModal }) => {
     { to: '/schedule', label: 'Schedule' },
     { to: '/pro-nights', label: 'Pro Nights' },
     { to: '/past-editions', label: 'Past Editions' },
+    { to: '/sponsors', label: 'Sponsors' },
     { to: '/participate', label: 'Participate' },
     { to: '/faqs', label: 'FAQs & Contact' },
   ];
@@ -111,6 +197,20 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInterestModal }) => {
             {/* Primary Action Button (Desktop & Tablet) */}
             <div className="hidden sm:flex items-center gap-2.5">
               <button
+                onClick={toggleAudio}
+                title={isPlayingAudio ? 'Mute Festival Soundscape' : 'Listen to Festival Soundscape (Ambient Vibes)'}
+                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-poppins font-bold transition-all hover:scale-105 ${
+                  isPlayingAudio
+                    ? 'bg-orange-accent text-plum-950 border-orange-accent shadow-glow-orange'
+                    : 'bg-plum-900/90 hover:bg-plum-800 border-plum-700/80 text-lilac'
+                }`}
+                aria-label={isPlayingAudio ? 'Mute Festival Soundscape' : 'Play Festival Soundscape'}
+              >
+                {isPlayingAudio ? <Volume2 className="w-3.5 h-3.5 text-plum-950 animate-pulse" /> : <VolumeX className="w-3.5 h-3.5" />}
+                <span className="hidden xl:inline">{isPlayingAudio ? 'Sound ON' : 'Sound'}</span>
+              </button>
+
+              <button
                 onClick={handleXpClick}
                 title={`Rank: ${rank} — Click to view Festival Quest Pass`}
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-plum-900/90 hover:bg-plum-800 border border-orange-accent/40 text-orange-accent font-poppins font-bold text-xs transition-all hover:scale-105"
@@ -127,8 +227,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInterestModal }) => {
               </button>
             </div>
 
-            {/* Mobile Controls (XP Badge + Hamburger) */}
+            {/* Mobile Controls (Audio + XP Badge + Hamburger) */}
             <div className="flex items-center gap-1.5 lg:hidden shrink-0">
+              <button
+                onClick={toggleAudio}
+                className={`p-1.5 rounded-full border text-[11px] font-poppins font-bold transition-all ${
+                  isPlayingAudio
+                    ? 'bg-orange-accent text-plum-950 border-orange-accent'
+                    : 'bg-plum-900/90 border-plum-700/80 text-lilac'
+                }`}
+                aria-label={isPlayingAudio ? 'Mute Sound' : 'Play Sound'}
+                title={isPlayingAudio ? 'Mute Sound' : 'Play Sound'}
+              >
+                {isPlayingAudio ? <Volume2 className="w-3.5 h-3.5 text-plum-950 animate-pulse" /> : <VolumeX className="w-3.5 h-3.5" />}
+              </button>
+
               <button
                 onClick={handleXpClick}
                 className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-plum-900/90 border border-orange-accent/40 text-orange-accent font-poppins font-bold text-[11px]"

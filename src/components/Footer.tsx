@@ -83,6 +83,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenInterestModal }) => {
                   Past Editions (2016–2025)
                 </Link>
               </li>
+              <li>
+                <Link to="/sponsors" className="hover:text-orange-accent transition-colors">
+                  Sponsors &amp; Partners
+                </Link>
+              </li>
             </ul>
           </div>
 

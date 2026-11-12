@@ -51,6 +51,12 @@ export const ContactSection: React.FC = () => {
                   </a>
                 </div>
                 <div>
+                  <span className="text-plum-600 dark:text-plum-400 font-semibold block text-[11px]">Helpline &amp; Sponsorship:</span>
+                  <a href={`tel:${FESTIVAL_INFO.phone.replace(/\s+/g, '')}`} className="font-bold text-plum-950 dark:text-white hover:text-orange-accent transition-colors">
+                    {FESTIVAL_INFO.formattedPhone}
+                  </a>
+                </div>
+                <div>
                   <span className="text-plum-600 dark:text-plum-400 font-semibold block text-[11px]">Council Desk:</span>
                   <a href={`mailto:${FESTIVAL_INFO.secEmail}`} className="font-bold text-plum-950 dark:text-white hover:text-orange-accent transition-colors break-all">
                     {FESTIVAL_INFO.secEmail}
@@ -114,7 +120,7 @@ export const ContactSection: React.FC = () => {
 
               <div className="space-y-2 pt-4 border-t border-plum-200/80 dark:border-plum-800 text-xs">
                 <a
-                  href="https://www.instagram.com/ximbxpressions/"
+                  href={FESTIVAL_INFO.socials.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-plum-850 border border-plum-150 dark:border-plum-750 font-medium text-plum-900 dark:text-white hover:border-orange-accent/40 transition-colors"
@@ -123,12 +129,12 @@ export const ContactSection: React.FC = () => {
                   <ExternalLink className="w-3.5 h-3.5 text-orange-accent" />
                 </a>
                 <a
-                  href="https://linkedin.com/school/ximuniversity"
+                  href={FESTIVAL_INFO.socials.youtube}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-plum-850 border border-plum-150 dark:border-plum-750 font-medium text-plum-900 dark:text-white hover:border-orange-accent/40 transition-colors"
                 >
-                  <span>LinkedIn /ximuniversity</span>
+                  <span>YouTube @XpressionsXIMB</span>
                   <ExternalLink className="w-3.5 h-3.5 text-orange-accent" />
                 </a>
               </div>

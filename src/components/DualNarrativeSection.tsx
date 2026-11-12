@@ -31,12 +31,12 @@ export const DualNarrativeSection: React.FC<DualNarrativeSectionProps> = ({
 
   // Business Arena Curated Flagships
   const arenaEvents = FESTIVAL_EVENTS.filter((e) =>
-    ['maven', 'trade-wars', 'gladiator', 'mpower'].includes(e.id)
+    ['maven', 'trade-wars', 'pitch-it-abroad', 'jack-of-all-trades'].includes(e.id)
   );
 
   // Cultural Stage Curated Flagships
   const stageEvents = FESTIVAL_EVENTS.filter((e) =>
-    ['decibelz', 'thirkan', 'carnival-de-vogue', 'aaghaz'].includes(e.id)
+    ['celeblitz', 'decibelz', 'thirkan', 'carnival-de-vogue'].includes(e.id)
   );
 
   const isArena = activeTrack === 'arena';

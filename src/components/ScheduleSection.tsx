@@ -50,10 +50,10 @@ export const ScheduleSection: React.FC<ScheduleSectionProps> = ({ onRegisterInte
               </div>
               <div>
                 <h4 className="font-poppins font-bold text-xs sm:text-base text-plum-950 dark:text-white">
-                  Official Timetable & Venue Details: To Be Announced
+                  Festival Dates Confirmed: 29 – 31 January 2027
                 </h4>
                 <p className="text-[11px] sm:text-xs text-plum-800/80 dark:text-lilac/80 mt-0.5 leading-relaxed">
-                  Specific dates and clock timings are currently tentative and pending final approval from the XIMB administration.
+                  Hosted at the XIMB Campus, Bhubaneswar. Detailed slot timings and stage line-up for each competition and pro-night will be updated live.
                 </p>
               </div>
             </div>
@@ -82,7 +82,7 @@ export const ScheduleSection: React.FC<ScheduleSectionProps> = ({ onRegisterInte
               >
                 <span>{day}</span>
                 <span className="hidden sm:block text-[10px] font-normal opacity-80 mt-0.5 truncate">
-                  {day === 'Day 1' ? 'Prelims' : day === 'Day 2' ? 'Heats' : 'Finals'}
+                  {day === 'Day 1' ? '29 Jan · Prelims' : day === 'Day 2' ? '30 Jan · Heats' : '31 Jan · Celeblitz'}
                 </span>
               </button>
             ))}

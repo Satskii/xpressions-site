@@ -1,6 +1,7 @@
 import React from 'react';
-import { Music, Sparkles, AlertCircle, ShieldCheck, Ticket, ArrowRight } from 'lucide-react';
+import { Music, Sparkles, AlertCircle, ShieldCheck, Ticket, ArrowRight, Award } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
+import { CELEBLITZ_HALL_OF_FAME } from '../data/festivalData';
 
 interface ProNightsSectionProps {
   onRegisterInterest: () => void;
@@ -83,6 +84,67 @@ export const ProNightsSection: React.FC<ProNightsSectionProps> = ({
                   <span>View Past Artists (2016–2025)</span>
                   <ArrowRight className="w-4 h-4 text-orange-accent" />
                 </button>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
+
+        {/* Celeblitz Headliners Hall of Fame */}
+        <ScrollReveal direction="blur-up" delay={120} duration={700}>
+          <div className="mb-14 sm:mb-16">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+              <div>
+                <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-orange-accent mb-1.5">
+                  <Award className="w-4 h-4" />
+                  <span>The Celeblitz Legacy · Two Decades of Superstars</span>
+                </div>
+                <h3 className="font-poppins font-black text-xl sm:text-3xl text-white tracking-tight">
+                  Star Headliners Hall of Fame
+                </h3>
+              </div>
+              <p className="text-xs sm:text-sm text-lilac/80 max-w-md">
+                Eastern India&apos;s grandest collegiate stage has hosted the nation&apos;s foremost vocalists and composers.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+              {CELEBLITZ_HALL_OF_FAME.slice(0, 6).map((star, idx) => (
+                <div
+                  key={idx}
+                  className="p-4 rounded-2xl bg-plum-900/70 border border-plum-800/80 hover:border-orange-accent/50 transition-all duration-300 hover:-translate-y-1 group flex flex-col justify-between"
+                >
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-orange-accent/15 text-orange-accent border border-orange-accent/30">
+                      {star.year}
+                    </span>
+                    <span className="w-2 h-2 rounded-full bg-orange-accent/80 group-hover:scale-125 transition-transform" />
+                  </div>
+                  <div>
+                    <h4 className="font-poppins font-bold text-sm sm:text-base text-white group-hover:text-orange-accent transition-colors leading-tight mb-1">
+                      {star.name}
+                    </h4>
+                    <p className="text-[11px] text-lilac/70 line-clamp-2 leading-relaxed">
+                      {star.note}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Hall of Fame Honorary Row */}
+            <div className="mt-4 p-4 rounded-2xl bg-plum-950/80 border border-plum-850 flex flex-wrap items-center justify-between gap-3 text-xs">
+              <span className="text-lilac/70 font-medium">
+                Honorary Headline Legends:
+              </span>
+              <div className="flex flex-wrap items-center gap-2">
+                {CELEBLITZ_HALL_OF_FAME.slice(6).map((legend, idx) => (
+                  <span
+                    key={idx}
+                    className="px-2.5 py-1 rounded-full bg-plum-900 border border-plum-800 text-white font-semibold text-[11px] hover:border-orange-accent/50 transition-colors"
+                  >
+                    {legend.name}
+                  </span>
+                ))}
               </div>
             </div>
           </div>

@@ -2,25 +2,74 @@ import { EventItem, EditionHighlight, ScheduleItem, FaqItem } from '../types/fes
 
 export const FESTIVAL_INFO = {
   name: "Xpressions",
-  tagline: "Where Business Meets the Beat",
-  campaignHeadline: "One festival. Many ways to stand out.",
+  tagline: "Not Just A Fest. It's A Whole X-Perience.",
+  campaignHeadline: "Where Strategic Minds Meet Electrifying Creative Rhythm.",
   supportingMessage: "Compete. Perform. Connect. Celebrate.",
   institution: "XIMB, Bhubaneswar",
   organizedBy: "Student Executive Council & X-Stec",
   upcomingEdition: "Xpressions 2027",
-  datesNotice: "Dates to be announced officially by the Organizing Committee",
-  venueNotice: "XIMB Campus, Xavier Square, Jayadev Vihar, Bhubaneswar",
+  datesNotice: "29 – 31 January 2027",
+  venueNotice: "XIMB Campus, Xavier Square, Jayadev Vihar, Bhubaneswar, Odisha",
   contactEmail: "xpressions@xim.edu.in",
   secEmail: "sec@xim.edu.in",
-  phone: "+91 674 664 7777",
+  phone: "+91 97570 85785",
+  formattedPhone: "+91 97570 85785",
   address: "Xavier Institute of Management (XIMB), Xavier Square, Jayadev Vihar, Bhubaneswar, Odisha 751013",
   socials: {
     instagram: "https://www.instagram.com/ximbxpressions/",
-    linkedin: "https://www.linkedin.com/school/xim-university/",
+    youtube: "https://www.youtube.com/@XpressionsXIMB",
+    linkedin: "https://www.linkedin.com/school/xavier-institute-of-management-ximb/",
     facebook: "https://www.facebook.com/ximbxpressions/",
-    youtube: "https://www.youtube.com/@XIMUniversityOfficial",
   }
 };
+
+export const CELEBLITZ_HALL_OF_FAME = [
+  { name: "Darshan Raval", year: "2024", note: "Bollywood & Pop sensation", highlight: true },
+  { name: "Vishal-Shekhar", year: "2023", note: "With DJs Olly Esse & Zephyrtone (25th Edition)", highlight: true },
+  { name: "Mika Singh", year: "2019", note: "Bollywood powerhouse & pop pioneer", highlight: true },
+  { name: "Sunidhi Chauhan", year: "2018", note: "India's undisputed playback queen", highlight: true },
+  { name: "Farhan Akhtar", year: "2017", note: "Rock on with Farhan Live", highlight: true },
+  { name: "Shankar-Ehsaan-Loy", year: "2016", note: "Musical maestros with 20,000+ crowd", highlight: true },
+  { name: "Arijit Singh", year: "Legend", note: "The voice of a generation", highlight: false },
+  { name: "Amit Trivedi", year: "Legend", note: "Indie-folk & Bollywood composer extraordinaire", highlight: false },
+  { name: "Mohit Chauhan", year: "Legend", note: "Soulful acoustic anthems", highlight: false },
+  { name: "Salim-Sulaiman", year: "Legend", note: "Dynamic Sufi & electronic fusion", highlight: false },
+  { name: "Lucky Ali", year: "Legend", note: "Timeless indie pop icon", highlight: false },
+  { name: "KK", year: "Legend", note: "Unforgettable collegiate anthems", highlight: false },
+];
+
+export const SPONSOR_TIERS = [
+  {
+    tierName: "Title & Presenting Partner",
+    badgeColor: "#F0A05A",
+    description: "Headline institutional and corporate festival presenting partner.",
+    sponsors: [
+      { name: "Hero Motocorp / Tata Motors", category: "Automotive & Mobility Partner", description: "Official Title & Mobility Collaborator" },
+      { name: "State Bank of India", category: "Banking & Financial Services", description: "Official Financial Services Partner" }
+    ]
+  },
+  {
+    tierName: "Powered By & Associate Partners",
+    badgeColor: "#C084FC",
+    description: "Key category and enterprise technology accelerators.",
+    sponsors: [
+      { name: "Red Bull", category: "Energy Drink & Action Sports Partner", description: "Energizing campus battles" },
+      { name: "Fastrack", category: "Youth Lifestyle & Accessories", description: "Fashion runway & style partner" },
+      { name: "Nestlé", category: "Food & Beverage Partner", description: "Campus cafe & sampling zone" },
+      { name: "Bhubaneswar Smart City", category: "City & Government Partner", description: "Promoting youth innovation in Odisha" }
+    ]
+  },
+  {
+    tierName: "Media, Radio & Platform Partners",
+    badgeColor: "#38BDF8",
+    description: "National broadcasting, streaming and media ecosystem.",
+    sponsors: [
+      { name: "Red FM 93.5", category: "Official Radio Partner", description: "Bajaate Raho on-air promotions" },
+      { name: "The Telegraph / Sambad", category: "Print Media Partner", description: "Eastern India press coverage" },
+      { name: "Unstop", category: "Official Case & Challenge Partner", description: "National competition hosting" }
+    ]
+  }
+];
 
 export const PAST_EDITIONS: EditionHighlight[] = [
   {
@@ -544,107 +593,279 @@ export const FESTIVAL_EVENTS: EventItem[] = [
     imageUrl: "https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?auto=format&fit=crop&w=800&q=80",
     tags: ["Marathon", "Fitness", "Campus Life", "Run"],
     featured: false
+  },
+  {
+    id: "celeblitz",
+    title: "Celeblitz",
+    category: "Culture",
+    subtitle: "The Grand Finale Celebrity Night · Pro Night",
+    shortDescription: "The monumental closing pro night concert of Xpressions. 30,000+ festival goers singing as one. Superstar artist reveal dropping soon.",
+    fullAbout: "Celeblitz is Eastern India's most celebrated collegiate stadium concert, marking the thunderous finale of Xpressions. Over past editions, the Celeblitz stage has been ignited by iconic legends including Darshan Raval, Vishal-Shekhar, Sunidhi Chauhan, Mika Singh, Farhan Akhtar, and Shankar-Ehsaan-Loy. Prepare for high-voltage stadium sound, laser choreography, and campus euphoria.",
+    eligibility: "Open to registered college delegates, university students, and valid festival pass holders with official ID.",
+    participationType: "Both",
+    teamSize: "General Admission & Passholders",
+    formatAndRules: [
+      "Gates open at 6:00 PM; entry is strictly by digital pass and verified student/photo ID.",
+      "Security checkpoints enforce campus safety regulations at main festival arena gates.",
+      "Pass allocation brackets and online booking tiers will be announced alongside the artist reveal.",
+      "Re-entry guidelines and wristband checks strictly enforced throughout the evening."
+    ],
+    judgingCriteria: [
+      "Pure festival euphoria, live sound mastery, and unforgettable crowd connection."
+    ],
+    prizes: {
+      status: "Confirmed",
+      amountOrDescription: "Unmatched stadium musical experience & lifetime collegiate memories."
+    },
+    importantDates: {
+      finalRound: "31 January 2027",
+      status: "Confirmed Date: 31 Jan 2027"
+    },
+    registrationStatus: "Details to be announced",
+    registrationInstructions: "Celebrity headliner announcement dropping soon on @ximbxpressions. Register your interest for priority pass alerts.",
+    coordinators: [
+      { name: "Celeblitz Pro Nights Cell", role: "Student Executive Council & X-Stec", email: "xpressions@xim.edu.in", phone: "+91 97570 85785" }
+    ],
+    imageUrl: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1200&q=80",
+    tags: ["Concert", "Celeblitz", "Pro Night", "Celebrity", "Finale", "Music"],
+    featured: true
+  },
+  {
+    id: "pitch-it-abroad",
+    title: "Pitch It Abroad",
+    category: "Business",
+    subtitle: "Global Business Pitch & Cross-Border Strategy Challenge",
+    shortDescription: "Teams pitch innovative business concepts designed for international expansion before an elite jury of global business heads and venture alumni.",
+    fullAbout: "Pitch It Abroad challenges ambitious entrepreneurs and strategists to think beyond domestic borders. Teams formulate cross-border venture strategies, evaluating market entry mode, global regulatory dynamics, foreign exchange hedging, and cultural adaptation before pitching live to international corporate leaders.",
+    eligibility: "Open to undergraduate and postgraduate students from recognized management and academic institutions.",
+    participationType: "Team",
+    teamSize: "2 – 4 members per team",
+    formatAndRules: [
+      "Round 1: Global Market Opportunity Deck and executive brief submission.",
+      "Round 2: Virtual case defense and preliminary pitch.",
+      "Round 3: Grand on-campus keynote pitch and cross-examination at the XIMB Seminar Hall."
+    ],
+    judgingCriteria: [
+      "Global scalability and market expansion logic",
+      "Financial feasibility, unit economics and capital structure",
+      "Defensibility and innovation in go-to-market strategy"
+    ],
+    prizes: {
+      status: "Tentative",
+      amountOrDescription: "National trophy, cash awards, investor mentorship, and executive citations."
+    },
+    importantDates: {
+      finalRound: "29–31 January 2027",
+      status: "Confirmed (29–31 Jan 2027)"
+    },
+    registrationStatus: "Details to be announced",
+    registrationInstructions: "Rulebooks dropping soon. Submit your interest to receive case briefs directly.",
+    coordinators: [
+      { name: "Global Strategy Lead", role: "Management Events Committee", email: "xpressions@xim.edu.in" }
+    ],
+    imageUrl: "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=800&q=80",
+    tags: ["Pitch", "International", "Strategy", "Venture", "MBA"],
+    featured: true
+  },
+  {
+    id: "ximb-mun",
+    title: "XIMB-MUN",
+    category: "Business",
+    subtitle: "The Flagship Model United Nations Conference",
+    shortDescription: "Multilateral diplomacy, high-stakes geopolitical crises, and resolution drafting across prestigious simulated international committees.",
+    fullAbout: "XIMB Model United Nations convenes the most articulate student diplomats from across the country. Over three intense committee days, delegates navigate contentious geopolitical stalemates, unmoderated caucuses, and international crises under strict parliamentary procedure.",
+    eligibility: "Open to school, college, and university students across India.",
+    participationType: "Individual",
+    teamSize: "Individual Delegate (Double delegations in select committees)",
+    formatAndRules: [
+      "Simulated committees adhere to UNA-USA and HMUN parliamentary rules of procedure.",
+      "Comprehensive study guides and crisis matrices released prior to conference.",
+      "Position papers mandatory for award consideration."
+    ],
+    judgingCriteria: [
+      "Diplomatic mastery and substantive policy argumentation",
+      "Consensus-building, lobbying skills, and resolution authoring",
+      "Crisp, authoritative crisis responsiveness"
+    ],
+    prizes: {
+      status: "Tentative",
+      amountOrDescription: "Best Delegate, High Commendation, Special Mention, and Best Delegation trophies."
+    },
+    importantDates: {
+      finalRound: "29–31 January 2027",
+      status: "Confirmed (29–31 Jan 2027)"
+    },
+    registrationStatus: "Details to be announced",
+    registrationInstructions: "Matrix allocation and delegate applications opening shortly.",
+    coordinators: [
+      { name: "Secretary-General XIMB-MUN", role: "Diplomacy Secretariat", email: "xpressions@xim.edu.in" }
+    ],
+    imageUrl: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=800&q=80",
+    tags: ["MUN", "Diplomacy", "Debate", "Geopolitics", "Policy"],
+    featured: true
+  },
+  {
+    id: "workshops",
+    title: "Masterclasses & Workshops",
+    category: "Campus",
+    subtitle: "Hands-On Industry & Creative Masterclasses",
+    shortDescription: "Immersive 3-hour learning tracks in Music Production, Generative AI in Marketing, Creative Direction, and Quantitative Trading.",
+    fullAbout: "Curated workshops led by industry specialists and creative practitioners. Gain practical skills in digital audio workstations, next-gen AI prompt engineering, venture valuation, or stage performance in intensive masterclass sessions held during festival days.",
+    eligibility: "Open to all registered festival delegates.",
+    participationType: "Individual",
+    teamSize: "Individual",
+    formatAndRules: [
+      "Pre-registration required; limited seats per specialized track to ensure hands-on mentorship.",
+      "Bring personal laptops where required for coding/production modules.",
+      "Verified digital certificates of completion awarded by XIMB."
+    ],
+    judgingCriteria: [
+      "Interactive engagement, prompt submission, and module project completion."
+    ],
+    prizes: {
+      status: "Confirmed",
+      amountOrDescription: "Official XIMB masterclass certification and industry partner software credits."
+    },
+    importantDates: {
+      finalRound: "29–31 January 2027",
+      status: "Confirmed (29–31 Jan 2027)"
+    },
+    registrationStatus: "Details to be announced",
+    registrationInstructions: "Session roster and facilitator details releasing on our official channels.",
+    coordinators: [
+      { name: "Workshops Lead", role: "Learning & Industry Initiatives", email: "xpressions@xim.edu.in" }
+    ],
+    imageUrl: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80",
+    tags: ["Workshops", "AI", "Audio Production", "Masterclass", "Skills"],
+    featured: true
   }
 ];
 
 export const SCHEDULE_PREVIEW: ScheduleItem[] = [
+  // DAY 1 · 29 JAN 2027
   {
-    id: "s1",
+    id: "d1-inaug",
     day: "Day 1",
-    timeSlot: "Morning (Tentative)",
-    title: "Inaugural Ceremony & XAthon Flag-Off",
+    timeSlot: "Morning (29 Jan 2027)",
+    title: "Grand Inauguration Ceremony & XAthon Flag-Off",
     category: "Campus",
-    venue: "Main University Grounds",
-    status: "Tentative",
-    description: "Welcome address by university leadership, lighting of the ceremonial lamp, and flag-off for the community marathon.",
+    venue: "Main Auditorium & University Grounds, XIMB",
+    status: "Confirmed",
+    description: "Traditional lamp-lighting, keynote address by university leadership, release of the Xpressions 2027 souvenir, and community marathon flag-off.",
     highlight: false
   },
   {
-    id: "s2",
+    id: "d1-mgmt",
     day: "Day 1",
-    timeSlot: "Mid-Day (Tentative)",
-    title: "Maven & Business Case Prelims",
+    timeSlot: "Afternoon (29 Jan 2027)",
+    title: "Management Competitions — Day 1 Prelims",
     category: "Business",
-    venue: "Academic Block Audi",
-    status: "Tentative",
-    description: "Opening presentations and business simulations across marketing, finance, and operations tracks.",
+    venue: "Academic Block & Seminar Halls, XIMB",
+    status: "Confirmed",
+    description: "Preliminary and qualifier rounds for flagship management battles including J.O.A.T (Jack of All Trades), Pitch It Abroad, Trade Wars, and XIMB-MUN.",
     highlight: false
   },
   {
-    id: "s3",
+    id: "d1-cultural",
     day: "Day 1",
-    timeSlot: "Evening (Tentative)",
-    title: "Acoustic Evening & Stand-Up Comedy Night",
+    timeSlot: "Evening (29 Jan 2027)",
+    title: "Aaghaz — National Nukkad Natak (Street Play)",
+    category: "Culture",
+    venue: "Fountain Square & Central Lawns, XIMB",
+    status: "Confirmed",
+    description: "High-voltage street theatre competitions addressing critical social issues through powerful voices, synchronized percussion, and theatrical storytelling.",
+    highlight: false
+  },
+  {
+    id: "d1-pronite",
+    day: "Day 1",
+    timeSlot: "Night (29 Jan 2027)",
+    title: "Opening Pro Night — Artist Reveal Coming Soon",
     category: "Pro Night",
-    venue: "Open Air Amphitheatre",
-    status: "Tentative",
-    description: "Unplugged vocal showcases followed by national comedy talent to open festival festivities.",
+    venue: "Main Arena Ground, XIMB",
+    status: "Details to be announced",
+    description: "The opening musical and comedy spectacle kicking off three days of campus euphoria. Lineup announcement dropping on official channels.",
+    highlight: true
+  },
+
+  // DAY 2 · 30 JAN 2027
+  {
+    id: "d2-mgmt",
+    day: "Day 2",
+    timeSlot: "All Day (30 Jan 2027)",
+    title: "Management Events — Semi-Finals & Case Defenses",
+    category: "Business",
+    venue: "Academic Block & Executive Classrooms, XIMB",
+    status: "Confirmed",
+    description: "High-stakes boardroom simulations, Trade Wars floor trading, Maven case jury presentations, and XIMB-MUN multilateral debate sessions.",
+    highlight: false
+  },
+  {
+    id: "d2-decibelz",
+    day: "Day 2",
+    timeSlot: "Afternoon / Evening (30 Jan 2027)",
+    title: "Decibelz — National Battle of the Bands",
+    category: "Culture",
+    venue: "Open Air Amphitheatre, XIMB",
+    status: "Confirmed",
+    description: "The legendary rock and metal collegiate band showdown. Heavy riffs, soaring solos, and raw sonic energy competing for Eastern India's top music prize.",
     highlight: true
   },
   {
-    id: "s4",
+    id: "d2-cultural",
     day: "Day 2",
-    timeSlot: "Morning (Tentative)",
-    title: "X-Enable Community Carnival",
-    category: "Social Impact",
-    venue: "Central Lawns",
-    status: "Tentative",
-    description: "Inclusive sporting events, arts, and games with children from special schools across the state.",
+    timeSlot: "Evening (30 Jan 2027)",
+    title: "Thirkan — Western & Fusion Group Dance Face-Off",
+    category: "Culture",
+    venue: "Main Stage, XIMB",
+    status: "Confirmed",
+    description: "Premier collegiate western and fusion dance crews battle under synchronized stage lighting with high-octane choreography and stunts.",
     highlight: false
   },
   {
-    id: "s5",
+    id: "d2-pronite",
     day: "Day 2",
-    timeSlot: "Afternoon (Tentative)",
-    title: "Trade Wars Live Floor & Thirkan Dance Heats",
-    category: "Culture",
-    venue: "Finance Lab & Auditorium",
-    status: "Tentative",
-    description: "Simultaneous high-stakes equity trading and electrifying solo/crew dance qualifiers.",
-    highlight: false
+    timeSlot: "Night (30 Jan 2027)",
+    title: "Pro Night 2 — EDM & Campus Concert Spectacle",
+    category: "Pro Night",
+    venue: "Main Arena Ground, XIMB",
+    status: "Details to be announced",
+    description: "Electrifying live DJ set and pro-night concert under stadium lighting. Artist announcement dropping on official channels.",
+    highlight: true
   },
+
+  // DAY 3 · 31 JAN 2027
   {
-    id: "s6",
-    day: "Day 2",
-    timeSlot: "Night (Tentative)",
-    title: "Decibelz: National Battle of the Bands",
+    id: "d3-cultural",
+    day: "Day 3",
+    timeSlot: "Afternoon (31 Jan 2027)",
+    title: "Carnival de Vogue — Runway Grand Finale",
     category: "Culture",
-    venue: "Main Festival Arena",
-    status: "Tentative",
-    description: "The premier rock and fusion collegiate band championship under stadium sound.",
+    venue: "Main Stage, XIMB",
+    status: "Confirmed",
+    description: "The pinnacle collegiate fashion runway show blending haute couture, avant-garde design themes, and theatrical elegance before celebrity judges.",
     highlight: true
   },
   {
-    id: "s7",
+    id: "d3-awards",
     day: "Day 3",
-    timeSlot: "Morning (Tentative)",
-    title: "Grand Business Finals & Vriddhi Presentations",
-    category: "Business",
-    venue: "Executive Council Hall",
-    status: "Tentative",
-    description: "Finalists pitch to CXO and venture investor juries for national championship crowns.",
+    timeSlot: "Evening (31 Jan 2027)",
+    title: "Prize Distribution & Closing Valedictory Ceremony",
+    category: "Campus",
+    venue: "Main Auditorium, XIMB",
+    status: "Confirmed",
+    description: "Felicitation of national champions across all 20+ management and cultural competitions followed by the official festival valedictory address.",
     highlight: false
   },
   {
-    id: "s8",
+    id: "d3-celeblitz",
     day: "Day 3",
-    timeSlot: "Afternoon (Tentative)",
-    title: "Carnival de Vogue Runway Grand Finale",
-    category: "Culture",
-    venue: "Main Auditorium Stage",
-    status: "Tentative",
-    description: "Glamour, thematic design, and couture runway walks before fashion industry adjudicators.",
-    highlight: false
-  },
-  {
-    id: "s9",
-    day: "Day 3",
-    timeSlot: "Night (Tentative)",
-    title: "Celebrity Pro Night (Grand Star Concert)",
+    timeSlot: "Night (31 Jan 2027)",
+    title: "Celeblitz — Grand Finale Celebrity Night Concert",
     category: "Pro Night",
-    venue: "Festival Grand Grounds",
-    status: "Tentative",
-    description: "The definitive musical spectacle closing Xpressions. Lineup awaiting official announcement.",
+    venue: "Main Arena Ground, XIMB",
+    status: "Details to be announced",
+    description: "The monumental closing celebrity performance of Xpressions 2027. Past headliners include Darshan Raval, Vishal-Shekhar, and Sunidhi Chauhan. Artist reveal dropping soon!",
     highlight: true
   }
 ];
@@ -652,68 +873,56 @@ export const SCHEDULE_PREVIEW: ScheduleItem[] = [
 export const FAQS_DATA: FaqItem[] = [
   {
     id: "faq-1",
-    category: "General",
-    question: "What is Xpressions?",
-    answer: "Xpressions is the flagship annual management-cultural festival of XIMB (Xavier Institute of Management, Bhubaneswar). Bringing together business competitions, artistic expression, campus life, and celebrity pro nights, it stands as one of Eastern India's largest and most storied student-led festivals."
+    category: "Schedule & Venue",
+    question: "When and where is Xpressions 2027 taking place?",
+    answer: "Xpressions 2027 will take place from 29 to 31 January 2027 at the Xavier Institute of Management (XIMB) campus, Xavier Square, Jayadev Vihar, Bhubaneswar, Odisha."
   },
   {
     id: "faq-2",
-    category: "General",
-    question: "Who organises Xpressions?",
-    answer: "Xpressions is entirely conceptualised and executed by the students of XIMB through the Student Executive Council (SEC) and X-Stec (Steering Committee), supported by dedicated academic societies and faculty advisory boards."
+    category: "Competitions",
+    question: "Who can participate in Xpressions competitions?",
+    answer: "Undergraduate and postgraduate students from recognized colleges and universities across India can register for all management and cultural competitions. Each event has its own specific team size and eligibility rules listed on the Events page."
   },
   {
     id: "faq-3",
-    category: "Competitions",
-    question: "Who can participate in Xpressions events?",
-    answer: "Most business competitions and cultural contests are open to enrolled undergraduate and postgraduate students from recognized colleges and universities across India. Specific eligibility guidelines (team size, year of study, cross-college allowances) vary by event and are outlined on each event detail page."
+    category: "Registration",
+    question: "Is there a registration fee to participate?",
+    answer: "Fee structures vary by event and are published alongside the official rulebooks. Several flagship events offer free participation for enrolled students. You can register your intent on this site for free to get instant priority alerts."
   },
   {
     id: "faq-4",
-    category: "Competitions",
-    question: "How can I participate in business competitions?",
-    answer: "Explore the Business category on our Events page to review events like Maven, Trade Wars, and Jack of All Trades. Once official registration opens, links will be provided on each event card. You can also submit an Interest Registration on this microsite to be notified the moment slots open."
+    category: "Performances",
+    question: "Who is performing at Celeblitz and the Pro Nights?",
+    answer: "The celebrity headliners for Xpressions 2027 are being finalized and will be unveiled closer to the festival. Past editions have featured Darshan Raval, Vishal-Shekhar, Sunidhi Chauhan, Mika Singh, Farhan Akhtar, and Shankar-Ehsaan-Loy. Tap 'Register Interest' or follow @ximbxpressions to be the first to know."
   },
   {
     id: "faq-5",
     category: "Performances",
-    question: "How can I register for cultural events?",
-    answer: "Cultural competitions—including Decibelz (Battle of the Bands), Thirkan (Dance), Goonj (Vocals), and Carnival de Vogue (Fashion)—require pre-screening rounds or video/audio demo submissions. Full audition guidelines and submission portals will be published in the official Cultural Rulebook."
+    question: "How do I get passes for Celeblitz / Celebrity Night?",
+    answer: "Pass tiers, early-bird slots, and ticketing portal links will be shared simultaneously with the official artist reveal on our website and Instagram."
   },
   {
     id: "faq-6",
     category: "Schedule & Venue",
-    question: "Where will the festival take place?",
-    answer: "The festival takes place at the XIMB Campus (Xavier Square, Jayadev Vihar, Bhubaneswar, Odisha 751013). All competitions, cultural battles, and pro nights are hosted on campus grounds with cutting-edge academic and performance facilities."
+    question: "Is accommodation available for outstation participants?",
+    answer: "Yes, subsidized on-campus and partnered hostel accommodation details will be shared directly with shortlisted outstation teams and delegates upon qualification."
   },
   {
     id: "faq-7",
-    category: "Schedule & Venue",
-    question: "When will the festival happen?",
-    answer: "Dates for the upcoming edition are currently tentative and will be formally announced by the Student Executive Council following university academic calendar approval. Keep an eye on our social handles and register your interest to receive date alerts."
+    category: "Competitions",
+    question: "When will the event rulebooks and case briefs be released?",
+    answer: "The Student Executive Council (SEC) and X-Stec are releasing official rulebooks and problem statements in phases. Register your intent to receive case briefs directly via email."
   },
   {
     id: "faq-8",
-    category: "Performances",
-    question: "Will there be celebrity performances?",
-    answer: "Yes! Xpressions has an illustrious legacy of hosting India's foremost artists, with past editions featuring Shankar-Ehsaan-Loy, Farhan Akhtar, Sunidhi Chauhan, Mika Singh, Vishal-Shekhar, Darshan Raval, Sachin-Jigar, and Amaal Mallik. The upcoming celebrity lineup is currently under finalization and will be unveiled closer to the festival."
+    category: "General",
+    question: "My organization wants to sponsor or partner. Whom do we contact?",
+    answer: "Corporate partners and brands can write directly to xpressions@xim.edu.in or call our sponsorship desk at +91 97570 85785 to receive our official Sponsorship Deck & Deliverables dossier."
   },
   {
     id: "faq-9",
-    category: "Schedule & Venue",
-    question: "How can I find the schedule?",
-    answer: "A comprehensive day-wise timetable will be made available on the Schedule page as soon as event milestones and stage logistics are locked. Until then, our preview shows the planned phases of the festival."
-  },
-  {
-    id: "faq-10",
-    category: "Registration",
-    question: "Are there participation fees?",
-    answer: "Participation fee structures vary by competition and will be clearly published alongside event rules. Several events offer free registration for university students. No fees are required to record your interest on this microsite."
-  },
-  {
-    id: "faq-11",
     category: "General",
-    question: "How can I contact the organising team?",
-    answer: "You can write to us directly at xpressions@xim.edu.in or sec@xim.edu.in. Specific event student coordinators are also listed on individual event pages for tailored queries regarding rules and team submissions."
+    question: "Who organises Xpressions?",
+    answer: "Xpressions is entirely student-run by the Xavier Institute of Management, Bhubaneswar through the Student Executive Council (SEC) and the Steering Committee (X-Stec)."
   }
 ];

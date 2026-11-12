@@ -103,12 +103,12 @@ export const Hero: React.FC<HeroProps> = ({ onExploreEvents, onRegisterInterest 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 text-xs text-lilac/85 bg-plum-900/60 border border-plum-800/80 px-4 sm:px-5 py-2.5 rounded-2xl mb-8 backdrop-blur-md max-w-full sm:max-w-2xl">
             <div className="flex items-center gap-1.5">
               <Calendar className="w-3.5 h-3.5 text-orange-accent shrink-0" />
-              <span>Edition: <strong className="text-white font-medium">Xpressions 2027 (Dates TBA)</strong></span>
+              <span>Dates: <strong className="text-white font-medium">{FESTIVAL_INFO.datesNotice}</strong></span>
             </div>
             <span className="hidden sm:inline text-plum-600">|</span>
             <div className="flex items-center gap-1.5">
               <MapPin className="w-3.5 h-3.5 text-orange-accent shrink-0" />
-              <span>Venue: <strong className="text-white font-medium">XIMB, Xavier Square, Bhubaneswar</strong></span>
+              <span>Venue: <strong className="text-white font-medium">XIMB Campus, Bhubaneswar</strong></span>
             </div>
           </div>
         </ScrollReveal>
