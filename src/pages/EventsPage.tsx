@@ -59,7 +59,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({
 
             <div className="mt-5 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-plum-900/80 text-[11px] sm:text-xs text-lilac border border-plum-750">
               <ShieldAlert className="w-4 h-4 text-orange-accent shrink-0" />
-              <span>Upcoming deadlines and prize pools are labelled <strong>Tentative</strong> pending committee release.</span>
+              <span>Competitions, performances, speakers or attractions (<strong>tentative</strong> — awaiting final confirmation from the organizing team).</span>
             </div>
           </ScrollReveal>
         </div>

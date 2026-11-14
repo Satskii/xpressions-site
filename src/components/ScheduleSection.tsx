@@ -50,10 +50,10 @@ export const ScheduleSection: React.FC<ScheduleSectionProps> = ({ onRegisterInte
               </div>
               <div>
                 <h4 className="font-poppins font-bold text-xs sm:text-base text-plum-950 dark:text-white">
-                  Festival Dates Confirmed: 29 – 31 January 2027
+                  Festival Dates &amp; Venue Confirmed: 29 – 31 January 2027 · XIMB, Bhubaneswar
                 </h4>
                 <p className="text-[11px] sm:text-xs text-plum-800/80 dark:text-lilac/80 mt-0.5 leading-relaxed">
-                  Hosted at the XIMB Campus, Bhubaneswar. Detailed slot timings and stage line-up for each competition and pro-night will be updated live.
+                  Event programme, schedule and venue information (tentative — confirmation in progress from organizing team, X-Stec &amp; SEC). Detailed slot timings and stage line-up will be updated live.
                 </p>
               </div>
             </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { PastEditionsTimeline } from '../components/PastEditionsTimeline';
 import { FestivalGallery } from '../components/FestivalGallery';
+import { PastAftermovies } from '../components/PastAftermovies';
 import { Layers } from 'lucide-react';
 import { ScrollReveal } from '../components/ScrollReveal';
 
@@ -35,6 +36,9 @@ export const PastEditionsPage: React.FC<PastEditionsPageProps> = ({ onOpenLightb
 
       {/* Authentic Festival Photography Gallery */}
       <FestivalGallery onOpenLightbox={onOpenLightbox} />
+
+      {/* Official Video Recaps & Aftermovies Showcase */}
+      <PastAftermovies />
     </div>
   );
 };

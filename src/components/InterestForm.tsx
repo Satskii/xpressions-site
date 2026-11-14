@@ -292,8 +292,8 @@ export const InterestForm: React.FC<InterestFormProps> = ({
               <div className="p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border-2 border-amber-300 dark:border-amber-700/60 text-amber-950 dark:text-amber-200 flex items-start gap-3">
                 <AlertTriangle className="w-5 h-5 text-orange-accent shrink-0 mt-0.5" />
                 <div className="text-xs leading-relaxed">
-                  <strong className="font-bold">Important Notice:</strong>{' '}
-                  Submitting this form records your interest in Xpressions. It does not constitute final event registration. The organising team will share official registration information when available.
+                  <strong className="font-bold">Registration &amp; Participation Notice (Tentative):</strong>{' '}
+                  Registration or participation information is tentative pending final confirmation from the organizing team. Submitting this form records your priority interest; official binding registration and rulebooks will be shared upon release by the organizing committee.
                 </div>
               </div>
 
