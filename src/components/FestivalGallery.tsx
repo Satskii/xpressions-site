@@ -188,3 +188,4 @@ export const FestivalGallery: React.FC<FestivalGalleryProps> = ({ onOpenLightbox
     </section>
   );
 };
+
