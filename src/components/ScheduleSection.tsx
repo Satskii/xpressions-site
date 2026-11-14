@@ -76,8 +76,8 @@ export const ScheduleSection: React.FC<ScheduleSectionProps> = ({ onRegisterInte
                 key={day}
                 onClick={() => setActiveDay(day)}
                 className={`py-2 sm:py-2.5 px-2 rounded-xl font-poppins font-bold text-xs sm:text-sm transition-all duration-300 text-center ${activeDay === day
-                    ? 'bg-plum-800 dark:bg-orange-accent text-white dark:text-plum-950 shadow-md scale-[1.02]'
-                    : 'text-plum-800 dark:text-lilac/80 hover:text-plum-950 dark:hover:text-white hover:bg-plum-200/60 dark:hover:bg-plum-800/60'
+                  ? 'bg-plum-800 dark:bg-orange-accent text-white dark:text-plum-950 shadow-md scale-[1.02]'
+                  : 'text-plum-800 dark:text-lilac/80 hover:text-plum-950 dark:hover:text-white hover:bg-plum-200/60 dark:hover:bg-plum-800/60'
                   }`}
               >
                 <span>{day}</span>
@@ -99,8 +99,8 @@ export const ScheduleSection: React.FC<ScheduleSectionProps> = ({ onRegisterInte
               key={cat}
               onClick={() => setSelectedCategory(cat)}
               className={`px-3 py-1 rounded-full text-[11px] sm:text-xs font-medium transition-all ${selectedCategory === cat
-                  ? 'bg-plum-800 dark:bg-orange-accent text-white dark:text-plum-950 shadow-sm'
-                  : 'bg-plum-50 dark:bg-plum-900/60 text-plum-800 dark:text-lilac hover:bg-plum-100 dark:hover:bg-plum-800/80 border border-plum-200/60 dark:border-plum-800'
+                ? 'bg-plum-800 dark:bg-orange-accent text-white dark:text-plum-950 shadow-sm'
+                : 'bg-plum-50 dark:bg-plum-900/60 text-plum-800 dark:text-lilac hover:bg-plum-100 dark:hover:bg-plum-800/80 border border-plum-200/60 dark:border-plum-800'
                 }`}
             >
               {cat}

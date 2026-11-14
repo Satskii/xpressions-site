@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  X, CheckCircle, AlertTriangle, Send, Download, 
-  ArrowRight, Sparkles, Shield, Share2 
+import {
+  X, CheckCircle, AlertTriangle, Send, Download,
+  ArrowRight, Sparkles, Shield, Share2
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { FESTIVAL_EVENTS } from '../data/festivalData';
@@ -185,14 +185,14 @@ export const InterestForm: React.FC<InterestFormProps> = ({
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto">
       {/* Backdrop */}
-      <div 
+      <div
         className="fixed inset-0 bg-plum-950/85 backdrop-blur-md transition-opacity"
         onClick={onClose}
       />
 
       <div className="min-h-screen px-3 sm:px-4 py-4 sm:py-8 flex items-center justify-center">
         {/* Form Container */}
-        <div 
+        <div
           className="relative w-full max-w-2xl bg-white dark:bg-plum-950 rounded-3xl shadow-2xl border border-plum-200 dark:border-plum-800 overflow-hidden z-10 animate-in fade-in zoom-in-95 duration-200 my-auto"
           role="dialog"
           aria-modal="true"
@@ -287,7 +287,7 @@ export const InterestForm: React.FC<InterestFormProps> = ({
           ) : (
             /* The Active Form */
             <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-6">
-              
+
               {/* MANDATORY EXPLICIT POLICY DISCLAIMER */}
               <div className="p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border-2 border-amber-300 dark:border-amber-700/60 text-amber-950 dark:text-amber-200 flex items-start gap-3">
                 <AlertTriangle className="w-5 h-5 text-orange-accent shrink-0 mt-0.5" />
@@ -308,11 +308,10 @@ export const InterestForm: React.FC<InterestFormProps> = ({
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder="e.g. Rahul Sharma"
-                    className={`w-full px-4 py-2.5 rounded-xl border text-xs sm:text-sm focus:outline-none focus:ring-2 transition-colors ${
-                      errors.fullName
+                    className={`w-full px-4 py-2.5 rounded-xl border text-xs sm:text-sm focus:outline-none focus:ring-2 transition-colors ${errors.fullName
                         ? 'border-rose-400 bg-rose-50 dark:bg-rose-950/30 text-rose-900 dark:text-rose-200 focus:ring-rose-400'
                         : 'border-plum-200 dark:border-plum-800 bg-white dark:bg-plum-900/60 text-plum-950 dark:text-white placeholder:text-plum-400 dark:placeholder:text-plum-500 focus:ring-plum-800 dark:focus:ring-orange-accent'
-                    }`}
+                      }`}
                   />
                   {errors.fullName && (
                     <p className="text-[11px] text-rose-500 mt-1">{errors.fullName}</p>
@@ -329,11 +328,10 @@ export const InterestForm: React.FC<InterestFormProps> = ({
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="e.g. rahul@university.edu"
-                    className={`w-full px-4 py-2.5 rounded-xl border text-xs sm:text-sm focus:outline-none focus:ring-2 transition-colors ${
-                      errors.email
+                    className={`w-full px-4 py-2.5 rounded-xl border text-xs sm:text-sm focus:outline-none focus:ring-2 transition-colors ${errors.email
                         ? 'border-rose-400 bg-rose-50 dark:bg-rose-950/30 text-rose-900 dark:text-rose-200 focus:ring-rose-400'
                         : 'border-plum-200 dark:border-plum-800 bg-white dark:bg-plum-900/60 text-plum-950 dark:text-white placeholder:text-plum-400 dark:placeholder:text-plum-500 focus:ring-plum-800 dark:focus:ring-orange-accent'
-                    }`}
+                      }`}
                   />
                   {errors.email && (
                     <p className="text-[11px] text-rose-500 mt-1">{errors.email}</p>
@@ -350,11 +348,10 @@ export const InterestForm: React.FC<InterestFormProps> = ({
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="e.g. 9876543210"
-                    className={`w-full px-4 py-2.5 rounded-xl border text-xs sm:text-sm focus:outline-none focus:ring-2 transition-colors ${
-                      errors.phone
+                    className={`w-full px-4 py-2.5 rounded-xl border text-xs sm:text-sm focus:outline-none focus:ring-2 transition-colors ${errors.phone
                         ? 'border-rose-400 bg-rose-50 dark:bg-rose-950/30 text-rose-900 dark:text-rose-200 focus:ring-rose-400'
                         : 'border-plum-200 dark:border-plum-800 bg-white dark:bg-plum-900/60 text-plum-950 dark:text-white placeholder:text-plum-400 dark:placeholder:text-plum-500 focus:ring-plum-800 dark:focus:ring-orange-accent'
-                    }`}
+                      }`}
                   />
                   {errors.phone && (
                     <p className="text-[11px] text-rose-500 mt-1">{errors.phone}</p>
@@ -371,11 +368,10 @@ export const InterestForm: React.FC<InterestFormProps> = ({
                     value={college}
                     onChange={(e) => setCollege(e.target.value)}
                     placeholder="e.g. XIMB, IIM, XLRI, IIT..."
-                    className={`w-full px-4 py-2.5 rounded-xl border text-xs sm:text-sm focus:outline-none focus:ring-2 transition-colors ${
-                      errors.college
+                    className={`w-full px-4 py-2.5 rounded-xl border text-xs sm:text-sm focus:outline-none focus:ring-2 transition-colors ${errors.college
                         ? 'border-rose-400 bg-rose-50 dark:bg-rose-950/30 text-rose-900 dark:text-rose-200 focus:ring-rose-400'
                         : 'border-plum-200 dark:border-plum-800 bg-white dark:bg-plum-900/60 text-plum-950 dark:text-white placeholder:text-plum-400 dark:placeholder:text-plum-500 focus:ring-plum-800 dark:focus:ring-orange-accent'
-                    }`}
+                      }`}
                   />
                   {errors.college && (
                     <p className="text-[11px] text-rose-500 mt-1">{errors.college}</p>
@@ -397,11 +393,10 @@ export const InterestForm: React.FC<InterestFormProps> = ({
                         setCategory(cat);
                         setEventOfInterest('');
                       }}
-                      className={`px-3 py-2 rounded-xl text-xs font-semibold border transition-all ${
-                        category === cat
+                      className={`px-3 py-2 rounded-xl text-xs font-semibold border transition-all ${category === cat
                           ? 'bg-plum-800 dark:bg-orange-accent text-white dark:text-plum-950 border-plum-800 dark:border-orange-accent shadow-sm'
                           : 'bg-plum-50/60 dark:bg-plum-900/40 text-plum-800 dark:text-lilac border-plum-200 dark:border-plum-800 hover:bg-plum-100 dark:hover:bg-plum-800/60'
-                      }`}
+                        }`}
                     >
                       {cat}
                     </button>
