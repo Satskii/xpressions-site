@@ -80,7 +80,7 @@ export const PAST_EDITIONS: EditionHighlight[] = [
     dates: "Documented Past Edition (2025)",
     tagline: "Symphony of Business & High-Octane Grooves",
     description: "The 2025 edition witnessed electrifying performances by Bollywood music composer Amaal Mallik alongside a rib-tickling stand-up set by comic Ashish Solanki, pairing national-tier B-school case finals with stadium-scale entertainment.",
-    mediaUrl: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1200&q=80",
+    mediaUrl: "/images/real_fest/amaal_mallik_stage.jpg",
     mediaType: "image",
     keyHighlights: [
       "Headliner concert by Amaal Mallik drawing students from 50+ institutes",
@@ -115,7 +115,7 @@ export const PAST_EDITIONS: EditionHighlight[] = [
     dates: "Documented Hybrid Past Edition (2022)",
     tagline: "Resilience, Rhythm & Return to Stage",
     description: "Returning with a hybrid model combining high-stakes digital business hackathons with high-energy on-campus spectacles, the legendary duo Vishal & Shekhar delivered an unforgettable pro night anthem.",
-    mediaUrl: "https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?auto=format&fit=crop&w=1200&q=80",
+    mediaUrl: "/images/real_fest/vishal_shekhar_concert.jpg",
     mediaType: "image",
     keyHighlights: [
       "Powerhouse pro-night anthems by Vishal & Shekhar",
@@ -131,7 +131,7 @@ export const PAST_EDITIONS: EditionHighlight[] = [
     dates: "November 2019 (Past Edition)",
     tagline: "The King of Bhangra & Campus Euphoria",
     description: "Mika Singh took over the Xpressions festival stage with high-tempo Bollywood and Punjabi hits, crowning three days of intense debate, case competitions and street plays.",
-    mediaUrl: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80",
+    mediaUrl: "/images/real_fest/mika_singh_live.jpg",
     mediaType: "image",
     keyHighlights: [
       "Blockbuster live concert by Mika Singh",
@@ -345,7 +345,7 @@ export const FESTIVAL_EVENTS: EventItem[] = [
     coordinators: [
       { name: "Cultural Committee Lead", role: "Music Society", email: "decibelz@xim.edu.in" }
     ],
-    imageUrl: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/images/real_fest/vishal_shekhar_live.jpg",
     tags: ["Music", "Rock", "Band", "Flagship", "Live Stage"],
     featured: true
   },
@@ -382,7 +382,7 @@ export const FESTIVAL_EVENTS: EventItem[] = [
     coordinators: [
       { name: "Dance Society Lead", role: "X-Choreo", email: "thirkan@xim.edu.in" }
     ],
-    imageUrl: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/images/real_fest/carnival_de_vogue_ramp.jpg",
     tags: ["Dance", "Hip-hop", "Classical", "Choreography"],
     featured: true
   },
@@ -418,7 +418,7 @@ export const FESTIVAL_EVENTS: EventItem[] = [
     coordinators: [
       { name: "Fashion Society Lead", role: "Vogue Council", email: "vogue@xim.edu.in" }
     ],
-    imageUrl: "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/images/real_fest/carnival_de_vogue_stage.jpg",
     tags: ["Fashion", "Runway", "Design", "Glamour"],
     featured: true
   },
@@ -626,7 +626,7 @@ export const FESTIVAL_EVENTS: EventItem[] = [
     coordinators: [
       { name: "Celeblitz Pro Nights Cell", role: "Student Executive Council & X-Stec", email: "xpressions@xim.edu.in", phone: "+91 97570 85785" }
     ],
-    imageUrl: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1200&q=80",
+    imageUrl: "/images/real_fest/amaal_mallik_pyro.jpg",
     tags: ["Concert", "Celeblitz", "Pro Night", "Celebrity", "Finale", "Music"],
     featured: true
   },

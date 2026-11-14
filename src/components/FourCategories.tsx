@@ -30,7 +30,7 @@ export const FourCategories: React.FC<FourCategoriesProps> = ({ onSelectCategory
       icon: Music2,
       badgeColor: 'bg-plum-800 text-white',
       accentColor: 'text-orange-accent',
-      image: 'https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=800&q=80',
+      image: '/images/real_fest/carnival_de_vogue_stage.jpg',
     },
     {
       id: 'Campus' as EventCategory,

@@ -1,5 +1,6 @@
 import React from 'react';
 import { PastEditionsTimeline } from '../components/PastEditionsTimeline';
+import { FestivalGallery } from '../components/FestivalGallery';
 import { Layers } from 'lucide-react';
 import { ScrollReveal } from '../components/ScrollReveal';
 
@@ -31,6 +32,9 @@ export const PastEditionsPage: React.FC<PastEditionsPageProps> = ({ onOpenLightb
 
       {/* Main Timeline Component */}
       <PastEditionsTimeline onOpenLightbox={onOpenLightbox} />
+
+      {/* Authentic Festival Photography Gallery */}
+      <FestivalGallery onOpenLightbox={onOpenLightbox} />
     </div>
   );
 };

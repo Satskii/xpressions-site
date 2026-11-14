@@ -9,6 +9,7 @@ import { FestivalQuestGame } from '../components/FestivalQuestGame';
 import { FestivalIntro } from '../components/FestivalIntro';
 import { VibeSelector } from '../components/VibeSelector';
 import { ThemePlayground } from '../components/ThemePlayground';
+import { FestivalGallery } from '../components/FestivalGallery';
 import { FinalCta } from '../components/FinalCta';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { EventItem } from '../types/festival';
@@ -23,6 +24,7 @@ interface HomePageProps {
 export const HomePage: React.FC<HomePageProps> = ({
   onOpenInterestModal,
   onOpenEventModal,
+  onOpenLightbox,
 }) => {
   const navigate = useNavigate();
 
@@ -107,7 +109,10 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
       </section>
 
-      {/* 8. Official Partners & Sponsors Showcase */}
+      {/* 8. Authentic Festival Photography Gallery */}
+      <FestivalGallery onOpenLightbox={onOpenLightbox} />
+
+      {/* 9. Official Partners & Sponsors Showcase */}
       <section className="py-14 sm:py-18 bg-plum-900/60 border-b border-plum-800 text-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal direction="blur-up" duration={700}>

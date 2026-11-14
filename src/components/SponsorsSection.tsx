@@ -15,7 +15,7 @@ export const SponsorsSection: React.FC<SponsorsSectionProps> = ({
 }) => {
   const [activeTab, setActiveTab] = useState<'tiers' | 'wall'>('tiers');
 
-  const sponsorWallUrl = "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1600&q=80";
+  const sponsorWallUrl = "/images/real_fest/festival_crowd_arena.jpg";
 
   return (
     <section id="sponsors" className="py-16 sm:py-24 bg-plum-950 text-white relative w-full overflow-hidden">

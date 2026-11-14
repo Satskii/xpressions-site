@@ -74,8 +74,8 @@ export const FestivalIntro: React.FC<FestivalIntroProps> = ({ onExplorePillars }
 
                 <div className="relative rounded-3xl overflow-hidden shadow-xl border border-plum-200/80 dark:border-plum-800/80 bg-plum-900">
                   <img
-                    src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1000&q=80"
-                    alt="Student delegates collaborating in case competition"
+                    src="/images/real_fest/carnival_de_vogue_stage.jpg"
+                    alt="Xpressions Carnival De Vogue live stage presentation at XIMB"
                     className="w-full h-64 sm:h-80 md:h-96 object-cover object-center transition-transform duration-700 hover:scale-105"
                   />
                   

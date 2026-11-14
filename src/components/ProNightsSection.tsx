@@ -17,9 +17,9 @@ export const ProNightsSection: React.FC<ProNightsSectionProps> = ({
       {/* Background Concert Lighting & Atmosphere */}
       <div className="absolute inset-0 pointer-events-none">
         <img
-          src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=2000&q=80"
-          alt="Concert stage crowd lights"
-          className="w-full h-full object-cover opacity-15 filter blur-sm scale-105"
+          src="/images/real_fest/amaal_mallik_pyro.jpg"
+          alt="Xpressions Celebrity Pro Night concert stage and laser lighting"
+          className="w-full h-full object-cover opacity-20 filter blur-sm scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-plum-950 via-plum-950/90 to-plum-950" />
       </div>

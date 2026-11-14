@@ -34,7 +34,7 @@ export const VibeSelector: React.FC = () => {
       targetUrl: '/events?cat=Culture',
       badge: 'Cultural Stages',
       accentColor: 'border-purple-400 text-purple-300',
-      image: 'https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=800&q=80',
+      image: '/images/real_fest/carnival_de_vogue_ramp.jpg',
     },
     {
       id: 'connect' as const,
@@ -62,7 +62,7 @@ export const VibeSelector: React.FC = () => {
       targetUrl: '/pro-nights',
       badge: 'Marquee Evenings',
       accentColor: 'border-amber-400 text-amber-300',
-      image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80',
+      image: '/images/real_fest/vishal_shekhar_live.jpg',
     },
   ];
 

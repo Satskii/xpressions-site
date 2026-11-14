@@ -14,9 +14,9 @@ export const Hero: React.FC<HeroProps> = ({ onExploreEvents, onRegisterInterest 
       {/* Immersive Festival Photography Background with Artful Plum/Orange Overlay */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <img
-          src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=2000&q=85"
-          alt="Xpressions Festival Crowd and Concert Stage Lighting"
-          className="w-full h-full object-cover object-center scale-105 animate-pulse-slow opacity-25"
+          src="/images/real_fest/festival_crowd_arena.jpg"
+          alt="Xpressions Festival Crowd and Concert Stage Arena at XIMB"
+          className="w-full h-full object-cover object-center scale-105 animate-pulse-slow opacity-30"
         />
         {/* Editorial Gradients */}
         <div className="absolute inset-0 bg-gradient-to-t from-plum-950 via-plum-950/85 to-plum-900/70" />
