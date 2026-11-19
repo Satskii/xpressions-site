@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { MobileBottomBar } from './components/MobileBottomBar';
@@ -7,6 +7,8 @@ import { ScrollToTop } from './components/ScrollToTop';
 import { ScrollProgressBar } from './components/ScrollProgressBar';
 import { GamificationProvider, useGamification } from './context/GamificationContext';
 import { ThemeProvider } from './context/ThemeContext';
+import { ExperimentProvider } from './context/ExperimentContext';
+import { recordCampaignVisit, trackPageView } from './utils/analytics';
 
 import { HomePage } from './pages/HomePage';
 import { EventsPage } from './pages/EventsPage';
@@ -16,6 +18,7 @@ import { PastEditionsPage } from './pages/PastEditionsPage';
 import { SponsorsPage } from './pages/SponsorsPage';
 import { ParticipatePage } from './pages/ParticipatePage';
 import { FaqPage } from './pages/FaqPage';
+import { CampaignPage } from './pages/CampaignPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 import { EventDetailModal } from './components/EventDetailModal';
@@ -27,7 +30,14 @@ import { EventItem } from './types/festival';
 
 export const AppContent: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { awardXp } = useGamification();
+
+  // Track pageviews & UTM campaign visits
+  useEffect(() => {
+    recordCampaignVisit(location.pathname);
+    trackPageView(location.pathname);
+  }, [location.pathname, location.search]);
 
   // Modals state
   const [selectedEventModal, setSelectedEventModal] = useState<EventItem | null>(null);
@@ -137,6 +147,7 @@ export const AppContent: React.FC = () => {
             }
           />
           <Route path="/faqs" element={<FaqPage />} />
+          <Route path="/campaign" element={<CampaignPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
@@ -186,9 +197,11 @@ export const App: React.FC = () => {
   return (
     <ThemeProvider>
       <GamificationProvider>
-        <BrowserRouter>
-          <AppContent />
-        </BrowserRouter>
+        <ExperimentProvider>
+          <BrowserRouter>
+            <AppContent />
+          </BrowserRouter>
+        </ExperimentProvider>
       </GamificationProvider>
     </ThemeProvider>
   );

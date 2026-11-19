@@ -88,6 +88,12 @@ export const Footer: React.FC<FooterProps> = ({ onOpenInterestModal }) => {
                   Sponsors &amp; Partners
                 </Link>
               </li>
+              <li>
+                <Link to="/campaign" className="hover:text-orange-accent transition-colors flex items-center gap-1.5 text-orange-accent font-semibold">
+                  <span>Campaign &amp; GA4 Telemetry</span>
+                  <span className="px-1.5 py-0.2 rounded bg-orange-accent/20 text-[10px]">Step 4</span>
+                </Link>
+              </li>
             </ul>
           </div>
 

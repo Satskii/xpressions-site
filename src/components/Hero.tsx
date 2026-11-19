@@ -1,7 +1,8 @@
 import React from 'react';
-import { ArrowRight, ChevronDown, Sparkles, Compass, Calendar, MapPin } from 'lucide-react';
+import { ArrowRight, ChevronDown, Sparkles, Compass, Calendar, MapPin, Award } from 'lucide-react';
 import { FESTIVAL_INFO } from '../data/festivalData';
 import { ScrollReveal } from './ScrollReveal';
+import { useExperiment } from '../context/ExperimentContext';
 
 interface HeroProps {
   onExploreEvents: () => void;
@@ -9,6 +10,13 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onExploreEvents, onRegisterInterest }) => {
+  const { variant, config, triggerConversion } = useExperiment();
+  const currentVariant = config.variants[variant];
+
+  const handleCtaClick = () => {
+    triggerConversion('hero_primary_cta');
+    onRegisterInterest();
+  };
   return (
     <section className="relative min-h-[90vh] lg:min-h-screen flex items-center justify-center overflow-hidden bg-plum-950 text-white pt-24 pb-16 sm:py-28">
       {/* Immersive Festival Photography Background with Artful Plum/Orange Overlay */}
@@ -38,7 +46,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreEvents, onRegisterInterest 
           <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-plum-850/90 border border-plum-700/80 text-lilac backdrop-blur-md mb-5 sm:mb-6 shadow-sm max-w-full">
             <Sparkles className="w-3.5 h-3.5 text-orange-accent shrink-0" />
             <span className="text-[11px] sm:text-xs font-semibold tracking-wide truncate">
-              XIMB, Bhubaneswar · Flagship Management-Cultural Fest
+              XIMB, Bhubaneswar · {currentVariant.badgeText}
             </span>
           </div>
         </ScrollReveal>
@@ -74,14 +82,14 @@ export const Hero: React.FC<HeroProps> = ({ onExploreEvents, onRegisterInterest 
           </div>
 
           <p className="font-poppins font-bold text-lg sm:text-2xl md:text-3xl text-white/95 max-w-2xl mx-auto mb-3 tracking-tight">
-            One festival. Two universes.
+            {currentVariant.headline}
           </p>
         </ScrollReveal>
 
         {/* Supporting Message & Core Proposition */}
         <ScrollReveal direction="blur-up" delay={220} duration={750}>
           <p className="font-inter text-xs sm:text-base md:text-lg text-lilac-muted max-w-2xl leading-relaxed mb-6 font-normal px-2">
-            Where premier B-school boardroom strategies collide with stadium-scale cultural euphoria at XIMB, Bhubaneswar. Compete on the case floor, command the stage, and celebrate with 30,000+ peers.
+            {currentVariant.subtitle}
           </p>
         </ScrollReveal>
 
@@ -117,10 +125,10 @@ export const Hero: React.FC<HeroProps> = ({ onExploreEvents, onRegisterInterest 
         <ScrollReveal direction="blur-up" delay={450} duration={800}>
           <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto px-4 sm:px-0">
             <button
-              onClick={onRegisterInterest}
+              onClick={handleCtaClick}
               className="w-full sm:w-auto px-7 py-3.5 sm:py-4 rounded-full bg-orange-accent hover:bg-orange-hover text-plum-950 font-poppins font-bold text-sm sm:text-base shadow-glow-orange hover:shadow-festival-hover hover:scale-105 active:scale-95 transition-all duration-200 flex items-center justify-center gap-2 group"
             >
-              <span>Register Interest</span>
+              <span>{currentVariant.ctaText}</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
 

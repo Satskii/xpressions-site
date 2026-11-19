@@ -51,6 +51,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInterestModal }) => {
     { to: '/past-editions', label: 'Past Editions' },
     { to: '/sponsors', label: 'Sponsors' },
     { to: '/participate', label: 'Participate' },
+    { to: '/campaign', label: 'Campaign' },
     { to: '/faqs', label: 'FAQs & Contact' },
   ];
 
