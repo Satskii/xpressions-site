@@ -23,14 +23,14 @@ export const ThemeSwitcher: React.FC = () => {
       <button
         onClick={() => setIsOpen(!isOpen)}
         title="Customize Color Theme"
-        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-plum-900/90 hover:bg-plum-800 border border-plum-700/80 hover:border-orange-accent text-white text-xs font-poppins font-semibold transition-all hover:scale-105 active:scale-95 shadow-sm"
+        className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full bg-plum-900/90 hover:bg-plum-800 border border-plum-700/80 hover:border-orange-accent text-white text-xs font-poppins font-semibold transition-all hover:scale-105 active:scale-95 shadow-sm shrink-0"
         aria-label="Change color theme"
       >
         <Palette className="w-3.5 h-3.5 text-orange-accent" />
-        <span className="hidden md:inline">Theme</span>
+        <span className="hidden xl:inline">Theme</span>
         {/* Active Theme Color Dot */}
         <span
-          className="w-2.5 h-2.5 rounded-full shadow-sm ring-1 ring-white/20 animate-pulse"
+          className="w-2.5 h-2.5 rounded-full shadow-sm ring-1 ring-white/20 animate-pulse shrink-0"
           style={{ backgroundColor: 'rgb(var(--accent-primary))' }}
         />
       </button>
