@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import QRCode from 'qrcode';
 import { PROMOTIONAL_CREATIVES, PromotionalCreative } from '../data/campaignData';
-import { Copy, Check, QrCode, Download, ExternalLink, Share2, Sparkles, MessageSquare, Instagram, MapPin } from 'lucide-react';
+import { recordLiveCampaignClick, trackGaEvent } from '../utils/analytics';
+import { Copy, Check, QrCode, Download, ExternalLink, Share2, Sparkles, MessageSquare, Instagram, MapPin, Zap } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 import { SpotlightCard } from './SpotlightCard';
 
@@ -33,7 +34,21 @@ export const CampaignCreatives: React.FC = () => {
   const handleCopyLink = (url: string, id: string) => {
     navigator.clipboard.writeText(url);
     setCopiedLink(id);
+    trackGaEvent('campaign_link_copy', {
+      creative_id: id,
+      url,
+    });
     setTimeout(() => setCopiedLink(null), 2500);
+  };
+
+  const handleTestLink = (creative: PromotionalCreative) => {
+    recordLiveCampaignClick(
+      creative.utmParams.source,
+      creative.utmParams.medium,
+      creative.utmParams.campaign,
+      creative.utmParams.content
+    );
+    window.open(creative.trackableUrl, '_blank', 'noopener,noreferrer');
   };
 
   const handleCopyCopy = (text: string, id: string) => {
@@ -222,13 +237,23 @@ export const CampaignCreatives: React.FC = () => {
                   <span className="font-mono text-xs text-orange-accent dark:text-orange-accent break-all select-all">
                     {activeCreative.trackableUrl}
                   </span>
-                  <button
-                    onClick={() => handleCopyLink(activeCreative.trackableUrl, activeCreative.id)}
-                    className="p-2 rounded-lg bg-plum-100 dark:bg-plum-800 text-plum-900 dark:text-white hover:bg-orange-accent hover:text-plum-950 transition-colors shrink-0"
-                    title="Copy trackable link"
-                  >
-                    {copiedLink === activeCreative.id ? <Check className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
-                  </button>
+                  <div className="flex items-center gap-1.5 shrink-0">
+                    <button
+                      onClick={() => handleCopyLink(activeCreative.trackableUrl, activeCreative.id)}
+                      className="p-2 rounded-lg bg-plum-100 dark:bg-plum-800 text-plum-900 dark:text-white hover:bg-orange-accent hover:text-plum-950 transition-colors"
+                      title="Copy trackable link"
+                    >
+                      {copiedLink === activeCreative.id ? <Check className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
+                    </button>
+                    <button
+                      onClick={() => handleTestLink(activeCreative)}
+                      className="p-2 rounded-lg bg-orange-accent/15 hover:bg-orange-accent/25 text-orange-accent transition-colors flex items-center gap-1 text-xs font-bold"
+                      title="Open and register click in GA4"
+                    >
+                      <Zap className="w-3.5 h-3.5" />
+                      <span>Track</span>
+                    </button>
+                  </div>
                 </div>
                 {/* UTM Breakdown Chips */}
                 <div className="flex flex-wrap gap-1.5 mt-2 text-[11px] font-mono">

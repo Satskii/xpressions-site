@@ -53,7 +53,174 @@ const STORAGE_KEYS = {
   VISIT_LOG: 'xpressions_campaign_visits',
   EVENT_LOG: 'xpressions_analytics_events',
   EXPERIMENT: 'xpressions_ab_experiment',
+  LIVE_CLICKS: 'xpressions_live_campaign_clicks',
 };
+
+export interface LiveCampaignData {
+  clicks: number;
+  sessions: number;
+  lastClickAt: string;
+}
+
+export type LiveCampaignMap = Record<string, LiveCampaignData>;
+
+/**
+ * Determine campaign canonical ID from UTM parameters
+ */
+export function getCampaignIdFromUtm(source?: string, content?: string, medium?: string): string {
+  const s = (source || '').toLowerCase().trim();
+  const c = (content || '').toLowerCase().trim();
+  const m = (medium || '').toLowerCase().trim();
+
+  if (s === 'whatsapp' || c.includes('creative_1') || c.includes('business')) {
+    return 'campaign-a';
+  }
+  if (s === 'instagram' || c.includes('creative_2') || c.includes('pronite')) {
+    return 'campaign-b';
+  }
+  if (s === 'campus_poster' || m === 'qr_scan' || c.includes('creative_3') || c.includes('passes')) {
+    return 'campaign-c';
+  }
+  return s || 'custom-campaign';
+}
+
+/**
+ * Retrieve all live campaign click and session counts from local persistence
+ */
+export function getLiveCampaignClicks(): LiveCampaignMap {
+  if (typeof window === 'undefined') return {};
+  try {
+    const raw = localStorage.getItem(STORAGE_KEYS.LIVE_CLICKS);
+    if (!raw) return {};
+    return JSON.parse(raw);
+  } catch (e) {
+    return {};
+  }
+}
+
+/**
+ * Increment and record a live campaign link click.
+ * Dispatches to GA4 (gtag + dataLayer) and notifies all live UI components.
+ */
+export function recordLiveCampaignClick(
+  source: string,
+  medium: string = 'referral',
+  campaign: string = 'xpressions_2027',
+  content: string = 'none'
+): { campaignId: string; clicks: number } {
+  const campaignId = getCampaignIdFromUtm(source, content, medium);
+  let liveMap: LiveCampaignMap = {};
+
+  if (typeof window !== 'undefined') {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEYS.LIVE_CLICKS);
+      if (raw) liveMap = JSON.parse(raw);
+    } catch (e) {
+      // ignore
+    }
+
+    const current: LiveCampaignData = liveMap[campaignId] || { clicks: 0, sessions: 0, lastClickAt: '' };
+    current.clicks += 1;
+    current.lastClickAt = new Date().toISOString();
+    liveMap[campaignId] = current;
+
+    try {
+      localStorage.setItem(STORAGE_KEYS.LIVE_CLICKS, JSON.stringify(liveMap));
+    } catch (e) {
+      // ignore
+    }
+
+    // Broadcast update event so React components instantly reflect the incremented click
+    window.dispatchEvent(
+      new CustomEvent('xpressions_campaign_click_updated', {
+        detail: {
+          campaignId,
+          clicks: current.clicks,
+          sessions: current.sessions,
+          source,
+          medium,
+          campaign,
+          content,
+          timestamp: current.lastClickAt,
+        },
+      })
+    );
+  }
+
+  // Dispatch live click telemetry to Google Analytics 4 & Tag Manager
+  trackGaEvent('campaign_link_click', {
+    campaign_id: campaignId,
+    campaign_source: source,
+    campaign_medium: medium,
+    campaign_name: campaign,
+    campaign_content: content,
+    live_click_number: liveMap[campaignId]?.clicks || 1,
+    click_timestamp: new Date().toISOString(),
+  });
+
+  return { campaignId, clicks: liveMap[campaignId]?.clicks || 1 };
+}
+
+/**
+ * Increment and record a live incoming campaign session
+ */
+export function recordLiveCampaignSession(
+  source: string,
+  medium: string = 'referral',
+  campaign: string = 'xpressions_2027',
+  content: string = 'none'
+): number {
+  const campaignId = getCampaignIdFromUtm(source, content, medium);
+  let liveMap: LiveCampaignMap = {};
+
+  if (typeof window !== 'undefined') {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEYS.LIVE_CLICKS);
+      if (raw) liveMap = JSON.parse(raw);
+    } catch (e) {
+      // ignore
+    }
+
+    const current: LiveCampaignData = liveMap[campaignId] || { clicks: 0, sessions: 0, lastClickAt: '' };
+    current.sessions += 1;
+    liveMap[campaignId] = current;
+
+    try {
+      localStorage.setItem(STORAGE_KEYS.LIVE_CLICKS, JSON.stringify(liveMap));
+    } catch (e) {
+      // ignore
+    }
+
+    window.dispatchEvent(
+      new CustomEvent('xpressions_campaign_click_updated', {
+        detail: {
+          campaignId,
+          clicks: current.clicks,
+          sessions: current.sessions,
+          source,
+          medium,
+          campaign,
+          content,
+        },
+      })
+    );
+  }
+
+  return liveMap[campaignId]?.sessions || 1;
+}
+
+/**
+ * Reset live click telemetry counters (useful for testing or clearing staging data)
+ */
+export function resetLiveCampaignMetrics(): void {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.removeItem(STORAGE_KEYS.LIVE_CLICKS);
+    window.dispatchEvent(new CustomEvent('xpressions_campaign_click_updated', { detail: { reset: true } }));
+  } catch (e) {
+    // ignore
+  }
+}
 
 /**
  * Extract UTM query parameters from a URL or query string
@@ -139,12 +306,17 @@ export function getActiveCampaign(): ActiveCampaignInfo {
 }
 
 /**
- * Record a visit with UTM tracking without wiping active campaign during internal SPA navigation
+ * Record a visit with UTM tracking without wiping active campaign during internal SPA navigation.
+ * Every time an incoming campaign link is clicked/visited, adds to analytics & GA4 telemetry.
  */
-export function recordCampaignVisit(path: string = typeof window !== 'undefined' ? window.location.pathname : '/'): CampaignVisit | null {
+export function recordCampaignVisit(
+  path: string = typeof window !== 'undefined' ? window.location.pathname : '/',
+  search?: string
+): CampaignVisit | null {
   if (typeof window === 'undefined') return null;
 
-  const utm = extractUtmParams();
+  const searchQuery = search !== undefined ? search : (typeof window !== 'undefined' ? window.location.search : '');
+  const utm = extractUtmParams(searchQuery);
   const hasIncomingUtm = Boolean(utm.source || utm.medium || utm.campaign || utm.content);
 
   let activeSource = utm.source;
@@ -167,6 +339,22 @@ export function recordCampaignVisit(path: string = typeof window !== 'undefined'
     } catch (e) {
       // ignore
     }
+
+    // Every single click/visit on the campaign link increments live analytics and dispatches to GA4!
+    const liveClickResult = recordLiveCampaignClick(
+      activeSource || 'direct',
+      activeMedium || 'referral',
+      activeCampaign || 'xpressions_2027',
+      activeContent || 'none'
+    );
+    recordLiveCampaignSession(
+      activeSource || 'direct',
+      activeMedium || 'referral',
+      activeCampaign || 'xpressions_2027',
+      activeContent || 'none'
+    );
+
+    console.log(`[Analytics] +1 Campaign Click & Visit registered for ${liveClickResult.campaignId} (Total: ${liveClickResult.clicks})`);
   } else {
     // Internal navigation or direct entry: check if session already has attribution
     const existing = getActiveCampaign();

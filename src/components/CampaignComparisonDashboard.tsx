@@ -6,6 +6,12 @@ import {
   CAMPAIGN_INFO,
 } from '../data/campaignData';
 import {
+  getLiveCampaignClicks,
+  recordLiveCampaignClick,
+  resetLiveCampaignMetrics,
+  trackGaEvent,
+} from '../utils/analytics';
+import {
   BarChart3,
   TrendingUp,
   Target,
@@ -30,6 +36,8 @@ import {
   Info,
   CheckCircle2,
   AlertTriangle,
+  Zap,
+  RotateCcw,
 } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 import { SpotlightCard } from './SpotlightCard';
@@ -38,6 +46,9 @@ export const CampaignComparisonDashboard: React.FC = () => {
   const [selectedPhase, setSelectedPhase] = useState<'all' | 'phase1' | 'phase2' | 'phase3'>('all');
   const [qrCodeUrls, setQrCodeUrls] = useState<Record<string, string>>({});
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [liveMetrics, setLiveMetrics] = useState(getLiveCampaignClicks());
+  const [justClickedId, setJustClickedId] = useState<string | null>(null);
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   // Custom link generator drawer state
   const [customSource, setCustomSource] = useState('telegram');
@@ -64,6 +75,20 @@ export const CampaignComparisonDashboard: React.FC = () => {
     if (customContent) url.searchParams.set('utm_content', customContent.trim().toLowerCase());
     return url.toString();
   };
+
+  // Sync live click & visit metrics dynamically
+  useEffect(() => {
+    setLiveMetrics(getLiveCampaignClicks());
+
+    const handleUpdate = () => {
+      setLiveMetrics({ ...getLiveCampaignClicks() });
+    };
+
+    window.addEventListener('xpressions_campaign_click_updated', handleUpdate);
+    return () => {
+      window.removeEventListener('xpressions_campaign_click_updated', handleUpdate);
+    };
+  }, []);
 
   // Generate QR codes on mount
   useEffect(() => {
@@ -100,10 +125,41 @@ export const CampaignComparisonDashboard: React.FC = () => {
       .catch((err) => console.error('Failed custom QR generation', err));
   }, [customSource, customMedium, customCampaign, customContent, customDestination, origin]);
 
-  const handleCopyLink = (url: string, id: string) => {
+  const handleCopyLink = (url: string, id: string, camp?: CampaignComparisonRecord) => {
     navigator.clipboard.writeText(url);
     setCopiedId(id);
+    if (camp) {
+      trackGaEvent('campaign_link_copy', {
+        campaign_id: camp.id,
+        campaign_name: camp.name,
+        utm_source: camp.utmSource,
+        utm_medium: camp.utmMedium,
+      });
+    }
     setTimeout(() => setCopiedId(null), 2500);
+  };
+
+  // Live click recorder: adds to local tally AND dispatches to GA4/GTM dataLayer
+  const handleTrackCampaignClick = (camp: CampaignComparisonRecord, openInNewTab = false) => {
+    const res = recordLiveCampaignClick(camp.utmSource, camp.utmMedium, camp.utmCampaign, camp.utmContent);
+    setJustClickedId(camp.id);
+    setTimeout(() => setJustClickedId(null), 1200);
+
+    const totalClicksNow = camp.adLinkClicks + res.clicks;
+    setToastMessage(`⚡ +1 Click added to ${camp.name}! (${totalClicksNow.toLocaleString()} total clicks recorded in GA4 & Analytics)`);
+    setTimeout(() => setToastMessage(null), 4000);
+
+    if (openInNewTab) {
+      window.open(getCampaignUrl(camp), '_blank', 'noopener,noreferrer');
+    }
+  };
+
+  const handleResetClicks = () => {
+    if (window.confirm('Reset locally recorded test clicks to base figures?')) {
+      resetLiveCampaignMetrics();
+      setToastMessage('Live test click counters reset to baseline.');
+      setTimeout(() => setToastMessage(null), 3000);
+    }
   };
 
   const handleDownloadQr = (dataUrl: string, filename: string) => {
@@ -115,7 +171,7 @@ export const CampaignComparisonDashboard: React.FC = () => {
     document.body.removeChild(a);
   };
 
-  // CSV Export for multi-campaign dataset
+  // CSV Export for multi-campaign dataset (incorporating live click & session data)
   const handleExportCsv = () => {
     const headers = [
       'Campaign Code',
@@ -128,10 +184,10 @@ export const CampaignComparisonDashboard: React.FC = () => {
       'UTM Content',
       'Destination URL',
       'Ad Impressions',
-      'Ad Link Clicks',
+      'Ad Link Clicks (Base + Live)',
       'External Ad CTR (%)',
       'External Data Source',
-      'GA4 Sessions',
+      'GA4 Sessions (Base + Live)',
       'Total Users',
       'Engaged Sessions',
       'Engagement Rate (%)',
@@ -146,10 +202,11 @@ export const CampaignComparisonDashboard: React.FC = () => {
 
     const rows = MULTI_CAMPAIGN_DATA.map((c) => {
       const activePhaseData = c.phases[selectedPhase];
-      const sessions = activePhaseData.sessions;
+      const live = liveMetrics[c.id] || { clicks: 0, sessions: 0 };
+      const sessions = activePhaseData.sessions + live.sessions;
       const registrations = activePhaseData.registrations;
       const impressions = activePhaseData.impressions;
-      const linkClicks = activePhaseData.linkClicks;
+      const linkClicks = activePhaseData.linkClicks + live.clicks;
       const ctr = impressions > 0 ? ((linkClicks / impressions) * 100).toFixed(2) : '0.00';
       const convRate = sessions > 0 ? ((registrations / sessions) * 100).toFixed(2) : '0.00';
 
@@ -194,11 +251,22 @@ export const CampaignComparisonDashboard: React.FC = () => {
   };
 
   // Find max sessions for relative bar scaling
-  const maxSessions = Math.max(...MULTI_CAMPAIGN_DATA.map((c) => c.phases[selectedPhase].sessions));
-  const maxRegistrations = Math.max(...MULTI_CAMPAIGN_DATA.map((c) => c.phases[selectedPhase].registrations));
+  const maxSessions = Math.max(
+    ...MULTI_CAMPAIGN_DATA.map((c) => c.phases[selectedPhase].sessions + (liveMetrics[c.id]?.sessions || 0))
+  );
+  const maxRegistrations = Math.max(
+    ...MULTI_CAMPAIGN_DATA.map((c) => c.phases[selectedPhase].registrations)
+  );
+
+  const totalAllClicks = MULTI_CAMPAIGN_DATA.reduce(
+    (acc, c) => acc + c.adLinkClicks + (liveMetrics[c.id]?.clicks || 0),
+    0
+  );
+
+  const totalLiveClicksRecorded = Object.values(liveMetrics).reduce((acc, m) => acc + (m.clicks || 0), 0);
 
   return (
-    <div className="space-y-12 py-6">
+    <div className="space-y-12 py-6 relative">
       
       {/* Top Banner Notice */}
       <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-plum-900 via-plum-850 to-plum-950 border-2 border-orange-accent/40 shadow-xl text-white relative overflow-hidden">
@@ -214,7 +282,7 @@ export const CampaignComparisonDashboard: React.FC = () => {
               Multi-Campaign Performance &amp; Attribution Hub
             </h2>
             <p className="text-xs sm:text-sm text-lilac/90 leading-relaxed">
-              Evaluating <strong>Campaign A (WhatsApp)</strong>, <strong>Campaign B (Instagram)</strong>, and <strong>Campaign C (Campus QR)</strong> directing traffic to <strong>ONE common microsite destination</strong>. Auditable telemetry comparing top-of-funnel Ad CTR with post-landing GA4 conversion efficiency.
+              Evaluating <strong>Campaign A (WhatsApp)</strong>, <strong>Campaign B (Instagram)</strong>, and <strong>Campaign C (Campus QR)</strong> directing traffic to <strong>ONE common microsite destination</strong>. Every incoming click and visit dynamically adds up into analytics and fires to GA4.
             </p>
           </div>
 
@@ -230,11 +298,27 @@ export const CampaignComparisonDashboard: React.FC = () => {
         </div>
 
         <div className="mt-5 pt-4 border-t border-plum-700/80 flex flex-wrap items-center justify-between gap-3 text-xs text-lilac/80 font-mono">
-          <span>Destination: <strong>{origin}/</strong> (Unified Landing Page)</span>
-          <span>GA4 / GTM Container: <strong className="text-orange-accent">GTM-WNSWR927</strong></span>
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping inline-block" />
+            <span className="text-emerald-300 font-bold">Live Telemetry Active:</span>
+            <span><strong>{totalAllClicks.toLocaleString()}</strong> Total Ad Clicks Tracked {totalLiveClicksRecorded > 0 && <span className="text-emerald-400 font-bold">(+{totalLiveClicksRecorded} live)</span>}</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <span>Destination: <strong>{origin}/</strong></span>
+            <span>GA4 / GTM: <strong className="text-orange-accent">GTM-WNSWR927</strong></span>
+            {totalLiveClicksRecorded > 0 && (
+              <button
+                onClick={handleResetClicks}
+                className="px-2 py-0.5 rounded-md bg-plum-800 hover:bg-plum-750 text-[11px] text-lilac hover:text-white flex items-center gap-1 border border-plum-700"
+                title="Reset live test clicks"
+              >
+                <RotateCcw className="w-3 h-3" />
+                <span>Reset Live</span>
+              </button>
+            )}
+          </div>
         </div>
       </div>
-
       {/* ===================================================================== */}
       {/* SECTION 1: THE THREE CAMPAIGN TRACKING URLS & QR CODES */}
       {/* ===================================================================== */}
@@ -246,7 +330,7 @@ export const CampaignComparisonDashboard: React.FC = () => {
               <span>Three Campaign-Specific Tracking URLs &amp; QR Codes</span>
             </h3>
             <p className="text-xs text-plum-600 dark:text-lilac/70 mt-0.5">
-              Unique UTM attribution configurations routing into the same landing page.
+              Unique UTM attribution configurations routing into the same landing page. Every click increments analytics &amp; GA4 in real-time.
             </p>
           </div>
           <span className="text-xs font-mono text-plum-500 bg-plum-100 dark:bg-plum-850 px-3 py-1 rounded-full self-start sm:self-auto">
@@ -258,6 +342,10 @@ export const CampaignComparisonDashboard: React.FC = () => {
           {MULTI_CAMPAIGN_DATA.map((camp) => {
             const url = getCampaignUrl(camp);
             const qrUrl = qrCodeUrls[camp.id];
+            const live = liveMetrics[camp.id] || { clicks: 0, sessions: 0 };
+            const totalClicks = camp.adLinkClicks + live.clicks;
+            const activePhaseData = camp.phases[selectedPhase];
+            const liveCtr = camp.adImpressions > 0 ? ((totalClicks / camp.adImpressions) * 100).toFixed(2) : '0.00';
 
             return (
               <SpotlightCard
@@ -284,6 +372,33 @@ export const CampaignComparisonDashboard: React.FC = () => {
                     <p className="text-xs text-plum-600 dark:text-lilac/80 mt-0.5 line-clamp-2">
                       {camp.channel}
                     </p>
+                  </div>
+
+                  {/* Live Dynamic Click Tracker Box */}
+                  <div className="p-3.5 rounded-2xl bg-gradient-to-r from-orange-accent/10 via-pink-500/10 to-emerald-500/10 border border-orange-accent/30 flex items-center justify-between">
+                    <div>
+                      <span className="text-[10px] uppercase font-bold text-plum-600 dark:text-lilac/80 block">Ad Link Clicks (All Time)</span>
+                      <div className="flex items-center gap-1.5 mt-0.5">
+                        <span className="font-poppins font-black text-xl text-plum-950 dark:text-white">
+                          {totalClicks.toLocaleString()}
+                        </span>
+                        {live.clicks > 0 ? (
+                          <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-emerald-500 text-white animate-pulse">
+                            +{live.clicks} live
+                          </span>
+                        ) : (
+                          <span className="text-[10px] font-mono text-plum-500 dark:text-lilac/70">
+                            ready
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-[10px] uppercase font-bold text-plum-600 dark:text-lilac/80 block">Ad CTR</span>
+                      <span className="font-poppins font-black text-base text-orange-accent">
+                        {liveCtr}%
+                      </span>
+                    </div>
                   </div>
 
                   {/* UTM Parameter Pills */}
@@ -320,19 +435,32 @@ export const CampaignComparisonDashboard: React.FC = () => {
                       </div>
                     )}
                     <span className="text-[10px] font-mono text-plum-500 block mt-1">
-                      Scan to test attribution
+                      Scan with phone camera to test attribution &amp; clicks
                     </span>
                   </div>
                 </div>
 
                 {/* Actions */}
                 <div className="space-y-2 pt-2 border-t border-plum-100 dark:border-plum-800">
+                  {/* Instant Click Tracker Button */}
+                  <button
+                    onClick={() => handleTrackCampaignClick(camp, false)}
+                    className={`w-full py-2.5 px-4 rounded-xl font-poppins font-bold text-xs flex items-center justify-center gap-2 shadow-md transition-all active:scale-95 ${
+                      justClickedId === camp.id
+                        ? 'bg-emerald-600 text-white scale-102 ring-2 ring-emerald-400'
+                        : 'bg-gradient-to-r from-orange-accent to-pink-500 hover:from-orange-hover hover:to-pink-600 text-white'
+                    }`}
+                  >
+                    <Zap className="w-4 h-4" />
+                    <span>{justClickedId === camp.id ? '✓ Click Registered in GA4 & Analytics!' : '⚡ Click & Track Link (+1 Analytics)'}</span>
+                  </button>
+
                   <div className="p-2 rounded-xl bg-plum-50 dark:bg-plum-950 border border-plum-200 dark:border-plum-800 flex items-center justify-between gap-1 text-[11px] font-mono text-plum-600 dark:text-lilac/70 truncate">
                     <span className="truncate">{url}</span>
                     <button
-                      onClick={() => handleCopyLink(url, camp.id)}
+                      onClick={() => handleCopyLink(url, camp.id, camp)}
                       className="p-1.5 rounded-lg bg-orange-accent hover:bg-orange-hover text-plum-950 shrink-0 font-bold"
-                      title="Copy URL"
+                      title="Copy URL and track click"
                     >
                       {copiedId === camp.id ? <Check className="w-3.5 h-3.5 text-plum-950" /> : <Copy className="w-3.5 h-3.5" />}
                     </button>
@@ -347,15 +475,13 @@ export const CampaignComparisonDashboard: React.FC = () => {
                       <span>Download PNG</span>
                     </button>
 
-                    <a
-                      href={url}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <button
+                      onClick={() => handleTrackCampaignClick(camp, true)}
                       className="py-2 px-3 rounded-xl bg-orange-accent/15 hover:bg-orange-accent/25 text-orange-accent font-poppins font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors border border-orange-accent/30"
                     >
-                      <span>Test Route</span>
+                      <span>Open &amp; Track</span>
                       <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
+                    </button>
                   </div>
                 </div>
               </SpotlightCard>
@@ -523,10 +649,11 @@ export const CampaignComparisonDashboard: React.FC = () => {
             <tbody className="divide-y divide-plum-100 dark:divide-plum-850">
               {MULTI_CAMPAIGN_DATA.map((camp) => {
                 const phaseData = camp.phases[selectedPhase];
-                const sessions = phaseData.sessions;
+                const live = liveMetrics[camp.id] || { clicks: 0, sessions: 0 };
+                const linkClicks = phaseData.linkClicks + live.clicks;
+                const sessions = phaseData.sessions + live.sessions;
                 const registrations = phaseData.registrations;
                 const impressions = phaseData.impressions;
-                const linkClicks = phaseData.linkClicks;
                 const ctr = impressions > 0 ? ((linkClicks / impressions) * 100).toFixed(2) : '0.00';
                 const convRate = sessions > 0 ? ((registrations / sessions) * 100).toFixed(2) : '0.00';
 
@@ -549,7 +676,12 @@ export const CampaignComparisonDashboard: React.FC = () => {
                       {impressions.toLocaleString()}
                     </td>
                     <td className="py-3.5 px-3 text-center font-mono font-medium">
-                      {linkClicks.toLocaleString()}
+                      <span>{linkClicks.toLocaleString()}</span>
+                      {live.clicks > 0 && (
+                        <span className="block text-[10px] text-emerald-500 font-bold font-mono">
+                          (+{live.clicks} live)
+                        </span>
+                      )}
                     </td>
                     <td className="py-3.5 px-3 text-center font-mono font-bold text-orange-accent">
                       {ctr}%
@@ -557,7 +689,12 @@ export const CampaignComparisonDashboard: React.FC = () => {
 
                     {/* GA4 Website Metrics */}
                     <td className="py-3.5 px-3 text-center font-mono font-bold text-plum-950 dark:text-white bg-plum-50 dark:bg-plum-850">
-                      {sessions}
+                      <span>{sessions.toLocaleString()}</span>
+                      {live.sessions > 0 && (
+                        <span className="block text-[10px] text-emerald-500 font-bold font-mono">
+                          (+{live.sessions} live)
+                        </span>
+                      )}
                     </td>
                     <td className="py-3.5 px-3 text-center font-mono text-plum-700 dark:text-lilac">
                       {camp.totalUsers}
@@ -623,19 +760,24 @@ export const CampaignComparisonDashboard: React.FC = () => {
           <SpotlightCard className="p-6 rounded-3xl bg-white dark:bg-plum-900/80 border border-plum-200 dark:border-plum-800 shadow-sm space-y-4">
             <div className="flex items-center justify-between">
               <span className="font-bold text-sm text-plum-950 dark:text-white">GA4 Sessions (Traffic Volume)</span>
-              <span className="text-xs font-mono text-plum-500">Total: {MULTI_CAMPAIGN_DATA.reduce((acc, c) => acc + c.phases[selectedPhase].sessions, 0)} sessions</span>
+              <span className="text-xs font-mono text-plum-500">
+                Total: {MULTI_CAMPAIGN_DATA.reduce((acc, c) => acc + c.phases[selectedPhase].sessions + (liveMetrics[c.id]?.sessions || 0), 0)} sessions
+              </span>
             </div>
 
             <div className="space-y-3 pt-2">
               {MULTI_CAMPAIGN_DATA.map((camp) => {
-                const s = camp.phases[selectedPhase].sessions;
+                const live = liveMetrics[camp.id] || { clicks: 0, sessions: 0 };
+                const s = camp.phases[selectedPhase].sessions + live.sessions;
                 const pct = maxSessions > 0 ? (s / maxSessions) * 100 : 0;
 
                 return (
                   <div key={camp.id} className="space-y-1">
                     <div className="flex justify-between text-xs">
                       <span className="font-medium text-plum-950 dark:text-white">{camp.code} ({camp.name})</span>
-                      <strong className="font-mono text-plum-950 dark:text-white">{s} sessions</strong>
+                      <strong className="font-mono text-plum-950 dark:text-white">
+                        {s} sessions {live.sessions > 0 && <span className="text-emerald-500 text-[10px] font-bold">(+{live.sessions} live)</span>}
+                      </strong>
                     </div>
                     <div className="w-full h-3 rounded-full bg-plum-100 dark:bg-plum-950 overflow-hidden">
                       <div
@@ -648,7 +790,7 @@ export const CampaignComparisonDashboard: React.FC = () => {
               })}
             </div>
             <p className="text-[11px] text-plum-500 dark:text-lilac/70 pt-2 border-t border-plum-100 dark:border-plum-800">
-              *Campaign B (Instagram) generated the largest gross influx with 645 total sessions.
+              *Campaign B (Instagram) generated the largest gross influx with 645 base sessions.
             </p>
           </SpotlightCard>
 
@@ -695,13 +837,17 @@ export const CampaignComparisonDashboard: React.FC = () => {
             <div className="space-y-3 pt-2">
               {MULTI_CAMPAIGN_DATA.map((camp) => {
                 const phaseData = camp.phases[selectedPhase];
-                const ctr = phaseData.impressions > 0 ? ((phaseData.linkClicks / phaseData.impressions) * 100).toFixed(2) : '0';
+                const live = liveMetrics[camp.id] || { clicks: 0, sessions: 0 };
+                const clicks = phaseData.linkClicks + live.clicks;
+                const ctr = phaseData.impressions > 0 ? ((clicks / phaseData.impressions) * 100).toFixed(2) : '0';
 
                 return (
                   <div key={camp.id} className="space-y-1">
                     <div className="flex justify-between text-xs">
                       <span className="font-medium text-plum-950 dark:text-white">{camp.code} ({camp.name})</span>
-                      <strong className="font-mono text-orange-accent">{ctr}% CTR</strong>
+                      <strong className="font-mono text-orange-accent">
+                        {ctr}% CTR {live.clicks > 0 && <span className="text-emerald-500 text-[10px]">({clicks.toLocaleString()} clicks)</span>}
+                      </strong>
                     </div>
                     <div className="w-full h-3 rounded-full bg-plum-100 dark:bg-plum-950 overflow-hidden">
                       <div
@@ -714,7 +860,7 @@ export const CampaignComparisonDashboard: React.FC = () => {
               })}
             </div>
             <p className="text-[11px] text-plum-500 dark:text-lilac/70 pt-2 border-t border-plum-100 dark:border-plum-800">
-              *Campaign A achieved the highest click-through rate (22.0%), reflecting targeted peer group trust.
+              *Campaign A achieved the highest click-through rate, reflecting targeted peer group trust.
             </p>
           </SpotlightCard>
 
@@ -728,7 +874,9 @@ export const CampaignComparisonDashboard: React.FC = () => {
             <div className="space-y-3 pt-2">
               {MULTI_CAMPAIGN_DATA.map((camp) => {
                 const phaseData = camp.phases[selectedPhase];
-                const conv = phaseData.sessions > 0 ? ((phaseData.registrations / phaseData.sessions) * 100).toFixed(2) : '0';
+                const live = liveMetrics[camp.id] || { clicks: 0, sessions: 0 };
+                const totalSessions = phaseData.sessions + live.sessions;
+                const conv = totalSessions > 0 ? ((phaseData.registrations / totalSessions) * 100).toFixed(2) : '0';
 
                 return (
                   <div key={camp.id} className="space-y-1">
@@ -747,7 +895,7 @@ export const CampaignComparisonDashboard: React.FC = () => {
               })}
             </div>
             <p className="text-[11px] text-plum-500 dark:text-lilac/70 pt-2 border-t border-plum-100 dark:border-plum-800">
-              *Campaign B achieved a 16.12% website conversion rate; Campaign A achieved 14.72%.
+              *Campaign B achieved a 16.12% baseline website conversion rate; Campaign A achieved 14.72%.
             </p>
           </SpotlightCard>
 
@@ -909,6 +1057,23 @@ export const CampaignComparisonDashboard: React.FC = () => {
           <span>Security Protocol: Zero PII Exposed</span>
         </div>
       </section>
+
+      {/* Real-time Floating Toast Notification */}
+      {toastMessage && (
+        <div className="fixed bottom-6 right-6 z-50 p-4 rounded-2xl bg-plum-950 text-white border-2 border-emerald-500 shadow-2xl flex items-center gap-3 backdrop-blur-md max-w-md animate-in fade-in slide-in-from-bottom-4 duration-300">
+          <div className="p-2 rounded-xl bg-emerald-500/20 text-emerald-400 shrink-0">
+            <CheckCircle2 className="w-5 h-5" />
+          </div>
+          <div className="space-y-0.5">
+            <div className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider font-mono">
+              Analytics Telemetry Added
+            </div>
+            <div className="text-xs font-medium text-white leading-snug">
+              {toastMessage}
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import QRCode from 'qrcode';
-import { QrCode, Copy, Check, Download, ExternalLink, Link2, Sparkles } from 'lucide-react';
+import { recordLiveCampaignClick } from '../utils/analytics';
+import { QrCode, Copy, Check, Download, ExternalLink, Link2, Sparkles, Zap } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 import { SpotlightCard } from './SpotlightCard';
 
@@ -247,10 +248,12 @@ export const CampaignLinkGenerator: React.FC = () => {
                 href={generatedUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => recordLiveCampaignClick(activeSource, medium, campaign, content)}
                 className="w-full sm:w-auto py-2.5 px-4 rounded-xl border border-plum-300 dark:border-plum-700 text-plum-900 dark:text-lilac font-bold text-xs hover:border-orange-accent flex items-center justify-center gap-1.5 transition-colors"
-                title="Test attribution by opening this link in a new tab"
+                title="Test attribution by opening this link in a new tab and logging a click"
               >
-                <span>Test Attribution</span>
+                <Zap className="w-3.5 h-3.5 text-orange-accent" />
+                <span>Test &amp; Track</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
             </div>

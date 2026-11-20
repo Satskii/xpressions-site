@@ -35,7 +35,7 @@ export const AppContent: React.FC = () => {
 
   // Track pageviews & UTM campaign visits
   useEffect(() => {
-    recordCampaignVisit(location.pathname);
+    recordCampaignVisit(location.pathname, location.search);
     trackPageView(location.pathname);
   }, [location.pathname, location.search]);
 
