@@ -153,6 +153,11 @@ export function trackGaEvent(eventName: string, params: Record<string, any> = {}
     const existingEvents: AnalyticsEvent[] = getStoredEvents();
     existingEvents.unshift(eventRecord);
     localStorage.setItem(STORAGE_KEYS.EVENT_LOG, JSON.stringify(existingEvents.slice(0, 200)));
+
+    // Notify live DOM listeners for real-time telemetry display
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('xpressions_ga_event', { detail: eventRecord }));
+    }
   } catch (err) {
     // ignore
   }

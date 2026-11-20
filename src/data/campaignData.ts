@@ -654,3 +654,62 @@ export const OPTIMIZATION_INTERVENTION = {
     "Device Screen Variance: Optimization proved significantly more effective on iOS Safari and Chrome Android than on larger tablets.",
   ],
 };
+
+export interface Ga4EventSpecification {
+  userAction: string;
+  eventName: string;
+  purpose: string;
+  parameters: string;
+}
+
+export const GA4_EVENT_SPECIFICATION: Ga4EventSpecification[] = [
+  {
+    userAction: "Visits homepage",
+    eventName: "page_view",
+    purpose: "Traffic measurement",
+    parameters: "page_title, page_location, page_path",
+  },
+  {
+    userAction: "Views an event",
+    eventName: "view_event",
+    purpose: "Event interest",
+    parameters: "event_id, event_name, event_category, prize_pool",
+  },
+  {
+    userAction: "Clicks Register",
+    eventName: "register_cta_click",
+    purpose: "CTA performance",
+    parameters: "cta_location, cta_text, event_title, category",
+  },
+  {
+    userAction: "Opens registration modal",
+    eventName: "registration_modal_open",
+    purpose: "Registration intent",
+    parameters: "preselected_event, default_category",
+  },
+  {
+    userAction: "Starts entering details",
+    eventName: "registration_form_start",
+    purpose: "Form engagement",
+    parameters: "initial_field, preselected_event, category",
+  },
+  {
+    userAction: "Completes registration",
+    eventName: "sign_up",
+    purpose: "Successful conversion",
+    parameters: "method, event_of_interest, participation_category, college",
+  },
+  {
+    userAction: "Closes registration form",
+    eventName: "registration_form_abandon",
+    purpose: "Identify abandonment",
+    parameters: "has_started, filled_fields_count, preselected_event",
+  },
+  {
+    userAction: "Clicks external link",
+    eventName: "click",
+    purpose: "Outbound interaction",
+    parameters: "link_url, link_domain, link_text, outbound: true",
+  },
+];
+

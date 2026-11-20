@@ -4,6 +4,7 @@ import { FESTIVAL_EVENTS } from '../data/festivalData';
 import { EventItem, EventCategory } from '../types/festival';
 import { ScrollReveal } from './ScrollReveal';
 import { SpotlightCard } from './SpotlightCard';
+import { trackGaEvent } from '../utils/analytics';
 
 interface EventsDirectoryProps {
   selectedCategory: EventCategory | 'All';
@@ -213,7 +214,15 @@ export const EventsDirectory: React.FC<EventsDirectoryProps> = ({
 
                     <div className="mt-5 pt-3.5 border-t border-plum-100 dark:border-plum-800 flex items-center justify-between">
                       <button
-                        onClick={() => onOpenEventModal(event)}
+                        onClick={() => {
+                          trackGaEvent('view_event', {
+                            event_id: event.id,
+                            event_name: event.title,
+                            event_category: event.category,
+                            prizes: event.prizes?.amountOrDescription || 'TBA',
+                          });
+                          onOpenEventModal(event);
+                        }}
                         className="text-xs font-bold text-plum-800 dark:text-lilac hover:text-orange-accent dark:hover:text-orange-accent transition-colors flex items-center gap-1.5"
                       >
                         <span>View Details</span>
@@ -221,7 +230,13 @@ export const EventsDirectory: React.FC<EventsDirectoryProps> = ({
                       </button>
 
                       <button
-                        onClick={() => onRegisterInterestForEvent(event.title)}
+                        onClick={() => {
+                          trackGaEvent('register_cta_click', {
+                            cta_location: 'events_directory_card',
+                            event_title: event.title,
+                          });
+                          onRegisterInterestForEvent(event.title);
+                        }}
                         className="px-3 py-1 rounded-full bg-plum-50 dark:bg-plum-800/80 hover:bg-orange-accent dark:hover:bg-orange-accent hover:text-plum-950 dark:hover:text-plum-950 text-plum-800 dark:text-lilac text-[11px] font-bold border border-plum-200 dark:border-plum-700 transition-colors"
                       >
                         Express Interest

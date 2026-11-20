@@ -16,6 +16,7 @@ import {
 import { FESTIVAL_INFO } from '../data/festivalData';
 import { useGamification } from '../context/GamificationContext';
 import { ThemeSwitcher } from './ThemeSwitcher';
+import { trackGaEvent } from '../utils/analytics';
 
 interface NavbarProps {
   onOpenInterestModal: (preselectedEvent?: string) => void;
@@ -248,7 +249,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInterestModal }) => {
 
               {/* High-Impact Punchy CTA */}
               <button
-                onClick={() => onOpenInterestModal()}
+                onClick={() => {
+                  trackGaEvent('register_cta_click', { cta_location: 'navbar_desktop', cta_text: 'Register' });
+                  onOpenInterestModal();
+                }}
                 className="relative inline-flex items-center justify-center gap-1.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-orange-accent hover:bg-orange-hover text-plum-950 font-poppins font-bold text-xs sm:text-sm shadow-glow-orange hover:scale-105 active:scale-95 transition-all duration-200 focus:outline-none shrink-0"
               >
                 <Sparkles className="w-3.5 h-3.5" />
@@ -338,6 +342,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInterestModal }) => {
             <div className="pt-6 border-t border-plum-800 space-y-3">
               <button
                 onClick={() => {
+                  trackGaEvent('register_cta_click', { cta_location: 'navbar_mobile_drawer', cta_text: 'Register Interest' });
                   setMobileMenuOpen(false);
                   onOpenInterestModal();
                 }}

@@ -4,6 +4,7 @@ import {
   Mail, Share2, ArrowRight, ShieldCheck, HelpCircle 
 } from 'lucide-react';
 import { EventItem } from '../types/festival';
+import { trackGaEvent } from '../utils/analytics';
 
 interface EventDetailModalProps {
   event: EventItem | null;
@@ -25,6 +26,14 @@ export const EventDetailModal: React.FC<EventDetailModalProps> = ({
     if (event) {
       document.body.style.overflow = 'hidden';
       window.addEventListener('keydown', handleKeyDown);
+
+      // GA4: view_event
+      trackGaEvent('view_event', {
+        event_id: event.id,
+        event_name: event.title,
+        event_category: event.category,
+        prizes: event.prizes?.amountOrDescription || 'TBA',
+      });
     }
     return () => {
       document.body.style.overflow = 'unset';
@@ -255,6 +264,11 @@ export const EventDetailModal: React.FC<EventDetailModalProps> = ({
 
               <button
                 onClick={() => {
+                  trackGaEvent('register_cta_click', {
+                    cta_location: 'event_detail_modal',
+                    event_title: event.title,
+                    event_category: event.category,
+                  });
                   onClose();
                   onRegisterInterest(event.title);
                 }}

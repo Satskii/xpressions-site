@@ -7,6 +7,7 @@ import confetti from 'canvas-confetti';
 import { FESTIVAL_EVENTS } from '../data/festivalData';
 import { RegistrationInterestSubmission, EventCategory } from '../types/festival';
 import { useGamification } from '../context/GamificationContext';
+import { trackGaEvent } from '../utils/analytics';
 
 interface InterestFormProps {
   isOpen: boolean;
@@ -33,7 +34,45 @@ export const InterestForm: React.FC<InterestFormProps> = ({
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
   const [lastSubmission, setLastSubmission] = useState<RegistrationInterestSubmission | null>(null);
+
+  // GA4: registration_modal_open
+  useEffect(() => {
+    if (isOpen) {
+      setHasStarted(false);
+      setIsSubmitted(false);
+      trackGaEvent('registration_modal_open', {
+        preselected_event: preselectedEvent || 'none',
+        default_category: defaultCategory || 'none',
+      });
+    }
+  }, [isOpen]);
+
+  const handleStartTyping = (field: string) => {
+    if (!hasStarted) {
+      setHasStarted(true);
+      // GA4: registration_form_start
+      trackGaEvent('registration_form_start', {
+        initial_field: field,
+        preselected_event: eventOfInterest || preselectedEvent || 'none',
+        category,
+      });
+    }
+  };
+
+  const handleModalClose = () => {
+    if (!isSubmitted) {
+      // GA4: registration_form_abandon
+      trackGaEvent('registration_form_abandon', {
+        has_started: hasStarted,
+        preselected_event: eventOfInterest || preselectedEvent || 'none',
+        category,
+        filled_fields_count: [fullName, email, phone, college].filter(Boolean).length,
+      });
+    }
+    onClose();
+  };
 
   useEffect(() => {
     if (preselectedEvent) {
@@ -50,7 +89,7 @@ export const InterestForm: React.FC<InterestFormProps> = ({
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') handleModalClose();
     };
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -60,7 +99,7 @@ export const InterestForm: React.FC<InterestFormProps> = ({
       document.body.style.overflow = 'unset';
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, isSubmitted, hasStarted, eventOfInterest, preselectedEvent, category, fullName, email, phone, college]);
 
   if (!isOpen) return null;
 
@@ -123,6 +162,14 @@ export const InterestForm: React.FC<InterestFormProps> = ({
       setIsSubmitted(true);
       setLastSubmission(submission);
       awardXp('interest_submitted', 200, "Official Challenger Interest Recorded!");
+
+      // GA4: sign_up (successful registration conversion)
+      trackGaEvent('sign_up', {
+        method: 'interest_form',
+        event_of_interest: submission.eventOfInterest,
+        participation_category: submission.participationCategory,
+        college: submission.college,
+      });
 
       // Trigger celebration confetti
       try {
@@ -187,7 +234,7 @@ export const InterestForm: React.FC<InterestFormProps> = ({
       {/* Backdrop */}
       <div
         className="fixed inset-0 bg-plum-950/85 backdrop-blur-md transition-opacity"
-        onClick={onClose}
+        onClick={handleModalClose}
       />
 
       <div className="min-h-screen px-3 sm:px-4 py-4 sm:py-8 flex items-center justify-center">
@@ -214,7 +261,7 @@ export const InterestForm: React.FC<InterestFormProps> = ({
             </div>
 
             <button
-              onClick={onClose}
+              onClick={handleModalClose}
               className="p-1.5 rounded-lg text-lilac hover:text-white hover:bg-plum-800 transition-colors"
               aria-label="Close dialog"
             >
@@ -306,7 +353,11 @@ export const InterestForm: React.FC<InterestFormProps> = ({
                   <input
                     type="text"
                     value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
+                    onFocus={() => handleStartTyping('fullName')}
+                    onChange={(e) => {
+                      handleStartTyping('fullName');
+                      setFullName(e.target.value);
+                    }}
                     placeholder="e.g. Rahul Sharma"
                     className={`w-full px-4 py-2.5 rounded-xl border text-xs sm:text-sm focus:outline-none focus:ring-2 transition-colors ${errors.fullName
                         ? 'border-rose-400 bg-rose-50 dark:bg-rose-950/30 text-rose-900 dark:text-rose-200 focus:ring-rose-400'
@@ -326,7 +377,11 @@ export const InterestForm: React.FC<InterestFormProps> = ({
                   <input
                     type="email"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onFocus={() => handleStartTyping('email')}
+                    onChange={(e) => {
+                      handleStartTyping('email');
+                      setEmail(e.target.value);
+                    }}
                     placeholder="e.g. rahul@university.edu"
                     className={`w-full px-4 py-2.5 rounded-xl border text-xs sm:text-sm focus:outline-none focus:ring-2 transition-colors ${errors.email
                         ? 'border-rose-400 bg-rose-50 dark:bg-rose-950/30 text-rose-900 dark:text-rose-200 focus:ring-rose-400'
@@ -346,7 +401,11 @@ export const InterestForm: React.FC<InterestFormProps> = ({
                   <input
                     type="tel"
                     value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
+                    onFocus={() => handleStartTyping('phone')}
+                    onChange={(e) => {
+                      handleStartTyping('phone');
+                      setPhone(e.target.value);
+                    }}
                     placeholder="e.g. 9876543210"
                     className={`w-full px-4 py-2.5 rounded-xl border text-xs sm:text-sm focus:outline-none focus:ring-2 transition-colors ${errors.phone
                         ? 'border-rose-400 bg-rose-50 dark:bg-rose-950/30 text-rose-900 dark:text-rose-200 focus:ring-rose-400'
@@ -366,7 +425,11 @@ export const InterestForm: React.FC<InterestFormProps> = ({
                   <input
                     type="text"
                     value={college}
-                    onChange={(e) => setCollege(e.target.value)}
+                    onFocus={() => handleStartTyping('college')}
+                    onChange={(e) => {
+                      handleStartTyping('college');
+                      setCollege(e.target.value);
+                    }}
                     placeholder="e.g. XIMB, IIM, XLRI, IIT..."
                     className={`w-full px-4 py-2.5 rounded-xl border text-xs sm:text-sm focus:outline-none focus:ring-2 transition-colors ${errors.college
                         ? 'border-rose-400 bg-rose-50 dark:bg-rose-950/30 text-rose-900 dark:text-rose-200 focus:ring-rose-400'
@@ -390,6 +453,7 @@ export const InterestForm: React.FC<InterestFormProps> = ({
                       type="button"
                       key={cat}
                       onClick={() => {
+                        handleStartTyping('category');
                         setCategory(cat);
                         setEventOfInterest('');
                       }}
@@ -419,7 +483,11 @@ export const InterestForm: React.FC<InterestFormProps> = ({
                 ) : (
                   <select
                     value={eventOfInterest}
-                    onChange={(e) => setEventOfInterest(e.target.value)}
+                    onFocus={() => handleStartTyping('event')}
+                    onChange={(e) => {
+                      handleStartTyping('event');
+                      setEventOfInterest(e.target.value);
+                    }}
                     className="w-full px-4 py-2.5 rounded-xl border border-plum-200 dark:border-plum-800 text-plum-950 dark:text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-plum-800 dark:focus:ring-orange-accent bg-white dark:bg-plum-900/60"
                   >
                     <option value="" className="dark:bg-plum-900 dark:text-white">-- Select Event (or leave blank for all {category} events) --</option>

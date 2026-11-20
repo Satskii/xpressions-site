@@ -8,7 +8,7 @@ import { ScrollProgressBar } from './components/ScrollProgressBar';
 import { GamificationProvider, useGamification } from './context/GamificationContext';
 import { ThemeProvider } from './context/ThemeContext';
 import { ExperimentProvider } from './context/ExperimentContext';
-import { recordCampaignVisit, trackPageView } from './utils/analytics';
+import { recordCampaignVisit, trackPageView, trackGaEvent } from './utils/analytics';
 
 import { HomePage } from './pages/HomePage';
 import { EventsPage } from './pages/EventsPage';
@@ -39,6 +39,47 @@ export const AppContent: React.FC = () => {
     trackPageView(location.pathname);
   }, [location.pathname, location.search]);
 
+  // Track Outbound External Link Clicks (GA4 event: 'click')
+  useEffect(() => {
+    const handleGlobalClick = (e: MouseEvent) => {
+      const target = (e.target as HTMLElement)?.closest('a');
+      if (!target) return;
+      const href = target.getAttribute('href');
+      if (!href) return;
+
+      const isExternal =
+        href.startsWith('http://') ||
+        href.startsWith('https://') ||
+        href.startsWith('mailto:') ||
+        href.startsWith('tel:');
+
+      if (isExternal) {
+        try {
+          const url = new URL(href, window.location.href);
+          if (url.hostname !== window.location.hostname) {
+            trackGaEvent('click', {
+              link_url: href,
+              link_domain: url.hostname,
+              link_text: (target.textContent || '').trim().slice(0, 100),
+              outbound: true,
+            });
+          }
+        } catch {
+          trackGaEvent('click', {
+            link_url: href,
+            link_text: (target.textContent || '').trim().slice(0, 100),
+            outbound: true,
+          });
+        }
+      }
+    };
+
+    document.addEventListener('click', handleGlobalClick, { capture: true });
+    return () => {
+      document.removeEventListener('click', handleGlobalClick, { capture: true });
+    };
+  }, []);
+
   // Modals state
   const [selectedEventModal, setSelectedEventModal] = useState<EventItem | null>(null);
   const [interestModalOpen, setInterestModalOpen] = useState(false);
@@ -59,9 +100,23 @@ export const AppContent: React.FC = () => {
   const handleOpenEventModal = (event: EventItem) => {
     setSelectedEventModal(event);
     awardXp('rulebook_scout', 75, 'Inspected Event Rulebook!');
+    // GA4: view_event
+    trackGaEvent('view_event', {
+      event_id: event.id,
+      event_name: event.title,
+      event_category: event.category,
+      prizes: event.prizes?.amountOrDescription || 'TBA',
+      participation_type: event.participationType,
+    });
   };
 
-  const handleOpenInterestModal = (preselectedEvent?: string, defaultCat?: string) => {
+  const handleOpenInterestModal = (preselectedEvent?: string, defaultCat?: string, sourceLocation?: string) => {
+    // GA4: register_cta_click
+    trackGaEvent('register_cta_click', {
+      cta_location: sourceLocation || (preselectedEvent ? 'event_card' : 'general_cta'),
+      event_title: preselectedEvent || 'all',
+      category: defaultCat || 'all',
+    });
     setPreselectedEventInterest(preselectedEvent || '');
     setDefaultCategoryInterest(defaultCat || '');
     setInterestModalOpen(true);

@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Home, Trophy, Calendar, Music, Sparkles } from 'lucide-react';
+import { trackGaEvent } from '../utils/analytics';
 
 interface MobileBottomBarProps {
   onOpenInterestModal: () => void;
@@ -41,7 +42,10 @@ export const MobileBottomBar: React.FC<MobileBottomBarProps> = ({ onOpenInterest
 
       {/* Floating Interest Action */}
       <button
-        onClick={onOpenInterestModal}
+        onClick={() => {
+          trackGaEvent('register_cta_click', { cta_location: 'mobile_bottom_bar', cta_text: 'Register' });
+          onOpenInterestModal();
+        }}
         className="flex flex-col items-center justify-center py-1 px-3 rounded-xl bg-orange-accent text-plum-950 font-poppins font-bold shadow-md shadow-orange-accent/25 active:scale-95 transition-transform"
       >
         <Sparkles className="w-4 h-4 mb-0.5" />

@@ -3,6 +3,7 @@ import { ArrowRight, ChevronDown, Sparkles, Compass, Calendar, MapPin, Award } f
 import { FESTIVAL_INFO } from '../data/festivalData';
 import { ScrollReveal } from './ScrollReveal';
 import { useExperiment } from '../context/ExperimentContext';
+import { trackGaEvent } from '../utils/analytics';
 
 interface HeroProps {
   onExploreEvents: () => void;
@@ -14,6 +15,12 @@ export const Hero: React.FC<HeroProps> = ({ onExploreEvents, onRegisterInterest 
   const currentVariant = config.variants[variant];
 
   const handleCtaClick = () => {
+    // GA4: register_cta_click
+    trackGaEvent('register_cta_click', {
+      cta_location: 'hero',
+      cta_text: currentVariant.ctaText,
+      variant_id: variant,
+    });
     triggerConversion('hero_primary_cta');
     onRegisterInterest();
   };
