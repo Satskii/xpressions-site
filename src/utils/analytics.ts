@@ -1,6 +1,6 @@
 /**
- * Xpressions '27 Marketing Analytics & GA4 Attribution Engine
- * Supports standard Google Analytics (gtag.js) and local in-browser attribution telemetry.
+ * Xpressions '27 Multi-Campaign Analytics & GA4 Attribution Engine
+ * Supports standard Google Analytics 4 (gtag.js / dataLayer) and persistent in-browser attribution telemetry.
  */
 
 declare global {
@@ -36,7 +36,18 @@ export interface CampaignVisit {
   path: string;
 }
 
+export interface ActiveCampaignInfo {
+  source: string;
+  medium: string;
+  campaign: string;
+  content: string;
+  term?: string;
+  isAttributed: boolean;
+  firstTouchTimestamp?: string;
+}
+
 const STORAGE_KEYS = {
+  SESSION_CAMPAIGN: 'xpressions_session_campaign',
   FIRST_TOUCH: 'xpressions_first_touch_utm',
   LAST_TOUCH: 'xpressions_last_touch_utm',
   VISIT_LOG: 'xpressions_campaign_visits',
@@ -47,7 +58,8 @@ const STORAGE_KEYS = {
 /**
  * Extract UTM query parameters from a URL or query string
  */
-export function extractUtmParams(search: string = window.location.search): UtmParams {
+export function extractUtmParams(search: string = typeof window !== 'undefined' ? window.location.search : ''): UtmParams {
+  if (!search) return {};
   const params = new URLSearchParams(search);
   const utm: UtmParams = {};
 
@@ -57,31 +69,129 @@ export function extractUtmParams(search: string = window.location.search): UtmPa
   const term = params.get('utm_term');
   const content = params.get('utm_content');
 
-  if (source) utm.source = source.toLowerCase();
-  if (medium) utm.medium = medium.toLowerCase();
-  if (campaign) utm.campaign = campaign.toLowerCase();
-  if (term) utm.term = term.toLowerCase();
-  if (content) utm.content = content.toLowerCase();
+  if (source) utm.source = source.toLowerCase().trim();
+  if (medium) utm.medium = medium.toLowerCase().trim();
+  if (campaign) utm.campaign = campaign.toLowerCase().trim();
+  if (term) utm.term = term.toLowerCase().trim();
+  if (content) utm.content = content.toLowerCase().trim();
 
   return utm;
 }
 
 /**
- * Record a visit with UTM tracking
+ * Retrieve the active session campaign attribution.
+ * Prioritizes sessionStorage to guarantee that attribution survives internal React Router navigation.
  */
-export function recordCampaignVisit(path: string = window.location.pathname): CampaignVisit | null {
-  const utm = extractUtmParams();
+export function getActiveCampaign(): ActiveCampaignInfo {
+  if (typeof window === 'undefined') {
+    return { source: 'direct', medium: 'none', campaign: 'none', content: 'none', isAttributed: false };
+  }
 
-  // If no UTM parameters, check if there is an experiment override or referrer
-  const hasUtm = Boolean(utm.source || utm.medium || utm.campaign || utm.content);
+  // 1. Primary: Session storage (preserved across React Router transitions and page refreshes)
+  try {
+    const rawSession = sessionStorage.getItem(STORAGE_KEYS.SESSION_CAMPAIGN);
+    if (rawSession) {
+      const parsed = JSON.parse(rawSession);
+      if (parsed && parsed.source && parsed.source !== 'direct') {
+        return {
+          source: parsed.source,
+          medium: parsed.medium || 'referral',
+          campaign: parsed.campaign || 'xpressions_2027',
+          content: parsed.content || 'none',
+          term: parsed.term,
+          isAttributed: true,
+          firstTouchTimestamp: parsed.timestamp,
+        };
+      }
+    }
+  } catch (e) {
+    // ignore
+  }
+
+  // 2. Secondary fallback: Local storage last touch for returning visitors
+  try {
+    const rawLocal = localStorage.getItem(STORAGE_KEYS.LAST_TOUCH);
+    if (rawLocal) {
+      const parsed = JSON.parse(rawLocal);
+      if (parsed && parsed.utmSource && parsed.utmSource !== 'direct') {
+        return {
+          source: parsed.utmSource,
+          medium: parsed.utmMedium || 'referral',
+          campaign: parsed.utmCampaign || 'xpressions_2027',
+          content: parsed.utmContent || 'none',
+          isAttributed: true,
+          firstTouchTimestamp: parsed.timestamp,
+        };
+      }
+    }
+  } catch (e) {
+    // ignore
+  }
+
+  // 3. Fallback: Direct visit
+  return {
+    source: 'direct',
+    medium: 'none',
+    campaign: 'none',
+    content: 'none',
+    isAttributed: false,
+  };
+}
+
+/**
+ * Record a visit with UTM tracking without wiping active campaign during internal SPA navigation
+ */
+export function recordCampaignVisit(path: string = typeof window !== 'undefined' ? window.location.pathname : '/'): CampaignVisit | null {
+  if (typeof window === 'undefined') return null;
+
+  const utm = extractUtmParams();
+  const hasIncomingUtm = Boolean(utm.source || utm.medium || utm.campaign || utm.content);
+
+  let activeSource = utm.source;
+  let activeMedium = utm.medium;
+  let activeCampaign = utm.campaign;
+  let activeContent = utm.content;
+
+  if (hasIncomingUtm) {
+    // New incoming campaign touchpoint: persist to sessionStorage
+    const sessionPayload = {
+      source: activeSource || 'direct',
+      medium: activeMedium || 'referral',
+      campaign: activeCampaign || 'xpressions_2027',
+      content: activeContent || 'none',
+      term: utm.term || '',
+      timestamp: new Date().toISOString(),
+    };
+    try {
+      sessionStorage.setItem(STORAGE_KEYS.SESSION_CAMPAIGN, JSON.stringify(sessionPayload));
+    } catch (e) {
+      // ignore
+    }
+  } else {
+    // Internal navigation or direct entry: check if session already has attribution
+    const existing = getActiveCampaign();
+    if (existing.isAttributed) {
+      // Retain active campaign throughout internal SPA browsing!
+      activeSource = existing.source;
+      activeMedium = existing.medium;
+      activeCampaign = existing.campaign;
+      activeContent = existing.content;
+    } else {
+      // Truly direct or referrer visit
+      activeSource = document.referrer ? new URL(document.referrer, window.location.origin).hostname : 'direct';
+      activeMedium = document.referrer ? 'referral' : 'none';
+      activeCampaign = 'none';
+      activeContent = 'none';
+    }
+  }
 
   const visit: CampaignVisit = {
     id: `visit-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
     timestamp: new Date().toISOString(),
-    utmSource: utm.source || (document.referrer ? new URL(document.referrer, window.location.origin).hostname : 'direct'),
-    utmMedium: utm.medium || (hasUtm ? 'referral' : 'organic'),
-    utmCampaign: utm.campaign || 'xpressions_launch_nov2026',
-    utmContent: utm.content || 'direct_landing',
+    utmSource: activeSource || 'direct',
+    utmMedium: activeMedium || 'none',
+    utmCampaign: activeCampaign || 'none',
+    utmContent: activeContent || 'none',
     referrer: document.referrer || 'direct',
     path,
   };
@@ -91,38 +201,70 @@ export function recordCampaignVisit(path: string = window.location.pathname): Ca
     if (!localStorage.getItem(STORAGE_KEYS.FIRST_TOUCH)) {
       localStorage.setItem(STORAGE_KEYS.FIRST_TOUCH, JSON.stringify(visit));
     }
-    // Always update last touch
-    localStorage.setItem(STORAGE_KEYS.LAST_TOUCH, JSON.stringify(visit));
+    // Update last touch only if this was an attributed touchpoint or first touch
+    if (hasIncomingUtm || !localStorage.getItem(STORAGE_KEYS.LAST_TOUCH)) {
+      localStorage.setItem(STORAGE_KEYS.LAST_TOUCH, JSON.stringify(visit));
+    }
 
-    // Append to visits log
-    const existing = getStoredVisits();
-    existing.unshift(visit);
-    // Keep last 150 visits
-    localStorage.setItem(STORAGE_KEYS.VISIT_LOG, JSON.stringify(existing.slice(0, 150)));
+    // Append to visits log (keep last 200 visits)
+    const existingVisits = getStoredVisits();
+    existingVisits.unshift(visit);
+    localStorage.setItem(STORAGE_KEYS.VISIT_LOG, JSON.stringify(existingVisits.slice(0, 200)));
   } catch (err) {
-    console.warn('[Analytics] Failed to save visit to localStorage', err);
+    console.warn('[Analytics] Failed to save visit to storage', err);
   }
 
-  // Dispatch to Google Analytics (gtag.js)
-  trackGaEvent('campaign_visit', {
-    source: visit.utmSource,
-    medium: visit.utmMedium,
-    campaign: visit.utmCampaign,
-    content: visit.utmContent,
-    page_path: path,
-  });
+  // Only dispatch campaign_visit event on initial incoming campaign entry
+  if (hasIncomingUtm) {
+    trackGaEvent('campaign_visit', {
+      source: visit.utmSource,
+      medium: visit.utmMedium,
+      campaign: visit.utmCampaign,
+      content: visit.utmContent,
+      page_path: path,
+    });
+  }
 
   return visit;
 }
 
 /**
- * Dispatch an event to Google Analytics (GA4) with error shielding
+ * Sanitize parameters to ensure NO personally identifiable information (PII) is sent to GA4
+ */
+function sanitizeGaParams(params: Record<string, any>): Record<string, any> {
+  const sanitized: Record<string, any> = {};
+  const PII_KEYS = ['name', 'fullname', 'full_name', 'email', 'phone', 'mobile', 'phonenumber', 'password'];
+
+  for (const [key, value] of Object.entries(params)) {
+    if (PII_KEYS.includes(key.toLowerCase())) {
+      continue; // Strip PII
+    }
+    sanitized[key] = value;
+  }
+  return sanitized;
+}
+
+/**
+ * Dispatch an event to Google Analytics (GA4) & GTM dataLayer with auto-enriched campaign attribution
  */
 export function trackGaEvent(eventName: string, params: Record<string, any> = {}) {
-  // 1. Send to window.gtag if available
+  const activeCampaign = getActiveCampaign();
+  const sanitizedParams = sanitizeGaParams(params);
+
+  // Auto-enrich with active campaign attribution & page path
+  const enrichedParams: Record<string, any> = {
+    campaign_source: activeCampaign.source,
+    campaign_medium: activeCampaign.medium,
+    campaign_name: activeCampaign.campaign,
+    campaign_content: activeCampaign.content,
+    page_path: typeof window !== 'undefined' ? window.location.pathname : '',
+    ...sanitizedParams,
+  };
+
+  // 1. Dispatch to window.gtag
   if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
     try {
-      window.gtag('event', eventName, params);
+      window.gtag('event', eventName, enrichedParams);
     } catch (e) {
       console.warn('[GA4] Event dispatch warning:', e);
     }
@@ -134,19 +276,19 @@ export function trackGaEvent(eventName: string, params: Record<string, any> = {}
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: eventName,
-        ...params,
+        ...enrichedParams,
       });
     } catch (e) {
       // ignore
     }
   }
 
-  // 3. Save locally for the client-side audit telemetry dashboard
+  // 3. Save locally for client-side audit telemetry & live dashboard
   try {
     const eventRecord: AnalyticsEvent = {
       id: `evt-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
       name: eventName,
-      params,
+      params: enrichedParams,
       timestamp: new Date().toISOString(),
     };
 
@@ -164,29 +306,38 @@ export function trackGaEvent(eventName: string, params: Record<string, any> = {}
 }
 
 /**
- * Dispatch pageview to GA4 and internal log
+ * Dispatch pageview to GA4 and internal log (guaranteed once per route change)
  */
-export function trackPageView(pagePath: string, pageTitle: string = document.title) {
+export function trackPageView(pagePath: string, pageTitle: string = typeof document !== 'undefined' ? document.title : '') {
+  const activeCampaign = getActiveCampaign();
+
+  const payload = {
+    page_title: pageTitle,
+    page_location: typeof window !== 'undefined' ? window.location.href : '',
+    page_path: pagePath,
+    campaign_source: activeCampaign.source,
+    campaign_medium: activeCampaign.medium,
+    campaign_name: activeCampaign.campaign,
+    campaign_content: activeCampaign.content,
+  };
+
   if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
-    window.gtag('event', 'page_view', {
-      page_title: pageTitle,
-      page_location: window.location.href,
-      page_path: pagePath,
-    });
+    window.gtag('event', 'page_view', payload);
   }
+
   if (typeof window !== 'undefined') {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       event: 'page_view',
-      page_title: pageTitle,
-      page_location: window.location.href,
-      page_path: pagePath,
+      ...payload,
     });
   }
+
   trackGaEvent('virtual_page_view', { path: pagePath, title: pageTitle });
 }
 
 export function getStoredVisits(): CampaignVisit[] {
+  if (typeof window === 'undefined') return [];
   try {
     const raw = localStorage.getItem(STORAGE_KEYS.VISIT_LOG);
     if (!raw) return [];
@@ -197,6 +348,7 @@ export function getStoredVisits(): CampaignVisit[] {
 }
 
 export function getStoredEvents(): AnalyticsEvent[] {
+  if (typeof window === 'undefined') return [];
   try {
     const raw = localStorage.getItem(STORAGE_KEYS.EVENT_LOG);
     if (!raw) return [];
@@ -207,6 +359,7 @@ export function getStoredEvents(): AnalyticsEvent[] {
 }
 
 export function getFirstTouch(): CampaignVisit | null {
+  if (typeof window === 'undefined') return null;
   try {
     const raw = localStorage.getItem(STORAGE_KEYS.FIRST_TOUCH);
     return raw ? JSON.parse(raw) : null;
@@ -216,6 +369,7 @@ export function getFirstTouch(): CampaignVisit | null {
 }
 
 export function getLastTouch(): CampaignVisit | null {
+  if (typeof window === 'undefined') return null;
   try {
     const raw = localStorage.getItem(STORAGE_KEYS.LAST_TOUCH);
     return raw ? JSON.parse(raw) : null;

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { CampaignComparisonDashboard } from '../components/CampaignComparisonDashboard';
 import { CampaignCreatives } from '../components/CampaignCreatives';
 import { CampaignExperimentCard } from '../components/CampaignExperimentCard';
 import { CampaignLinkGenerator } from '../components/CampaignLinkGenerator';
@@ -20,12 +21,13 @@ import {
   Layers,
   Calendar,
   Zap,
+  GitCompare,
 } from 'lucide-react';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { SpotlightCard } from '../components/SpotlightCard';
 
 export const CampaignPage: React.FC = () => {
-  const [activeStepTab, setActiveStepTab] = useState<'step4' | 'step5' | 'dossier'>('step4');
+  const [activeStepTab, setActiveStepTab] = useState<'comparison' | 'step4' | 'step5' | 'dossier'>('comparison');
   const [recentEvents, setRecentEvents] = useState<AnalyticsEvent[]>([]);
 
   useEffect(() => {
@@ -145,47 +147,66 @@ export const CampaignPage: React.FC = () => {
       {/* Main Operational Step Navigator */}
       <section className="pt-8 pb-4 bg-white dark:bg-plum-950 border-b border-plum-200/80 dark:border-plum-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
             
             <button
+              onClick={() => setActiveStepTab('comparison')}
+              className={`py-3 px-5 sm:px-6 rounded-2xl font-poppins font-bold text-xs sm:text-sm transition-all flex items-center gap-2 ${
+                activeStepTab === 'comparison'
+                  ? 'bg-gradient-to-r from-orange-accent to-pink-500 text-white shadow-lg scale-102 ring-2 ring-orange-accent/50'
+                  : 'bg-plum-100 dark:bg-plum-900 text-plum-800 dark:text-lilac hover:bg-plum-200'
+              }`}
+            >
+              <GitCompare className="w-4 h-4" />
+              <span>Campaign Comparison (A vs B vs C)</span>
+            </button>
+
+            <button
               onClick={() => setActiveStepTab('step4')}
-              className={`py-3 px-5 sm:px-8 rounded-2xl font-poppins font-bold text-xs sm:text-sm transition-all flex items-center gap-2.5 ${
+              className={`py-3 px-5 sm:px-6 rounded-2xl font-poppins font-bold text-xs sm:text-sm transition-all flex items-center gap-2 ${
                 activeStepTab === 'step4'
                   ? 'bg-plum-800 dark:bg-orange-accent text-white dark:text-plum-950 shadow-lg scale-102 ring-2 ring-orange-accent/40'
                   : 'bg-plum-100 dark:bg-plum-900 text-plum-800 dark:text-lilac hover:bg-plum-200'
               }`}
             >
               <Zap className="w-4 h-4" />
-              <span>Step 4: Campaign Execution (Creatives, Links &amp; A/B Test)</span>
+              <span>Step 4: Creatives &amp; A/B Experiment</span>
             </button>
 
             <button
               onClick={() => setActiveStepTab('step5')}
-              className={`py-3 px-5 sm:px-8 rounded-2xl font-poppins font-bold text-xs sm:text-sm transition-all flex items-center gap-2.5 ${
+              className={`py-3 px-5 sm:px-6 rounded-2xl font-poppins font-bold text-xs sm:text-sm transition-all flex items-center gap-2 ${
                 activeStepTab === 'step5'
                   ? 'bg-plum-800 dark:bg-orange-accent text-white dark:text-plum-950 shadow-lg scale-102 ring-2 ring-orange-accent/40'
                   : 'bg-plum-100 dark:bg-plum-900 text-plum-800 dark:text-lilac hover:bg-plum-200'
               }`}
             >
               <BarChart3 className="w-4 h-4" />
-              <span>Step 5: Measure, Interpret &amp; Optimise (GA4 &amp; Funnel)</span>
+              <span>Step 5: GA4 Metrics &amp; Funnel</span>
             </button>
 
             <button
               onClick={() => setActiveStepTab('dossier')}
-              className={`py-3 px-5 sm:px-8 rounded-2xl font-poppins font-bold text-xs sm:text-sm transition-all flex items-center gap-2.5 ${
+              className={`py-3 px-5 sm:px-6 rounded-2xl font-poppins font-bold text-xs sm:text-sm transition-all flex items-center gap-2 ${
                 activeStepTab === 'dossier'
                   ? 'bg-emerald-600 text-white shadow-lg scale-102 ring-2 ring-emerald-400/40'
                   : 'bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 hover:bg-emerald-200'
               }`}
             >
               <FileText className="w-4 h-4" />
-              <span>Final Submission Dossier (Word/PPT)</span>
+              <span>Submission Dossier (Word/PPT)</span>
             </button>
 
           </div>
         </div>
       </section>
+
+      {/* ===================================================================== */}
+      {/* TAB 0: CAMPAIGN COMPARISON (A vs B vs C) */}
+      {/* ===================================================================== */}
+      {activeStepTab === 'comparison' && (
+        <CampaignComparisonDashboard />
+      )}
 
       {/* ===================================================================== */}
       {/* TAB 1: STEP 4 EXECUTION */}

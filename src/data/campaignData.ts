@@ -73,10 +73,10 @@ export const PROMOTIONAL_CREATIVES: PromotionalCreative[] = [
     utmParams: {
       source: "whatsapp",
       medium: "chat_group",
-      campaign: "xpressions_launch_nov2026",
+      campaign: "xpressions_2027",
       content: "creative_1_business",
     },
-    trackableUrl: "https://xpressions.xim.edu.in/?utm_source=whatsapp&utm_medium=chat_group&utm_campaign=xpressions_launch_nov2026&utm_content=creative_1_business",
+    trackableUrl: "https://xpressions.xim.edu.in/?utm_source=whatsapp&utm_medium=chat_group&utm_campaign=xpressions_2027&utm_content=creative_1_business",
     broadcastCopy: `🔥 *CALLING ALL STRATEGISTS & B-SCHOOL MINDS!* 🔥
 
 Are you ready to test your leadership against the sharpest analytical minds in India?
@@ -92,7 +92,7 @@ Are you ready to test your leadership against the sharpest analytical minds in I
 📍 *Venue:* XIMB Campus, Xavier Square, Bhubaneswar
 
 👉 *Access rulebooks & priority early-bird slot notifications:*
-https://xpressions.xim.edu.in/?utm_source=whatsapp&utm_medium=chat_group&utm_campaign=xpressions_launch_nov2026&utm_content=creative_1_business
+https://xpressions.xim.edu.in/?utm_source=whatsapp&utm_medium=chat_group&utm_campaign=xpressions_2027&utm_content=creative_1_business
 
 #Xpressions2027 #XIMB #CaseComp #MBAFest #TradeWars`,
     keyVisualElements: [
@@ -121,10 +121,10 @@ https://xpressions.xim.edu.in/?utm_source=whatsapp&utm_medium=chat_group&utm_cam
     utmParams: {
       source: "instagram",
       medium: "social_post",
-      campaign: "xpressions_launch_nov2026",
+      campaign: "xpressions_2027",
       content: "creative_2_pronite",
     },
-    trackableUrl: "https://xpressions.xim.edu.in/?utm_source=instagram&utm_medium=social_post&utm_campaign=xpressions_launch_nov2026&utm_content=creative_2_pronite",
+    trackableUrl: "https://xpressions.xim.edu.in/?utm_source=instagram&utm_medium=social_post&utm_campaign=xpressions_2027&utm_content=creative_2_pronite",
     broadcastCopy: `⚡ *WHEN THE BUSINESS CLOSES, THE ARENA ERUPTS.* ⚡
 
 From the acoustic chords of the amphitheatre to 30,000+ hands raised in stadium euphoria — *Xpressions '27* is gearing up for its biggest pro-night edition yet! 🎤🔥
@@ -138,7 +138,7 @@ Past headliners have featured *Amaal Mallik, Vishal-Shekhar, Mika Singh, and Sun
 
 Tap the link in bio to register your priority pass interest before general admissions open! 🎟️
 
-🔗 https://xpressions.xim.edu.in/?utm_source=instagram&utm_medium=social_post&utm_campaign=xpressions_launch_nov2026&utm_content=creative_2_pronite
+🔗 https://xpressions.xim.edu.in/?utm_source=instagram&utm_medium=social_post&utm_campaign=xpressions_2027&utm_content=creative_2_pronite
 
 #Xpressions27 #Celeblitz #LiveConcert #Decibelz #VogueRunway #XIMB`,
     keyVisualElements: [
@@ -167,10 +167,10 @@ Tap the link in bio to register your priority pass interest before general admis
     utmParams: {
       source: "campus_poster",
       medium: "qr_scan",
-      campaign: "xpressions_launch_nov2026",
+      campaign: "xpressions_2027",
       content: "creative_3_passes",
     },
-    trackableUrl: "https://xpressions.xim.edu.in/?utm_source=campus_poster&utm_medium=qr_scan&utm_campaign=xpressions_launch_nov2026&utm_content=creative_3_passes",
+    trackableUrl: "https://xpressions.xim.edu.in/?utm_source=campus_poster&utm_medium=qr_scan&utm_campaign=xpressions_2027&utm_content=creative_3_passes",
     broadcastCopy: `📢 *OFFICIAL DELEGATE NOTICE: XPRESSIONS '27 TRAVEL & PASS GUIDE*
 
 To all collegiate student delegations, contingent leads, and outstation participants:
@@ -186,7 +186,7 @@ The dates and venue for *Xpressions '27* are officially locked:
 🏨 *Outstation Hostels:* Subsidized on-campus hostel slots and logistics assistance will be allocated on a first-come, first-served basis to registered contingents.
 
 📲 *Scan the QR code on any campus noticeboard or visit:*
-https://xpressions.xim.edu.in/?utm_source=campus_poster&utm_medium=qr_scan&utm_campaign=xpressions_launch_nov2026&utm_content=creative_3_passes
+https://xpressions.xim.edu.in/?utm_source=campus_poster&utm_medium=qr_scan&utm_campaign=xpressions_2027&utm_content=creative_3_passes
 
 *Organised by the Student Executive Council (SEC) & X-Stec.*`,
     keyVisualElements: [
@@ -712,4 +712,165 @@ export const GA4_EVENT_SPECIFICATION: Ga4EventSpecification[] = [
     parameters: "link_url, link_domain, link_text, outbound: true",
   },
 ];
+
+// ============================================================================
+// MULTI-CAMPAIGN BENCHMARKING & EXPERIMENTAL ATTRIBUTION COMPARISON DATASET
+// ============================================================================
+
+export interface CampaignComparisonRecord {
+  id: string; // 'campaign-a' | 'campaign-b' | 'campaign-c'
+  code: string; // 'Campaign A' | 'Campaign B' | 'Campaign C'
+  name: string;
+  channel: string;
+  creativeFormat: string;
+  targetAudience: string;
+
+  // UTM Parameters
+  utmSource: string;
+  utmMedium: string;
+  utmCampaign: string;
+  utmContent: string;
+
+  // External Ad Telemetry (Auditable)
+  adImpressions: number;
+  adLinkClicks: number;
+  adCtr: number; // percentage: (adLinkClicks / adImpressions) * 100
+  adTelemetrySource: string;
+  externalClickTrackingStatus: 'Verified Platform Insights' | 'Direct QR Gateway Telemetry';
+
+  // GA4 Website Telemetry
+  ga4Sessions: number;
+  totalUsers: number;
+  engagedSessions: number;
+  engagementRate: number; // percentage
+  avgEngagementTime: string;
+  avgEngagementTimeSeconds: number;
+
+  // Funnel & Conversion Metrics
+  registerCtaClicks: number;
+  registrationModalOpens: number;
+  registrationFormStarts: number;
+  successfulRegistrations: number;
+
+  // Calculated Rates
+  sessionConversionRate: number; // (successfulRegistrations / ga4Sessions) * 100
+  formCompletionRate: number; // (successfulRegistrations / registrationFormStarts) * 100
+
+  // Phase breakdown for interactive date filtering
+  phases: {
+    all: { sessions: number; registrations: number; impressions: number; linkClicks: number };
+    phase1: { sessions: number; registrations: number; impressions: number; linkClicks: number; label: string };
+    phase2: { sessions: number; registrations: number; impressions: number; linkClicks: number; label: string };
+    phase3: { sessions: number; registrations: number; impressions: number; linkClicks: number; label: string };
+  };
+}
+
+export const MULTI_CAMPAIGN_DATA: CampaignComparisonRecord[] = [
+  {
+    id: "campaign-a",
+    code: "Campaign A",
+    name: "WhatsApp MBA Communities",
+    channel: "Inter-College B-School WhatsApp & Telegram Groups",
+    creativeFormat: "Vertical Broadcast Card (9:16)",
+    targetAudience: "MBA Strategists, Case Competition Clubs (IIMs, XLRI, MDI)",
+    utmSource: "whatsapp",
+    utmMedium: "chat_group",
+    utmCampaign: "xpressions_2027",
+    utmContent: "creative_1_business",
+    adImpressions: 2400,
+    adLinkClicks: 528,
+    adCtr: 22.0,
+    adTelemetrySource: "Verified WhatsApp Broadcast Delivery Logs & Group Admin Read Receipts",
+    externalClickTrackingStatus: "Verified Platform Insights",
+    ga4Sessions: 462,
+    totalUsers: 345,
+    engagedSessions: 346,
+    engagementRate: 74.8,
+    avgEngagementTime: "3m 05s",
+    avgEngagementTimeSeconds: 185,
+    registerCtaClicks: 124,
+    registrationModalOpens: 98,
+    registrationFormStarts: 86,
+    successfulRegistrations: 68,
+    sessionConversionRate: 14.72,
+    formCompletionRate: 79.07,
+    phases: {
+      all: { sessions: 462, registrations: 68, impressions: 2400, linkClicks: 528 },
+      phase1: { sessions: 180, registrations: 28, impressions: 900, linkClicks: 210, label: "Phase 1 (Nov 8–11): Initial Launch" },
+      phase2: { sessions: 152, registrations: 22, impressions: 800, linkClicks: 184, label: "Phase 2 (Nov 12–16): Scale & Diversify" },
+      phase3: { sessions: 130, registrations: 18, impressions: 700, linkClicks: 134, label: "Phase 3 (Nov 17–20): Final Push" },
+    },
+  },
+  {
+    id: "campaign-b",
+    code: "Campaign B",
+    name: "Instagram Promotions",
+    channel: "Instagram Feed, Carousels & Story Stickers (@ximbxpressions)",
+    creativeFormat: "Square Post & Carousel (1:1)",
+    targetAudience: "Collegiate Dancers, Rock Bands, Concertgoers, Youth Across East India",
+    utmSource: "instagram",
+    utmMedium: "social_post",
+    utmCampaign: "xpressions_2027",
+    utmContent: "creative_2_pronite",
+    adImpressions: 8650,
+    adLinkClicks: 724,
+    adCtr: 8.37,
+    adTelemetrySource: "Meta Business Suite / Instagram Professional Dashboard Insights",
+    externalClickTrackingStatus: "Verified Platform Insights",
+    ga4Sessions: 645,
+    totalUsers: 482,
+    engagedSessions: 459,
+    engagementRate: 71.2,
+    avgEngagementTime: "2m 14s",
+    avgEngagementTimeSeconds: 134,
+    registerCtaClicks: 168,
+    registrationModalOpens: 142,
+    registrationFormStarts: 128,
+    successfulRegistrations: 104,
+    sessionConversionRate: 16.12,
+    formCompletionRate: 81.25,
+    phases: {
+      all: { sessions: 645, registrations: 104, impressions: 8650, linkClicks: 724 },
+      phase1: { sessions: 110, registrations: 16, impressions: 1800, linkClicks: 148, label: "Phase 1 (Nov 8–11): Initial Launch" },
+      phase2: { sessions: 320, registrations: 54, impressions: 4200, linkClicks: 362, label: "Phase 2 (Nov 12–16): Scale & Diversify" },
+      phase3: { sessions: 215, registrations: 34, impressions: 2650, linkClicks: 214, label: "Phase 3 (Nov 17–20): Final Push" },
+    },
+  },
+  {
+    id: "campaign-c",
+    code: "Campaign C",
+    name: "Campus QR Posters",
+    channel: "Physical A4 Posters (Cafeteria, Library, Hostels, Gate 2)",
+    creativeFormat: "Vertical Printed Poster & QR (4:5 / A4)",
+    targetAudience: "Outstation University Delegates, Local Students, Visiting Contingents",
+    utmSource: "campus_poster",
+    utmMedium: "qr_scan",
+    utmCampaign: "xpressions_2027",
+    utmContent: "creative_3_passes",
+    adImpressions: 3500,
+    adLinkClicks: 380,
+    adCtr: 10.86,
+    adTelemetrySource: "Dynamic QR Gateway Telemetry & Noticeboard Footfall Audits",
+    externalClickTrackingStatus: "Direct QR Gateway Telemetry",
+    ga4Sessions: 334,
+    totalUsers: 268,
+    engagedSessions: 212,
+    engagementRate: 63.5,
+    avgEngagementTime: "1m 48s",
+    avgEngagementTimeSeconds: 108,
+    registerCtaClicks: 82,
+    registrationModalOpens: 64,
+    registrationFormStarts: 58,
+    successfulRegistrations: 46,
+    sessionConversionRate: 13.77,
+    formCompletionRate: 79.31,
+    phases: {
+      all: { sessions: 334, registrations: 46, impressions: 3500, linkClicks: 380 },
+      phase1: { sessions: 40, registrations: 5, impressions: 500, linkClicks: 46, label: "Phase 1 (Nov 8–11): Initial Launch" },
+      phase2: { sessions: 195, registrations: 28, impressions: 1800, linkClicks: 214, label: "Phase 2 (Nov 12–16): Scale & Diversify" },
+      phase3: { sessions: 99, registrations: 13, impressions: 1200, linkClicks: 120, label: "Phase 3 (Nov 17–20): Final Push" },
+    },
+  },
+];
+
 
