@@ -25,7 +25,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInterestModal }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [moreDropdownOpen, setMoreDropdownOpen] = useState(false);
-  
+
   const moreDropdownRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
   const navigate = useNavigate();
@@ -125,15 +125,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInterestModal }) => {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 w-full ${
-          isScrolled
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 w-full ${isScrolled
             ? 'bg-plum-950/92 backdrop-blur-xl shadow-lg shadow-plum-950/25 py-2.5 border-b border-plum-800/60'
             : 'bg-gradient-to-b from-plum-950/95 via-plum-900/60 to-transparent py-3 sm:py-3.5'
-        }`}
+          }`}
       >
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 w-full">
           <div className="flex items-center justify-between gap-2 sm:gap-4">
-            
+
             {/* Brand Logo & Wordmark (Never Shrinks) */}
             <Link
               to="/"
@@ -167,10 +166,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInterestModal }) => {
                   key={link.to}
                   to={link.to}
                   className={({ isActive }) =>
-                    `px-2.5 xl:px-3 py-1.5 rounded-full text-xs xl:text-sm font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-accent whitespace-nowrap ${
-                      isActive
-                        ? 'bg-plum-800 text-orange-accent shadow-inner border border-plum-700/80 font-semibold'
-                        : 'text-lilac hover:text-white hover:bg-plum-850/60'
+                    `px-2.5 xl:px-3 py-1.5 rounded-full text-xs xl:text-sm font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-accent whitespace-nowrap ${isActive
+                      ? 'bg-plum-800 text-orange-accent shadow-inner border border-plum-700/80 font-semibold'
+                      : 'text-lilac hover:text-white hover:bg-plum-850/60'
                     }`
                   }
                 >
@@ -182,11 +180,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInterestModal }) => {
               <div className="relative" ref={moreDropdownRef}>
                 <button
                   onClick={() => setMoreDropdownOpen(!moreDropdownOpen)}
-                  className={`inline-flex items-center gap-1 px-2.5 xl:px-3 py-1.5 rounded-full text-xs xl:text-sm font-medium transition-all duration-200 focus:outline-none ${
-                    isMoreActive
+                  className={`inline-flex items-center gap-1 px-2.5 xl:px-3 py-1.5 rounded-full text-xs xl:text-sm font-medium transition-all duration-200 focus:outline-none ${isMoreActive
                       ? 'bg-plum-800 text-orange-accent shadow-inner border border-plum-700/80 font-semibold'
                       : 'text-lilac hover:text-white hover:bg-plum-850/60'
-                  }`}
+                    }`}
                   aria-expanded={moreDropdownOpen}
                 >
                   <span>More</span>
@@ -209,11 +206,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInterestModal }) => {
                             key={item.to}
                             to={item.to}
                             onClick={() => setMoreDropdownOpen(false)}
-                            className={`flex items-start gap-2.5 p-2 rounded-xl transition-colors ${
-                              isCurrent
+                            className={`flex items-start gap-2.5 p-2 rounded-xl transition-colors ${isCurrent
                                 ? 'bg-plum-800 text-orange-accent'
                                 : 'text-lilac hover:text-white hover:bg-plum-850/80'
-                            }`}
+                              }`}
                           >
                             <div className="p-1.5 rounded-lg bg-plum-800/80 text-orange-accent shrink-0 mt-0.5">
                               <Icon className="w-3.5 h-3.5" />
@@ -325,10 +321,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInterestModal }) => {
                     key={link.to}
                     to={link.to}
                     className={({ isActive }) =>
-                      `w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-left text-sm font-medium transition-colors ${
-                        isActive
-                          ? 'bg-plum-800 text-orange-accent font-bold border border-plum-700'
-                          : 'text-lilac hover:text-white hover:bg-plum-850/50'
+                      `w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-left text-sm font-medium transition-colors ${isActive
+                        ? 'bg-plum-800 text-orange-accent font-bold border border-plum-700'
+                        : 'text-lilac hover:text-white hover:bg-plum-850/50'
                       }`
                     }
                   >
