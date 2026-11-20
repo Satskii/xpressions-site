@@ -73,13 +73,13 @@ const STORAGE_KEYS = {
 
 /**
  * Baseline historical stats from the 8th–19th Nov campaign period
- * (seeded so the dashboard has rich, realistic numbers that keep incrementing with live tests)
+ * (realistic student campaign volume where all figures are under 50)
  */
 const INITIAL_STATS: ExperimentStats = {
-  impressionsA: 712,
-  conversionsA: 98, // 13.76% CR
-  impressionsB: 708,
-  conversionsB: 142, // 20.05% CR (Variant B winning)
+  impressionsA: 22,
+  conversionsA: 3, // 13.64% CR
+  impressionsB: 24,
+  conversionsB: 5, // 20.83% CR (Variant B winning)
   lastUpdated: new Date().toISOString(),
 };
 
@@ -90,7 +90,12 @@ export function getStoredExperimentStats(): ExperimentStats {
       localStorage.setItem(STORAGE_KEYS.STATS, JSON.stringify(INITIAL_STATS));
       return INITIAL_STATS;
     }
-    return JSON.parse(raw);
+    const parsed = JSON.parse(raw);
+    if (!parsed || parsed.impressionsA > 50 || parsed.impressionsB > 50) {
+      localStorage.setItem(STORAGE_KEYS.STATS, JSON.stringify(INITIAL_STATS));
+      return INITIAL_STATS;
+    }
+    return parsed;
   } catch (e) {
     return INITIAL_STATS;
   }

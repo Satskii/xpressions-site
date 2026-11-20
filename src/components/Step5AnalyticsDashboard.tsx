@@ -261,14 +261,14 @@ export const Step5AnalyticsDashboard: React.FC = () => {
                   </p>
                 </div>
                 <div className="px-3 py-1.5 rounded-xl bg-orange-accent/15 text-orange-accent border border-orange-accent/30 text-xs font-semibold shrink-0">
-                  Total Funnel Conversion: <strong>13.0%</strong>
+                  Total Funnel Conversion: <strong>{MACRO_METRICS.overallConversionRate}</strong>
                 </div>
               </div>
 
               {/* Step-by-Step Funnel Bars */}
               <div className="space-y-6 mb-10">
                 {FUNNEL_ABANDONMENT_DATA.map((step) => {
-                  const widthPercent = ((step.sessions / 1894) * 100).toFixed(1);
+                  const widthPercent = ((step.sessions / MACRO_METRICS.totalSessions) * 100).toFixed(1);
                   return (
                     <div key={step.stepNumber} className="space-y-2">
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-xs">
@@ -328,10 +328,10 @@ export const Step5AnalyticsDashboard: React.FC = () => {
                 <div className="p-4 rounded-2xl bg-white dark:bg-plum-950 border border-plum-200 dark:border-plum-800">
                   <h4 className="font-bold text-plum-950 dark:text-white mb-1.5 flex items-center gap-1.5">
                     <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                    <span>High-Intent Completion Rate (Step 4 → Step 5: 63.4%)</span>
+                    <span>High-Intent Completion Rate (Step 4 → Step 5: 63.6%)</span>
                   </h4>
                   <p className="text-plum-800/80 dark:text-lilac/80 leading-relaxed">
-                    Once visitors started filling out the form, 63.4% saw it through to completion, demonstrating strong underlying demand for verified Xpressions 2027 delegate passes.
+                    Once visitors started filling out the form, 63.6% saw it through to completion, demonstrating strong underlying demand for verified Xpressions 2027 delegate passes.
                   </p>
                 </div>
               </div>
@@ -395,13 +395,13 @@ export const Step5AnalyticsDashboard: React.FC = () => {
                   <span>Channel Insights &amp; Findings:</span>
                 </div>
                 <p className="text-plum-800/80 dark:text-lilac/80">
-                  • <strong>Instagram (Creative #2)</strong> generated the single highest volume of sessions (645 sessions, 34.0% of total) and highest lead volume (104 completed registrations).
+                  • <strong>Instagram (Creative #2)</strong> generated the single highest volume of sessions (18 sessions, 40.9% of total) and strong lead volume (3 completed registrations).
                 </p>
                 <p className="text-plum-800/80 dark:text-lilac/80">
-                  • <strong>WhatsApp B-School Groups (Creative #1)</strong> delivered the highest average engagement time (3m 05s) and highest engagement rate (74.8%), proving MBA candidates read case study parameters thoroughly.
+                  • <strong>WhatsApp B-School Groups (Creative #1)</strong> delivered the highest average engagement time (2m 45s), highest engagement rate (73.3%), and highest session conversion rate (20.0%), proving MBA candidates read case study parameters thoroughly.
                 </p>
                 <p className="text-plum-800/80 dark:text-lilac/80">
-                  • <strong>Physical Campus QR Posters (Creative #3)</strong> demonstrated strong on-ground conversion (13.8%), validating physical touchpoints across XIMB cafeterias and student hostels.
+                  • <strong>Physical Campus QR Posters (Creative #3)</strong> demonstrated reliable on-ground conversion (12.5%), validating physical touchpoints across XIMB cafeterias and student hostels.
                 </p>
               </div>
             </div>

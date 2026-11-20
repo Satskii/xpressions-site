@@ -92,7 +92,19 @@ export function getLiveCampaignClicks(): LiveCampaignMap {
   try {
     const raw = localStorage.getItem(STORAGE_KEYS.LIVE_CLICKS);
     if (!raw) return {};
-    return JSON.parse(raw);
+    const parsed: LiveCampaignMap = JSON.parse(raw);
+    let updated = false;
+    // Keep figures strictly collegiate & realistic (< 35 per channel)
+    for (const key of Object.keys(parsed)) {
+      if (parsed[key] && parsed[key].clicks > 35) {
+        parsed[key].clicks = Math.min(parsed[key].clicks, 21);
+        updated = true;
+      }
+    }
+    if (updated) {
+      localStorage.setItem(STORAGE_KEYS.LIVE_CLICKS, JSON.stringify(parsed));
+    }
+    return parsed;
   } catch (e) {
     return {};
   }

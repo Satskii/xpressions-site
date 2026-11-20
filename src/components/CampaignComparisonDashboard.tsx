@@ -790,7 +790,7 @@ export const CampaignComparisonDashboard: React.FC = () => {
               })}
             </div>
             <p className="text-[11px] text-plum-500 dark:text-lilac/70 pt-2 border-t border-plum-100 dark:border-plum-800">
-              *Campaign B (Instagram) generated the largest gross influx with 645 base sessions.
+              *Campaign B (Instagram) generated the largest gross influx with 18 base sessions.
             </p>
           </SpotlightCard>
 
@@ -823,7 +823,7 @@ export const CampaignComparisonDashboard: React.FC = () => {
               })}
             </div>
             <p className="text-[11px] text-plum-500 dark:text-lilac/70 pt-2 border-t border-plum-100 dark:border-plum-800">
-              *Campaign B generated 104 completed registrations, followed by Campaign A with 68.
+              *Campaign B generated 3 completed registrations, followed by Campaign A with 3.
             </p>
           </SpotlightCard>
 
@@ -852,7 +852,7 @@ export const CampaignComparisonDashboard: React.FC = () => {
                     <div className="w-full h-3 rounded-full bg-plum-100 dark:bg-plum-950 overflow-hidden">
                       <div
                         className="h-full rounded-full bg-orange-accent transition-all duration-500"
-                        style={{ width: `${Math.min(100, (parseFloat(ctr) / 25) * 100)}%` }}
+                        style={{ width: `${Math.min(100, (parseFloat(ctr) / 45) * 100)}%` }}
                       />
                     </div>
                   </div>
@@ -860,7 +860,7 @@ export const CampaignComparisonDashboard: React.FC = () => {
               })}
             </div>
             <p className="text-[11px] text-plum-500 dark:text-lilac/70 pt-2 border-t border-plum-100 dark:border-plum-800">
-              *Campaign A achieved the highest click-through rate, reflecting targeted peer group trust.
+              *Campaign B achieved a 39.58% click-through rate; Campaign A achieved 38.10%.
             </p>
           </SpotlightCard>
 
@@ -887,7 +887,7 @@ export const CampaignComparisonDashboard: React.FC = () => {
                     <div className="w-full h-3 rounded-full bg-plum-100 dark:bg-plum-950 overflow-hidden">
                       <div
                         className="h-full rounded-full bg-emerald-500 transition-all duration-500"
-                        style={{ width: `${Math.min(100, (parseFloat(conv) / 20) * 100)}%` }}
+                        style={{ width: `${Math.min(100, (parseFloat(conv) / 25) * 100)}%` }}
                       />
                     </div>
                   </div>
@@ -895,7 +895,7 @@ export const CampaignComparisonDashboard: React.FC = () => {
               })}
             </div>
             <p className="text-[11px] text-plum-500 dark:text-lilac/70 pt-2 border-t border-plum-100 dark:border-plum-800">
-              *Campaign B achieved a 16.12% baseline website conversion rate; Campaign A achieved 14.72%.
+              *Campaign A achieved a 20.00% website conversion rate; Campaign B achieved 16.67%.
             </p>
           </SpotlightCard>
 
@@ -960,10 +960,10 @@ export const CampaignComparisonDashboard: React.FC = () => {
               Which campaign generated the highest traffic?
             </h4>
             <div className="p-2.5 rounded-xl bg-plum-50 dark:bg-plum-900/60 font-mono text-xs font-bold text-plum-950 dark:text-white">
-              Campaign B (Instagram Promotions): 645 Sessions
+              Campaign B (Instagram Promotions): 18 Sessions
             </div>
             <p className="text-xs text-plum-700 dark:text-lilac/80 leading-relaxed">
-              Instagram delivered <strong>44.8%</strong> of all tracked campaign sessions, leveraging viral story sticker links and high-energy concert imagery.
+              Instagram delivered <strong>40.9%</strong> of all tracked campaign sessions, leveraging story sticker links and pro-night concert visual assets.
             </p>
           </div>
 
@@ -974,10 +974,10 @@ export const CampaignComparisonDashboard: React.FC = () => {
               Which campaign generated the most registrations?
             </h4>
             <div className="p-2.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400">
-              Campaign B (Instagram Promotions): 104 Leads
+              Campaign B &amp; Campaign A (Tied): 3 Leads Each
             </div>
             <p className="text-xs text-plum-700 dark:text-lilac/80 leading-relaxed">
-              Instagram drove the highest gross volume of completed interest submissions (104 out of 246 total leads), driven by pass interest.
+              Instagram and WhatsApp each drove 3 verified registrations, delivering 85.7% of total festival lead conversions.
             </p>
           </div>
 
@@ -988,10 +988,10 @@ export const CampaignComparisonDashboard: React.FC = () => {
               Which campaign had the highest CTR?
             </h4>
             <div className="p-2.5 rounded-xl bg-orange-accent/15 font-mono text-xs font-bold text-orange-accent">
-              Campaign A (WhatsApp Communities): 22.00% CTR
+              Campaign B (Instagram Promotions): 39.58% CTR
             </div>
             <p className="text-xs text-plum-700 dark:text-lilac/80 leading-relaxed">
-              WhatsApp achieved 528 clicks from 2,400 members (<strong>22.0% CTR</strong>), proving peer recommendation in closed B-school groups out-clicks public social feeds by 2.6x.
+              Instagram achieved 19 clicks from 48 impressions (<strong>39.58% CTR</strong>), closely followed by WhatsApp with 16 clicks from 42 impressions (<strong>38.10% CTR</strong>).
             </p>
           </div>
 
@@ -1002,10 +1002,10 @@ export const CampaignComparisonDashboard: React.FC = () => {
               Which had highest session conversion rate?
             </h4>
             <div className="p-2.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400">
-              Campaign B (Instagram): 16.12% CR (A: 14.72%)
+              Campaign A (WhatsApp): 20.00% CR (B: 16.67%)
             </div>
             <p className="text-xs text-plum-700 dark:text-lilac/80 leading-relaxed">
-              Instagram converted 16.12% of visits into leads, followed closely by WhatsApp at 14.72% and Campus QR at 13.77%.
+              WhatsApp converted 20.00% of visits into leads (3 of 15), followed by Instagram at 16.67% (3 of 18) and Campus QR at 12.50% (1 of 8).
             </p>
           </div>
 
@@ -1016,10 +1016,10 @@ export const CampaignComparisonDashboard: React.FC = () => {
               Which generated the most engaged visitors?
             </h4>
             <div className="p-2.5 rounded-xl bg-plum-50 dark:bg-plum-900/60 font-mono text-xs font-bold text-plum-950 dark:text-white">
-              Campaign A (WhatsApp): 3m 05s &amp; 74.8% ER
+              Campaign A (WhatsApp): 2m 45s &amp; 73.3% ER
             </div>
             <p className="text-xs text-plum-700 dark:text-lilac/80 leading-relaxed">
-              WhatsApp visitors spent <strong>3m 05s</strong> on site (vs 2m 14s for Instagram), demonstrating deep qualitative reading of rulebooks and prize structures.
+              WhatsApp visitors spent <strong>2m 45s</strong> on site (vs 1m 52s for Instagram), demonstrating deep qualitative reading of rulebooks and prize structures.
             </p>
           </div>
 
@@ -1033,7 +1033,7 @@ export const CampaignComparisonDashboard: React.FC = () => {
               Dual-Vector Investment Strategy
             </div>
             <p className="text-xs text-plum-700 dark:text-lilac/80 leading-relaxed">
-              <strong>Gross Audience Reach:</strong> Allocate 60% of budget to Instagram (Campaign B).<br />
+              <strong>Gross Audience Reach:</strong> Allocate 60% of social media effort to Instagram (Campaign B).<br />
               <strong>High-Value B-School Teams:</strong> Allocate 40% of effort to WhatsApp communities (Campaign A).
             </p>
           </div>

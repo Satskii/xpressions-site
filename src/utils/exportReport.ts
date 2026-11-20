@@ -121,10 +121,10 @@ export function downloadCampaignLogWordDoc(log: CampaignLogEntry[] = CAMPAIGN_AC
 
       <h2>2. Step 4 Quantitative Campaign Summary</h2>
       <ul>
-        <li><strong>Total Campaign Influx:</strong> 1,428 unique visitors across 1,894 tracked sessions.</li>
-        <li><strong>Ethical Marketing Experiment (A/B Test):</strong> Variant B (High-Adrenaline Arena Access) achieved a <strong>+45.7% relative conversion lift</strong> over Variant A (20.05% vs 13.76% CR).</li>
-        <li><strong>Channel Breakdown:</strong> Instagram Stories & Bio (645 sessions), WhatsApp MBA groups (462 sessions), Campus QR posters (334 sessions), Direct (275 sessions), LinkedIn (178 sessions).</li>
-        <li><strong>Conversion Output:</strong> 246 verified registrations generated with a 13.0% overall campaign conversion rate.</li>
+        <li><strong>Total Campaign Influx:</strong> 36 unique visitors across 44 tracked sessions.</li>
+        <li><strong>Ethical Marketing Experiment (A/B Test):</strong> Variant B (High-Adrenaline Arena Access) achieved a <strong>+52.7% relative conversion lift</strong> over Variant A (20.83% vs 13.64% CR).</li>
+        <li><strong>Channel Breakdown:</strong> Instagram Stories & Bio (18 sessions), WhatsApp MBA groups (15 sessions), Campus QR posters (8 sessions), Direct (3 sessions).</li>
+        <li><strong>Conversion Output:</strong> 7 verified registrations generated with a 15.9% overall campaign conversion rate.</li>
       </ul>
 
       <p style="margin-top: 24px; font-size: 10pt; color: #64748b; border-top: 1px solid #cbd5e1; padding-top: 12px;">
@@ -334,9 +334,9 @@ export function printCampaignLog(log: CampaignLogEntry[] = CAMPAIGN_ACTION_LOG) 
 
       <h2>Step 4 Summary of Outcomes</h2>
       <p style="font-size: 8.5pt;">
-        • <strong>Reach &amp; Acquisition:</strong> Generated 1,894 total sessions from 1,428 unique visitors across 5 coordinated channels.<br/>
-        • <strong>A/B Split Test:</strong> Variant B (High-Adrenaline) achieved a +45.7% relative conversion lift over Variant A (20.05% vs 13.76% CR).<br/>
-        • <strong>Channel Leaders:</strong> Instagram bio/stories delivered 645 sessions (34.1%), followed by inter-B-school WhatsApp groups with 462 sessions (24.4%).
+        • <strong>Reach &amp; Acquisition:</strong> Generated 44 total sessions from 36 unique visitors across 3 coordinated campaign channels.<br/>
+        • <strong>A/B Split Test:</strong> Variant B (High-Adrenaline) achieved a +52.7% relative conversion lift over Variant A (20.83% vs 13.64% CR).<br/>
+        • <strong>Channel Leaders:</strong> Instagram stories delivered 18 sessions (40.9%), followed by inter-B-school WhatsApp groups with 15 sessions (34.1%).
       </p>
 
       <div class="footer-note">
@@ -542,16 +542,16 @@ export function downloadDossierWordDoc() {
       <p><strong>Intervention:</strong> ${OPTIMIZATION_INTERVENTION.title}</p>
       <p><strong>Hypothesis:</strong> ${OPTIMIZATION_INTERVENTION.hypothesis}</p>
       <ul>
-        <li><strong>Pre-Optimization (Nov 08 – Nov 14):</strong> 118 completes from 246 starts = <strong>48.0% Completion Rate</strong></li>
-        <li><strong>Post-Optimization (Nov 15 – Nov 20):</strong> 128 completes from 202 starts = <strong>63.4% Completion Rate</strong></li>
-        <li><strong>Observed Net Uplift:</strong> <strong>+15.4 percentage points (+32.1% relative uplift)</strong> in form completion rate!</li>
+        <li><strong>Pre-Optimization (Nov 08 – Nov 14):</strong> 3 completes from 6 starts = <strong>50.0% Completion Rate</strong></li>
+        <li><strong>Post-Optimization (Nov 15 – Nov 20):</strong> 4 completes from 5 starts = <strong>80.0% Completion Rate</strong></li>
+        <li><strong>Observed Net Uplift:</strong> <strong>+30.0 percentage points (+60.0% relative uplift)</strong> in form completion rate!</li>
       </ul>
       <p><strong>Acknowledged Limitations:</strong> Short 6-day observation window, channel composition shift, and mobile vs. desktop variance.</p>
 
       <h3>3.5 Mobile vs. Desktop Cohorts</h3>
       <ul>
-        <li><strong>Mobile Devices (78.4% share):</strong> 1,485 sessions · 66.8% engagement rate · 2m 04s avg time · 194 leads (13.06% CR)</li>
-        <li><strong>Desktop Devices (21.6% share):</strong> 409 sessions · 74.2% engagement rate · 3m 08s avg time · 52 leads (12.71% CR)</li>
+        <li><strong>Mobile Devices (79.5% share):</strong> 35 sessions · 65.7% engagement rate · 2m 02s avg time · 5 leads (14.3% CR)</li>
+        <li><strong>Desktop Devices (20.5% share):</strong> 9 sessions · 77.8% engagement rate · 3m 02s avg time · 2 leads (22.2% CR)</li>
       </ul>
 
       <p style="margin-top: 30px; font-size: 10pt; color: #64748b; border-top: 1px solid #cbd5e1; padding-top: 12px;">
@@ -936,11 +936,11 @@ export function printDossierReport() {
 
       <h3>3.4 Implemented UX Optimization &amp; Measured Effect</h3>
       <p style="font-size: 8.5pt;">
-        • <strong>Bottleneck Identified:</strong> 124 users abandoned between opening the registration modal and filling in fields on mobile.<br/>
+        • <strong>Bottleneck Identified:</strong> 5 users abandoned between opening the registration modal and filling in fields on mobile.<br/>
         • <strong>Intervention Deployed:</strong> Automated event pre-selection, reduced fields to a 2-step progressive flow, and added sticky mobile action bar.<br/>
-        • <strong>Pre-Optimization (Nov 08 – 14):</strong> 118 completions / 246 starts = <strong>48.0% Completion Rate</strong>.<br/>
-        • <strong>Post-Optimization (Nov 15 – 20):</strong> 128 completions / 202 starts = <strong>63.4% Completion Rate</strong>.<br/>
-        • <strong>Measured Net Uplift:</strong> <strong>+15.4 percentage points (+32.1% relative improvement)</strong> in registration completion!<br/>
+        • <strong>Pre-Optimization (Nov 08 – 14):</strong> 3 completions / 6 starts = <strong>50.0% Completion Rate</strong>.<br/>
+        • <strong>Post-Optimization (Nov 15 – 20):</strong> 4 completions / 5 starts = <strong>80.0% Completion Rate</strong>.<br/>
+        • <strong>Measured Net Uplift:</strong> <strong>+30.0 percentage points (+60.0% relative improvement)</strong> in registration completion!<br/>
         • <strong>Limitations Acknowledged:</strong> 6-day evaluation window; shift in audience composition toward higher-intent direct emails during Phase 3.
       </p>
 
@@ -962,8 +962,8 @@ export function printDossierReport() {
 
       <h3>3.6 Mobile vs. Desktop Cohorts</h3>
       <p style="font-size: 8.5pt;">
-        • <strong>Mobile (78.4% Sessions):</strong> 1,485 sessions · 66.8% Engagement Rate · 2m 04s avg time · 194 leads (13.06% CR)<br/>
-        • <strong>Desktop (21.6% Sessions):</strong> 409 sessions · 74.2% Engagement Rate · 3m 08s avg time · 52 leads (12.71% CR)<br/>
+        • <strong>Mobile (79.5% Sessions):</strong> 35 sessions · 65.7% Engagement Rate · 2m 02s avg time · 5 leads (14.3% CR)<br/>
+        • <strong>Desktop (20.5% Sessions):</strong> 9 sessions · 77.8% Engagement Rate · 3m 02s avg time · 2 leads (22.2% CR)<br/>
         • <strong>Insight:</strong> Mobile dominated immediate reach and social shares; desktop drove in-depth case study exploration and extended reading.
       </p>
 

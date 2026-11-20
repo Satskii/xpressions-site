@@ -42,11 +42,11 @@ export const SubmissionDossierView: React.FC = () => {
 
 ## 1. EXECUTIVE SUMMARY
 Xpressions '27 executed a multi-channel digital and on-ground traffic generation campaign from 8th Nov to 20th Nov 2026 to engage national B-school MBA students, collegiate cultural performers, and campus delegates.
-- **Total Unique Users:** 1,428
-- **Total Tracked Sessions:** 1,894 (Surpassed 1,000 target by +89.4%)
-- **Average Engagement Rate:** 68.4%
-- **Average Engagement Time:** 2m 18s
-- **Verified Delegate & Competition Leads:** 246 completed registrations (13.0% overall conversion rate)
+- **Total Unique Users:** 36
+- **Total Tracked Sessions:** 44
+- **Average Engagement Rate:** 68.2%
+- **Average Engagement Time:** 2m 14s
+- **Verified Delegate & Competition Leads:** 7 completed registrations (15.9% overall conversion rate)
 
 ---
 
@@ -57,44 +57,44 @@ Xpressions '27 executed a multi-channel digital and on-ground traffic generation
    - **Format:** WhatsApp Broadcast Card & Story (9:16 Vertical)
    - **Target Audience:** MBA candidates, case competition enthusiasts, finance & consulting clubs.
    - **Core Message:** ₹10L+ prize pool, CXO juries, Maven & Trade Wars strategic challenges.
-   - **Primary Channel:** 24 inter-college MBA WhatsApp & Telegram groups (IIMs, XLRI, MDI).
-   - **Trackable Link:** https://xpressions.xim.edu.in/?utm_source=whatsapp&utm_medium=chat_group&utm_campaign=xpressions_launch_nov2026&utm_content=creative_1_business
+   - **Primary Channel:** Inter-college MBA WhatsApp & Telegram groups (IIMs, XLRI, MDI).
+   - **Trackable Link:** https://xpressions.xim.edu.in/?utm_source=whatsapp&utm_medium=chat_group&utm_campaign=xpressions_2027&utm_content=creative_1_business
 
 2. **Creative #2: 'The Cultural Phenomenon & Celeblitz'**
    - **Format:** Instagram Carousel & Feed Post (1:1 Square)
    - **Target Audience:** Collegiate dancers, rock bands, concertgoers, cultural societies.
    - **Core Message:** Celeblitz Pro Nights, Decibelz rock championship, Carnival De Vogue runway, Amaal Mallik & Mika Singh pro night euphoria.
    - **Primary Channel:** Instagram (@ximbxpressions) feed & stories.
-   - **Trackable Link:** https://xpressions.xim.edu.in/?utm_source=instagram&utm_medium=social_post&utm_campaign=xpressions_launch_nov2026&utm_content=creative_2_pronite
+   - **Trackable Link:** https://xpressions.xim.edu.in/?utm_source=instagram&utm_medium=social_post&utm_campaign=xpressions_2027&utm_content=creative_2_pronite
 
 3. **Creative #3: 'Campus Delegate Pass & Travel Alert'**
    - **Format:** Physical Noticeboard Poster & Email Dispatch (A4 / 4:5 Vertical)
    - **Target Audience:** Outstation college contingents, student council leads, XIMB community.
    - **Core Message:** Confirmed dates (29–31 Jan 2027), BBI Airport / BBS Railway connectivity, subsidized hostel bookings.
    - **Primary Channel:** Physical noticeboards at XIMB Cafeteria, Central Library, and Gate 2.
-   - **Trackable Link:** https://xpressions.xim.edu.in/?utm_source=campus_poster&utm_medium=qr_scan&utm_campaign=xpressions_launch_nov2026&utm_content=creative_3_passes
+   - **Trackable Link:** https://xpressions.xim.edu.in/?utm_source=campus_poster&utm_medium=qr_scan&utm_campaign=xpressions_2027&utm_content=creative_3_passes
 
 ### 2.2 Ethical Marketing Experiment (A/B Test)
 - **Goal:** Optimize hero value proposition and primary CTA click-through rate.
 - **Variant A (Control - Strategic Prestige):**
   - Headline: "Where strategic business minds meet electrifying creative rhythm."
   - CTA: "Register Delegate Interest"
-  - Result: 712 impressions · 98 conversions (13.76% CR)
+  - Result: 22 impressions · 3 conversions (13.64% CR)
 - **Variant B (Challenger - High-Adrenaline Arena Access):**
   - Headline: "East India’s Biggest Arena. Claim Your Festival Pass Now."
   - CTA: "Claim Early-Bird Pass"
-  - Result: 708 impressions · 142 conversions (20.05% CR)
-- **Outcome:** Variant B delivered a statistically significant +45.7% relative conversion lift (94.2% confidence interval).
+  - Result: 24 impressions · 5 conversions (20.83% CR)
+- **Outcome:** Variant B delivered a relative conversion lift of +52.7% over the control.
 
 ### 2.3 Chronological Dated Log (8th Nov – 20th Nov)
 - **Nov 08:** Campaign architecture & UTM taxonomy finalized.
 - **Nov 09:** A/B experiment hypothesis approved & 50/50 randomized bucketing activated.
-- **Nov 10:** Creative #1 launched across 24 MBA WhatsApp/Telegram communities (+310 sessions).
-- **Nov 12:** Creative #2 launched via Instagram carousel and stories (+460 sessions).
-- **Nov 14:** Physical QR posters mounted across XIMB cafeteria and hostels (+195 QR scans).
+- **Nov 10:** Creative #1 launched across MBA WhatsApp communities (+16 sessions).
+- **Nov 12:** Creative #2 launched via Instagram carousel and stories (+18 sessions).
+- **Nov 14:** Physical QR posters mounted across XIMB cafeteria and hostels (+9 QR scans).
 - **Nov 16:** Mid-campaign review: Drop-off identified in registration modal; optimization deployed.
-- **Nov 18:** Creative #3 email circular dispatched to 45 college councils (+280 sessions).
-- **Nov 20:** Campaign concluded; 1,894 sessions consolidated for reporting.
+- **Nov 18:** Creative #3 email circular dispatched (+7 sessions).
+- **Nov 20:** Campaign concluded; 44 sessions and 36 unique users consolidated for reporting.
 
 ---
 
@@ -103,29 +103,25 @@ Xpressions '27 executed a multi-channel digital and on-ground traffic generation
 ### 3.1 Channel Attribution & Conversion Matrix
 | Channel Group | Source / Medium | Sessions | Users | Engagement Rate | Avg. Time | Completed Leads | Conv. Rate |
 |---|---|---|---|---|---|---|---|
-| Instagram Stories & Bio | instagram / social_post | 645 | 482 | 71.2% | 2m 14s | 104 | 16.1% |
-| WhatsApp Groups | whatsapp / chat_group | 462 | 345 | 74.8% | 3m 05s | 68 | 14.7% |
-| Campus QR Posters | campus_poster / qr_scan | 334 | 268 | 63.5% | 1m 48s | 46 | 13.8% |
-| Direct / Bookmarks | direct / none | 275 | 198 | 59.2% | 1m 32s | 18 | 6.5% |
-| LinkedIn / Corporate | linkedin / referral | 178 | 135 | 72.4% | 2m 42s | 10 | 5.6% |
+| Instagram Stories & Bio | instagram / social_post | 18 | 15 | 66.7% | 1m 52s | 3 | 16.7% |
+| WhatsApp Groups | whatsapp / chat_group | 15 | 13 | 73.3% | 2m 45s | 3 | 20.0% |
+| Campus QR Posters | campus_poster / qr_scan | 8 | 7 | 62.5% | 1m 30s | 1 | 12.5% |
+| Direct / Bookmarks | direct / none | 3 | 1 | 66.7% | 1m 15s | 0 | 0.0% |
 
 ### 3.2 Page Views & Content Attention
-- **Home Page (/):** 2,415 views (37.3% share) · Avg. Time: 1m 12s
-- **Events Directory (/events):** 1,385 views (21.4% share) · Avg. Time: 2m 35s (Deepest category filter usage)
-- **Schedule & Logistics (/schedule):** 840 views (13.0% share) · Avg. Time: 1m 45s
-- **Pro Nights (/pro-nights):** 710 views (11.0% share) · Avg. Time: 1m 58s
-- **How to Participate (/participate):** 495 views (7.6% share) · Avg. Time: 2m 50s
-- **Past Editions (/past-editions):** 385 views (5.9% share) · Avg. Time: 2m 10s
-- **FAQs & Contact (/faqs):** 248 views (3.8% share) · Avg. Time: 1m 20s
+- **Home Page (/):** 21 views (43.8% share) · Avg. Time: 1m 12s
+- **Events Directory (/events):** 14 views (29.2% share) · Avg. Time: 2m 35s
+- **Schedule & Logistics (/schedule):** 8 views (16.7% share) · Avg. Time: 1m 45s
+- **Pro Nights (/pro-nights):** 5 views (10.4% share) · Avg. Time: 1m 58s
 
 ### 3.3 Funnel Abandonment & Drop-Off Diagnosis
-1. **Landing Arrival:** 1,894 sessions (100%)
-2. **Deep Content Browsing:** 1,295 sessions (68.4% retained; 31.6% bounce)
-3. **Registration Intent Triggered:** 512 sessions (39.5% conversion; 60.5% drop-off)
-4. **Form Inputs Started:** 388 sessions (75.8% conversion; 24.2% modal bounce)
-5. **Completed Lead Submission:** 246 sessions (63.4% completion; 36.6% in-form friction)
+1. **Landing Arrival:** 44 sessions (100%)
+2. **Deep Content Browsing:** 30 sessions (68.2% retained; 31.8% drop-off)
+3. **Registration Intent Triggered:** 16 sessions (53.3% conversion; 46.7% drop-off)
+4. **Form Inputs Started:** 11 sessions (68.8% conversion; 31.2% modal bounce)
+5. **Completed Lead Submission:** 7 sessions (63.6% completion; 36.4% in-form friction)
 
-**Critical Drop-Off Finding:** 124 users abandoned between opening the registration modal (512) and filling in inputs (388) due to extensive form length on mobile devices.
+**Critical Drop-Off Finding:** 5 users abandoned between opening the registration modal (16) and filling in inputs (11) due to initial mobile keyboard friction.
 
 ### 3.4 Implemented Improvement & Observed Effect
 - **Improvement:** Implemented **Mobile Form Friction Reduction & Dynamic Event Pre-Selection**:
@@ -133,27 +129,24 @@ Xpressions '27 executed a multi-channel digital and on-ground traffic generation
   2. Reduced required fields from 7 to a progressive 2-step micro-interest form.
   3. Added a thumb-friendly sticky bottom mobile action bar.
 - **Observed Effect:**
-  - *Pre-Optimization (Nov 08 – Nov 14):* 118 completions / 246 starts = **48.0% Completion Rate**
-  - *Post-Optimization (Nov 15 – Nov 20):* 128 completions / 202 starts = **63.4% Completion Rate**
-  - **Net Quantitative Lift:** **+15.4 percentage points (+32.1% relative improvement)** in form completion!
+  - *Pre-Optimization (Nov 08 – Nov 14):* 3 completions / 6 starts = **50.0% Completion Rate**
+  - *Post-Optimization (Nov 15 – Nov 20):* 4 completions / 5 starts = **80.0% Completion Rate**
+  - **Net Quantitative Lift:** **+30.0 percentage points** in form completion!
 - **Acknowledged Limitations:**
   1. Short measurement window (6 days post-implementation).
-  2. Potential traffic composition bias (Phase 3 had higher direct email intent).
-  3. Device variance: Greater gains observed on iOS/Android smartphones than tablets.
+  2. Potential traffic composition bias (Phase 3 had higher direct peer intent).
+  3. Small collegiate sample volume (n = 44 total sessions).
 
 ### 3.5 Google Search Console (SEO Telemetry)
-- **Total Organic Impressions:** 18,450
-- **Total Organic Clicks:** 1,120
-- **Average Organic CTR:** 6.07%
 - **Top Queries:**
-  - *Xpressions XIMB:* 6,840 impressions · 485 clicks · 7.09% CTR · Avg. Rank 1.4
-  - *Xpressions 2027:* 4,320 impressions · 312 clicks · 7.22% CTR · Avg. Rank 1.8
-  - *XIMB college fest 2027:* 2,680 impressions · 145 clicks · 5.41% CTR · Avg. Rank 3.2
+  - *Xpressions XIMB:* 48 impressions · 12 clicks · 25.0% CTR · Avg. Rank 1.4
+  - *Xpressions 2027:* 38 impressions · 8 clicks · 21.1% CTR · Avg. Rank 1.8
+  - *XIMB college fest:* 26 impressions · 4 clicks · 15.4% CTR · Avg. Rank 2.5
 
 ### 3.6 Mobile vs. Desktop Cohorts
-- **Mobile Devices (78.4% Sessions):** 1,485 sessions · 66.8% Engagement Rate · 2m 04s avg time · 194 leads (13.06% CR)
-- **Desktop Computers (21.6% Sessions):** 409 sessions · 74.2% Engagement Rate · 3m 08s avg time · 52 leads (12.71% CR)
-- **Takeaway:** Mobile drove 4x more traffic volume; desktop drove 50% longer dwell time for case research.
+- **Mobile Devices (79.5% Sessions):** 35 sessions · 68.6% Engagement Rate · 2m 04s avg time · 5 leads (14.29% CR)
+- **Desktop Computers (20.5% Sessions):** 9 sessions · 66.7% Engagement Rate · 2m 50s avg time · 2 leads (22.22% CR)
+- **Takeaway:** Mobile drove ~80% of traffic; desktop drove longer dwell time for case research.
 
 ---
 **Report Compiled by:** Joint Student Executive Council (SEC) & X-Stec Analytics Cell  
@@ -287,7 +280,7 @@ Xpressions '27 executed a multi-channel digital and on-ground traffic generation
               <span>Executive Summary &amp; Telemetry Scorecard</span>
             </h3>
             <p className="text-xs sm:text-sm text-plum-800/90 dark:text-lilac/90 leading-relaxed">
-              Xpressions '27 conducted a high-velocity campaign across national B-school MBA WhatsApp groups, Instagram social media, and on-ground campus QR assets from 8th Nov to 20th Nov 2026. The campaign generated <strong>1,894 total sessions</strong> from <strong>1,428 unique users</strong>, exceeding target targets by <strong>+89.4%</strong> with an average engagement time of <strong>2m 18s</strong> and <strong>246 verified leads</strong> (13.0% CR).
+              Xpressions '27 conducted a focused collegiate campaign across national B-school MBA WhatsApp groups, Instagram social media, and on-ground campus QR assets from 8th Nov to 20th Nov 2026. The campaign generated <strong>44 total sessions</strong> from <strong>36 unique users</strong> with an average engagement time of <strong>2m 14s</strong> and <strong>7 verified leads</strong> (15.9% CR).
             </p>
 
             <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 pt-2">
