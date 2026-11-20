@@ -128,7 +128,20 @@ export function trackGaEvent(eventName: string, params: Record<string, any> = {}
     }
   }
 
-  // 2. Save locally for the client-side audit telemetry dashboard
+  // 2. Direct dataLayer push for Google Tag Manager triggers
+  if (typeof window !== 'undefined') {
+    try {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: eventName,
+        ...params,
+      });
+    } catch (e) {
+      // ignore
+    }
+  }
+
+  // 3. Save locally for the client-side audit telemetry dashboard
   try {
     const eventRecord: AnalyticsEvent = {
       id: `evt-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
@@ -151,6 +164,15 @@ export function trackGaEvent(eventName: string, params: Record<string, any> = {}
 export function trackPageView(pagePath: string, pageTitle: string = document.title) {
   if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
     window.gtag('event', 'page_view', {
+      page_title: pageTitle,
+      page_location: window.location.href,
+      page_path: pagePath,
+    });
+  }
+  if (typeof window !== 'undefined') {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'page_view',
       page_title: pageTitle,
       page_location: window.location.href,
       page_path: pagePath,

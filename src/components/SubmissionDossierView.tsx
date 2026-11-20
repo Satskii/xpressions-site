@@ -36,7 +36,7 @@ export const SubmissionDossierView: React.FC = () => {
 **Campaign Period:** 8th November 2026 – 20th November 2026  
 **Final Submission Date:** 26th November 2026  
 **Live Microsite URL:** https://businesses-cute-precisely-steven.trycloudflare.com (or https://xpressions.xim.edu.in)  
-**GA4 Measurement ID:** G-XPRESS2027  
+**GA4 / GTM Container ID:** GTM-WNSWR927  
 
 ---
 
@@ -272,7 +272,7 @@ Xpressions '27 executed a multi-channel digital and on-ground traffic generation
                 Campaign: <strong>{CAMPAIGN_INFO.period}</strong>
               </span>
               <span className="px-2.5 py-1 rounded-md bg-plum-100 dark:bg-plum-850 font-semibold">
-                GA4 Container: <strong>G-XPRESS2027</strong>
+                GA4 / GTM Container: <strong>GTM-WNSWR927</strong>
               </span>
               <span className="px-2.5 py-1 rounded-md bg-orange-accent/15 text-orange-accent font-semibold">
                 Production Site: <strong>{CAMPAIGN_INFO.baseDomain}</strong>

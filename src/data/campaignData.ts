@@ -45,6 +45,7 @@ export const CAMPAIGN_INFO = {
   targetFootfallGoal: "1,500+ Unique Web Influx",
   activeExperiment: "Hero Value Proposition & CTA Optimization (Variant A vs Variant B)",
   baseDomain: "https://xpressions.xim.edu.in",
+  gtmContainerId: "GTM-WNSWR927",
   deadlines: {
     step4: "20th Nov 2026",
     step5: "25th Nov 2026",

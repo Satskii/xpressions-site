@@ -444,7 +444,7 @@ export function downloadDossierWordDoc() {
 
       <div class="meta-box">
         <strong>Campaign Period:</strong> ${CAMPAIGN_INFO.period} | <strong>Final Submission Due:</strong> ${CAMPAIGN_INFO.deadlines.finalSubmission}<br/>
-        <strong>Live Production Microsite:</strong> <a href="${CAMPAIGN_INFO.baseDomain}">${CAMPAIGN_INFO.baseDomain}</a> | <strong>GA4 Container:</strong> G-XPRESS2027<br/>
+        <strong>Live Production Microsite:</strong> <a href="${CAMPAIGN_INFO.baseDomain}">${CAMPAIGN_INFO.baseDomain}</a> | <strong>GA4 / GTM Container:</strong> GTM-WNSWR927<br/>
         <strong>Target Deadlines:</strong> Step 4 (${CAMPAIGN_INFO.deadlines.step4}) &nbsp;|&nbsp; Step 5 (${CAMPAIGN_INFO.deadlines.step5}) &nbsp;|&nbsp; Final (${CAMPAIGN_INFO.deadlines.finalSubmission})
       </div>
 
@@ -828,7 +828,7 @@ export function printDossierReport() {
         <strong>Campaign Period:</strong> ${CAMPAIGN_INFO.period} &nbsp;|&nbsp; 
         <strong>Final Due:</strong> ${CAMPAIGN_INFO.deadlines.finalSubmission} &nbsp;|&nbsp; 
         <strong>Production Site:</strong> ${CAMPAIGN_INFO.baseDomain} &nbsp;|&nbsp; 
-        <strong>GA4 ID:</strong> G-XPRESS2027<br/>
+        <strong>GA4 / GTM Container ID:</strong> GTM-WNSWR927<br/>
         <strong>Milestones:</strong> Step 4 (20 Nov 2026) · Step 5 (25 Nov 2026) · Final Consolidated Submission (26 Nov 2026)
       </div>
 

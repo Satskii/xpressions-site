@@ -4,7 +4,7 @@
 **Campaign Period:** 8th November 2026 – 20th November 2026  
 **Final Submission Deadline:** 26th November 2026  
 **Live Microsite Production URL:** https://businesses-cute-precisely-steven.trycloudflare.com (or https://xpressions.xim.edu.in)  
-**Google Analytics 4 (GA4) Container:** \`G-XPRESS2027\`  
+**Google Analytics 4 (GA4) / GTM Container:** \`GTM-WNSWR927\`  
 **Document Format:** Academic / Professional Submission Document for Word & PPT Export  
 
 ---
@@ -214,7 +214,7 @@ To drive high-intent visitor influx for **Xpressions '27 (29–31 January 2027)*
 ## 4. TOOLS USED & AUDIT METHODOLOGY
 
 1. **Microsite Engineering:** React 18 + TypeScript + Vite + Tailwind CSS (hosted with global edge routing).
-2. **Website Analytics:** Google Analytics 4 (GA4 container \`G-XPRESS2027\`) + in-browser telemetry persistence.
+2. **Website Analytics:** Google Analytics 4 (GA4 / GTM container \`GTM-WNSWR927\`) + in-browser telemetry persistence.
 3. **SEO Measurement:** Google Search Console (GSC query impressions, CTR, average SERP rankings).
 4. **Registration & Lead Capture:** Interactive working modal with client-side validation, localStorage persistence, and one-click CSV export.
 5. **Creative Development:** Canva / Figma design frameworks implementing institutional Deep Plum (\`#38213D\`), Warm Orange (\`#F0A05A\`), and Light Lilac (\`#E6D3E8\`).

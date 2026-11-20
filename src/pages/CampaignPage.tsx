@@ -63,7 +63,7 @@ export const CampaignPage: React.FC = () => {
                 Step 5 Due: <strong className="text-white">{CAMPAIGN_INFO.deadlines.step5}</strong>
               </span>
               <span className="px-3 py-1 rounded-full bg-orange-accent/15 border border-orange-accent/30 text-orange-accent font-semibold">
-                GA4: <strong>G-XPRESS2027</strong>
+                GA4 / GTM: <strong>GTM-WNSWR927</strong>
               </span>
             </div>
           </ScrollReveal>
@@ -228,7 +228,7 @@ export const CampaignPage: React.FC = () => {
             </div>
 
             <div className="flex items-center gap-2 text-xs font-mono text-plum-500 shrink-0">
-              <span>Container: G-XPRESS2027</span>
+              <span>Container: GTM-WNSWR927</span>
               <span>·</span>
               <span className="text-emerald-500 font-bold">Status: Online</span>
             </div>
