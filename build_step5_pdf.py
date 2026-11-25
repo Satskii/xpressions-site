@@ -601,14 +601,54 @@ def generate_step5_pdf(output_path):
     story.append(opt_table)
     story.append(Spacer(1, 3))
 
-    limitations_p = Paragraph(
-        "<b>Acknowledged Limitations of the Experiment:</b><br/>"
-        "• <i>Sample Size Scope:</i> As expected for an authentic 12-day collegiate campaign, absolute numbers are focused (6 starts vs. 5 starts). Directional lift is strong, but statistical certainty requires ongoing tracking in subsequent rounds.<br/>"
-        "• <i>Audience Composition Variance:</i> Phase 3 traffic included direct college circular email recipients with higher inherent intent than top-of-funnel Instagram browsers.<br/>"
-        "• <i>Device Asymmetry:</i> Uplift was almost entirely concentrated on mobile devices (+33.3% relative lift), with negligible effect on desktop.",
-        body_style
-    )
-    story.append(limitations_p)
+    limitations_box_header = Paragraph("6.2 Acknowledged Methodological &amp; Analytical Limitations", h2_style)
+    story.append(limitations_box_header)
+
+    lim_headers = [
+        Paragraph("<b>Category</b>", table_header_style),
+        Paragraph("<b>Identified Limitation</b>", table_header_style),
+        Paragraph("<b>Impact on Data Interpretation</b>", table_header_style),
+        Paragraph("<b>Next-Wave Mitigation Plan</b>", table_header_style),
+    ]
+    lim_rows = [
+        lim_headers,
+        [
+            Paragraph("<b>Sample Size</b>", table_cell_bold),
+            Paragraph("Collegiate Cohort Scope (n=44)", table_cell_style),
+            Paragraph("6 pre vs 5 post starts yields wider confidence intervals.", table_cell_style),
+            Paragraph("Extend monitoring across 30-day Dec–Jan main fest wave.", table_cell_style),
+        ],
+        [
+            Paragraph("<b>Selection Bias</b>", table_cell_bold),
+            Paragraph("Phase 3 Audience Intent Shift", table_cell_style),
+            Paragraph("Phase 3 email circulars had higher baseline intent than Instagram stories.", table_cell_style),
+            Paragraph("Run simultaneous 50/50 UX split tests inside each channel.", table_cell_style),
+        ],
+        [
+            Paragraph("<b>Time Horizon</b>", table_cell_bold),
+            Paragraph("Short 6-Day Post Window", table_cell_style),
+            Paragraph("Unable to measure long-term form fatigue beyond Nov 20.", table_cell_style),
+            Paragraph("Retain GTM-WNSWR927 telemetry until Jan 2027 finale.", table_cell_style),
+        ],
+        [
+            Paragraph("<b>Telemetry Gaps</b>", table_cell_bold),
+            Paragraph("Privacy Blockers &amp; App Webviews", table_cell_style),
+            Paragraph("Ad-blockers / Safari ITP (~10–15%) and in-app browsers fragment sessions.", table_cell_style),
+            Paragraph("Cross-verify client GTM counts with backend timestamps.", table_cell_style),
+        ],
+    ]
+    lim_table = Table(lim_rows, colWidths=[72, 125, 166, 160])
+    lim_table.setStyle(TableStyle([
+        ('BACKGROUND', (0,0), (-1,0), colors.HexColor("#92400E")),
+        ('BACKGROUND', (0,1), (-1,1), colors.HexColor("#FFFBEB")),
+        ('BACKGROUND', (0,2), (-1,2), colors.white),
+        ('BACKGROUND', (0,3), (-1,3), colors.HexColor("#FFFBEB")),
+        ('BACKGROUND', (0,4), (-1,4), colors.white),
+        ('GRID', (0,0), (-1,-1), 0.5, c_border),
+        ('TOPPADDING', (0,0), (-1,-1), 3),
+        ('BOTTOMPADDING', (0,0), (-1,-1), 3),
+    ]))
+    story.append(lim_table)
     story.append(Spacer(1, 3))
 
     # 8. Organic Search Telemetry (GSC)
@@ -666,20 +706,20 @@ def generate_step5_pdf(output_path):
             Paragraph("<b>79.5%</b>", table_cell_center),
             Paragraph("35", table_cell_center),
             Paragraph("29", table_cell_center),
-            Paragraph("65.7%", table_cell_center),
-            Paragraph("2m 02s", table_cell_center),
+            Paragraph("68.6%", table_cell_center),
+            Paragraph("2m 04s", table_cell_center),
             Paragraph("<b>5</b>", table_cell_center),
-            Paragraph("<font color='#15803D'><b>14.3%</b></font>", table_cell_right),
+            Paragraph("<font color='#15803D'><b>14.29%</b></font>", table_cell_right),
         ],
         [
             Paragraph("<b>Desktop Computers</b> (Windows / macOS)", table_cell_style),
             Paragraph("<b>20.5%</b>", table_cell_center),
             Paragraph("9", table_cell_center),
             Paragraph("7", table_cell_center),
-            Paragraph("<b>77.8%</b>", table_cell_center),
-            Paragraph("<b>3m 02s</b>", table_cell_center),
+            Paragraph("66.7%", table_cell_center),
+            Paragraph("<b>2m 50s</b>", table_cell_center),
             Paragraph("<b>2</b>", table_cell_center),
-            Paragraph("<font color='#15803D'><b>22.2%</b></font>", table_cell_right),
+            Paragraph("<font color='#15803D'><b>22.22%</b></font>", table_cell_right),
         ],
     ]
     dev_table = Table(device_rows, colWidths=[140, 60, 44, 40, 62, 54, 40, 83])

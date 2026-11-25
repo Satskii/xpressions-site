@@ -31,6 +31,7 @@ import {
 } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 import { SpotlightCard } from './SpotlightCard';
+import { LimitationsAndImprovements } from './LimitationsAndImprovements';
 import { printStep5Report, downloadStep5WordDoc } from '../utils/exportReport';
 
 export const Step5AnalyticsDashboard: React.FC = () => {
@@ -623,7 +624,7 @@ export const Step5AnalyticsDashboard: React.FC = () => {
               </div>
 
               <div className="mt-6 p-4 rounded-2xl bg-white dark:bg-plum-950 border border-plum-200 dark:border-plum-800 text-xs text-plum-800/80 dark:text-lilac/80 leading-relaxed">
-                <strong>SEO Analysis:</strong> Branded search queries such as <em>&quot;Xpressions XIMB&quot;</em> and <em>&quot;Xpressions 2027&quot;</em> maintain dominant SERP rankings (Positions 1.4 – 1.8) with healthy click-through rates exceeding 7%, while competition keywords (<em>Maven</em>, <em>Decibelz</em>) contribute qualified organic discovery.
+                <strong>SEO Analysis:</strong> Branded search queries such as <em>&quot;Xpressions XIMB&quot;</em> and <em>&quot;Xpressions 2027&quot;</em> maintain dominant SERP rankings (Positions 1.4 – 1.8) with click-through rates exceeding 20%, while competition keywords (<em>Maven</em>, <em>Decibelz</em>) contribute qualified organic discovery.
               </div>
             </div>
           </ScrollReveal>
@@ -739,7 +740,7 @@ export const Step5AnalyticsDashboard: React.FC = () => {
               </div>
 
               <div className="p-4 rounded-2xl bg-white dark:bg-plum-950 border border-plum-200 dark:border-plum-800 text-xs leading-relaxed text-plum-800/80 dark:text-lilac/80">
-                <strong>Device Takeaway:</strong> Mobile traffic is overwhelmingly the primary driver (78.4% share), driven by Instagram stories and WhatsApp forwards. Desktop users stay nearly a minute longer (3m 08s vs 2m 04s) and have a slightly higher engagement rate (74.2%), indicating they use desktops for deep case analysis.
+                <strong>Device Takeaway:</strong> Mobile traffic is overwhelmingly the primary driver ({DEVICE_BREAKDOWN_DATA.mobile.percentageOfSessions} share), driven by Instagram stories and WhatsApp forwards. Desktop visitors stay noticeably longer ({DEVICE_BREAKDOWN_DATA.desktop.avgEngagementTime} vs {DEVICE_BREAKDOWN_DATA.mobile.avgEngagementTime}) and convert at a higher rate ({DEVICE_BREAKDOWN_DATA.desktop.conversionRate}), indicating they use desktops for deep case competition analysis.
               </div>
             </div>
           </ScrollReveal>
@@ -847,8 +848,18 @@ export const Step5AnalyticsDashboard: React.FC = () => {
                 </ul>
               </div>
 
+              {/* Unified Dedicated Section inside Tab 7 */}
+              <LimitationsAndImprovements compact />
+
             </div>
           </ScrollReveal>
+        )}
+
+        {/* Always-Visible Dedicated Section for Improvements & Acknowledged Limitations */}
+        {activeTab !== 'optimization' && (
+          <div className="mt-10 pt-8 border-t border-plum-200 dark:border-plum-800">
+            <LimitationsAndImprovements compact />
+          </div>
         )}
 
       </div>

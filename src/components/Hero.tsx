@@ -1,8 +1,9 @@
 import React from 'react';
-import { ArrowRight, ChevronDown, Sparkles, Compass, Calendar, MapPin, Award } from 'lucide-react';
+import { ArrowRight, ChevronDown, Sparkles, Compass, Calendar, MapPin } from 'lucide-react';
 import { FESTIVAL_INFO } from '../data/festivalData';
 import { ScrollReveal } from './ScrollReveal';
 import { useExperiment } from '../context/ExperimentContext';
+import { useTheme } from '../context/ThemeContext';
 import { trackGaEvent } from '../utils/analytics';
 
 interface HeroProps {
@@ -12,6 +13,7 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onExploreEvents, onRegisterInterest }) => {
   const { variant, config, triggerConversion } = useExperiment();
+  const { ambientFx, currentThemeMeta } = useTheme();
   const currentVariant = config.variants[variant];
 
   const handleCtaClick = () => {
@@ -48,21 +50,57 @@ export const Hero: React.FC<HeroProps> = ({ onExploreEvents, onRegisterInterest 
       {/* Hero Content Container */}
       <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
 
-        {/* Institutional Affiliation & Status Badge */}
+        {/* Institutional Affiliation & Dual-Frequency Equalizer Pill */}
         <ScrollReveal direction="blur-up" delay={50} duration={700}>
-          <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-plum-850/90 border border-plum-700/80 text-lilac backdrop-blur-md mb-5 sm:mb-6 shadow-sm max-w-full">
+          <div className="inline-flex flex-wrap items-center justify-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-plum-850/90 border border-plum-700/80 text-lilac backdrop-blur-md mb-5 sm:mb-6 shadow-sm max-w-full">
             <Sparkles className="w-3.5 h-3.5 text-orange-accent shrink-0" />
             <span className="text-[11px] sm:text-xs font-semibold tracking-wide truncate">
-              XIMB, Bhubaneswar · {currentVariant.badgeText}
+              20.3055° N · 85.8180° E · XIMB Bhubaneswar · {currentVariant.badgeText}
             </span>
+            {/* Live CSS 5-Bar Festival Soundstage Equalizer */}
+            {ambientFx && (
+              <span
+                className="inline-flex items-end gap-[2px] h-3 ml-1 pl-2 border-l border-plum-700/80"
+                title={`Active Visual Atmosphere: ${currentThemeMeta.name}`}
+                aria-hidden="true"
+              >
+                <span className="w-[2px] h-2 bg-orange-accent rounded-full eq-bar" style={{ animationDelay: '0s' }} />
+                <span className="w-[2px] h-3 bg-orange-accent rounded-full eq-bar" style={{ animationDelay: '0.2s' }} />
+                <span className="w-[2px] h-1.5 bg-orange-accent rounded-full eq-bar" style={{ animationDelay: '0.4s' }} />
+                <span className="w-[2px] h-2.5 bg-orange-accent rounded-full eq-bar" style={{ animationDelay: '0.15s' }} />
+                <span className="w-[2px] h-2 bg-orange-accent rounded-full eq-bar" style={{ animationDelay: '0.35s' }} />
+              </span>
+            )}
           </div>
         </ScrollReveal>
 
         {/* Hero Centerpiece Logo: XPRESSIONS '27 */}
         <ScrollReveal direction="blur-up" delay={120} duration={750}>
           <div className="flex flex-col items-center justify-center mb-4 sm:mb-5">
-            {/* Custom Stylized Emblem Crest */}
-            <div className="mb-3 sm:mb-4 relative group">
+            {/* Custom Stylized Emblem Crest with Konark Sun-Wheel / Vinyl Orbital Halo */}
+            <div className="mb-4 sm:mb-5 relative group flex items-center justify-center">
+              {ambientFx && (
+                <svg
+                  viewBox="0 0 120 120"
+                  aria-hidden="true"
+                  className="absolute -inset-5 sm:-inset-6 w-[104px] h-[104px] sm:w-[128px] sm:h-[128px] text-orange-accent/35 pointer-events-none animate-[spin_50s_linear_infinite] motion-reduce:animate-none"
+                >
+                  <circle cx="60" cy="60" r="56" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="4 6" />
+                  <circle cx="60" cy="60" r="48" fill="none" stroke="currentColor" strokeWidth="0.75" opacity="0.6" />
+                  {[0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map((deg) => (
+                    <line
+                      key={deg}
+                      x1="60"
+                      y1="4"
+                      x2="60"
+                      y2="12"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      transform={`rotate(${deg} 60 60)`}
+                    />
+                  ))}
+                </svg>
+              )}
               <div className="absolute -inset-2 rounded-3xl bg-orange-accent/25 blur-xl opacity-75 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
               <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-orange-accent via-amber-400 to-plum-600 p-0.5 shadow-2xl transform group-hover:scale-105 transition-transform duration-300">
                 <div className="w-full h-full rounded-[14px] bg-plum-950 flex items-center justify-center">

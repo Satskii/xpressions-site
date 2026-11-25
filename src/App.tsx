@@ -6,7 +6,7 @@ import { MobileBottomBar } from './components/MobileBottomBar';
 import { ScrollToTop } from './components/ScrollToTop';
 import { ScrollProgressBar } from './components/ScrollProgressBar';
 import { GamificationProvider, useGamification } from './context/GamificationContext';
-import { ThemeProvider } from './context/ThemeContext';
+import { ThemeProvider, useTheme } from './context/ThemeContext';
 import { ExperimentProvider } from './context/ExperimentContext';
 import { recordCampaignVisit, trackPageView, trackGaEvent } from './utils/analytics';
 
@@ -32,6 +32,7 @@ export const AppContent: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { awardXp } = useGamification();
+  const { ambientFx } = useTheme();
 
   // Track pageviews & UTM campaign visits
   useEffect(() => {
@@ -131,7 +132,15 @@ export const AppContent: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-white dark:bg-plum-950 text-plum-950 dark:text-white font-inter antialiased flex flex-col selection:bg-orange-accent selection:text-white transition-colors duration-300">
+    <div className="relative min-h-screen w-full max-w-full overflow-x-hidden bg-white dark:bg-plum-950 text-plum-950 dark:text-white font-inter antialiased flex flex-col selection:bg-orange-accent selection:text-white transition-colors duration-300">
+      {/* Crash-Free Pure CSS Per-Theme Atmospheric Texture Layer */}
+      {ambientFx && (
+        <div
+          aria-hidden="true"
+          className="fixed inset-0 pointer-events-none z-0 theme-atmosphere"
+        />
+      )}
+
       <ScrollProgressBar />
       <ScrollToTop />
 
@@ -139,7 +148,7 @@ export const AppContent: React.FC = () => {
       <Navbar onOpenInterestModal={handleOpenInterestModal} />
 
       {/* Page Routing */}
-      <main className="flex-1 pb-20 lg:pb-0 w-full max-w-full overflow-x-hidden">
+      <main className="relative z-10 flex-1 pb-20 lg:pb-0 w-full max-w-full overflow-x-hidden">
         <Routes>
           <Route
             path="/"

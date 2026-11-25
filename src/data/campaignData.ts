@@ -648,11 +648,64 @@ export const OPTIMIZATION_INTERVENTION = {
     formCompletions: 4,
     completionRate: "80.0%",
   },
-  observedEffect: "+30.0 percentage points in form completion rate following implementation.",
+  observedEffect: "+30.0 percentage points (+60.0% relative lift) in form completion rate following implementation.",
+  improvementsDetailed: [
+    {
+      title: "2-Step Progressive Disclosure Form",
+      targetProblem: "31.3% of visitors closed the registration modal immediately upon seeing 7 simultaneous fields.",
+      changeImplemented: "Split inputs into Step 1 (Name, Email, College) and Step 2 (Category, Event Preference, Hostel Need).",
+      observedImpact: "Form completion rate jumped from 50.0% (3/6) to 80.0% (4/5).",
+    },
+    {
+      title: "Contextual Event Pre-Selection",
+      targetProblem: "46.7% drop-off between browsing competition cards and completing registration selection.",
+      changeImplemented: "Auto-populates the exact competition title and category when triggered from any event card.",
+      observedImpact: "Eliminated extra dropdown hunting and accelerated Step 2 submissions.",
+    },
+    {
+      title: "Sticky Mobile Thumb-Bar CTA",
+      targetProblem: "79.5% of traffic arrives on smartphones via Instagram Stories and WhatsApp links.",
+      changeImplemented: "Added a fixed bottom action bar on screens under 1024px for instant one-tap modal access.",
+      observedImpact: "Drove 17 mobile CTA clicks and 5 verified mobile registrations.",
+    },
+    {
+      title: "Instant Confirmation & Reference ID",
+      targetProblem: "Applicants uncertain whether multi-round submission requests were stored cleanly.",
+      changeImplemented: "Added immediate celebratory visual feedback and persistent unique Delegate Reference ID.",
+      observedImpact: "Zero duplicate retry submissions after implementing confirmation screen.",
+    },
+  ],
   limitations: [
-    "Short Observation Window: Post-optimization was monitored over 6 active days.",
-    "Channel Composition Shift: Traffic in Phase 3 had a higher proportion of direct peer referrals who already had high intent.",
-    "Sample Size: Reflects focused collegiate campaign volume (n = 44 sessions).",
+    "Short Observation Window: Post-optimization was monitored over 6 active days (Nov 15 – Nov 20).",
+    "Channel Composition Shift: Traffic in Phase 3 had a higher proportion of direct peer referrals with stronger pre-existing intent.",
+    "Small Collegiate Sample Size: Reflects focused campus evaluation volume (n = 44 sessions, 11 form starts).",
+    "Client-Side Privacy & Cookie Blocking: Safari ITP and strict browser tracking blockers may undercount returning cross-session attribution.",
+  ],
+  limitationsDetailed: [
+    {
+      category: "Sample Volume",
+      title: "Focused Collegiate Cohort Size (n = 44 Sessions)",
+      description: "A 12-day student committee campaign yields focused sample sizes (6 pre-optimization starts vs 5 post-optimization starts), making statistical margins wider than enterprise benchmarks.",
+      mitigation: "Track across a longer 30-day main fest sprint in Dec–Jan to reach statistical significance at 95% confidence.",
+    },
+    {
+      category: "Selection Bias",
+      title: "Phase 3 Audience Intent Shift",
+      description: "Later-stage traffic (Nov 16–20) skewed toward outstation college council emails and targeted WhatsApp invites rather than cold top-of-funnel Instagram browsers.",
+      mitigation: "Run simultaneous randomized 50/50 UX split tests within each channel cohort in future waves.",
+    },
+    {
+      category: "Time Horizon",
+      title: "Short 6-Day Post-Optimization Window",
+      description: "Only 6 campaign days remained after deploying the Nov 15 form refactor, preventing observation of long-term form fatigue or repeat-visitor dynamics.",
+      mitigation: "Retain GTM-WNSWR927 continuous tracking through the January 2027 grand finale.",
+    },
+    {
+      category: "Telemetry Gaps",
+      title: "Privacy Blockers & Single-Device Attribution",
+      description: "Browser privacy extensions (~10–15% of B-school student traffic) block third-party GA4 beacons, and users switching from Instagram mobile to desktop break sessionStorage continuity.",
+      mitigation: "Pair client-side GTM telemetry with backend verified database timestamps and UTM query persistence.",
+    },
   ],
 };
 

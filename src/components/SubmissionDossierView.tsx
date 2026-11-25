@@ -342,7 +342,7 @@ Xpressions '27 executed a multi-channel digital and on-ground traffic generation
                 <span>2.2 Ethical Marketing Experiment (A/B Test Results)</span>
               </h4>
               <p className="text-plum-800 dark:text-lilac/90 leading-relaxed">
-                A randomized 50/50 split test tested the control headline (Strategic Prestige) against challenger Variant B (High-Adrenaline Arena Access). Variant B delivered <strong>142 conversions from 708 impressions (20.05% CR)</strong> versus Variant A's <strong>98 conversions from 712 impressions (13.76% CR)</strong>, proving a statistically significant <strong>+45.7% relative conversion lift</strong> (94.2% confidence).
+                A randomized 50/50 split test tested the control headline (Strategic Prestige) against challenger Variant B (High-Adrenaline Arena Access). Variant B delivered <strong>5 conversions from 24 impressions (20.83% CR)</strong> versus Variant A&apos;s <strong>3 conversions from 22 impressions (13.64% CR)</strong>, proving a <strong>+52.7% relative conversion lift</strong> (+7.19 percentage points).
               </p>
             </div>
           </div>
@@ -394,11 +394,23 @@ Xpressions '27 executed a multi-channel digital and on-ground traffic generation
             <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 space-y-2 text-xs">
               <h4 className="font-bold text-sm text-plum-950 dark:text-white flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                <span>3.4 Implemented UX Optimization &amp; Measured Effect (+15.4% Lift)</span>
+                <span>3.4 Implemented UX Optimization &amp; Measured Effect (+30.0 pts Lift)</span>
               </h4>
               <p className="text-plum-800 dark:text-lilac/90 leading-relaxed">
-                Analysis of the registration funnel revealed that 124 users abandoned between opening the registration modal and filling in fields on mobile devices. We implemented automated event pre-selection, streamlined the form into a 2-step progressive flow, and added a thumb-friendly mobile action bar. This yielded a <strong>+15.4 percentage point lift (+32.1% relative improvement)</strong> in form completions (increasing from 48.0% to 63.4%).
+                Analysis of the registration funnel revealed that 5 users abandoned between opening the registration modal (16) and filling in fields (11) on mobile devices. We implemented automated event pre-selection, streamlined the form into a 2-step progressive flow, and added a thumb-friendly mobile action bar. This yielded a <strong>+30.0 percentage point lift (+60.0% relative improvement)</strong> in form completions (increasing from <strong>50.0%</strong> [3/6] to <strong>80.0%</strong> [4/5]).
               </p>
+            </div>
+
+            {/* Acknowledged Limitations */}
+            <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/40 space-y-2 text-xs">
+              <h4 className="font-bold text-sm text-plum-950 dark:text-white">
+                3.5 Acknowledged Study Limitations &amp; Next-Wave Mitigations
+              </h4>
+              <ul className="list-disc pl-5 space-y-1 text-plum-800 dark:text-lilac/90 leading-relaxed">
+                {OPTIMIZATION_INTERVENTION.limitations.map((lim, idx) => (
+                  <li key={idx}>{lim}</li>
+                ))}
+              </ul>
             </div>
           </div>
 

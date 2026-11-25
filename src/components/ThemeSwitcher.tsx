@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Palette, Check, Sparkles } from 'lucide-react';
+import { Palette, Check, Sparkles, Radio } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 export const ThemeSwitcher: React.FC = () => {
-  const { currentTheme, setTheme, availableThemes } = useTheme();
+  const { currentTheme, setTheme, availableThemes, ambientFx, toggleAmbientFx } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -22,7 +22,7 @@ export const ThemeSwitcher: React.FC = () => {
       {/* Trigger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        title="Customize Color Theme"
+        title="Customize Color Theme & Atmosphere"
         className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full bg-plum-900/90 hover:bg-plum-800 border border-plum-700/80 hover:border-orange-accent text-white text-xs font-poppins font-semibold transition-all hover:scale-105 active:scale-95 shadow-sm shrink-0"
         aria-label="Change color theme"
       >
@@ -42,13 +42,13 @@ export const ThemeSwitcher: React.FC = () => {
             <div className="flex items-center gap-2">
               <Sparkles className="w-3.5 h-3.5 text-orange-accent" />
               <span className="font-poppins font-bold text-xs uppercase tracking-wider text-white">
-                Choose Color Palette
+                Festival Visual Character
               </span>
             </div>
-            <span className="text-[10px] text-lilac/70 font-mono">5 Styles</span>
+            <span className="text-[10px] text-lilac/70 font-mono">{availableThemes.length} Styles</span>
           </div>
 
-          <div className="space-y-1.5 max-h-[70vh] overflow-y-auto pr-0.5">
+          <div className="space-y-1.5 max-h-[60vh] overflow-y-auto pr-0.5">
             {availableThemes.map((theme) => {
               const isSelected = currentTheme === theme.id;
               return (
@@ -82,9 +82,11 @@ export const ThemeSwitcher: React.FC = () => {
                         <span className="font-poppins font-bold text-xs text-white truncate">
                           {theme.name}
                         </span>
-                        <span className="text-[9px] px-1.5 py-0.2 rounded-full font-mono bg-plum-950/60 text-lilac/90 border border-plum-800 shrink-0">
-                          {theme.badge.split(' ')[0]}
-                        </span>
+                        {theme.isSignature && (
+                          <span className="text-[8px] px-1.5 py-0.2 rounded-full font-bold bg-orange-accent/20 text-orange-accent border border-orange-accent/40 shrink-0 uppercase">
+                            Signature
+                          </span>
+                        )}
                       </div>
                       <p className="text-[10px] text-lilac/70 truncate mt-0.5">
                         {theme.tagline}
@@ -101,9 +103,31 @@ export const ThemeSwitcher: React.FC = () => {
               );
             })}
           </div>
+
+          {/* Crash-free Stage Atmosphere FX Toggle */}
+          <div className="mt-2.5 pt-2.5 border-t border-plum-800 px-1">
+            <button
+              type="button"
+              onClick={toggleAmbientFx}
+              className="w-full flex items-center justify-between p-2 rounded-xl bg-plum-950/70 hover:bg-plum-850 border border-plum-800 text-xs transition-colors"
+            >
+              <span className="flex items-center gap-2 text-lilac font-medium">
+                <Radio className="w-3.5 h-3.5 text-orange-accent" />
+                <span>Stage Atmosphere &amp; Crest FX</span>
+              </span>
+              <span
+                className={`px-2 py-0.5 rounded-full font-mono text-[10px] font-bold ${
+                  ambientFx
+                    ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
+                    : 'bg-plum-800 text-lilac/60'
+                }`}
+              >
+                {ambientFx ? 'ON' : 'MINIMAL'}
+              </span>
+            </button>
+          </div>
         </div>
       )}
     </div>
   );
 };
-

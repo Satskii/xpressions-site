@@ -6,6 +6,7 @@ import { CampaignLinkGenerator } from '../components/CampaignLinkGenerator';
 import { CampaignLogTimeline } from '../components/CampaignLogTimeline';
 import { Step5AnalyticsDashboard } from '../components/Step5AnalyticsDashboard';
 import { SubmissionDossierView } from '../components/SubmissionDossierView';
+import { LimitationsAndImprovements } from '../components/LimitationsAndImprovements';
 import { CAMPAIGN_INFO, MACRO_METRICS, GA4_EVENT_SPECIFICATION } from '../data/campaignData';
 import { getStoredVisits, getStoredEvents, CampaignVisit, AnalyticsEvent } from '../utils/analytics';
 import {
@@ -22,12 +23,13 @@ import {
   Calendar,
   Zap,
   GitCompare,
+  ShieldAlert,
 } from 'lucide-react';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { SpotlightCard } from '../components/SpotlightCard';
 
 export const CampaignPage: React.FC = () => {
-  const [activeStepTab, setActiveStepTab] = useState<'comparison' | 'step4' | 'step5' | 'dossier'>('comparison');
+  const [activeStepTab, setActiveStepTab] = useState<'comparison' | 'step4' | 'step5' | 'limitations' | 'dossier'>('comparison');
   const [recentEvents, setRecentEvents] = useState<AnalyticsEvent[]>([]);
 
   useEffect(() => {
@@ -133,10 +135,10 @@ export const CampaignPage: React.FC = () => {
                 <Sparkles className="w-4 h-4 text-orange-accent" />
               </div>
               <div className="font-poppins font-black text-2xl text-orange-accent">
-                +45.7%
+                +52.7%
               </div>
               <div className="text-[11px] text-plum-600 dark:text-lilac/70 mt-0.5">
-                Statistically Significant Win
+                20.83% vs 13.64% Conv. Rate
               </div>
             </SpotlightCard>
 
@@ -186,6 +188,18 @@ export const CampaignPage: React.FC = () => {
             </button>
 
             <button
+              onClick={() => setActiveStepTab('limitations')}
+              className={`py-3 px-5 sm:px-6 rounded-2xl font-poppins font-bold text-xs sm:text-sm transition-all flex items-center gap-2 ${
+                activeStepTab === 'limitations'
+                  ? 'bg-amber-500 text-plum-950 shadow-lg scale-102 ring-2 ring-amber-400/50'
+                  : 'bg-amber-100 dark:bg-amber-950/70 text-amber-800 dark:text-amber-300 hover:bg-amber-200'
+              }`}
+            >
+              <ShieldAlert className="w-4 h-4" />
+              <span>Improvements &amp; Limitations</span>
+            </button>
+
+            <button
               onClick={() => setActiveStepTab('dossier')}
               className={`py-3 px-5 sm:px-6 rounded-2xl font-poppins font-bold text-xs sm:text-sm transition-all flex items-center gap-2 ${
                 activeStepTab === 'dossier'
@@ -232,6 +246,15 @@ export const CampaignPage: React.FC = () => {
       {/* ===================================================================== */}
       {activeStepTab === 'step5' && (
         <Step5AnalyticsDashboard />
+      )}
+
+      {/* ===================================================================== */}
+      {/* TAB 3: DEDICATED IMPROVEMENTS & LIMITATIONS */}
+      {/* ===================================================================== */}
+      {activeStepTab === 'limitations' && (
+        <div className="px-4 sm:px-6 lg:px-8 bg-white dark:bg-plum-950">
+          <LimitationsAndImprovements />
+        </div>
       )}
 
       {/* ===================================================================== */}

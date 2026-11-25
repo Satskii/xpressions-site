@@ -255,23 +255,31 @@ def build_full_dossier_pdf(output_path):
     story.append(t_act)
     story.append(Spacer(1, 3))
 
-    story.append(Paragraph("<b>3.3 Funnel Drop-Off Diagnostics &amp; Implemented Optimization:</b>", h3_style))
+    story.append(Paragraph("<b>3.3 Funnel Drop-Off Diagnostics &amp; Implemented UX Improvements:</b>", h3_style))
     opt_narrative = Paragraph(
         "• <b>Funnel Progression:</b> 44 Arrivals → 30 Exploration (31.8% drop) → 16 Intent (46.7% drop) → 11 Starts (31.3% drop) → 7 Completed Leads (36.4% drop).<br/>"
-        "• <b>UX Optimization Deployed (Nov 15):</b> Automated contextual event pre-selection, 2-step progressive disclosure, and sticky mobile action bar.<br/>"
-        "• <b>Pre-Optimization (Nov 08 – 14):</b> 3 completes / 6 starts = <b>50.0% Completion Rate</b>.<br/>"
-        "• <b>Post-Optimization (Nov 15 – 20):</b> 4 completes / 5 starts = <b>80.0% Completion Rate</b>.<br/>"
-        "• <b>Measured Lift:</b> <b>+30.0 percentage points (+60.0% relative improvement)</b>.<br/>"
-        "• <b>Acknowledged Limitations:</b> Small sample size typical of 12-day collegiate campaign; Phase 3 email cohort variance; mobile-concentrated uplift.",
+        "• <b>UX Improvements Deployed (Nov 15):</b> (1) 2-step progressive disclosure modal, (2) automated contextual event pre-selection, (3) persistent mobile bottom action bar, and (4) instant Delegate Reference ID confirmation.<br/>"
+        "• <b>Observed Quantitative Uplift:</b> Form completion increased from <b>50.0%</b> (3/6, Nov 08–14) to <b>80.0%</b> (4/5, Nov 15–20) = <b>+30.0 percentage points (+60.0% relative lift)</b>.",
         body_style
     )
     story.append(opt_narrative)
     story.append(Spacer(1, 3))
 
-    story.append(Paragraph("<b>3.4 Mobile vs. Desktop Cohorts &amp; SEO Telemetry:</b>", h3_style))
+    story.append(Paragraph("<b>3.4 Acknowledged Study Limitations &amp; Next-Wave Mitigations:</b>", h3_style))
+    lim_bullets = Paragraph(
+        "• <b>Focused Sample Size (n = 44 sessions):</b> Small 12-day collegiate counts produce wider confidence intervals; will validate over 30-day Jan fest wave.<br/>"
+        "• <b>Phase 3 Audience Intent Shift:</b> Outstation email circulars in Phase 3 had stronger baseline intent than Phase 1 Instagram stories; future waves will run in-channel split tests.<br/>"
+        "• <b>Short 6-Day Post-Optimization Window:</b> Insufficient horizon for long-term fatigue observation; GTM-WNSWR927 telemetry remains active through Jan 2027.<br/>"
+        "• <b>Telemetry &amp; Privacy Blockers:</b> Safari ITP / ad-blockers (~10–15%) undercount returning beacons; verified against backend submission timestamps.",
+        body_style
+    )
+    story.append(lim_bullets)
+    story.append(Spacer(1, 3))
+
+    story.append(Paragraph("<b>3.5 Mobile vs. Desktop Cohorts &amp; SEO Telemetry:</b>", h3_style))
     cohort_seo = Paragraph(
-        "• <b>Mobile Smartphones (79.5% share):</b> 35 sessions · 65.7% engagement rate · 2m 02s avg time · 5 leads (14.3% CR).<br/>"
-        "• <b>Desktop Computers (20.5% share):</b> 9 sessions · 77.8% engagement rate · 3m 02s avg time · 2 leads (22.2% CR).<br/>"
+        "• <b>Mobile Smartphones (79.5% share):</b> 35 sessions · 68.6% engagement rate · 2m 04s avg time · 5 leads (14.29% CR).<br/>"
+        "• <b>Desktop Computers (20.5% share):</b> 9 sessions · 66.7% engagement rate · 2m 50s avg time · 2 leads (22.22% CR).<br/>"
         "• <b>Google Search Console:</b> 159 total impressions · 32 organic clicks · 20.1% CTR · Avg. SERP Rank 2.3.",
         body_style
     )

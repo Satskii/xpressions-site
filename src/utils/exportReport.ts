@@ -548,12 +548,18 @@ export function downloadDossierWordDoc() {
         <li><strong>Post-Optimization (Nov 15 – Nov 20):</strong> 4 completes from 5 starts = <strong>80.0% Completion Rate</strong></li>
         <li><strong>Observed Net Uplift:</strong> <strong>+30.0 percentage points (+60.0% relative uplift)</strong> in form completion rate!</li>
       </ul>
-      <p><strong>Acknowledged Limitations:</strong> Short 6-day observation window, channel composition shift, and mobile vs. desktop variance.</p>
 
-      <h3>3.5 Mobile vs. Desktop Cohorts</h3>
+      <h3>3.5 Acknowledged Analytical Limitations &amp; Mitigations</h3>
       <ul>
-        <li><strong>Mobile Devices (79.5% share):</strong> 35 sessions · 65.7% engagement rate · 2m 02s avg time · 5 leads (14.3% CR)</li>
-        <li><strong>Desktop Devices (20.5% share):</strong> 9 sessions · 77.8% engagement rate · 3m 02s avg time · 2 leads (22.2% CR)</li>
+        ${OPTIMIZATION_INTERVENTION.limitationsDetailed.map(
+          (l) => `<li><strong>[${l.category}] ${l.title}:</strong> ${l.description} <em>(Next-Wave Mitigation: ${l.mitigation})</em></li>`
+        ).join('')}
+      </ul>
+
+      <h3>3.6 Mobile vs. Desktop Cohorts</h3>
+      <ul>
+        <li><strong>Mobile Devices (79.5% share):</strong> 35 sessions · 68.6% engagement rate · 2m 04s avg time · 5 leads (14.29% CR)</li>
+        <li><strong>Desktop Devices (20.5% share):</strong> 9 sessions · 66.7% engagement rate · 2m 50s avg time · 2 leads (22.22% CR)</li>
       </ul>
 
       <p style="margin-top: 30px; font-size: 10pt; color: #64748b; border-top: 1px solid #cbd5e1; padding-top: 12px;">
@@ -942,11 +948,17 @@ export function printDossierReport() {
         • <strong>Intervention Deployed:</strong> Automated event pre-selection, reduced fields to a 2-step progressive flow, and added sticky mobile action bar.<br/>
         • <strong>Pre-Optimization (Nov 08 – 14):</strong> 3 completions / 6 starts = <strong>50.0% Completion Rate</strong>.<br/>
         • <strong>Post-Optimization (Nov 15 – 20):</strong> 4 completions / 5 starts = <strong>80.0% Completion Rate</strong>.<br/>
-        • <strong>Measured Net Uplift:</strong> <strong>+30.0 percentage points (+60.0% relative improvement)</strong> in registration completion!<br/>
-        • <strong>Limitations Acknowledged:</strong> 6-day evaluation window; shift in audience composition toward higher-intent direct emails during Phase 3.
+        • <strong>Measured Net Uplift:</strong> <strong>+30.0 percentage points (+60.0% relative improvement)</strong> in registration completion!
       </p>
 
-      <h3>3.5 Organic Search Telemetry (Google Search Console)</h3>
+      <h3>3.5 Acknowledged Analytical Limitations &amp; Next-Wave Mitigations</h3>
+      <p style="font-size: 8.5pt;">
+        ${OPTIMIZATION_INTERVENTION.limitationsDetailed.map(
+          (l) => `• <strong>[${l.category}] ${l.title}:</strong> ${l.description} <em>(Mitigation: ${l.mitigation})</em>`
+        ).join('<br/>')}
+      </p>
+
+      <h3>3.6 Organic Search Telemetry (Google Search Console)</h3>
       <table>
         <thead>
           <tr>
@@ -962,11 +974,11 @@ export function printDossierReport() {
         </tbody>
       </table>
 
-      <h3>3.6 Mobile vs. Desktop Cohorts</h3>
+      <h3>3.7 Mobile vs. Desktop Cohorts</h3>
       <p style="font-size: 8.5pt;">
-        • <strong>Mobile (79.5% Sessions):</strong> 35 sessions · 65.7% Engagement Rate · 2m 02s avg time · 5 leads (14.3% CR)<br/>
-        • <strong>Desktop (20.5% Sessions):</strong> 9 sessions · 77.8% Engagement Rate · 3m 02s avg time · 2 leads (22.2% CR)<br/>
-        • <strong>Insight:</strong> Mobile dominated immediate reach and social shares; desktop drove in-depth case study exploration and extended reading.
+        • <strong>Mobile (79.5% Sessions):</strong> 35 sessions · 68.6% Engagement Rate · 2m 04s avg time · 5 leads (14.29% CR)<br/>
+        • <strong>Desktop (20.5% Sessions):</strong> 9 sessions · 66.7% Engagement Rate · 2m 50s avg time · 2 leads (22.22% CR)<br/>
+        • <strong>Insight:</strong> Mobile dominated immediate reach and social shares; desktop drove higher conversion rate and in-depth case exploration.
       </p>
 
       <div class="footer-note">
@@ -1300,16 +1312,22 @@ export function printStep5Report() {
         </tbody>
       </table>
 
-      <h2>6. Implemented Optimization &amp; Measured Effect</h2>
+      <h2>6. Implemented UX Optimization &amp; Measured Effect</h2>
       <p style="font-size: 8.5pt;">
         • <strong>Technical Interventions Deployed:</strong> Automated contextual event pre-selection, restructured form into a 2-step progressive flow, and added a persistent mobile sticky registration bar.<br/>
         • <strong>Pre-Optimization (08 Nov – 14 Nov):</strong> 3 completions from 6 starts = <strong>50.0% completion rate</strong>.<br/>
         • <strong>Post-Optimization (15 Nov – 20 Nov):</strong> 4 completions from 5 starts = <strong>80.0% completion rate</strong>.<br/>
-        • <strong>Measured Net Uplift:</strong> <strong>+30.0 percentage points (+60.0% relative improvement)</strong> in form completion rate!<br/>
-        • <strong>Acknowledged Limitations:</strong> 6-day evaluation window; shift in audience composition toward higher-intent direct email recipients during Phase 3; uplift heavily concentrated on mobile smartphones (+33.3% relative) with minimal desktop shift.
+        • <strong>Measured Net Uplift:</strong> <strong>+30.0 percentage points (+60.0% relative improvement)</strong> in form completion rate!
       </p>
 
-      <h2>7. Organic Search Telemetry (Google Search Console)</h2>
+      <h2>7. Acknowledged Methodological &amp; Analytical Limitations</h2>
+      <p style="font-size: 8.5pt;">
+        ${OPTIMIZATION_INTERVENTION.limitationsDetailed.map(
+          (l) => `• <strong>[${l.category}] ${l.title}:</strong> ${l.description} <em>(Next-Wave Mitigation: ${l.mitigation})</em>`
+        ).join('<br/>')}
+      </p>
+
+      <h2>8. Organic Search Telemetry (Google Search Console)</h2>
       <table>
         <thead>
           <tr>
@@ -1325,11 +1343,11 @@ export function printStep5Report() {
         </tbody>
       </table>
 
-      <h2>8. Mobile vs. Desktop Cohort Comparison</h2>
+      <h2>9. Mobile vs. Desktop Cohort Comparison</h2>
       <p style="font-size: 8.5pt;">
-        • <strong>Mobile Smartphones (79.5% sessions):</strong> 35 sessions · 65.7% engagement rate · 2m 02s avg time · 5 leads (14.3% CR).<br/>
-        • <strong>Desktop Computers (20.5% sessions):</strong> 9 sessions · 77.8% engagement rate · 3m 02s avg time · 2 leads (22.2% CR).<br/>
-        • <strong>Strategic Finding:</strong> Mobile drove rapid social sharing and impulsive entry; desktop drove in-depth case study examination and team registration.
+        • <strong>Mobile Smartphones (79.5% sessions):</strong> 35 sessions · 68.6% engagement rate · 2m 04s avg time · 5 leads (14.29% CR).<br/>
+        • <strong>Desktop Computers (20.5% sessions):</strong> 9 sessions · 66.7% engagement rate · 2m 50s avg time · 2 leads (22.22% CR).<br/>
+        • <strong>Strategic Finding:</strong> Mobile drove rapid social sharing and impulsive entry; desktop drove deeper case study reading and higher registration efficiency.
       </p>
 
       <div class="footer-note">
@@ -1552,16 +1570,22 @@ export function downloadStep5WordDoc() {
         </tbody>
       </table>
 
-      <h2>6. Implemented UX Optimization & Measured Effect</h2>
+      <h2>6. Implemented UX Optimization &amp; Measured Effect</h2>
       <p><b>Intervention:</b> 2-step progressive disclosure registration flow, contextual event pre-selection, and sticky mobile action bar.</p>
       <ul>
         <li><b>Pre-Optimization (Nov 08 – 14):</b> 3 completes / 6 starts = <b>50.0% completion rate</b></li>
         <li><b>Post-Optimization (Nov 15 – 20):</b> 4 completes / 5 starts = <b>80.0% completion rate</b></li>
         <li><b>Measured Net Lift:</b> <b>+30.0 percentage points (+60.0% relative uplift)</b></li>
       </ul>
-      <p><b>Acknowledged Limitations:</b> Short 6-day evaluation window; shift in audience composition toward higher-intent direct emails during Phase 3; uplift heavily concentrated on mobile smartphones (+33.3% relative) with minimal desktop shift.</p>
 
-      <h2>7. Google Search Console Telemetry</h2>
+      <h2>7. Acknowledged Methodological &amp; Analytical Limitations</h2>
+      <ul>
+        ${OPTIMIZATION_INTERVENTION.limitationsDetailed.map(
+          (l) => `<li><b>[${l.category}] ${l.title}:</b> ${l.description} <i>(Next-Wave Mitigation: ${l.mitigation})</i></li>`
+        ).join('')}
+      </ul>
+
+      <h2>8. Google Search Console Telemetry</h2>
       <table>
         <thead>
           <tr>
@@ -1577,10 +1601,10 @@ export function downloadStep5WordDoc() {
         </tbody>
       </table>
 
-      <h2>8. Mobile vs. Desktop Cohorts</h2>
+      <h2>9. Mobile vs. Desktop Cohorts</h2>
       <ul>
-        <li><b>Mobile Smartphones (79.5% share):</b> 35 sessions · 65.7% engagement rate · 2m 02s avg time · 5 leads (14.3% CR)</li>
-        <li><b>Desktop Computers (20.5% share):</b> 9 sessions · 77.8% engagement rate · 3m 02s avg time · 2 leads (22.2% CR)</li>
+        <li><b>Mobile Smartphones (79.5% share):</b> 35 sessions · 68.6% engagement rate · 2m 04s avg time · 5 leads (14.29% CR)</li>
+        <li><b>Desktop Computers (20.5% share):</b> 9 sessions · 66.7% engagement rate · 2m 50s avg time · 2 leads (22.22% CR)</li>
       </ul>
 
       <p style="margin-top: 30px; font-size: 10pt; color: #64748b; border-top: 1px solid #cbd5e1; padding-top: 12px;">
