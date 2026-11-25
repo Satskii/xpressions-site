@@ -58,11 +58,10 @@ export const ThemeSwitcher: React.FC = () => {
                     setTheme(theme.id);
                     setIsOpen(false);
                   }}
-                  className={`w-full text-left p-2.5 rounded-xl transition-all flex items-center justify-between gap-3 group border ${
-                    isSelected
+                  className={`w-full text-left p-2.5 rounded-xl transition-all flex items-center justify-between gap-3 group border ${isSelected
                       ? 'bg-plum-800 border-orange-accent/60 shadow-md'
                       : 'hover:bg-plum-850/80 border-transparent hover:border-plum-700'
-                  }`}
+                    }`}
                 >
                   <div className="flex items-center gap-2.5 min-w-0">
                     {/* Swatch Previews */}
@@ -116,11 +115,10 @@ export const ThemeSwitcher: React.FC = () => {
                 <span>Stage Atmosphere &amp; Crest FX</span>
               </span>
               <span
-                className={`px-2 py-0.5 rounded-full font-mono text-[10px] font-bold ${
-                  ambientFx
+                className={`px-2 py-0.5 rounded-full font-mono text-[10px] font-bold ${ambientFx
                     ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
                     : 'bg-plum-800 text-lilac/60'
-                }`}
+                  }`}
               >
                 {ambientFx ? 'ON' : 'MINIMAL'}
               </span>
