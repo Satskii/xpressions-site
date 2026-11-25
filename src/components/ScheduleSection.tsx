@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Calendar, Clock, Bell, Filter, ShieldAlert } from 'lucide-react';
+import { Calendar, Clock, Bell, Filter, ShieldAlert, Download } from 'lucide-react';
 import { SCHEDULE_PREVIEW } from '../data/festivalData';
 import { ScrollReveal } from './ScrollReveal';
 import { SpotlightCard } from './SpotlightCard';
+import { trackGaEvent } from '../utils/analytics';
+import { downloadSchedulePdf } from '../utils/exportReport';
 
 interface ScheduleSectionProps {
   onRegisterInterest: () => void;
@@ -58,13 +60,27 @@ export const ScheduleSection: React.FC<ScheduleSectionProps> = ({ onRegisterInte
               </div>
             </div>
 
-            <button
-              onClick={onRegisterInterest}
-              className="shrink-0 w-full sm:w-auto px-4 py-2.5 rounded-full bg-orange-accent hover:bg-orange-hover text-plum-950 font-poppins font-bold text-xs shadow-md transition-all flex items-center justify-center gap-1.5 hover:scale-105 active:scale-95"
-            >
-              <Bell className="w-3.5 h-3.5" />
-              <span>Notify Me On Release</span>
-            </button>
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto shrink-0">
+              <button
+                onClick={() => {
+                  trackGaEvent('schedule_download', { format: 'pdf', event_category: 'engagement', trigger_location: 'schedule_banner' });
+                  downloadSchedulePdf();
+                }}
+                className="shrink-0 px-3.5 py-2.5 rounded-full bg-plum-800 hover:bg-plum-700 text-white dark:bg-plum-800 dark:hover:bg-plum-700 border border-plum-600/80 font-poppins font-bold text-xs shadow-sm transition-all flex items-center justify-center gap-1.5 hover:scale-105 active:scale-95"
+                title="Download 3-Day Programme Schedule (Printable / PDF)"
+              >
+                <Download className="w-3.5 h-3.5 text-orange-accent" />
+                <span>Download Schedule (PDF)</span>
+              </button>
+
+              <button
+                onClick={onRegisterInterest}
+                className="shrink-0 px-4 py-2.5 rounded-full bg-orange-accent hover:bg-orange-hover text-plum-950 font-poppins font-bold text-xs shadow-md transition-all flex items-center justify-center gap-1.5 hover:scale-105 active:scale-95"
+              >
+                <Bell className="w-3.5 h-3.5" />
+                <span>Notify Me On Release</span>
+              </button>
+            </div>
           </div>
         </ScrollReveal>
 

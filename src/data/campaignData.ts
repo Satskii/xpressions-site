@@ -310,6 +310,8 @@ export interface MacroAnalyticsSummary {
   viewsByPageTotal: number;
   viewsPerSession: number;
   totalCtaClicks: number;
+  scheduleDownloads: number;
+  registrationCtaClicks: number;
   registrationStarts: number;
   completedRegistrations: number;
   overallConversionRate: string;
@@ -324,10 +326,58 @@ export const MACRO_METRICS: MacroAnalyticsSummary = {
   viewsByPageTotal: 48,
   viewsPerSession: 1.09,
   totalCtaClicks: 22,
+  scheduleDownloads: 6,
+  registrationCtaClicks: 16,
   registrationStarts: 11,
   completedRegistrations: 7,
   overallConversionRate: "15.9%",
 };
+
+export interface MeaningfulActionMetric {
+  actionName: string;
+  ga4EventName: string;
+  category: string;
+  count: number;
+  description: string;
+}
+
+export const MEANINGFUL_ACTIONS_DATA: MeaningfulActionMetric[] = [
+  {
+    actionName: "Registration CTA Clicks",
+    ga4EventName: "register_cta_click",
+    category: "Conversion Intent",
+    count: 16,
+    description: "Visitors clicking primary Register CTA buttons across hero, navbar, and event cards.",
+  },
+  {
+    actionName: "Schedule Overview Downloads",
+    ga4EventName: "schedule_download",
+    category: "Programme Engagement",
+    count: 6,
+    description: "Visitors downloading the 3-day programme schedule PDF/calendar asset.",
+  },
+  {
+    actionName: "Registration Modal Opens",
+    ga4EventName: "registration_modal_open",
+    category: "Pre-Form Intent",
+    count: 16,
+    description: "Delegates opening the registration dialog.",
+  },
+  {
+    actionName: "Form Entries Started",
+    ga4EventName: "registration_form_start",
+    category: "Active Engagement",
+    count: 11,
+    description: "Visitors engaging and filling in required registration inputs.",
+  },
+  {
+    actionName: "Completed Registrations",
+    ga4EventName: "sign_up",
+    category: "Final Conversion",
+    count: 7,
+    description: "Successfully submitted delegate registrations confirmed by backend.",
+  },
+];
 
 export interface TrafficSourceMetric {
   sourceMedium: string;

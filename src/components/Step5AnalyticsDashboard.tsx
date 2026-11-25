@@ -7,6 +7,7 @@ import {
   SEARCH_CONSOLE_DATA,
   DEVICE_BREAKDOWN_DATA,
   OPTIMIZATION_INTERVENTION,
+  MEANINGFUL_ACTIONS_DATA,
 } from '../data/campaignData';
 import {
   BarChart3,
@@ -24,14 +25,20 @@ import {
   Download,
   Share2,
   FileSpreadsheet,
+  FileText,
   Layers,
   Sparkles,
 } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 import { SpotlightCard } from './SpotlightCard';
+import { printStep5Report, downloadStep5WordDoc } from '../utils/exportReport';
 
 export const Step5AnalyticsDashboard: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'funnel' | 'channels' | 'pages' | 'seo' | 'devices' | 'optimization'>('funnel');
+  const [activeTab, setActiveTab] = useState<'funnel' | 'channels' | 'pages' | 'actions' | 'seo' | 'devices' | 'optimization'>('funnel');
+
+  const totalSearchImpressions = SEARCH_CONSOLE_DATA.reduce((acc, q) => acc + q.impressions, 0);
+  const totalSearchClicks = SEARCH_CONSOLE_DATA.reduce((acc, q) => acc + q.clicks, 0);
+  const overallSearchCtr = ((totalSearchClicks / totalSearchImpressions) * 100).toFixed(1) + '%';
 
   const handleExportCsv = () => {
     const csvContent = [
@@ -204,6 +211,16 @@ export const Step5AnalyticsDashboard: React.FC = () => {
               3. Page Views &amp; Content Attention
             </button>
             <button
+              onClick={() => setActiveTab('actions')}
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-poppins font-bold transition-all ${
+                activeTab === 'actions'
+                  ? 'bg-plum-800 dark:bg-orange-accent text-white dark:text-plum-950 shadow-md'
+                  : 'bg-plum-100 dark:bg-plum-900/80 text-plum-800 dark:text-lilac hover:bg-plum-200'
+              }`}
+            >
+              4. Meaningful Actions
+            </button>
+            <button
               onClick={() => setActiveTab('seo')}
               className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-poppins font-bold transition-all ${
                 activeTab === 'seo'
@@ -211,7 +228,7 @@ export const Step5AnalyticsDashboard: React.FC = () => {
                   : 'bg-plum-100 dark:bg-plum-900/80 text-plum-800 dark:text-lilac hover:bg-plum-200'
               }`}
             >
-              4. Google Search Console (SEO)
+              5. Search Console (SEO)
             </button>
             <button
               onClick={() => setActiveTab('devices')}
@@ -221,7 +238,7 @@ export const Step5AnalyticsDashboard: React.FC = () => {
                   : 'bg-plum-100 dark:bg-plum-900/80 text-plum-800 dark:text-lilac hover:bg-plum-200'
               }`}
             >
-              5. Mobile vs. Desktop
+              6. Mobile vs. Desktop
             </button>
             <button
               onClick={() => setActiveTab('optimization')}
@@ -231,18 +248,39 @@ export const Step5AnalyticsDashboard: React.FC = () => {
                   : 'bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300'
               }`}
             >
-              6. Improvement &amp; Observed Effect
+              7. Improvement &amp; Observed Effect
             </button>
           </div>
 
-          <button
-            onClick={handleExportCsv}
-            className="px-4 py-2 rounded-xl bg-plum-850 hover:bg-plum-900 text-white font-poppins font-semibold text-xs flex items-center gap-1.5 transition-colors shadow-sm ml-auto"
-            title="Download full analytics dataset for Looker Studio or Google Sheets"
-          >
-            <FileSpreadsheet className="w-3.5 h-3.5 text-orange-accent" />
-            <span>Export Analytics CSV</span>
-          </button>
+          {/* Dedicated Step 5 Report Export Actions */}
+          <div className="flex items-center gap-2 ml-auto flex-wrap">
+            <button
+              onClick={printStep5Report}
+              className="px-3.5 py-2 rounded-xl bg-orange-accent hover:bg-orange-hover text-plum-950 font-poppins font-bold text-xs flex items-center gap-1.5 transition-all shadow-md hover:scale-105 active:scale-95"
+              title="Print or export Step 5 evaluation report as PDF"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span>Export Step 5 PDF</span>
+            </button>
+
+            <button
+              onClick={downloadStep5WordDoc}
+              className="px-3.5 py-2 rounded-xl bg-plum-800 hover:bg-plum-700 text-white font-poppins font-semibold text-xs flex items-center gap-1.5 transition-colors border border-plum-700 shadow-sm"
+              title="Download formatted submission dossier for Microsoft Word"
+            >
+              <FileText className="w-3.5 h-3.5 text-orange-accent" />
+              <span>Download Word (.doc)</span>
+            </button>
+
+            <button
+              onClick={handleExportCsv}
+              className="px-3.5 py-2 rounded-xl bg-plum-850 hover:bg-plum-900 text-white font-poppins font-semibold text-xs flex items-center gap-1.5 transition-colors shadow-sm"
+              title="Download full analytics dataset for Looker Studio or Google Sheets"
+            >
+              <FileSpreadsheet className="w-3.5 h-3.5 text-orange-accent" />
+              <span>Export CSV</span>
+            </button>
+          </div>
         </div>
 
         {/* ========================================================================= */}
@@ -469,7 +507,72 @@ export const Step5AnalyticsDashboard: React.FC = () => {
         )}
 
         {/* ========================================================================= */}
-        {/* TAB 4: GOOGLE SEARCH CONSOLE (SEO TELEMETRY) */}
+        {/* TAB 4: MEANINGFUL ACTIONS TELEMETRY */}
+        {/* ========================================================================= */}
+        {activeTab === 'actions' && (
+          <ScrollReveal direction="blur-up" duration={500}>
+            <div className="bg-plum-50/50 dark:bg-plum-900/50 p-6 sm:p-10 rounded-3xl border border-plum-200/80 dark:border-plum-800 mb-8">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                <div>
+                  <h3 className="font-poppins font-bold text-xl sm:text-2xl text-plum-950 dark:text-white">
+                    Meaningful Actions &amp; High-Intent Interactions
+                  </h3>
+                  <p className="text-xs sm:text-sm text-plum-800/80 dark:text-lilac/80 mt-1">
+                    Telemetry beyond passive pageviews — measuring CTA button clicks, schedule overview downloads, modal opens, and verified registrations.
+                  </p>
+                </div>
+                <div className="px-3.5 py-1.5 rounded-xl bg-orange-accent/15 text-orange-accent border border-orange-accent/30 text-xs font-mono font-bold shrink-0">
+                  Total Meaningful Actions: {MACRO_METRICS.totalCtaClicks}
+                </div>
+              </div>
+
+              <div className="overflow-x-auto rounded-2xl border border-plum-200 dark:border-plum-800 bg-white dark:bg-plum-950">
+                <table className="w-full text-left text-xs sm:text-sm">
+                  <thead>
+                    <tr className="bg-plum-100/70 dark:bg-plum-850 text-plum-900 dark:text-white uppercase font-poppins text-xs tracking-wider border-b border-plum-200 dark:border-plum-800">
+                      <th className="py-3.5 px-4 sm:px-6">Tracked Action</th>
+                      <th className="py-3.5 px-4">GA4 Event Key</th>
+                      <th className="py-3.5 px-4">Category</th>
+                      <th className="py-3.5 px-4 text-center">Event Count</th>
+                      <th className="py-3.5 px-4 sm:px-6 text-right">Measurement Purpose</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-plum-100 dark:divide-plum-800/70">
+                    {MEANINGFUL_ACTIONS_DATA.map((act, i) => (
+                      <tr key={i} className="hover:bg-plum-50/60 dark:hover:bg-plum-850/50 transition-colors">
+                        <td className="py-4 px-4 sm:px-6 font-bold text-plum-950 dark:text-white flex items-center gap-2">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                          <span>{act.actionName}</span>
+                        </td>
+                        <td className="py-4 px-4 font-mono text-xs text-sky-600 dark:text-sky-400">
+                          {act.ga4EventName}
+                        </td>
+                        <td className="py-4 px-4">
+                          <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-plum-100 dark:bg-plum-800 text-plum-800 dark:text-lilac border border-plum-300 dark:border-plum-700">
+                            {act.category}
+                          </span>
+                        </td>
+                        <td className="py-4 px-4 text-center font-mono font-bold text-orange-accent text-base">
+                          {act.count}
+                        </td>
+                        <td className="py-4 px-4 sm:px-6 text-right text-xs text-plum-700 dark:text-lilac/70">
+                          {act.description}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="mt-6 p-4 rounded-2xl bg-white dark:bg-plum-950 border border-plum-200 dark:border-plum-800 text-xs text-plum-800/80 dark:text-lilac/80 leading-relaxed">
+                <strong>Measurement Standard:</strong> Custom event listeners fire non-intrusively into Google Analytics 4 (`dataLayer.push`) on each user action, recording attribution parameters (`utm_source`, `utm_medium`, `utm_campaign`, `utm_content`) alongside event payloads.
+              </div>
+            </div>
+          </ScrollReveal>
+        )}
+
+        {/* ========================================================================= */}
+        {/* TAB 5: GOOGLE SEARCH CONSOLE (SEO TELEMETRY) */}
         {/* ========================================================================= */}
         {activeTab === 'seo' && (
           <ScrollReveal direction="blur-up" duration={500}>
@@ -484,8 +587,8 @@ export const Step5AnalyticsDashboard: React.FC = () => {
                   </p>
                 </div>
                 <div className="flex items-center gap-2 text-xs font-mono">
-                  <span className="px-3 py-1 rounded-xl bg-plum-200 dark:bg-plum-800 font-bold">18,450 Impressions</span>
-                  <span className="px-3 py-1 rounded-xl bg-orange-accent text-plum-950 font-bold">1,120 Clicks (6.07% CTR)</span>
+                  <span className="px-3 py-1 rounded-xl bg-plum-200 dark:bg-plum-800 font-bold">{totalSearchImpressions} Impressions</span>
+                  <span className="px-3 py-1 rounded-xl bg-orange-accent text-plum-950 font-bold">{totalSearchClicks} Clicks ({overallSearchCtr} CTR)</span>
                 </div>
               </div>
 

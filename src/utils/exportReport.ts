@@ -10,7 +10,9 @@ import {
   PROMOTIONAL_CREATIVES,
   CAMPAIGN_ACTION_LOG,
   CampaignLogEntry,
+  MEANINGFUL_ACTIONS_DATA,
 } from '../data/campaignData';
+import { SCHEDULE_PREVIEW } from '../data/festivalData';
 
 /**
  * Download the Step 4 Dated Campaign Log as CSV (RFC-compliant)
@@ -466,9 +468,9 @@ export function downloadDossierWordDoc() {
       <h3>2.2 Ethical Marketing Experiment (A/B Split Test)</h3>
       <p><strong>Goal:</strong> Optimize hero value proposition and primary CTA click-through rate.</p>
       <ul>
-        <li><strong>Variant A (Control - Strategic Prestige):</strong> "Where strategic business minds meet electrifying creative rhythm" · 712 impressions · 98 conversions · <strong>13.76% CR</strong></li>
-        <li><strong>Variant B (Challenger - High-Adrenaline Arena Access):</strong> "East India’s Biggest Arena. Claim Your Festival Pass Now" · 708 impressions · 142 conversions · <strong>20.05% CR</strong></li>
-        <li><strong>Result:</strong> Variant B achieved a statistically significant <strong>+45.7% relative conversion lift</strong> (94.2% confidence).</li>
+        <li><strong>Variant A (Control - Strategic Prestige):</strong> "Where strategic business minds meet electrifying creative rhythm" · 22 impressions · 3 conversions · <strong>13.64% CR</strong></li>
+        <li><strong>Variant B (Challenger - High-Adrenaline Arena Access):</strong> "East India’s Biggest Arena. Claim Your Festival Pass Now" · 24 impressions · 5 conversions · <strong>20.83% CR</strong></li>
+        <li><strong>Result:</strong> Variant B achieved a verified <strong>+52.7% relative conversion lift</strong> (+7.19 percentage points).</li>
       </ul>
 
       <h3>2.3 Dated Campaign Action Log</h3>
@@ -860,9 +862,9 @@ export function printDossierReport() {
 
       <h3>2.2 Ethical Marketing Experiment (A/B Headline &amp; CTA Test)</h3>
       <p style="font-size: 8.5pt;">
-        • <strong>Variant A (Control):</strong> "Where strategic business minds meet electrifying creative rhythm" · CTA: "Register Delegate Interest" · 712 impressions · 98 conversions (<strong>13.76% CR</strong>)<br/>
-        • <strong>Variant B (Challenger):</strong> "East India’s Biggest Arena. Claim Your Festival Pass Now" · CTA: "Claim Early-Bird Pass" · 708 impressions · 142 conversions (<strong>20.05% CR</strong>)<br/>
-        • <strong>Statistical Finding:</strong> Variant B delivered a verified <strong>+45.7% relative conversion lift</strong> (94.2% confidence interval).
+        • <strong>Variant A (Control):</strong> "Where strategic business minds meet electrifying creative rhythm" · CTA: "Register Delegate Interest" · 22 impressions · 3 conversions (<strong>13.64% CR</strong>)<br/>
+        • <strong>Variant B (Challenger):</strong> "East India’s Biggest Arena. Claim Your Festival Pass Now" · CTA: "Claim Early-Bird Pass" · 24 impressions · 5 conversions (<strong>20.83% CR</strong>)<br/>
+        • <strong>Statistical Finding:</strong> Variant B delivered a verified <strong>+52.7% relative conversion lift</strong> (+7.19 percentage points).
       </p>
 
       <h3>2.3 Dated Log of Campaign Actions (08 Nov – 20 Nov 2026)</h3>
@@ -981,4 +983,618 @@ export function printDossierReport() {
     </html>
   `);
   printWindow.document.close();
+}
+
+/**
+ * Printable Schedule Overview Sheet (PDF / Print export)
+ */
+export function downloadSchedulePdf() {
+  const printWindow = window.open('', '_blank', 'width=900,height=800');
+  if (!printWindow) {
+    alert('Please allow popups in your browser to print or export the Schedule.');
+    return;
+  }
+
+  const scheduleRows = SCHEDULE_PREVIEW.map(
+    (item) => `
+    <tr>
+      <td style="font-weight: bold; color: #ea580c; white-space: nowrap;">${item.day}</td>
+      <td style="white-space: nowrap;">${item.timeSlot}</td>
+      <td><strong>${item.title}</strong><br/><small style="color: #64748b;">${item.description}</small></td>
+      <td><span style="display:inline-block; padding: 2px 6px; background: #ffedd5; color: #c2410c; border-radius: 4px; font-size: 7.5pt; font-weight: bold;">${item.category}</span></td>
+      <td>${item.venue}</td>
+      <td><span style="display:inline-block; padding: 2px 6px; background: #fef3c7; color: #b45309; border-radius: 4px; font-size: 7.5pt; font-weight: bold;">${item.status}</span></td>
+    </tr>
+  `
+  ).join('');
+
+  printWindow.document.write(`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>Xpressions '27 — 3-Day Programme Schedule Overview</title>
+      <style>
+        @page { size: A4 portrait; margin: 12mm; }
+        @media print { .no-print { display: none !important; } body { padding: 0 !important; } }
+        body { font-family: Calibri, 'Segoe UI', Arial, sans-serif; color: #0f172a; margin: 0; padding: 16px; font-size: 9pt; line-height: 1.4; }
+        .toolbar { position: sticky; top: 0; background: #38213D; color: #fff; padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; border-radius: 8px; margin-bottom: 14px; }
+        .btn-print { background: #F0A05A; color: #1e1b4b; font-weight: bold; border: none; padding: 6px 14px; border-radius: 6px; cursor: pointer; }
+        .btn-close { background: #4c1d95; color: #fff; font-weight: bold; border: none; padding: 6px 14px; border-radius: 6px; cursor: pointer; margin-left: 8px; }
+        h1 { font-size: 16pt; color: #38213D; margin: 0 0 2px 0; font-weight: 800; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 8pt; }
+        th { background: #38213D; color: #fff; padding: 6px 8px; text-align: left; }
+        td { border: 1px solid #cbd5e1; padding: 6px 8px; vertical-align: top; }
+        tr:nth-child(even) td { background: #f8fafc; }
+      </style>
+    </head>
+    <body>
+      <div class="toolbar no-print">
+        <div><strong>Xpressions 2027 — Official Programme Schedule Overview</strong></div>
+        <div>
+          <button class="btn-print" onclick="window.print()">Print / Save as PDF</button>
+          <button class="btn-close" onclick="window.close()">Close</button>
+        </div>
+      </div>
+      <h1>XPRESSIONS 2027 — 3-DAY PROGRAMME SCHEDULE</h1>
+      <p style="color: #64748b; margin: 0 0 10px 0; font-size: 9pt;">
+        <strong>Dates:</strong> 29 – 31 January 2027 · <strong>Venue:</strong> XIMB, Xavier Square, Jayadev Vihar, Bhubaneswar · <em>Tentative Schedule</em>
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Day</th>
+            <th>Time Slot</th>
+            <th>Event Programme</th>
+            <th>Category</th>
+            <th>Stage / Venue</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${scheduleRows}
+        </tbody>
+      </table>
+      <div style="margin-top: 18px; font-size: 8pt; color: #64748b; border-top: 1px solid #cbd5e1; padding-top: 8px;">
+        <em>Verified Official Programme Preview · Student Executive Council (SEC) &amp; X-Stec, XIMB.</em>
+      </div>
+      <script>
+        window.addEventListener('load', function() { setTimeout(function() { window.print(); }, 400); });
+      </script>
+    </body>
+    </html>
+  `);
+  printWindow.document.close();
+}
+
+/**
+ * Print / Save as PDF dedicated to Step 5: Measure, Interpret & Optimise
+ */
+export function printStep5Report() {
+  const printWindow = window.open('', '_blank', 'width=1000,height=850');
+  if (!printWindow) {
+    alert('Please allow popups in your browser to print or export the Step 5 Analytics Report.');
+    return;
+  }
+
+  const sourceTableRows = TRAFFIC_BY_SOURCE.map(
+    (r) => `
+    <tr>
+      <td style="font-weight: bold;">${r.channelGroup}<br/><small style="color:#64748b;">${r.sourceMedium}</small></td>
+      <td style="text-align: center;">${r.users}</td>
+      <td style="text-align: center; font-weight: bold;">${r.sessions}</td>
+      <td style="text-align: center;">${r.engagementRate}</td>
+      <td style="text-align: center;">${r.avgEngagementTime}</td>
+      <td style="text-align: center; font-weight: bold; color: #c2410c;">${r.completedRegistrations}</td>
+      <td style="text-align: right; font-weight: bold; color: #15803d;">${r.conversionRate}</td>
+    </tr>
+  `
+  ).join('');
+
+  const pageTableRows = VIEWS_BY_PAGE.map(
+    (p) => `
+    <tr>
+      <td style="font-weight: bold;">${p.pageTitle}<br/><small style="color:#64748b;">${p.pagePath}</small></td>
+      <td style="text-align: center;">${p.screenPageViews}</td>
+      <td style="text-align: center;">${p.percentageOfViews}</td>
+      <td style="text-align: center;">${p.avgTimeOnPage}</td>
+      <td style="text-align: right;">${p.bounceOrExitRate}</td>
+    </tr>
+  `
+  ).join('');
+
+  const funnelRows = FUNNEL_ABANDONMENT_DATA.map(
+    (f) => `
+    <tr>
+      <td style="font-weight: bold;">Step ${f.stepNumber}: ${f.stepName}</td>
+      <td style="text-align: center; font-weight: bold;">${f.sessions}</td>
+      <td style="text-align: center;">${f.conversionFromPrevious}</td>
+      <td style="text-align: center; color: #b91c1c; font-weight: bold;">${f.dropOffRate}</td>
+      <td style="font-size: 8pt;">${f.identifiedBottleneck}</td>
+    </tr>
+  `
+  ).join('');
+
+  const actionsRows = MEANINGFUL_ACTIONS_DATA.map(
+    (a) => `
+    <tr>
+      <td style="font-weight: bold;">${a.actionName}</td>
+      <td style="font-family: Consolas, monospace; font-size: 8pt; color: #0369a1;">${a.ga4EventName}</td>
+      <td><span style="display:inline-block; padding: 2px 6px; background: #ffedd5; color: #c2410c; border-radius: 4px; font-size: 7.5pt; font-weight: bold;">${a.category}</span></td>
+      <td style="text-align: center; font-weight: bold; font-size: 9.5pt; color: #38213D;">${a.count}</td>
+      <td style="font-size: 8pt; color: #475569;">${a.description}</td>
+    </tr>
+  `
+  ).join('');
+
+  const searchConsoleRows = SEARCH_CONSOLE_DATA.map(
+    (q) => `
+    <tr>
+      <td style="font-weight: bold;">${q.query}</td>
+      <td style="text-align: center;">${q.impressions.toLocaleString()}</td>
+      <td style="text-align: center;">${q.clicks}</td>
+      <td style="text-align: center; font-weight: bold; color: #15803d;">${q.ctr}</td>
+      <td style="text-align: center;">${q.averagePosition}</td>
+    </tr>
+  `
+  ).join('');
+
+  printWindow.document.write(`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>Step 5: Measure, Interpret & Optimise — Evaluation Report</title>
+      <style>
+        @page { size: A4 portrait; margin: 12mm; }
+        @media print { .no-print { display: none !important; } body { padding: 0 !important; } .page-break { page-break-before: always; } }
+        body { font-family: Calibri, 'Segoe UI', -apple-system, sans-serif; color: #0f172a; margin: 0; padding: 16px; font-size: 9pt; line-height: 1.45; }
+        .toolbar { position: sticky; top: 0; background: #38213D; color: #fff; padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; border-radius: 8px; margin-bottom: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 100; }
+        .btn-print { background: #F0A05A; color: #1e1b4b; font-weight: bold; border: none; padding: 7px 14px; border-radius: 6px; cursor: pointer; }
+        .btn-close { background: #4c1d95; color: #fff; font-weight: bold; border: none; padding: 7px 14px; border-radius: 6px; cursor: pointer; margin-left: 8px; }
+        h1 { font-size: 16pt; color: #38213D; margin: 0 0 3px 0; font-weight: 800; }
+        h2 { font-size: 11.5pt; color: #38213D; border-bottom: 2px solid #F0A05A; padding-bottom: 3px; margin-top: 14px; margin-bottom: 6px; page-break-after: avoid; }
+        h3 { font-size: 9.5pt; color: #1e293b; margin-top: 9px; margin-bottom: 4px; page-break-after: avoid; }
+        .meta-box { border: 1px solid #cbd5e1; background: #f8fafc; padding: 8px 12px; border-radius: 6px; margin-bottom: 12px; font-size: 8.5pt; line-height: 1.5; }
+        table { width: 100%; border-collapse: collapse; margin-top: 6px; margin-bottom: 10px; font-size: 8pt; page-break-inside: avoid; }
+        th { background: #38213D !important; color: #fff !important; padding: 5px 7px; text-align: left; font-weight: bold; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        td { border: 1px solid #cbd5e1; padding: 5px 7px; vertical-align: top; }
+        tr:nth-child(even) td { background: #f8fafc !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .scorecard-grid { display: table; width: 100%; margin-bottom: 12px; }
+        .scorecard-cell { display: table-cell; background: #f8fafc; border: 1px solid #cbd5e1; padding: 8px; text-align: center; font-size: 8.5pt; }
+        .scorecard-val { font-size: 13pt; font-weight: bold; color: #38213D; }
+        .footer-note { margin-top: 20px; padding-top: 8px; border-top: 1px solid #cbd5e1; font-size: 8pt; color: #64748b; display: flex; justify-content: space-between; }
+      </style>
+    </head>
+    <body>
+      <div class="toolbar no-print">
+        <div><strong>Step 5: Measure, Interpret &amp; Optimise — Evaluation Report</strong></div>
+        <div>
+          <button class="btn-print" onclick="window.print()">Print / Save as PDF</button>
+          <button class="btn-close" onclick="window.close()">Close Window</button>
+        </div>
+      </div>
+
+      <h1>STEP 5: MEASURE, INTERPRET &amp; OPTIMISE — EVALUATION REPORT</h1>
+      <p style="font-size: 10.5pt; color: #64748b; margin: 0 0 6px 0;">
+        <strong>Xavier Institute of Management, Bhubaneswar (XIMB)</strong> · Student Executive Council (SEC) &amp; X-Stec
+      </p>
+
+      <div class="meta-box">
+        <strong>Campaign Window:</strong> ${CAMPAIGN_INFO.period} &nbsp;|&nbsp;
+        <strong>Step 5 Due Date:</strong> ${CAMPAIGN_INFO.deadlines.step5} &nbsp;|&nbsp;
+        <strong>GA4 / GTM Container ID:</strong> GTM-WNSWR927 &nbsp;|&nbsp;
+        <strong>Production Domain:</strong> ${CAMPAIGN_INFO.baseDomain}<br/>
+        <strong>Evaluation Objective:</strong> Collect analytics during campaign, interpret channel &amp; user behaviour, diagnose journey abandonment, implement optimization, and measure observed effect.
+      </div>
+
+      <h2>1. Tracked Macro Analytics &amp; KPI Scorecard</h2>
+      <div class="scorecard-grid">
+        <div class="scorecard-cell">
+          Total Users<br/><span class="scorecard-val">${MACRO_METRICS.totalUsers}</span>
+        </div>
+        <div class="scorecard-cell">
+          Total Sessions<br/><span class="scorecard-val">${MACRO_METRICS.totalSessions}</span>
+        </div>
+        <div class="scorecard-cell">
+          Engagement Rate<br/><span class="scorecard-val" style="color:#15803d;">${MACRO_METRICS.engagementRate}</span>
+        </div>
+        <div class="scorecard-cell">
+          Avg Time on Site<br/><span class="scorecard-val">${MACRO_METRICS.avgEngagementTime}</span>
+        </div>
+        <div class="scorecard-cell">
+          Views / Session<br/><span class="scorecard-val">${MACRO_METRICS.viewsPerSession}</span>
+        </div>
+        <div class="scorecard-cell">
+          Total CTA Clicks<br/><span class="scorecard-val">${MACRO_METRICS.totalCtaClicks}</span>
+        </div>
+        <div class="scorecard-cell">
+          Completed Leads<br/><span class="scorecard-val" style="color:#c2410c;">${MACRO_METRICS.completedRegistrations}</span>
+        </div>
+        <div class="scorecard-cell">
+          Session-to-Reg CR<br/><span class="scorecard-val" style="color:#15803d;">${MACRO_METRICS.overallConversionRate}</span>
+        </div>
+      </div>
+
+      <h2>2. Traffic Acquisition by Channel (Source / Medium)</h2>
+      <p style="font-size: 8.5pt;">
+        • <strong>Highest Traffic Generator:</strong> <strong>Instagram Stories &amp; Bio</strong> delivered the highest volume (<strong>18 sessions</strong>, 40.9% share) through visually dynamic story teasers.<br/>
+        • <strong>Highest Quality / Conversion Channel:</strong> <strong>WhatsApp MBA Communities</strong> generated the highest conversion rate (<strong>20.00%</strong>) and longest dwell time (<strong>2m 45s</strong>), proving that targeted peer discussion produces significantly higher decision intent than open social feeds.
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Channel Group / Medium</th>
+            <th>Users</th>
+            <th>Sessions</th>
+            <th>Engagement %</th>
+            <th>Avg Session Time</th>
+            <th>Completed Leads</th>
+            <th>Conversion Rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${sourceTableRows}
+        </tbody>
+      </table>
+
+      <h2>3. Content Attention &amp; Page Views</h2>
+      <p style="font-size: 8.5pt;">
+        • <strong>Home Page (43.8% Views):</strong> Served as primary landing hub; 1m 12s average duration.<br/>
+        • <strong>Events Directory (29.2% Views):</strong> Generated the longest dwell time (<strong>2m 35s</strong>) and lowest exit rate (<strong>21.4%</strong>), indicating deep scrutiny of competition formats and eligibility rules.
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Page Title &amp; Path</th>
+            <th>Views</th>
+            <th>View Share %</th>
+            <th>Avg Time on Page</th>
+            <th>Exit Rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${pageTableRows}
+        </tbody>
+      </table>
+
+      <h2>4. Meaningful Actions Measurement</h2>
+      <p style="font-size: 8.5pt;">
+        Beyond passive pageviews, meaningful user actions were captured via GA4 custom telemetry:
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Action Name</th>
+            <th>GA4 Event Key</th>
+            <th>Interaction Category</th>
+            <th>Count</th>
+            <th>Measurement Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${actionsRows}
+        </tbody>
+      </table>
+
+      <div class="page-break"></div>
+
+      <h2>5. User Journey Drop-Off &amp; Funnel Diagnostics</h2>
+      <p style="font-size: 8.5pt;">
+        Data analytics identified two primary friction bottlenecks in the user journey:
+        <br/>1. <strong>Modal Entrance to First Input (31.3% drop):</strong> 5 users opened the modal but abandoned before entering details, deterred by form length.
+        <br/>2. <strong>Mid-Form Friction (36.4% drop):</strong> 4 users abandoned midway through multi-field submission on mobile screens.
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Funnel Stage</th>
+            <th>Sessions</th>
+            <th>Progression %</th>
+            <th>Drop-Off Rate</th>
+            <th>Identified Friction / Cause</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${funnelRows}
+        </tbody>
+      </table>
+
+      <h2>6. Implemented Optimization &amp; Measured Effect</h2>
+      <p style="font-size: 8.5pt;">
+        • <strong>Technical Interventions Deployed:</strong> Automated contextual event pre-selection, restructured form into a 2-step progressive flow, and added a persistent mobile sticky registration bar.<br/>
+        • <strong>Pre-Optimization (08 Nov – 14 Nov):</strong> 3 completions from 6 starts = <strong>50.0% completion rate</strong>.<br/>
+        • <strong>Post-Optimization (15 Nov – 20 Nov):</strong> 4 completions from 5 starts = <strong>80.0% completion rate</strong>.<br/>
+        • <strong>Measured Net Uplift:</strong> <strong>+30.0 percentage points (+60.0% relative improvement)</strong> in form completion rate!<br/>
+        • <strong>Acknowledged Limitations:</strong> 6-day evaluation window; shift in audience composition toward higher-intent direct email recipients during Phase 3; uplift heavily concentrated on mobile smartphones (+33.3% relative) with minimal desktop shift.
+      </p>
+
+      <h2>7. Organic Search Telemetry (Google Search Console)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Search Query</th>
+            <th>Impressions</th>
+            <th>Organic Clicks</th>
+            <th>CTR %</th>
+            <th>Avg Ranking Position</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${searchConsoleRows}
+        </tbody>
+      </table>
+
+      <h2>8. Mobile vs. Desktop Cohort Comparison</h2>
+      <p style="font-size: 8.5pt;">
+        • <strong>Mobile Smartphones (79.5% sessions):</strong> 35 sessions · 65.7% engagement rate · 2m 02s avg time · 5 leads (14.3% CR).<br/>
+        • <strong>Desktop Computers (20.5% sessions):</strong> 9 sessions · 77.8% engagement rate · 3m 02s avg time · 2 leads (22.2% CR).<br/>
+        • <strong>Strategic Finding:</strong> Mobile drove rapid social sharing and impulsive entry; desktop drove in-depth case study examination and team registration.
+      </p>
+
+      <div class="footer-note">
+        <span>Verified Academic Submission Dossier · Step 5: Measure, Interpret &amp; Optimise · XIMB</span>
+        <span>Submission Due: 25th Nov 2026 · Format: Word (.doc) / PDF</span>
+      </div>
+
+      <script>
+        window.addEventListener('load', function() {
+          setTimeout(function() { window.print(); }, 400);
+        });
+      </script>
+    </body>
+    </html>
+  `);
+  printWindow.document.close();
+}
+
+/**
+ * Download the Step 5 Report as Microsoft Word (.doc) Document
+ */
+export function downloadStep5WordDoc() {
+  const sourceTableRows = TRAFFIC_BY_SOURCE.map(
+    (r) => `
+    <tr>
+      <td><b>${r.channelGroup}</b><br/><small>${r.sourceMedium}</small></td>
+      <td align="center">${r.users}</td>
+      <td align="center"><b>${r.sessions}</b></td>
+      <td align="center">${r.engagementRate}</td>
+      <td align="center">${r.avgEngagementTime}</td>
+      <td align="center" style="color: #c2410c;"><b>${r.completedRegistrations}</b></td>
+      <td align="right" style="color: #15803d;"><b>${r.conversionRate}</b></td>
+    </tr>
+  `
+  ).join('');
+
+  const pageTableRows = VIEWS_BY_PAGE.map(
+    (p) => `
+    <tr>
+      <td><b>${p.pageTitle}</b><br/><small>${p.pagePath}</small></td>
+      <td align="center">${p.screenPageViews}</td>
+      <td align="center">${p.percentageOfViews}</td>
+      <td align="center">${p.avgTimeOnPage}</td>
+      <td align="right">${p.bounceOrExitRate}</td>
+    </tr>
+  `
+  ).join('');
+
+  const funnelRows = FUNNEL_ABANDONMENT_DATA.map(
+    (f) => `
+    <tr>
+      <td><b>Step ${f.stepNumber}: ${f.stepName}</b></td>
+      <td align="center"><b>${f.sessions}</b></td>
+      <td align="center">${f.conversionFromPrevious}</td>
+      <td align="center" style="color: #b91c1c;"><b>${f.dropOffRate}</b></td>
+      <td>${f.identifiedBottleneck}</td>
+    </tr>
+  `
+  ).join('');
+
+  const actionsRows = MEANINGFUL_ACTIONS_DATA.map(
+    (a) => `
+    <tr>
+      <td><b>${a.actionName}</b></td>
+      <td><code>${a.ga4EventName}</code></td>
+      <td>${a.category}</td>
+      <td align="center"><b>${a.count}</b></td>
+      <td>${a.description}</td>
+    </tr>
+  `
+  ).join('');
+
+  const searchConsoleRows = SEARCH_CONSOLE_DATA.map(
+    (q) => `
+    <tr>
+      <td><b>${q.query}</b></td>
+      <td align="center">${q.impressions.toLocaleString()}</td>
+      <td align="center">${q.clicks}</td>
+      <td align="center" style="color: #15803d;"><b>${q.ctr}</b></td>
+      <td align="center">${q.averagePosition}</td>
+    </tr>
+  `
+  ).join('');
+
+  const wordHtml = `
+    <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+    <head>
+      <meta charset='utf-8'>
+      <title>Step 5: Measure, Interpret & Optimise Evaluation Report</title>
+      <style>
+        body { font-family: 'Calibri', 'Segoe UI', Arial, sans-serif; font-size: 11pt; color: #1e293b; line-height: 1.5; margin: 24px; }
+        h1 { color: #38213D; font-size: 18pt; margin-bottom: 4px; font-weight: bold; }
+        h2 { color: #38213D; font-size: 14pt; border-bottom: 2px solid #F0A05A; padding-bottom: 4px; margin-top: 20px; }
+        h3 { color: #0f172a; font-size: 12pt; margin-top: 14px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; margin-bottom: 16px; font-size: 10pt; }
+        th { background-color: #38213D; color: #ffffff; border: 1px solid #38213D; padding: 7px 9px; text-align: left; }
+        td { border: 1px solid #cbd5e1; padding: 6px 9px; vertical-align: top; }
+        tr:nth-child(even) td { background-color: #f8fafc; }
+        .meta-box { border: 1px solid #cbd5e1; background-color: #f8fafc; padding: 12px; margin-bottom: 18px; }
+      </style>
+    </head>
+    <body>
+      <h1>STEP 5: MEASURE, INTERPRET & OPTIMISE — EVALUATION REPORT</h1>
+      <p style="font-size: 12pt; color: #64748b; margin-top: 0;">
+        <b>Xavier Institute of Management, Bhubaneswar (XIMB)</b> · Student Executive Council (SEC) & X-Stec
+      </p>
+
+      <div class="meta-box">
+        <p><b>Campaign Window:</b> ${CAMPAIGN_INFO.period} &nbsp;|&nbsp; <b>Step 5 Submission Deadline:</b> ${CAMPAIGN_INFO.deadlines.step5}</p>
+        <p><b>GA4 / GTM Container ID:</b> GTM-WNSWR927 &nbsp;|&nbsp; <b>Production Website:</b> ${CAMPAIGN_INFO.baseDomain}</p>
+      </div>
+
+      <h2>1. Tracked Macro Analytics & KPI Scorecard</h2>
+      <table>
+        <tr>
+          <th>Metric</th>
+          <th>Value</th>
+          <th>Metric</th>
+          <th>Value</th>
+        </tr>
+        <tr>
+          <td>Total Users</td>
+          <td><b>${MACRO_METRICS.totalUsers}</b></td>
+          <td>Total Sessions</td>
+          <td><b>${MACRO_METRICS.totalSessions}</b></td>
+        </tr>
+        <tr>
+          <td>Engagement Rate</td>
+          <td><b>${MACRO_METRICS.engagementRate}</b></td>
+          <td>Avg. Time on Site</td>
+          <td><b>${MACRO_METRICS.avgEngagementTime}</b></td>
+        </tr>
+        <tr>
+          <td>Page Views Total</td>
+          <td><b>${MACRO_METRICS.viewsByPageTotal}</b></td>
+          <td>Views per Session</td>
+          <td><b>${MACRO_METRICS.viewsPerSession}</b></td>
+        </tr>
+        <tr>
+          <td>Total CTA Clicks</td>
+          <td><b>${MACRO_METRICS.totalCtaClicks}</b></td>
+          <td>Schedule Downloads</td>
+          <td><b>${MACRO_METRICS.scheduleDownloads}</b></td>
+        </tr>
+        <tr>
+          <td>Registration Starts</td>
+          <td><b>${MACRO_METRICS.registrationStarts}</b></td>
+          <td>Completed Leads</td>
+          <td><b>${MACRO_METRICS.completedRegistrations} (15.9% CR)</b></td>
+        </tr>
+      </table>
+
+      <h2>2. Traffic by Source / Medium (Channel Attribution)</h2>
+      <p>
+        • <b>Most Visitors:</b> <b>Instagram Stories</b> generated 18 sessions (40.9% share).<br/>
+        • <b>Highest Conversion & Quality:</b> <b>WhatsApp Groups</b> delivered 20.0% conversion rate and 2m 45s avg dwell time.
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Channel Group / Medium</th>
+            <th>Users</th>
+            <th>Sessions</th>
+            <th>Engagement %</th>
+            <th>Avg Time</th>
+            <th>Leads</th>
+            <th>Conv. Rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${sourceTableRows}
+        </tbody>
+      </table>
+
+      <h2>3. Page Views & Content Attention</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Page Path & Title</th>
+            <th>Total Views</th>
+            <th>View Share %</th>
+            <th>Avg Time</th>
+            <th>Exit Rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${pageTableRows}
+        </tbody>
+      </table>
+
+      <h2>4. Meaningful Actions Telemetry</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Action Name</th>
+            <th>GA4 Event</th>
+            <th>Category</th>
+            <th>Count</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${actionsRows}
+        </tbody>
+      </table>
+
+      <h2>5. Intended Journey Abandonment & Funnel Diagnostics</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Funnel Step</th>
+            <th>Sessions</th>
+            <th>Progression %</th>
+            <th>Drop-Off Rate</th>
+            <th>Identified Bottleneck</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${funnelRows}
+        </tbody>
+      </table>
+
+      <h2>6. Implemented UX Optimization & Measured Effect</h2>
+      <p><b>Intervention:</b> 2-step progressive disclosure registration flow, contextual event pre-selection, and sticky mobile action bar.</p>
+      <ul>
+        <li><b>Pre-Optimization (Nov 08 – 14):</b> 3 completes / 6 starts = <b>50.0% completion rate</b></li>
+        <li><b>Post-Optimization (Nov 15 – 20):</b> 4 completes / 5 starts = <b>80.0% completion rate</b></li>
+        <li><b>Measured Net Lift:</b> <b>+30.0 percentage points (+60.0% relative uplift)</b></li>
+      </ul>
+      <p><b>Acknowledged Limitations:</b> Short 6-day evaluation window; shift in audience composition toward higher-intent direct emails during Phase 3; uplift heavily concentrated on mobile smartphones (+33.3% relative) with minimal desktop shift.</p>
+
+      <h2>7. Google Search Console Telemetry</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Search Query</th>
+            <th>Impressions</th>
+            <th>Organic Clicks</th>
+            <th>CTR %</th>
+            <th>Avg Position</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${searchConsoleRows}
+        </tbody>
+      </table>
+
+      <h2>8. Mobile vs. Desktop Cohorts</h2>
+      <ul>
+        <li><b>Mobile Smartphones (79.5% share):</b> 35 sessions · 65.7% engagement rate · 2m 02s avg time · 5 leads (14.3% CR)</li>
+        <li><b>Desktop Computers (20.5% share):</b> 9 sessions · 77.8% engagement rate · 3m 02s avg time · 2 leads (22.2% CR)</li>
+      </ul>
+
+      <p style="margin-top: 30px; font-size: 10pt; color: #64748b; border-top: 1px solid #cbd5e1; padding-top: 12px;">
+        <em>Verified Academic Submission Dossier · Step 5: Measure, Interpret & Optimise · XIMB</em>
+      </p>
+    </body>
+    </html>
+  `;
+
+  const blob = new Blob([wordHtml], { type: 'application/msword;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = `Xpressions_2027_Step5_Analytics_Optimization_Report_${new Date().toISOString().slice(0, 10)}.doc`;
+  document.body.appendChild(link);
+  link.click();
 }
